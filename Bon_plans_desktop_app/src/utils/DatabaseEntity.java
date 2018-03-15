@@ -28,8 +28,8 @@ public class DatabaseEntity {
         String enclosingClass = enclosingClass();
         return PropertyHandler
                 .getProperties(
-                        "resources/properties/entities/"
-                        + enclosingClass.toLowerCase()
+                        "dao/entities/properties/"
+                        + enclosingClass.replace("DaoImpl", "").toLowerCase()
                         + ".config.properties"
                 );
     }

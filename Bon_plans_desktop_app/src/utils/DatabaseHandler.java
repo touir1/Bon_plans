@@ -23,7 +23,7 @@ import java.util.Map;
 public class DatabaseHandler {
     private static Connection connection;
     private static Statement statement;
-    private static String propertyPath = "resources/properties/common/database.config.properties";
+    private static String propertyPath = "resources/common/properties/database.config.properties";
     
     private DatabaseHandler(){}
     
@@ -32,7 +32,6 @@ public class DatabaseHandler {
             if(statement == null || statement.isClosed()){
                 if(connection == null || connection.isClosed()){
                     Map<String,String> configuration = PropertyHandler.getProperties(propertyPath);
-                    System.out.println(configuration);
                     connection = DriverManager.getConnection(
                             configuration.get("url"),
                             configuration.get("username"),
