@@ -9,8 +9,9 @@ if ERRORLEVEL 1 goto error
 call git push
 if ERRORLEVEL 1 goto error
 
+COLOR 0A
 pause
 exit
 :error
-COLOR 04
+COLOR 0C
 pause
