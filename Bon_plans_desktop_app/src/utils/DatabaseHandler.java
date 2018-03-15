@@ -23,9 +23,7 @@ import java.util.Map;
 public class DatabaseHandler {
     private static Connection connection;
     private static Statement statement;
-    private static String url = "jdbc:mysql://localhost:3306/1cinfo01pi";
-    private static String username = "root";
-    private static String password = "";
+    private static String propertyPath = "resources/properties/common/database.config.properties";
     
     private DatabaseHandler(){}
     
@@ -33,7 +31,13 @@ public class DatabaseHandler {
         try {
             if(statement == null || statement.isClosed()){
                 if(connection == null || connection.isClosed()){
-                    connection = DriverManager.getConnection(url,username,password);
+                    Map<String,String> configuration = PropertyHandler.getProperties(propertyPath);
+                    System.out.println(configuration);
+                    connection = DriverManager.getConnection(
+                            configuration.get("url"),
+                            configuration.get("username"),
+                            configuration.get("password")
+                    );
                 }
                 statement = connection.createStatement();
             }
