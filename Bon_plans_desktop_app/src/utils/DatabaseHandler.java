@@ -48,7 +48,7 @@ public class DatabaseHandler {
         }
     }
     
-    public static boolean update(String sql){
+    public static final boolean update(String sql){
         try {
             if(initStatement()){
                 statement.executeUpdate(sql);
@@ -64,7 +64,7 @@ public class DatabaseHandler {
         }
     }
     
-    public static List<Map<String, Object>> select(String sql){
+    public static final List<Map<String, Object>> select(String sql){
         List<Map<String, Object>> result = new ArrayList<>();
         try {
             if(initStatement()){

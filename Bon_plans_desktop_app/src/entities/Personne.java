@@ -19,6 +19,6 @@ public class Personne extends DatabaseEntity{
     }
     
     public void hello(){
-        this.test();
+        System.out.println(getSqlQueryMap());
     }
 }

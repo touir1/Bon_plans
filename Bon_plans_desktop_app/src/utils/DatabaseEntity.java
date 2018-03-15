@@ -6,20 +6,46 @@
 
 package utils;
 
+import java.util.Map;
+
 /**
  *
  * @author touir
  */
 public class DatabaseEntity {
     
-    protected DatabaseEntity(){};
+    private Map<String,String> sqlQueryMap;
     
-    protected void test(){
+    protected DatabaseEntity(){
+        sqlQueryMap = initSqlQueryMap();
+    };
+    
+    protected Map<String,String> getSqlQueryMap(){
+        return sqlQueryMap;
+    }
+    
+    private Map<String, String> initSqlQueryMap(){
+        String enclosingClass = enclosingClass();
+        return PropertyHandler
+                .getProperties(
+                        "resources/properties/entities/"
+                        + enclosingClass.toLowerCase()
+                        + ".config.properties"
+                );
+    }
+    
+    private String enclosingClass(){
         Class<?> enclosingClass = getClass().getEnclosingClass();
+        String result;
         if (enclosingClass != null) {
-          System.out.println(enclosingClass.getSimpleName());
+          result = enclosingClass.getSimpleName();
         } else {
-          System.out.println(getClass().getSimpleName());
+          result = getClass().getSimpleName();
         }
+        if(result != null && result.contains(".")){
+            result = result.substring(result.lastIndexOf("."+1));
+        }
+        
+        return result;
     }
 }

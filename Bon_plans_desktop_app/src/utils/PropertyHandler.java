@@ -27,7 +27,7 @@ public class PropertyHandler {
     
     private PropertyHandler(){};
     
-    public static Map<String, String> getProperties(String path){
+    public static final Map<String, String> getProperties(String path){
         Map<String, String> result = new HashMap<String, String>();
         try {
             properties = new Properties();
