@@ -46,7 +46,6 @@ public class mainTest {
                         + " Type: " + f.getType()
                         + " Value: " +  method.invoke(p, null));
 
-
                     method.invoke(p, null);
 
             }
