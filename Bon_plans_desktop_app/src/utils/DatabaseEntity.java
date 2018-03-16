@@ -14,18 +14,14 @@ import java.util.Map;
  */
 public class DatabaseEntity {
     
-    private Map<String,String> sqlQueryMap;
+    private DatabaseEntity(){};
     
-    protected DatabaseEntity(){
-        sqlQueryMap = initSqlQueryMap();
-    };
-    
-    protected Map<String,String> getSqlQueryMap(){
-        return sqlQueryMap;
+    public static Map<String,String> getSqlQueryMap(Class<?> daoClass){
+        return initSqlQueryMap(daoClass);
     }
     
-    private Map<String, String> initSqlQueryMap(){
-        String enclosingClass = enclosingClass();
+    private static Map<String, String> initSqlQueryMap(Class<?> daoClass){
+        String enclosingClass = enclosingClass(daoClass);
         return PropertyHandler
                 .getProperties(
                         "dao/entities/properties/"
@@ -34,13 +30,13 @@ public class DatabaseEntity {
                 );
     }
     
-    private String enclosingClass(){
-        Class<?> enclosingClass = getClass().getEnclosingClass();
+    private static String enclosingClass(Class<?> daoClass){
+        Class<?> enclosingClass = daoClass.getEnclosingClass();
         String result;
         if (enclosingClass != null) {
           result = enclosingClass.getSimpleName();
         } else {
-          result = getClass().getSimpleName();
+          result = daoClass.getSimpleName();
         }
         if(result != null && result.contains(".")){
             result = result.substring(result.lastIndexOf("."+1));

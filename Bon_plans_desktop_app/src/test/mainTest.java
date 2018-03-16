@@ -6,10 +6,12 @@
 
 package test;
 
-import dao.entities.classes.PersonneDaoImpl;
+import dao.entities.impl.PersonneDaoImpl;
 import dao.entities.interfaces.PersonneDao;
 import java.util.Map;
 import service.entities.classes.Personne;
+import service.impl.PersonneServiceImpl;
+import service.interfaces.PersonneService;
 import utils.DatabaseHandler;
 
 /**
@@ -19,9 +21,10 @@ import utils.DatabaseHandler;
 public class mainTest {
     
     public static void main(String[] args) {
-        PersonneDao personneDao = new PersonneDaoImpl();
-        System.out.println("FROM DAO");
-        for(Personne personne : personneDao.selectAll()){
+        PersonneService personneService = new PersonneServiceImpl();
+        
+        System.out.println("FROM SERVICE");
+        for(Personne personne : personneService.selectAll()){
             System.out.println(personne);
         }
         

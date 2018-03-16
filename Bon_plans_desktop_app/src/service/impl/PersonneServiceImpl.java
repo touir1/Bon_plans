@@ -4,40 +4,35 @@
  * and open the template in the editor.
  */
 
-package dao.entities.classes;
+package service.impl;
 
+import dao.entities.impl.PersonneDaoImpl;
 import dao.entities.interfaces.PersonneDao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import service.entities.classes.Personne;
+import service.interfaces.PersonneService;
 import utils.Converter;
-import utils.DatabaseEntity;
-import utils.DatabaseHandler;
 
 /**
  *
  * @author touir
  */
-public class PersonneDaoImpl extends DatabaseEntity implements PersonneDao{
+public class PersonneServiceImpl implements PersonneService{
     
-    public PersonneDaoImpl(){
-        super();
+    PersonneDao personneDao;
+    
+    public PersonneServiceImpl(){
+        personneDao = new PersonneDaoImpl();
     }
     
     @Override
-    public List<Personne> selectAll(){
-        List<Personne> result = new ArrayList<Personne>();
-        
-        List<Map<String,Object>> resultList = DatabaseHandler.select(
-                getSqlQueryMap().get("selectAll")
+    public List<Personne> selectAll() {
+        return mapListToPersonneList(
+                personneDao.selectAll()
         );
-        for(Map<String,Object> row : resultList){
-            Personne personne = mapToPersonne(row);
-            result.add(personne);
-        }
         
-        return result;
     }
     
     private Personne mapToPersonne(Map<String,Object> mapPersonne){
@@ -54,4 +49,15 @@ public class PersonneDaoImpl extends DatabaseEntity implements PersonneDao{
         );
         return result;
     }
+    
+    private List<Personne> mapListToPersonneList(List<Map<String,Object>> mapListPersonne){
+        List<Personne> resultList = new ArrayList<>();
+        
+        for(Map<String,Object> row : mapListPersonne){
+            resultList.add(mapToPersonne(row));
+        }
+        
+        return resultList;
+    }
+
 }

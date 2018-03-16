@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 
-package dao.entities.interfaces;
+package service.interfaces;
 
 import java.util.List;
-import java.util.Map;
+import service.entities.classes.Personne;
 
 /**
  *
  * @author touir
  */
-public interface PersonneDao {
-    public List<Map<String,Object>> selectAll();
+public interface PersonneService {
+    public List<Personne> selectAll();
 }
