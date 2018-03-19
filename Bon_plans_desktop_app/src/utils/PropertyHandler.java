@@ -42,7 +42,7 @@ public class PropertyHandler {
             }
         } 
         catch (IOException ex) {
-            ExceptionHandler.handleException(PropertyHandler.class.getName(), "getProperties", ex);
+            LogHandler.handleException(PropertyHandler.class.getName(), "getProperties", ex);
         }
         
         return result;

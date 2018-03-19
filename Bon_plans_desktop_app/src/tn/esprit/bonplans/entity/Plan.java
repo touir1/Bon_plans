@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.entity;
 
+import utils.entity.EnumValidation;
 import java.util.Date;
 
 /**

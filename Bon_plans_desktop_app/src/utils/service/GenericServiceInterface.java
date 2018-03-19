@@ -6,6 +6,7 @@
 package utils.service;
 
 import java.util.List;
+import utils.entity.EnumDatabaseSortOrder;
 
 /**
  *
@@ -53,7 +54,7 @@ public interface GenericServiceInterface<E> {
      * @param sort
      * @return
      */
-    public List<E> selectAll(String sortfield,String sort);
+    public List<E> selectAll(String sortField, EnumDatabaseSortOrder sortOrder);
 
     /**
      *
@@ -61,7 +62,7 @@ public interface GenericServiceInterface<E> {
      * @param ParamValue
      * @return
      */
-    public E findOne(String ParamName,Object ParamValue);
+    public E findOne(String paramName,Object paramValue);
 
     /**
      * counts the entities by the parameter
@@ -69,5 +70,5 @@ public interface GenericServiceInterface<E> {
      * @param ParamValue
      * @return
      */
-    public int findCountBy(String ParamName,Object ParamValue);
+    public int findCountBy(String paramName, Object paramValue);
 }

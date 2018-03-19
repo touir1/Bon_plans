@@ -8,6 +8,7 @@ package tn.esprit.bonplans.service.implementation;
 import java.util.List;
 import tn.esprit.bonplans.entity.Reservation;
 import tn.esprit.bonplans.service.IReservation;
+import utils.entity.EnumDatabaseSortOrder;
 
 /**
  *
@@ -41,17 +42,17 @@ public class ReservationImpl implements IReservation{
     }
 
     @Override
-    public List<Reservation> selectAll(String sortfield, String sort) {
+    public List<Reservation> selectAll(String sortField, EnumDatabaseSortOrder sortOrder) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Reservation findOne(String ParamName, Object ParamValue) {
+    public Reservation findOne(String paramName, Object paramValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int findCountBy(String ParamName, Object ParamValue) {
+    public int findCountBy(String paramName, Object paramValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

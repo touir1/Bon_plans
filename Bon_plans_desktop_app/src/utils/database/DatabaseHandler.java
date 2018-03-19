@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import utils.ExceptionHandler;
+import utils.LogHandler;
 import utils.PropertyHandler;
 
 /**
@@ -44,12 +44,14 @@ public class DatabaseHandler {
             }
             return true;
         } catch (SQLException ex) {
-            ExceptionHandler.handleException(DatabaseHandler.class.getName(), "initStatement", ex);
+            LogHandler.handleException(DatabaseHandler.class.getName(), "initStatement", ex);
             return false;
         }
     }
     
     public static final boolean update(String sql){
+        LogHandler.log(DatabaseHandler.class.getName(), "update", sql);
+        
         try {
             if(initStatement()){
                 statement.executeUpdate(sql);
@@ -60,12 +62,14 @@ public class DatabaseHandler {
             }
             
         } catch (SQLException ex) {
-            ExceptionHandler.handleException(DatabaseHandler.class.getName(), "update", ex);
+            LogHandler.handleException(DatabaseHandler.class.getName(), "update", ex);
             return false;
         }
     }
     
     public static final List<Map<String, Object>> select(String sql){
+        LogHandler.log(DatabaseHandler.class.getName(), "select", sql);
+        
         List<Map<String, Object>> result = new ArrayList<>();
         try {
             if(initStatement()){
@@ -80,7 +84,7 @@ public class DatabaseHandler {
                 }
             }
         } catch (SQLException ex) {
-            ExceptionHandler.handleException(DatabaseHandler.class.getName(), "select", ex);
+            LogHandler.handleException(DatabaseHandler.class.getName(), "select", ex);
         }
         
         return result;

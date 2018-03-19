@@ -8,6 +8,7 @@ package tn.esprit.bonplans.service.implementation;
 import java.util.List;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.service.ICategorie;
+import utils.entity.EnumDatabaseSortOrder;
 
 /**
  *
@@ -41,17 +42,17 @@ public class CategorieImpl implements ICategorie{
     }
 
     @Override
-    public List<Categorie> selectAll(String sortfield, String sort) {
+    public List<Categorie> selectAll(String sortField, EnumDatabaseSortOrder sortOrder) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Categorie findOne(String ParamName, Object ParamValue) {
+    public Categorie findOne(String paramName, Object paramValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public int findCountBy(String ParamName, Object ParamValue) {
+    public int findCountBy(String paramName, Object paramValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

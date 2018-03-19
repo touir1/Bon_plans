@@ -6,17 +6,13 @@
 
 package test;
 
-import dao.entities.impl.PersonneDaoImpl;
-import dao.entities.interfaces.PersonneDao;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import service.entities.classes.Personne;
 import service.impl.PersonneServiceImpl;
 import service.interfaces.PersonneService;
 import utils.Converter;
+import utils.database.DatabaseEntityHandler;
 import utils.database.DatabaseHandler;
 
 /**
@@ -70,6 +66,9 @@ public class mainTest {
         for(Personne personne : Converter.convertMapListToEntityList(result, Personne.class)){
             System.out.println(personne);
         }
+        
+        DatabaseEntityHandler.selectAll(Personne.class);
+
     }
     
 }
