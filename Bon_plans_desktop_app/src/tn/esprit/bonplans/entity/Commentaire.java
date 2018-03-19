@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Commentaire {
     private int idCommentaire;
-    private int texte;
+    private String texte;
     private Date date;
     private int nbJaime;
     private int nbJaimePas;
@@ -24,7 +24,7 @@ public class Commentaire {
     public Commentaire() {
     }
 
-    public Commentaire(int texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
+    public Commentaire(String texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
         this.texte = texte;
         this.date = date;
         this.nbJaime = nbJaime;
@@ -33,7 +33,7 @@ public class Commentaire {
         this.idPlan = idPlan;
     }
 
-    public Commentaire(int idCommentaire, int texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
+    public Commentaire(int idCommentaire, String texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
         this.idCommentaire = idCommentaire;
         this.texte = texte;
         this.date = date;
@@ -51,11 +51,11 @@ public class Commentaire {
         this.idCommentaire = idCommentaire;
     }
 
-    public int getTexte() {
+    public String getTexte() {
         return texte;
     }
 
-    public void setTexte(int texte) {
+    public void setTexte(String texte) {
         this.texte = texte;
     }
 
