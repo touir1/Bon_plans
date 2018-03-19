@@ -11,101 +11,103 @@ package tn.esprit.bonplans.entity;
  */
 public class Client {
     private int idClient;
-    private String Nom;
-    private String Prenom;
-    private String Urlphoto;
-    private String Ville;
-    private String Adresse;
-    private String Email;
-    private String Mdp;
-
-    public Client(int id, String Nom, String Prenom, String Urlphoto, String Ville, String Adresse, String Email, String Mdp) {
-        this.idClient = id;
-        this.Nom = Nom;
-        this.Prenom = Prenom;
-        this.Urlphoto = Urlphoto;
-        this.Ville = Ville;
-        this.Adresse = Adresse;
-        this.Email = Email;
-        this.Mdp = Mdp;
-    }
-
-    public Client(String Nom, String Prenom, String Urlphoto, String Ville, String Adresse, String Email, String Mdp) {
-        this.Nom = Nom;
-        this.Prenom = Prenom;
-        this.Urlphoto = Urlphoto;
-        this.Ville = Ville;
-        this.Adresse = Adresse;
-        this.Email = Email;
-        this.Mdp = Mdp;
-    }
+    private String nom;
+    private String prenom;
+    private String urlphoto;
+    private String ville;
+    private String adresse;
+    private String email;
+    private String mdp;
 
     public Client() {
     }
-//getters and setters
+
+    public Client(int idClient, String nom, String prenom, String urlphoto, String ville, String adresse, String email, String mdp) {
+        this.idClient = idClient;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.urlphoto = urlphoto;
+        this.ville = ville;
+        this.adresse = adresse;
+        this.email = email;
+        this.mdp = mdp;
+    }
+
+    public Client(String nom, String prenom, String urlphoto, String ville, String adresse, String email, String mdp) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.urlphoto = urlphoto;
+        this.ville = ville;
+        this.adresse = adresse;
+        this.email = email;
+        this.mdp = mdp;
+    }
+
     public int getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(int id) {
-        this.idClient = id;
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
     public String getNom() {
-        return Nom;
+        return nom;
     }
 
-    public void setNom(String Nom) {
-        this.Nom = Nom;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getPrenom() {
-        return Prenom;
+        return prenom;
     }
 
-    public void setPrenom(String Prenom) {
-        this.Prenom = Prenom;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public String getUrlphoto() {
-        return Urlphoto;
+        return urlphoto;
     }
 
-    public void setUrlphoto(String Urlphoto) {
-        this.Urlphoto = Urlphoto;
+    public void setUrlphoto(String urlphoto) {
+        this.urlphoto = urlphoto;
     }
 
     public String getVille() {
-        return Ville;
+        return ville;
     }
 
-    public void setVille(String Ville) {
-        this.Ville = Ville;
+    public void setVille(String ville) {
+        this.ville = ville;
     }
 
     public String getAdresse() {
-        return Adresse;
+        return adresse;
     }
 
-    public void setAdresse(String Adresse) {
-        this.Adresse = Adresse;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getMdp() {
-        return Mdp;
+        return mdp;
     }
 
-    public void setMdp(String Mdp) {
-        this.Mdp = Mdp;
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
     }
+
+    
     
     
     

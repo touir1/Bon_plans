@@ -39,13 +39,13 @@ public class PersonneServiceImpl implements PersonneService{
         Personne result = new Personne();
         
         result.setId(
-                Converter.convertObjectToInt(mapPersonne.get("id"))
+                Converter.convertObjectToInt(mapPersonne.get("ID"))
         );
         result.setAge(
-                Converter.convertObjectToInt(mapPersonne.get("age"))
+                Converter.convertObjectToInt(mapPersonne.get("AGE"))
         );
         result.setNom(
-                Converter.convertObjectToString(mapPersonne.get("nom"))
+                Converter.convertObjectToString(mapPersonne.get("NOM"))
         );
         return result;
     }

@@ -6,32 +6,32 @@
 package tn.esprit.bonplans.service.implementation;
 
 import java.util.List;
-import tn.esprit.bonplans.entity.Plan;
-import tn.esprit.bonplans.service.Iplan;
+import tn.esprit.bonplans.entity.Client;
+import tn.esprit.bonplans.service.IClient;
 
 /**
  *
  * @author SadfiAmine
  */
-public class planImpl implements Iplan{
+public class ClientImpl implements IClient{
 
     @Override
-    public Plan save(Plan entity) {
+    public Client save(Client entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Plan update(Plan entity) {
+    public Client update(Client entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Plan> selectAll() {
+    public List<Client> selectAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Plan GetByID(int id) {
+    public Client getByID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -41,12 +41,12 @@ public class planImpl implements Iplan{
     }
 
     @Override
-    public List<Plan> selectAll(String sortfield, String sort) {
+    public List<Client> selectAll(String sortfield, String sort) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Plan FindOne(String ParamName, Object ParamValue) {
+    public Client findOne(String ParamName, Object ParamValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

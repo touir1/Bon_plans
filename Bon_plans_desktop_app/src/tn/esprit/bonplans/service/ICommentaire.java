@@ -5,12 +5,13 @@
  */
 package tn.esprit.bonplans.service;
 
+import utils.service.GenericServiceInterface;
 import tn.esprit.bonplans.entity.Commentaire;
 
 /**
  *
  * @author SadfiAmine
  */
-public interface ICommentaire extends GeneriqueInterface<Commentaire>{
+public interface ICommentaire extends GenericServiceInterface<Commentaire>{
     
 }

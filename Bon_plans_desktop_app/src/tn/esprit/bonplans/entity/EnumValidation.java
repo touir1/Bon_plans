@@ -10,6 +10,28 @@ package tn.esprit.bonplans.entity;
  * @author SadfiAmine
  */
 public enum EnumValidation {
-    validée,
-    EnAttentedeValidation
+    validee("VALIDEE","1"),
+    EnAttentedeValidation("ATTENTE","0"),
+    refusée("REFUSEE","-1");
+    
+    private final String key;
+    private final String value;
+    
+    EnumValidation(String key, String value){
+        this.key = key;
+        this.value = value;
+    }
+    
+    public String getValue(){
+        return this.value;
+    }
+    
+    public String getKey(){
+        return this.key;
+    }
+    
+    @Override
+    public String toString(){
+        return this.value;
+    }
 }

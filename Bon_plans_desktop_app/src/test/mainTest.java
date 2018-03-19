@@ -11,11 +11,13 @@ import dao.entities.interfaces.PersonneDao;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import service.entities.classes.Personne;
 import service.impl.PersonneServiceImpl;
 import service.interfaces.PersonneService;
-import utils.DatabaseHandler;
+import utils.Converter;
+import utils.database.DatabaseHandler;
 
 /**
  *
@@ -31,6 +33,7 @@ public class mainTest {
             System.out.println(personne);
         }
         
+        /*
         Personne p = new Personne(5, "test", 20);
         Method[] methods = Personne.class.getDeclaredMethods();
         Map<String, Method> methodMap = new HashMap<String, Method>();
@@ -53,11 +56,19 @@ public class mainTest {
         catch(Exception e){
             System.out.println(e.getMessage());
         }
+        */
         
         System.out.println("FROM DatabaseHandler");
         String request = "SELECT * FROM personne";
         for(Map<String, Object> row : DatabaseHandler.select(request)){
             System.out.println(row);
+        }
+        
+        System.out.println("With DatabaseHandler + converting Map to Entity");
+        request = "SELECT * FROM personne";
+        List<Map<String, Object>> result = DatabaseHandler.select(request);
+        for(Personne personne : Converter.convertMapListToEntityList(result, Personne.class)){
+            System.out.println(personne);
         }
     }
     

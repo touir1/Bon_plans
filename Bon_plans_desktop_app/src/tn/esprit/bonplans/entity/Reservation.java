@@ -12,54 +12,54 @@ import java.util.Date;
  * @author SadfiAmine
  */
 public class Reservation {
-    private int IdReservation;
-    private Date Date;
+    private int idReservation;
+    private Date date;
     //
-    private int IdClient;
-    private int IdPlan;
+    private int idClient;
+    private int idPlan;
 
-    public Reservation(Date Date) {
-        this.Date = Date;
+    public Reservation(Date date) {
+        this.date = date;
     }
 
-    public Reservation(int IdReservation, Date Date) {
-        this.IdReservation = IdReservation;
-        this.Date = Date;
+    public Reservation(int idReservation, Date date) {
+        this.idReservation = idReservation;
+        this.date = date;
     }
 
     public Reservation() {
     }
 
     public int getIdReservation() {
-        return IdReservation;
+        return idReservation;
     }
 
-    public void setIdReservation(int IdReservation) {
-        this.IdReservation = IdReservation;
+    public void setIdReservation(int idReservation) {
+        this.idReservation = idReservation;
     }
 
     public Date getDate() {
-        return Date;
+        return date;
     }
 
-    public void setDate(Date Date) {
-        this.Date = Date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getIdClient() {
-        return IdClient;
+        return idClient;
     }
 
-    public void setIdClient(int IdClient) {
-        this.IdClient = IdClient;
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
     public int getIdPlan() {
-        return IdPlan;
+        return idPlan;
     }
 
-    public void setIdPlan(int IdPlan) {
-        this.IdPlan = IdPlan;
+    public void setIdPlan(int idPlan) {
+        this.idPlan = idPlan;
     }
     
     

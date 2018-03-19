@@ -6,6 +6,13 @@
 
 package utils;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author touir
@@ -36,5 +43,36 @@ public class Converter {
             else
                 return Double.valueOf(convertObjectToString(obj));
         return 0.0;
+    }
+    
+    public static <E> E convertMapToEntity(Map<String, Object> map, Class<E> resultClass){
+        E result = null;
+        try {
+            result = resultClass.newInstance();
+            
+            Map<String, Method> methodMap = new HashMap<>();
+            for(Method method : resultClass.getMethods()){
+                methodMap.put(method.getName(), method);
+            }
+            
+            for(Field field : resultClass.getDeclaredFields()){
+                Method method = methodMap.get("set"+field.getName().substring(0,1).toUpperCase()+field.getName().substring(1));
+                method.invoke(result, map.get(field.getName().toUpperCase()));
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
+    }
+    
+    public static <E> List<E> convertMapListToEntityList(List<Map<String, Object>> mapList, Class<E> resultClass){
+        List<E> resultList = new ArrayList<>();
+        
+        for(Map<String, Object> map : mapList){
+            resultList.add(convertMapToEntity(map,resultClass));
+        }
+        
+        return resultList;
     }
 }

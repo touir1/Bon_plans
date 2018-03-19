@@ -12,88 +12,94 @@ import java.util.Date;
  * @author SadfiAmine
  */
 public class Commentaire {
-    private int IdCommentaire;
-    private int Texte;
-    private Date Date;
-    private int NbJaime;
-    private int NbJaimePas;
+    private int idCommentaire;
+    private int texte;
+    private Date date;
+    private int nbJaime;
+    private int nbJaimePas;
     //
-    private int IdClient;
-    private int IdPlan;
-
-    public Commentaire(int IdCommentaire, int Texte, Date Date, int NbJaime, int NbJaimePas) {
-        this.IdCommentaire = IdCommentaire;
-        this.Texte = Texte;
-        this.Date = Date;
-        this.NbJaime = NbJaime;
-        this.NbJaimePas = NbJaimePas;
-    }
-
-    public Commentaire(int Texte, Date Date, int NbJaime, int NbJaimePas) {
-        this.Texte = Texte;
-        this.Date = Date;
-        this.NbJaime = NbJaime;
-        this.NbJaimePas = NbJaimePas;
-    }
+    private int idClient;
+    private int idPlan;
 
     public Commentaire() {
     }
 
-    public int getIdCommentaire() {
-        return IdCommentaire;
+    public Commentaire(int texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
+        this.texte = texte;
+        this.date = date;
+        this.nbJaime = nbJaime;
+        this.nbJaimePas = nbJaimePas;
+        this.idClient = idClient;
+        this.idPlan = idPlan;
     }
 
-    public void setIdCommentaire(int IdCommentaire) {
-        this.IdCommentaire = IdCommentaire;
+    public Commentaire(int idCommentaire, int texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
+        this.idCommentaire = idCommentaire;
+        this.texte = texte;
+        this.date = date;
+        this.nbJaime = nbJaime;
+        this.nbJaimePas = nbJaimePas;
+        this.idClient = idClient;
+        this.idPlan = idPlan;
+    }
+
+    public int getIdCommentaire() {
+        return idCommentaire;
+    }
+
+    public void setIdCommentaire(int idCommentaire) {
+        this.idCommentaire = idCommentaire;
     }
 
     public int getTexte() {
-        return Texte;
+        return texte;
     }
 
-    public void setTexte(int Texte) {
-        this.Texte = Texte;
+    public void setTexte(int texte) {
+        this.texte = texte;
     }
 
     public Date getDate() {
-        return Date;
+        return date;
     }
 
-    public void setDate(Date Date) {
-        this.Date = Date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getNbJaime() {
-        return NbJaime;
+        return nbJaime;
     }
 
-    public void setNbJaime(int NbJaime) {
-        this.NbJaime = NbJaime;
+    public void setNbJaime(int nbJaime) {
+        this.nbJaime = nbJaime;
     }
 
     public int getNbJaimePas() {
-        return NbJaimePas;
+        return nbJaimePas;
     }
 
-    public void setNbJaimePas(int NbJaimePas) {
-        this.NbJaimePas = NbJaimePas;
+    public void setNbJaimePas(int nbJaimePas) {
+        this.nbJaimePas = nbJaimePas;
     }
 
     public int getIdClient() {
-        return IdClient;
+        return idClient;
     }
 
-    public void setIdClient(int IdClient) {
-        this.IdClient = IdClient;
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
     public int getIdPlan() {
-        return IdPlan;
+        return idPlan;
     }
 
-    public void setIdPlan(int IdPlan) {
-        this.IdPlan = IdPlan;
+    public void setIdPlan(int idPlan) {
+        this.idPlan = idPlan;
     }
+
+    
     
     
 }

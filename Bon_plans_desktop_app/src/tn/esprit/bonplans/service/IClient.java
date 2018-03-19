@@ -5,12 +5,13 @@
  */
 package tn.esprit.bonplans.service;
 
+import utils.service.GenericServiceInterface;
 import tn.esprit.bonplans.entity.Client;
 
 /**
  *
  * @author SadfiAmine
  */
-public interface IClient extends GeneriqueInterface<Client>{
+public interface IClient extends GenericServiceInterface<Client>{
     
 }

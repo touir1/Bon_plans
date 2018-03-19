@@ -9,8 +9,8 @@ package dao.entities.impl;
 import dao.entities.interfaces.PersonneDao;
 import java.util.List;
 import java.util.Map;
-import utils.DatabaseEntity;
-import utils.DatabaseHandler;
+import utils.database.DatabaseEntity;
+import utils.database.DatabaseHandler;
 
 /**
  *

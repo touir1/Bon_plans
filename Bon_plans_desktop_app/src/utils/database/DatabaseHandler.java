@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package utils;
+package utils.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.PropertyHandler;
 
 /**
  *
@@ -72,7 +73,7 @@ public class DatabaseHandler {
                 while(resultSet.next()){
                     Map<String, Object> row = new HashMap<>();
                     for(int i=1;i<=columnCount;i++){
-                        row.put(resultSet.getMetaData().getColumnLabel(i), resultSet.getObject(i));
+                        row.put(resultSet.getMetaData().getColumnLabel(i).toUpperCase(), resultSet.getObject(i));
                     }
                     result.add(row);
                 }

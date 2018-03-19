@@ -31,7 +31,7 @@ public class CommentaireImpl implements ICommentaire{
     }
 
     @Override
-    public Commentaire GetByID(int id) {
+    public Commentaire getByID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -46,7 +46,7 @@ public class CommentaireImpl implements ICommentaire{
     }
 
     @Override
-    public Commentaire FindOne(String ParamName, Object ParamValue) {
+    public Commentaire findOne(String ParamName, Object ParamValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

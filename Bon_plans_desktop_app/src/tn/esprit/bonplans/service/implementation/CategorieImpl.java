@@ -31,7 +31,7 @@ public class CategorieImpl implements ICategorie{
     }
 
     @Override
-    public Categorie GetByID(int id) {
+    public Categorie getByID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -46,7 +46,7 @@ public class CategorieImpl implements ICategorie{
     }
 
     @Override
-    public Categorie FindOne(String ParamName, Object ParamValue) {
+    public Categorie findOne(String ParamName, Object ParamValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

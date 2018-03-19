@@ -5,12 +5,13 @@
  */
 package tn.esprit.bonplans.service;
 
+import utils.service.GenericServiceInterface;
 import tn.esprit.bonplans.entity.Reservation;
 
 /**
  *
  * @author SadfiAmine
  */
-public interface IReservation extends GeneriqueInterface<Reservation>{
+public interface IReservation extends GenericServiceInterface<Reservation>{
     
 }

@@ -5,12 +5,13 @@
  */
 package tn.esprit.bonplans.service;
 
+import utils.service.GenericServiceInterface;
 import tn.esprit.bonplans.entity.Plan;
 
 /**
  *
  * @author SadfiAmine
  */
-public interface Iplan  extends GeneriqueInterface<Plan>{
+public interface Iplan  extends GenericServiceInterface<Plan>{
     
 }

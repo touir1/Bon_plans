@@ -31,7 +31,7 @@ public class ReservationImpl implements IReservation{
     }
 
     @Override
-    public Reservation GetByID(int id) {
+    public Reservation getByID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -46,7 +46,7 @@ public class ReservationImpl implements IReservation{
     }
 
     @Override
-    public Reservation FindOne(String ParamName, Object ParamValue) {
+    public Reservation findOne(String ParamName, Object ParamValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
