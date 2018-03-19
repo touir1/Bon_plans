@@ -21,7 +21,9 @@ public class PersonneDaoImpl implements PersonneDao{
     private static Map<String,String> sqlQueryMap;
     
     public PersonneDaoImpl(){
-        sqlQueryMap = DatabaseEntity.getSqlQueryMap(PersonneDaoImpl.class);
+        if(sqlQueryMap == null){
+            sqlQueryMap = DatabaseEntity.getSqlQueryMap(PersonneDaoImpl.class);
+        }
     }
     
     @Override

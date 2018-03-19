@@ -61,7 +61,7 @@ public class Converter {
             }
             
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            ExceptionHandler.handleException(Converter.class.getName(), "convertMapToEntity", e);
         }
         return result;
     }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.ExceptionHandler;
 import utils.PropertyHandler;
 
 /**
@@ -43,7 +44,7 @@ public class DatabaseHandler {
             }
             return true;
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            ExceptionHandler.handleException(DatabaseHandler.class.getName(), "initStatement", ex);
             return false;
         }
     }
@@ -59,7 +60,7 @@ public class DatabaseHandler {
             }
             
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            ExceptionHandler.handleException(DatabaseHandler.class.getName(), "update", ex);
             return false;
         }
     }
@@ -79,7 +80,7 @@ public class DatabaseHandler {
                 }
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            ExceptionHandler.handleException(DatabaseHandler.class.getName(), "select", ex);
         }
         
         return result;
