@@ -234,14 +234,14 @@ public class DatabaseEntityHandler {
         );
     }
     
-    public static <E> E findOne(Class<E> entityClass, String tableName, String paramName,Object paramValue){
+    public static <E> List<E> findOne(Class<E> entityClass, String tableName, String paramName,Object paramValue){
         String sql = "SELECT * FROM "+tableName
                 + " WHERE "+paramName+"="+Converter.convertObjectToSQLString(paramValue);
         
         List<Map<String, Object>> resultList = DatabaseHandler.select(sql);
         if(resultList!=null && !resultList.isEmpty()){
-            return Converter.convertMapToEntity(
-                    resultList.get(0), 
+            return Converter.convertMapListToEntityList(
+                    DatabaseHandler.select(sql), 
                     entityClass
             );
         }
@@ -250,7 +250,7 @@ public class DatabaseEntityHandler {
         }
     }
     
-    public static <E> E findOne(Class<E> entityClass, String paramName,Object paramValue){
+    public static <E> List<E> findOne(Class<E> entityClass, String paramName,Object paramValue){
         return findOne(
                 entityClass,
                 entityClass.getSimpleName().toLowerCase(),

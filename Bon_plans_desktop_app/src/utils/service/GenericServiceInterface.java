@@ -50,24 +50,24 @@ public interface GenericServiceInterface<E> {
 
     /**
      * select entities from the database sorted by the sortfield ordered by sort
-     * @param sortfield
-     * @param sort
+     * @param sortField
+     * @param sortOrder
      * @return
      */
     public List<E> selectAll(String sortField, EnumDatabaseSortOrder sortOrder);
 
     /**
-     *
-     * @param ParamName
-     * @param ParamValue
+     * find a list of entities which respects a condition
+     * @param paramName
+     * @param paramValue
      * @return
      */
-    public E findOne(String paramName,Object paramValue);
+    public List<E> findOne(String paramName,Object paramValue);
 
     /**
      * counts the entities by the parameter
-     * @param ParamName
-     * @param ParamValue
+     * @param paramName
+     * @param paramValue
      * @return
      */
     public int findCountBy(String paramName, Object paramValue);

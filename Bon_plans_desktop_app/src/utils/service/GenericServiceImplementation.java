@@ -50,7 +50,7 @@ public class GenericServiceImplementation<E> implements GenericServiceInterface<
     }
 
     @Override
-    public E findOne(String paramName, Object paramValue) {
+    public List<E> findOne(String paramName, Object paramValue) {
         return DatabaseEntityHandler.findOne(myClass, paramName, paramValue);
     }
 
