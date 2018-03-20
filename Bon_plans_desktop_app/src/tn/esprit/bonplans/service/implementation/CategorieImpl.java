@@ -8,6 +8,7 @@ package tn.esprit.bonplans.service.implementation;
 import java.util.List;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.service.ICategorie;
+import utils.database.DatabaseEntityHandler;
 import utils.entity.EnumDatabaseSortOrder;
 
 /**
@@ -17,28 +18,28 @@ import utils.entity.EnumDatabaseSortOrder;
 public class CategorieImpl implements ICategorie{
 
     @Override
-    public Categorie save(Categorie Categorie) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Categorie save(Categorie categorie) {
+        return DatabaseEntityHandler.save(categorie);
     }
 
     @Override
-    public Categorie update(Categorie Categorie) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Categorie update(Categorie categorie) {
+        return DatabaseEntityHandler.update(categorie);
     }
 
     @Override
     public List<Categorie> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return DatabaseEntityHandler.selectAll(Categorie.class);
     }
 
     @Override
     public Categorie getByID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return DatabaseEntityHandler.getByID(Categorie.class, id);
     }
 
     @Override
     public void remove(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DatabaseEntityHandler.remove(Categorie.class, id);
     }
 
     @Override

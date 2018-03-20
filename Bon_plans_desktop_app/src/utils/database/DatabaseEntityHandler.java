@@ -89,7 +89,7 @@ public class DatabaseEntityHandler {
     public static <E> E update(E entity, String tableName, String idAttribute){
         
         boolean firstField = true;
-        String sql = "UPDATE "+tableName+"SET ";
+        String sql = "UPDATE "+tableName+" SET ";
         Object idValue = null;
         
         Map<String, Object> entityMap = Converter.convertEntityToMap(entity);
@@ -220,7 +220,7 @@ public class DatabaseEntityHandler {
                 + " WHERE "+paramName+" = "+ Converter.convertObjectToSQLString(paramValue);
         
         return Converter.convertObjectToInt(
-                DatabaseHandler.select(sql).get(0).get("count")
+                DatabaseHandler.select(sql).get(0).get("COUNT")
         );
         
     }
@@ -236,7 +236,7 @@ public class DatabaseEntityHandler {
     
     public static <E> E findOne(Class<E> entityClass, String tableName, String paramName,Object paramValue){
         String sql = "SELECT * FROM "+tableName
-                + "WHERE "+paramName+"="+Converter.convertObjectToSQLString(paramValue);
+                + " WHERE "+paramName+"="+Converter.convertObjectToSQLString(paramValue);
         
         List<Map<String, Object>> resultList = DatabaseHandler.select(sql);
         if(resultList!=null && !resultList.isEmpty()){

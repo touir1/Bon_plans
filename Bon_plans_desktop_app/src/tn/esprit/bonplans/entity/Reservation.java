@@ -61,6 +61,12 @@ public class Reservation {
     public void setIdPlan(int idPlan) {
         this.idPlan = idPlan;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" + "idReservation=" + idReservation + ", date=" + date + ", idClient=" + idClient + ", idPlan=" + idPlan + '}';
+    }
+    
     
     
 }

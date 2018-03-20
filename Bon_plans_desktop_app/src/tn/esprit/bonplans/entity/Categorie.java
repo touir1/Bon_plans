@@ -51,6 +51,11 @@ public class Categorie {
     public void setUrlPhoto(String urlPhoto) {
         this.urlPhoto = urlPhoto;
     }
+
+    @Override
+    public String toString() {
+        return "Categorie{" + "idCategorie=" + idCategorie + ", titre=" + titre + ", urlPhoto=" + urlPhoto + '}';
+    }
     
     
     

@@ -200,6 +200,11 @@ public class Plan {
         this.idCategorie = idCategorie;
     }
 
+    @Override
+    public String toString() {
+        return "Plan{" + "idPlan=" + idPlan + ", titre=" + titre + ", description=" + description + ", urlPhoto=" + urlPhoto + ", prixInitial=" + prixInitial + ", prixPromo=" + prixPromo + ", nbPlaceTotal=" + nbPlaceTotal + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", nbPlaceDispo=" + nbPlaceDispo + ", statut=" + statut + ", nbJaime=" + nbJaime + ", nbJaimePas=" + nbJaimePas + ", note=" + note + ", idAnnonceur=" + idAnnonceur + ", idCategorie=" + idCategorie + '}';
+    }
+
     
     
     

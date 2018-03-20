@@ -107,6 +107,11 @@ public class Client {
         this.mdp = mdp;
     }
 
+    @Override
+    public String toString() {
+        return "Client{" + "idClient=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", urlphoto=" + urlphoto + ", ville=" + ville + ", adresse=" + adresse + ", email=" + email + ", mdp=" + mdp + '}';
+    }
+
     
     
     
