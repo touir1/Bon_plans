@@ -18,5 +18,5 @@ public class ReservationImpl extends GenericServiceImplementation<Reservation> i
     public ReservationImpl(){
         super(Reservation.class);
     }
-    
+  
 }

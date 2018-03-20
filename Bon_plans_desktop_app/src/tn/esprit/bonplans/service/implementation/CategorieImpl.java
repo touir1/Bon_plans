@@ -18,5 +18,5 @@ public class CategorieImpl extends GenericServiceImplementation<Categorie> imple
     public CategorieImpl(){
         super(Categorie.class);
     }
-    
+  
 }

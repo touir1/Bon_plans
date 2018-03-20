@@ -12,15 +12,38 @@ import java.util.Date;
  * @author SadfiAmine
  */
 public class Commentaire {
+<<<<<<< HEAD
+    private int IdCommentaire;
+    private String Texte;
+    private Date Date;
+    private int NbJaime;
+    private int NbJaimePas;
+=======
     private int idCommentaire;
     private String texte;
     private Date date;
     private int nbJaime;
     private int nbJaimePas;
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     //
     private int idClient;
     private int idPlan;
 
+<<<<<<< HEAD
+    public Commentaire(int IdCommentaire, String Texte, Date Date, int NbJaime, int NbJaimePas) {
+        this.IdCommentaire = IdCommentaire;
+        this.Texte = Texte;
+        this.Date = Date;
+        this.NbJaime = NbJaime;
+        this.NbJaimePas = NbJaimePas;
+    }
+
+    public Commentaire(String Texte, Date Date, int NbJaime, int NbJaimePas) {
+        this.Texte = Texte;
+        this.Date = Date;
+        this.NbJaime = NbJaime;
+        this.NbJaimePas = NbJaimePas;
+=======
     public Commentaire() {
     }
 
@@ -31,6 +54,7 @@ public class Commentaire {
         this.nbJaimePas = nbJaimePas;
         this.idClient = idClient;
         this.idPlan = idPlan;
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     }
 
     public Commentaire(int idCommentaire, String texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
@@ -52,11 +76,19 @@ public class Commentaire {
     }
 
     public String getTexte() {
+<<<<<<< HEAD
+        return Texte;
+    }
+
+    public void setTexte(String Texte) {
+        this.Texte = Texte;
+=======
         return texte;
     }
 
     public void setTexte(String texte) {
         this.texte = texte;
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     }
 
     public Date getDate() {

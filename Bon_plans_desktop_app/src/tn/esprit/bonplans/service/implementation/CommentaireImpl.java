@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.service.implementation;
 
+
 import tn.esprit.bonplans.entity.Commentaire;
 import tn.esprit.bonplans.service.ICommentaire;
 import utils.service.GenericServiceImplementation;
@@ -13,6 +14,7 @@ import utils.service.GenericServiceImplementation;
  *
  * @author SadfiAmine
  */
+
 public class CommentaireImpl extends GenericServiceImplementation<Commentaire> implements ICommentaire{
     
     public CommentaireImpl(){
