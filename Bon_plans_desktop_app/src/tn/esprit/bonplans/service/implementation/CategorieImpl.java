@@ -5,56 +5,18 @@
  */
 package tn.esprit.bonplans.service.implementation;
 
-import java.util.List;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.service.ICategorie;
-import utils.database.DatabaseEntityHandler;
-import utils.entity.EnumDatabaseSortOrder;
+import utils.service.GenericServiceImplementation;
 
 /**
  *
  * @author SadfiAmine
  */
-public class CategorieImpl implements ICategorie{
+public class CategorieImpl extends GenericServiceImplementation<Categorie> implements ICategorie{
 
-    @Override
-    public Categorie save(Categorie categorie) {
-        return DatabaseEntityHandler.save(categorie);
-    }
-
-    @Override
-    public Categorie update(Categorie categorie) {
-        return DatabaseEntityHandler.update(categorie);
-    }
-
-    @Override
-    public List<Categorie> selectAll() {
-        return DatabaseEntityHandler.selectAll(Categorie.class);
-    }
-
-    @Override
-    public Categorie getByID(int id) {
-        return DatabaseEntityHandler.getByID(Categorie.class, id);
-    }
-
-    @Override
-    public void remove(int id) {
-        DatabaseEntityHandler.remove(Categorie.class, id);
-    }
-
-    @Override
-    public List<Categorie> selectAll(String sortField, EnumDatabaseSortOrder sortOrder) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Categorie findOne(String paramName, Object paramValue) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int findCountBy(String paramName, Object paramValue) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public CategorieImpl(){
+        super(Categorie.class);
     }
     
 }
