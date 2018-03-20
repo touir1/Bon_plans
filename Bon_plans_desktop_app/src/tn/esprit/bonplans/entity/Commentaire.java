@@ -12,15 +12,24 @@ import java.util.Date;
  * @author SadfiAmine
  */
 public class Commentaire {
+<<<<<<< HEAD
     private int IdCommentaire;
     private String Texte;
     private Date Date;
     private int NbJaime;
     private int NbJaimePas;
+=======
+    private int idCommentaire;
+    private String texte;
+    private Date date;
+    private int nbJaime;
+    private int nbJaimePas;
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     //
-    private int IdClient;
-    private int IdPlan;
+    private int idClient;
+    private int idPlan;
 
+<<<<<<< HEAD
     public Commentaire(int IdCommentaire, String Texte, Date Date, int NbJaime, int NbJaimePas) {
         this.IdCommentaire = IdCommentaire;
         this.Texte = Texte;
@@ -34,66 +43,95 @@ public class Commentaire {
         this.Date = Date;
         this.NbJaime = NbJaime;
         this.NbJaimePas = NbJaimePas;
-    }
-
+=======
     public Commentaire() {
     }
 
-    public int getIdCommentaire() {
-        return IdCommentaire;
+    public Commentaire(String texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
+        this.texte = texte;
+        this.date = date;
+        this.nbJaime = nbJaime;
+        this.nbJaimePas = nbJaimePas;
+        this.idClient = idClient;
+        this.idPlan = idPlan;
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     }
 
-    public void setIdCommentaire(int IdCommentaire) {
-        this.IdCommentaire = IdCommentaire;
+    public Commentaire(int idCommentaire, String texte, Date date, int nbJaime, int nbJaimePas, int idClient, int idPlan) {
+        this.idCommentaire = idCommentaire;
+        this.texte = texte;
+        this.date = date;
+        this.nbJaime = nbJaime;
+        this.nbJaimePas = nbJaimePas;
+        this.idClient = idClient;
+        this.idPlan = idPlan;
+    }
+
+    public int getIdCommentaire() {
+        return idCommentaire;
+    }
+
+    public void setIdCommentaire(int idCommentaire) {
+        this.idCommentaire = idCommentaire;
     }
 
     public String getTexte() {
+<<<<<<< HEAD
         return Texte;
     }
 
     public void setTexte(String Texte) {
         this.Texte = Texte;
+=======
+        return texte;
+    }
+
+    public void setTexte(String texte) {
+        this.texte = texte;
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     }
 
     public Date getDate() {
-        return Date;
+        return date;
     }
 
-    public void setDate(Date Date) {
-        this.Date = Date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getNbJaime() {
-        return NbJaime;
+        return nbJaime;
     }
 
-    public void setNbJaime(int NbJaime) {
-        this.NbJaime = NbJaime;
+    public void setNbJaime(int nbJaime) {
+        this.nbJaime = nbJaime;
     }
 
     public int getNbJaimePas() {
-        return NbJaimePas;
+        return nbJaimePas;
     }
 
-    public void setNbJaimePas(int NbJaimePas) {
-        this.NbJaimePas = NbJaimePas;
+    public void setNbJaimePas(int nbJaimePas) {
+        this.nbJaimePas = nbJaimePas;
     }
 
     public int getIdClient() {
-        return IdClient;
+        return idClient;
     }
 
-    public void setIdClient(int IdClient) {
-        this.IdClient = IdClient;
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
     public int getIdPlan() {
-        return IdPlan;
+        return idPlan;
     }
 
-    public void setIdPlan(int IdPlan) {
-        this.IdPlan = IdPlan;
+    public void setIdPlan(int idPlan) {
+        this.idPlan = idPlan;
     }
+
+    
     
     
 }

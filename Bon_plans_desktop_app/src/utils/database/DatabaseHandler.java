@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package utils;
+package utils.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.LogHandler;
+import utils.PropertyHandler;
 
 /**
  *
@@ -42,12 +44,14 @@ public class DatabaseHandler {
             }
             return true;
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            LogHandler.handleException(DatabaseHandler.class.getName(), "initStatement", ex);
             return false;
         }
     }
     
     public static final boolean update(String sql){
+        LogHandler.log(DatabaseHandler.class.getName(), "update", sql);
+        
         try {
             if(initStatement()){
                 statement.executeUpdate(sql);
@@ -58,12 +62,14 @@ public class DatabaseHandler {
             }
             
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            LogHandler.handleException(DatabaseHandler.class.getName(), "update", ex);
             return false;
         }
     }
     
     public static final List<Map<String, Object>> select(String sql){
+        LogHandler.log(DatabaseHandler.class.getName(), "select", sql);
+        
         List<Map<String, Object>> result = new ArrayList<>();
         try {
             if(initStatement()){
@@ -72,13 +78,13 @@ public class DatabaseHandler {
                 while(resultSet.next()){
                     Map<String, Object> row = new HashMap<>();
                     for(int i=1;i<=columnCount;i++){
-                        row.put(resultSet.getMetaData().getColumnLabel(i), resultSet.getObject(i));
+                        row.put(resultSet.getMetaData().getColumnLabel(i).toUpperCase(), resultSet.getObject(i));
                     }
                     result.add(row);
                 }
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            LogHandler.handleException(DatabaseHandler.class.getName(), "select", ex);
         }
         
         return result;

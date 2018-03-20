@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.entity.Commentaire;
 import tn.esprit.bonplans.service.ICommentaire;
+import utils.entity.EnumDatabaseSortOrder;
 
 /**
  *
@@ -80,6 +81,7 @@ public class CommentaireImpl implements ICommentaire{
     }
 
     @Override
+<<<<<<< HEAD
     public Commentaire GetByID(int id) {
         con=DataSource.getInstance().getConnection();
           String requete = "select * from commentaire where IdCommentaire ="+id;
@@ -104,6 +106,10 @@ public class CommentaireImpl implements ICommentaire{
              Logger.getLogger(CommentaireImpl.class.getName()).log(Level.SEVERE, null, ex);
          }
         return c;
+=======
+    public Commentaire getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     }
 
     @Override
@@ -119,6 +125,7 @@ public class CommentaireImpl implements ICommentaire{
     }
 
     @Override
+<<<<<<< HEAD
     public List<Commentaire> selectAll(String sortfield, String sort) {
         con=DataSource.getInstance().getConnection();
         List <Commentaire> lc=new ArrayList();
@@ -143,8 +150,13 @@ public class CommentaireImpl implements ICommentaire{
              Logger.getLogger(CommentaireImpl.class.getName()).log(Level.SEVERE, null, ex);
          }
         return lc;
+=======
+    public List<Commentaire> selectAll(String sortField, EnumDatabaseSortOrder sortOrder) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     }
     @Override
+<<<<<<< HEAD
     public Commentaire FindOne(String ParamName, Object ParamValue) {
         con=DataSource.getInstance().getConnection();
          Commentaire c =new Commentaire();
@@ -170,5 +182,15 @@ public class CommentaireImpl implements ICommentaire{
     }
 
   
+=======
+    public Commentaire findOne(String paramName, Object paramValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int findCountBy(String paramName, Object paramValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     
 }

@@ -6,7 +6,6 @@
 
 package utils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,8 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -45,7 +42,7 @@ public class PropertyHandler {
             }
         } 
         catch (IOException ex) {
-            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+            LogHandler.handleException(PropertyHandler.class.getName(), "getProperties", ex);
         }
         
         return result;

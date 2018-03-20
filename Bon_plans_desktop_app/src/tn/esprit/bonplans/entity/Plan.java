@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.entity;
 
+import utils.entity.EnumValidation;
 import java.util.Date;
 
 /**
@@ -13,138 +14,142 @@ import java.util.Date;
  */
 
 public class Plan {
-    private int IdPlan;
-    private String Titre ;
-    private String Description;
-    private  String UrlPhoto;
-    private  Double PrixInitial;
-    private Double PrixPromo;
-    private int NbplaceTotal;
-    private Date DateDebut;
-    private Date DateFin;
-    private int NbPlaceDispo;
+    private int idPlan;
+    private String titre ;
+    private String description;
+    private  String urlPhoto;
+    private  Double prixInitial;
+    private Double prixPromo;
+    private int nbPlaceTotal;
+    private Date dateDebut;
+    private Date dateFin;
+    private int nbPlaceDispo;
     private EnumValidation statut;
-    private int NbJaime ;
-    private int NbJaimePas;
-    private int Note ;
+    private int nbJaime ;
+    private int nbJaimePas;
+    private int note ;
     // 
-    private int IdAnnonceur;
+    private int idAnnonceur;
     private int idCategorie;
 
     public Plan() {
     }
 
-    public Plan(int IdPlan, String Titre, String Description, String UrlPhoto, Double PrixInitial, Double PrixPromo, int NbplaceTotal, Date DateDebut, Date DateFin, int NbPlaceDispo, EnumValidation statut, int NbJaime, int NbJaimePas, int Note) {
-        this.IdPlan = IdPlan;
-        this.Titre = Titre;
-        this.Description = Description;
-        this.UrlPhoto = UrlPhoto;
-        this.PrixInitial = PrixInitial;
-        this.PrixPromo = PrixPromo;
-        this.NbplaceTotal = NbplaceTotal;
-        this.DateDebut = DateDebut;
-        this.DateFin = DateFin;
-        this.NbPlaceDispo = NbPlaceDispo;
+    public Plan(int idPlan, String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, EnumValidation statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie) {
+        this.idPlan = idPlan;
+        this.titre = titre;
+        this.description = description;
+        this.urlPhoto = urlPhoto;
+        this.prixInitial = prixInitial;
+        this.prixPromo = prixPromo;
+        this.nbPlaceTotal = nbPlaceTotal;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.nbPlaceDispo = nbPlaceDispo;
         this.statut = statut;
-        this.NbJaime = NbJaime;
-        this.NbJaimePas = NbJaimePas;
-        this.Note = Note;
+        this.nbJaime = nbJaime;
+        this.nbJaimePas = nbJaimePas;
+        this.note = note;
+        this.idAnnonceur = idAnnonceur;
+        this.idCategorie = idCategorie;
     }
 
-    public Plan(String Titre, String Description, String UrlPhoto, Double PrixInitial, Double PrixPromo, int NbplaceTotal, Date DateDebut, Date DateFin, int NbPlaceDispo, EnumValidation statut, int NbJaime, int NbJaimePas, int Note) {
-        this.Titre = Titre;
-        this.Description = Description;
-        this.UrlPhoto = UrlPhoto;
-        this.PrixInitial = PrixInitial;
-        this.PrixPromo = PrixPromo;
-        this.NbplaceTotal = NbplaceTotal;
-        this.DateDebut = DateDebut;
-        this.DateFin = DateFin;
-        this.NbPlaceDispo = NbPlaceDispo;
+    public Plan(String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, EnumValidation statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie) {
+        this.titre = titre;
+        this.description = description;
+        this.urlPhoto = urlPhoto;
+        this.prixInitial = prixInitial;
+        this.prixPromo = prixPromo;
+        this.nbPlaceTotal = nbPlaceTotal;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.nbPlaceDispo = nbPlaceDispo;
         this.statut = statut;
-        this.NbJaime = NbJaime;
-        this.NbJaimePas = NbJaimePas;
-        this.Note = Note;
+        this.nbJaime = nbJaime;
+        this.nbJaimePas = nbJaimePas;
+        this.note = note;
+        this.idAnnonceur = idAnnonceur;
+        this.idCategorie = idCategorie;
     }
 
     public int getIdPlan() {
-        return IdPlan;
+        return idPlan;
     }
 
-    public void setIdPlan(int IdPlan) {
-        this.IdPlan = IdPlan;
+    public void setIdPlan(int idPlan) {
+        this.idPlan = idPlan;
     }
 
     public String getTitre() {
-        return Titre;
+        return titre;
     }
 
-    public void setTitre(String Titre) {
-        this.Titre = Titre;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getUrlPhoto() {
-        return UrlPhoto;
+        return urlPhoto;
     }
 
-    public void setUrlPhoto(String UrlPhoto) {
-        this.UrlPhoto = UrlPhoto;
+    public void setUrlPhoto(String urlPhoto) {
+        this.urlPhoto = urlPhoto;
     }
 
     public Double getPrixInitial() {
-        return PrixInitial;
+        return prixInitial;
     }
 
-    public void setPrixInitial(Double PrixInitial) {
-        this.PrixInitial = PrixInitial;
+    public void setPrixInitial(Double prixInitial) {
+        this.prixInitial = prixInitial;
     }
 
     public Double getPrixPromo() {
-        return PrixPromo;
+        return prixPromo;
     }
 
-    public void setPrixPromo(Double PrixPromo) {
-        this.PrixPromo = PrixPromo;
+    public void setPrixPromo(Double prixPromo) {
+        this.prixPromo = prixPromo;
     }
 
-    public int getNbplaceTotal() {
-        return NbplaceTotal;
+    public int getNbPlaceTotal() {
+        return nbPlaceTotal;
     }
 
-    public void setNbplaceTotal(int NbplaceTotal) {
-        this.NbplaceTotal = NbplaceTotal;
+    public void setNbPlaceTotal(int nbPlaceTotal) {
+        this.nbPlaceTotal = nbPlaceTotal;
     }
 
     public Date getDateDebut() {
-        return DateDebut;
+        return dateDebut;
     }
 
-    public void setDateDebut(Date DateDebut) {
-        this.DateDebut = DateDebut;
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
     public Date getDateFin() {
-        return DateFin;
+        return dateFin;
     }
 
-    public void setDateFin(Date DateFin) {
-        this.DateFin = DateFin;
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
     }
 
     public int getNbPlaceDispo() {
-        return NbPlaceDispo;
+        return nbPlaceDispo;
     }
 
-    public void setNbPlaceDispo(int NbPlaceDispo) {
-        this.NbPlaceDispo = NbPlaceDispo;
+    public void setNbPlaceDispo(int nbPlaceDispo) {
+        this.nbPlaceDispo = nbPlaceDispo;
     }
 
     public EnumValidation getStatut() {
@@ -156,35 +161,35 @@ public class Plan {
     }
 
     public int getNbJaime() {
-        return NbJaime;
+        return nbJaime;
     }
 
-    public void setNbJaime(int NbJaime) {
-        this.NbJaime = NbJaime;
+    public void setNbJaime(int nbJaime) {
+        this.nbJaime = nbJaime;
     }
 
     public int getNbJaimePas() {
-        return NbJaimePas;
+        return nbJaimePas;
     }
 
-    public void setNbJaimePas(int NbJaimePas) {
-        this.NbJaimePas = NbJaimePas;
+    public void setNbJaimePas(int nbJaimePas) {
+        this.nbJaimePas = nbJaimePas;
     }
 
     public int getNote() {
-        return Note;
+        return note;
     }
 
-    public void setNote(int Note) {
-        this.Note = Note;
+    public void setNote(int note) {
+        this.note = note;
     }
 
     public int getIdAnnonceur() {
-        return IdAnnonceur;
+        return idAnnonceur;
     }
 
-    public void setIdAnnonceur(int IdAnnonceur) {
-        this.IdAnnonceur = IdAnnonceur;
+    public void setIdAnnonceur(int idAnnonceur) {
+        this.idAnnonceur = idAnnonceur;
     }
 
     public int getIdCategorie() {
@@ -194,6 +199,8 @@ public class Plan {
     public void setIdCategorie(int idCategorie) {
         this.idCategorie = idCategorie;
     }
+
+    
     
     
     

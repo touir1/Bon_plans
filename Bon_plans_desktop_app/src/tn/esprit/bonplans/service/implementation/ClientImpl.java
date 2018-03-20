@@ -16,15 +16,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tn.esprit.bonplans.entity.Client;
 import tn.esprit.bonplans.service.IClient;
+<<<<<<< HEAD:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImp.java
 import static tn.esprit.bonplans.service.implementation.CategorieImpl.con;
+=======
+import utils.entity.EnumDatabaseSortOrder;
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImpl.java
 
 /**
  *
  * @author SadfiAmine
  */
+<<<<<<< HEAD:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImp.java
 public class ClientImp implements IClient{
      static  Connection con;
     private static  Statement ste;
+=======
+public class ClientImpl implements IClient{
+
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImpl.java
     @Override
     public Client save(Client entity) {
          con=DataSource.getInstance().getConnection();
@@ -81,6 +90,7 @@ public class ClientImp implements IClient{
     }
 
     @Override
+<<<<<<< HEAD:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImp.java
     public Client GetByID(int id) {
         con=DataSource.getInstance().getConnection();
               String requete = "select * from client where idClient ="+id;
@@ -106,6 +116,10 @@ public class ClientImp implements IClient{
              Logger.getLogger(ClientImp.class.getName()).log(Level.SEVERE, null, ex);
          }
             return c;
+=======
+    public Client getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImpl.java
     }
 
     @Override
@@ -121,6 +135,7 @@ public class ClientImp implements IClient{
     }
 
     @Override
+<<<<<<< HEAD:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImp.java
     public List<Client> selectAll(String sortfield, String sort) {
           con=DataSource.getInstance().getConnection();
               List <Client> lc=new ArrayList();
@@ -145,8 +160,13 @@ public class ClientImp implements IClient{
              Logger.getLogger(ClientImp.class.getName()).log(Level.SEVERE, null, ex);
          }
         return lc;
+=======
+    public List<Client> selectAll(String sortField, EnumDatabaseSortOrder sortOrder) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImpl.java
     }
     @Override
+<<<<<<< HEAD:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImp.java
     public Client FindOne(String ParamName, Object ParamValue) {
          con=DataSource.getInstance().getConnection();
               Client c =new Client();
@@ -158,6 +178,15 @@ public class ClientImp implements IClient{
              Logger.getLogger(ClientImp.class.getName()).log(Level.SEVERE, null, ex);
          }
         return c;
+=======
+    public Client findOne(String paramName, Object paramValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int findCountBy(String paramName, Object paramValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/ClientImpl.java
     }
     
 }

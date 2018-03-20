@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.service.ICategorie;
+import utils.entity.EnumDatabaseSortOrder;
 
 /**
  *
@@ -76,6 +77,7 @@ public class CategorieImpl implements ICategorie{
     }
 
     @Override
+<<<<<<< HEAD
     public Categorie GetByID(int id) {
               con=DataSource.getInstance().getConnection();
               String requete = "select * from Categorie where IdCategorie ="+id;
@@ -94,6 +96,10 @@ public class CategorieImpl implements ICategorie{
             Logger.getLogger(CategorieImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
+=======
+    public Categorie getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     }
 
     @Override
@@ -109,6 +115,7 @@ public class CategorieImpl implements ICategorie{
     }
 
     @Override
+<<<<<<< HEAD
     public List<Categorie> selectAll(String sortfield, String sort) {
               con=DataSource.getInstance().getConnection();
               List <Categorie> lc=new ArrayList();
@@ -153,5 +160,20 @@ public class CategorieImpl implements ICategorie{
     }
 
   
+=======
+    public List<Categorie> selectAll(String sortField, EnumDatabaseSortOrder sortOrder) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Categorie findOne(String paramName, Object paramValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int findCountBy(String paramName, Object paramValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979
     
 }

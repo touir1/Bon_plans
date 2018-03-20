@@ -10,47 +10,46 @@ package tn.esprit.bonplans.entity;
  * @author SadfiAmine
  */
 public class Categorie {
-    private int IdCategorie;
-    private String Titre;
-    private String UrlPhoto;
-
-    public Categorie(int IdCategorie, String Titre, String UrlPhoto) {
-        this.IdCategorie = IdCategorie;
-        this.Titre = Titre;
-        this.UrlPhoto = UrlPhoto;
-    }
-
-    public Categorie(String Titre, String UrlPhoto) {
-        this.Titre = Titre;
-        this.UrlPhoto = UrlPhoto;
-    }
+    private int idCategorie;
+    private String titre;
+    private String urlPhoto;
 
     public Categorie() {
     }
 
-    
-    public int getIdCategorie() {
-        return IdCategorie;
+    public Categorie(int idCategorie, String titre, String urlPhoto) {
+        this.idCategorie = idCategorie;
+        this.titre = titre;
+        this.urlPhoto = urlPhoto;
     }
 
-    public void setIdCategorie(int IdCategorie) {
-        this.IdCategorie = IdCategorie;
+    public Categorie(String titre, String urlPhoto) {
+        this.titre = titre;
+        this.urlPhoto = urlPhoto;
+    }
+
+    public int getIdCategorie() {
+        return idCategorie;
+    }
+
+    public void setIdCategorie(int idCategorie) {
+        this.idCategorie = idCategorie;
     }
 
     public String getTitre() {
-        return Titre;
+        return titre;
     }
 
-    public void setTitre(String Titre) {
-        this.Titre = Titre;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public String getUrlPhoto() {
-        return UrlPhoto;
+        return urlPhoto;
     }
 
-    public void setUrlPhoto(String UrlPhoto) {
-        this.UrlPhoto = UrlPhoto;
+    public void setUrlPhoto(String urlPhoto) {
+        this.urlPhoto = urlPhoto;
     }
     
     

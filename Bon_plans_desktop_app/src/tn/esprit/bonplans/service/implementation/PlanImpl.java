@@ -8,12 +8,13 @@ package tn.esprit.bonplans.service.implementation;
 import java.util.List;
 import tn.esprit.bonplans.entity.Plan;
 import tn.esprit.bonplans.service.Iplan;
+import utils.entity.EnumDatabaseSortOrder;
 
 /**
  *
  * @author SadfiAmine
  */
-public class planImpl implements Iplan{
+public class PlanImpl implements Iplan{
 
     @Override
     public Plan save(Plan entity) {
@@ -31,7 +32,7 @@ public class planImpl implements Iplan{
     }
 
     @Override
-    public Plan GetByID(int id) {
+    public Plan getByID(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -41,15 +42,22 @@ public class planImpl implements Iplan{
     }
 
     @Override
-    public List<Plan> selectAll(String sortfield, String sort) {
+    public List<Plan> selectAll(String sortField, EnumDatabaseSortOrder sortOrder) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Plan FindOne(String ParamName, Object ParamValue) {
+    public Plan findOne(String paramName, Object paramValue) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+<<<<<<< HEAD:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/planImpl.java
    
+=======
+    @Override
+    public int findCountBy(String paramName, Object paramValue) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+>>>>>>> 1a309ab73806eb09db0a6c2dfe4013b13b376979:Bon_plans_desktop_app/src/tn/esprit/bonplans/service/implementation/PlanImpl.java
     
 }

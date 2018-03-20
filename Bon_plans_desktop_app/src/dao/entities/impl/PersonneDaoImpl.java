@@ -9,8 +9,8 @@ package dao.entities.impl;
 import dao.entities.interfaces.PersonneDao;
 import java.util.List;
 import java.util.Map;
-import utils.DatabaseEntity;
-import utils.DatabaseHandler;
+import utils.database.DatabaseEntity;
+import utils.database.DatabaseHandler;
 
 /**
  *
@@ -21,7 +21,9 @@ public class PersonneDaoImpl implements PersonneDao{
     private static Map<String,String> sqlQueryMap;
     
     public PersonneDaoImpl(){
-        sqlQueryMap = DatabaseEntity.getSqlQueryMap(PersonneDaoImpl.class);
+        if(sqlQueryMap == null){
+            sqlQueryMap = DatabaseEntity.getSqlQueryMap(PersonneDaoImpl.class);
+        }
     }
     
     @Override

@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package utils;
+package utils.database;
 
 import java.util.Map;
+import utils.PropertyHandler;
 
 /**
  *
