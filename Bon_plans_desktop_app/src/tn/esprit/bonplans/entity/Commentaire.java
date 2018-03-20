@@ -131,6 +131,11 @@ public class Commentaire {
         this.idPlan = idPlan;
     }
 
+    @Override
+    public String toString() {
+        return "Commentaire{" + "idCommentaire=" + idCommentaire + ", texte=" + texte + ", date=" + date + ", nbJaime=" + nbJaime + ", nbJaimePas=" + nbJaimePas + ", idClient=" + idClient + ", idPlan=" + idPlan + '}';
+    }
+
     
     
     
