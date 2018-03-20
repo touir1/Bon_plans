@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.service;
 
+import java.util.List;
 import tn.esprit.bonplans.entity.Client;
 
 /**
@@ -12,5 +13,4 @@ import tn.esprit.bonplans.entity.Client;
  * @author SadfiAmine
  */
 public interface IClient extends GeneriqueInterface<Client>{
-    
 }

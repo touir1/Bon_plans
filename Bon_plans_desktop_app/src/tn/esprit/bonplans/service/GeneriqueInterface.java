@@ -19,5 +19,5 @@ public interface GeneriqueInterface<E> {
     public void remove(int id);
     public List<E>selectAll(String sortfield,String sort);
     public E FindOne(String ParamName,Object ParamValue);
-    public int findCountBy(String ParamName,Object ParamValue);
+    
 }

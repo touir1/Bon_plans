@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Commentaire {
     private int IdCommentaire;
-    private int Texte;
+    private String Texte;
     private Date Date;
     private int NbJaime;
     private int NbJaimePas;
@@ -21,7 +21,7 @@ public class Commentaire {
     private int IdClient;
     private int IdPlan;
 
-    public Commentaire(int IdCommentaire, int Texte, Date Date, int NbJaime, int NbJaimePas) {
+    public Commentaire(int IdCommentaire, String Texte, Date Date, int NbJaime, int NbJaimePas) {
         this.IdCommentaire = IdCommentaire;
         this.Texte = Texte;
         this.Date = Date;
@@ -29,7 +29,7 @@ public class Commentaire {
         this.NbJaimePas = NbJaimePas;
     }
 
-    public Commentaire(int Texte, Date Date, int NbJaime, int NbJaimePas) {
+    public Commentaire(String Texte, Date Date, int NbJaime, int NbJaimePas) {
         this.Texte = Texte;
         this.Date = Date;
         this.NbJaime = NbJaime;
@@ -47,11 +47,11 @@ public class Commentaire {
         this.IdCommentaire = IdCommentaire;
     }
 
-    public int getTexte() {
+    public String getTexte() {
         return Texte;
     }
 
-    public void setTexte(int Texte) {
+    public void setTexte(String Texte) {
         this.Texte = Texte;
     }
 

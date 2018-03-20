@@ -50,9 +50,6 @@ public class ReservationImpl implements IReservation{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public int findCountBy(String ParamName, Object ParamValue) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
     
 }
