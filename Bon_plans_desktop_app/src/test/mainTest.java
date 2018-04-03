@@ -110,9 +110,9 @@ public class mainTest {
         }
         
         
-        for(Map<String,Object> data : DatabaseHandler.select("select * from personne where id = ?", new Object[]{1})){
+        /*for(Map<String,Object> data : DatabaseHandler.select("select * from client where idClient >= ?", new Object[]{1})){
             System.out.println(data);
-        }
+        }*/
     }
     
 }

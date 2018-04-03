@@ -87,11 +87,11 @@ public class DatabaseHandler {
 
         try {
             if(initConnection()){
-                PreparedStatement ps = connection.prepareStatement(sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 for(int i=1; i<=parameters.length; i++){
-                    ps.setObject(i, parameters[i-1]);
+                    preparedStatement.setObject(i, parameters[i-1]);
                 }
-                ps.execute();
+                preparedStatement.execute();
                 return true;
             }
             else{
@@ -111,6 +111,7 @@ public class DatabaseHandler {
         try {
             if(initStatement()){
                 ResultSet resultSet = statement.executeQuery(sql);
+                
                 int columnCount = resultSet.getMetaData().getColumnCount();
                 while(resultSet.next()){
                     Map<String, Object> row = new HashMap<>();
@@ -137,7 +138,7 @@ public class DatabaseHandler {
                 for(int i=1; i<=parameters.length; i++){
                     preparedStatement.setObject(i, parameters[i-1]);
                 }
-                ResultSet resultSet = preparedStatement.executeQuery(sql);
+                ResultSet resultSet = preparedStatement.executeQuery();
                 
                 int columnCount = resultSet.getMetaData().getColumnCount();
                 while(resultSet.next()){
