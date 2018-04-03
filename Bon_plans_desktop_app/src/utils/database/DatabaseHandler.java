@@ -8,6 +8,7 @@ package utils.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,18 +30,32 @@ public class DatabaseHandler {
     
     private DatabaseHandler(){}
     
+    private static boolean initConnection(){
+        
+        try {
+            if(connection == null || connection.isClosed()){
+                Map<String,String> configuration = PropertyHandler.getProperties(propertyPath);
+                connection = DriverManager.getConnection(
+                        configuration.get("url"),
+                        configuration.get("username"),
+                        configuration.get("password")
+                );
+            }
+            return true;
+        } catch (SQLException ex) {
+            LogHandler.handleException(DatabaseHandler.class.getName(), "initConnection", ex);
+            return false;
+        }
+    }
+    
     private static boolean initStatement(){
         try {
             if(statement == null || statement.isClosed()){
-                if(connection == null || connection.isClosed()){
-                    Map<String,String> configuration = PropertyHandler.getProperties(propertyPath);
-                    connection = DriverManager.getConnection(
-                            configuration.get("url"),
-                            configuration.get("username"),
-                            configuration.get("password")
-                    );
+                if(initConnection()){
+                    statement = connection.createStatement();
+                    return true;
                 }
-                statement = connection.createStatement();
+                return false;
             }
             return true;
         } catch (SQLException ex) {
@@ -67,6 +82,28 @@ public class DatabaseHandler {
         }
     }
     
+    public static final boolean update(String sql, Object[] parameters){
+        LogHandler.log(DatabaseHandler.class.getName(), "update", sql);
+
+        try {
+            if(initConnection()){
+                PreparedStatement ps = connection.prepareStatement(sql);
+                for(int i=1; i<=parameters.length; i++){
+                    ps.setObject(i, parameters[i-1]);
+                }
+                ps.execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            LogHandler.handleException(DatabaseHandler.class.getName(), "update", ex);
+            return false;
+        }
+    }
+    
     public static final List<Map<String, Object>> select(String sql){
         LogHandler.log(DatabaseHandler.class.getName(), "select", sql);
         
@@ -74,6 +111,34 @@ public class DatabaseHandler {
         try {
             if(initStatement()){
                 ResultSet resultSet = statement.executeQuery(sql);
+                int columnCount = resultSet.getMetaData().getColumnCount();
+                while(resultSet.next()){
+                    Map<String, Object> row = new HashMap<>();
+                    for(int i=1;i<=columnCount;i++){
+                        row.put(resultSet.getMetaData().getColumnLabel(i).toUpperCase(), resultSet.getObject(i));
+                    }
+                    result.add(row);
+                }
+            }
+        } catch (SQLException ex) {
+            LogHandler.handleException(DatabaseHandler.class.getName(), "select", ex);
+        }
+        
+        return result;
+    }
+    
+    public static final List<Map<String, Object>> select(String sql, Object[] parameters){
+        LogHandler.log(DatabaseHandler.class.getName(), "select", sql);
+        
+        List<Map<String, Object>> result = new ArrayList<>();
+        try {
+            if(initConnection()){
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                for(int i=1; i<=parameters.length; i++){
+                    preparedStatement.setObject(i, parameters[i-1]);
+                }
+                ResultSet resultSet = preparedStatement.executeQuery(sql);
+                
                 int columnCount = resultSet.getMetaData().getColumnCount();
                 while(resultSet.next()){
                     Map<String, Object> row = new HashMap<>();

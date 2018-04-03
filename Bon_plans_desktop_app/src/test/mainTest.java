@@ -6,9 +6,11 @@
 
 package test;
 
+import java.util.Map;
 import tn.esprit.bonplans.entity.Client;
 import tn.esprit.bonplans.service.IClient;
 import tn.esprit.bonplans.service.implementation.ClientImpl;
+import utils.database.DatabaseHandler;
 import utils.entity.EnumDatabaseSortOrder;
 
 /**
@@ -105,6 +107,11 @@ public class mainTest {
         
         for(Client client : clientService.selectAll()){
             System.out.println(client);
+        }
+        
+        
+        for(Map<String,Object> data : DatabaseHandler.select("select * from personne where id = ?", new Object[]{1})){
+            System.out.println(data);
         }
     }
     
