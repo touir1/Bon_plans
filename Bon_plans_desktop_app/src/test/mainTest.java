@@ -6,17 +6,9 @@
 
 package test;
 
-import java.util.List;
-import java.util.Map;
-import service.entities.classes.Personne;
-import service.impl.PersonneServiceImpl;
-import service.interfaces.PersonneService;
 import tn.esprit.bonplans.entity.Client;
 import tn.esprit.bonplans.service.IClient;
 import tn.esprit.bonplans.service.implementation.ClientImpl;
-import utils.Converter;
-import utils.database.DatabaseEntityHandler;
-import utils.database.DatabaseHandler;
 import utils.entity.EnumDatabaseSortOrder;
 
 /**
