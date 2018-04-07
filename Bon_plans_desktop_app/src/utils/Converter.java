@@ -128,7 +128,11 @@ public class Converter {
     public static String convertObjectToSQLString(Object o){
         if(o != null){
             if(o instanceof String){
-                return "'"+convertObjectToString(o)+"'";
+                return "'"
+                        +convertObjectToString(o)
+                                .replace("\"","\\\"")
+                                .replace("'", "\\'")
+                        +"'";
             }
             else if(o instanceof Date){
                 return "STR_TO_DATE('"+convertDateToString((Date) o, "dd/MM/yyyy")+"','%d/%m/%y')";

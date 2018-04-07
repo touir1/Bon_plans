@@ -86,7 +86,7 @@ public class mainTest {
         System.out.println(clientService.findCountBy("nom", "Touir"));
         System.out.println(clientService.getByID(toInsert1.getIdClient()));
         
-        System.out.println(clientService.findOne("nom", "Touir"));
+        System.out.println(clientService.findOne("nom", "Touir' AND 1=1"));
         
         Client toInsert2 = new Client("Touir", "Mehdi", "", "Rades", "06 kawafel Street Rades, Ben Arous, Tunisie", "mehdi.touir@esprit.tn", "12345678");
         toInsert2 = clientService.save(toInsert2);
