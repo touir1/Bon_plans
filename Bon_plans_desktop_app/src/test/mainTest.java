@@ -7,6 +7,7 @@
 package test;
 
 import java.util.Map;
+import tn.esprit.bonplans.Gui.GererCategorie.Ajouter.AjouterCategorieController;
 import tn.esprit.bonplans.entity.Client;
 import tn.esprit.bonplans.service.IClient;
 import tn.esprit.bonplans.service.implementation.ClientImpl;
@@ -108,6 +109,7 @@ public class mainTest {
         for(Client client : clientService.selectAll()){
             System.out.println(client);
         }
+        AjouterCategorieController a= new AjouterCategorieController();
         
         
         /*for(Map<String,Object> data : DatabaseHandler.select("select * from client where idClient >= ?", new Object[]{1})){
