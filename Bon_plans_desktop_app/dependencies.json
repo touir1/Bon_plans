@@ -1,0 +1,6 @@
+{
+	"dependencies" : [
+		{"name": "scenebuilder-8.4.1-all.jar", "url": "http://download2.gluonhq.com/scenebuilder/8.4.1/scenebuilder-8.4.1-all.jar"},
+		{"name": "jfoenix-8.0.2.jar", "url": "http://repo1.maven.org/maven2/com/jfoenix/jfoenix/8.0.2/jfoenix-8.0.2.jar"}
+	]
+}
