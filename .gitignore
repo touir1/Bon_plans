@@ -23,3 +23,5 @@ hs_err_pid*
 /Bon_plans_desktop_app/nbproject/private/
 /Bon_plans_desktop_app/build/
 /Bon_plans_desktop_app/dist/
+
+Bon_plans_desktop_app/src/resources/common/properties/database.config.properties
