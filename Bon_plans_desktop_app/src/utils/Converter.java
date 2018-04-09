@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import utils.entity.GenericEnumInterface;
 
 /**
  *
@@ -142,6 +143,9 @@ public class Converter {
             }
             else if(o instanceof Integer){
                 return convertObjectToInt(o).toString();
+            }
+            else if(o instanceof GenericEnumInterface){
+                return convertObjectToSQLString(((GenericEnumInterface)o).getValue());
             }
             else{
                 return o.toString();

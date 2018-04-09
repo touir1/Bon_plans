@@ -9,7 +9,7 @@ package utils.entity;
  *
  * @author SadfiAmine
  */
-public enum EnumValidation {
+public enum EnumValidation implements GenericEnumInterface<String,String> {
     validee("VALIDEE","1"),
     EnAttentedeValidation("ATTENTE","0"),
     refusée("REFUSEE","-1");
@@ -22,10 +22,12 @@ public enum EnumValidation {
         this.value = value;
     }
     
+    @Override
     public String getValue(){
         return this.value;
     }
     
+    @Override
     public String getKey(){
         return this.key;
     }
