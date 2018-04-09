@@ -135,8 +135,8 @@ public class Converter {
             if(o instanceof String){
                 return "'"
                         +convertObjectToString(o)
-                                .replace("\"","\\\"")
                                 .replace("'", "\\'")
+                                .replace("\\", "\\\\")
                         +"'";
             }
             else if(o instanceof Date){

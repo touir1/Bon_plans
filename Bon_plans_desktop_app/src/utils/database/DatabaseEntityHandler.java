@@ -6,6 +6,7 @@
 
 package utils.database;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import utils.Converter;
@@ -246,7 +247,7 @@ public class DatabaseEntityHandler {
             );
         }
         else{
-            return null;
+            return new ArrayList<>();
         }
     }
     
