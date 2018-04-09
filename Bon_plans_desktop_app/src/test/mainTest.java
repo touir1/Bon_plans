@@ -15,6 +15,7 @@ import tn.esprit.bonplans.service.IImage;
 import tn.esprit.bonplans.service.implementation.ClientImpl;
 import tn.esprit.bonplans.service.implementation.ImageImpl;
 import utils.Converter;
+import utils.FileUploadHandler;
 import utils.entity.EnumDatabaseSortOrder;
 
 /**
