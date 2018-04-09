@@ -22,6 +22,8 @@ public class ValiderPlanController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        System.out.println(url);
+        System.out.println(rb);
+    }
     
 }
