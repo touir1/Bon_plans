@@ -29,13 +29,14 @@ public class Plan {
     private int nbJaimePas;
     private int note ;
     // 
+    private int idClient;
     private int idAnnonceur;
     private int idCategorie;
 
     public Plan() {
     }
 
-    public Plan(int idPlan, String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, EnumValidation statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie) {
+    public Plan(int idPlan, String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, EnumValidation statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie,int idClient) {
         this.idPlan = idPlan;
         this.titre = titre;
         this.description = description;
@@ -52,9 +53,10 @@ public class Plan {
         this.note = note;
         this.idAnnonceur = idAnnonceur;
         this.idCategorie = idCategorie;
+        this.idClient =idClient;
     }
 
-    public Plan(String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, EnumValidation statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie) {
+    public Plan(String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, EnumValidation statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie, int idClient) {
         this.titre = titre;
         this.description = description;
         this.urlPhoto = urlPhoto;
@@ -70,8 +72,18 @@ public class Plan {
         this.note = note;
         this.idAnnonceur = idAnnonceur;
         this.idCategorie = idCategorie;
+        this.idClient =idClient;
     }
 
+    public int getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
+    }
+    
+    
     public int getIdPlan() {
         return idPlan;
     }

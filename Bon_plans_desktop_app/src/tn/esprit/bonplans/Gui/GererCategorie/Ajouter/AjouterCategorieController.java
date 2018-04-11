@@ -10,7 +10,10 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -56,6 +59,7 @@ public class AjouterCategorieController extends Application implements Initializ
         lstfile.add("*.png");
         lstfile.add("*.jpeg");
         lstfile.add("*.jpg");
+        
     }    
 
     @Override
@@ -72,13 +76,15 @@ public class AjouterCategorieController extends Application implements Initializ
         
         if ((f!=null)&&(txtCategorie.getText().length()!=0)) {
             LblError.setText("");
-           List<Categorie> lc =ic.findOne("titre",txtCategorie.getText());
-           if(!lc.isEmpty()){
-           LblError.setText("Catégorie existe déja");
-           }
+            List<Categorie> lc=new ArrayList<Categorie>() ;
+            
+            lc= ic.findOne("titre",txtCategorie.getText());
+            if(lc!=null){
+              LblError.setText("Catégorie existe déja");
+            }
            else{
-            String urlph="file:///"+f.getAbsolutePath();
-             Categorie c =new Categorie(1,txtCategorie.getText(),urlph);
+            
+             Categorie c =new Categorie(txtCategorie.getText(),f.getAbsolutePath());
             System.out.println(c.getTitre());
             System.out.println(c.getUrlPhoto());
             ic.save(c);
