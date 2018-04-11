@@ -9,11 +9,8 @@ package test;
 import java.io.File;
 import tn.esprit.bonplans.Gui.GererCategorie.Ajouter.AjouterCategorieController;
 import tn.esprit.bonplans.entity.Client;
-import tn.esprit.bonplans.entity.Image;
 import tn.esprit.bonplans.service.IClient;
-import tn.esprit.bonplans.service.IImage;
 import tn.esprit.bonplans.service.implementation.ClientImpl;
-import tn.esprit.bonplans.service.implementation.ImageImpl;
 import utils.Converter;
 import utils.FileUploadHandler;
 import utils.entity.EnumDatabaseSortOrder;
@@ -119,15 +116,7 @@ public class mainTest {
         /*for(Map<String,Object> data : DatabaseHandler.select("select * from client where idClient >= ?", new Object[]{1})){
             System.out.println(data);
         }*/
-        
-        IImage imageService = new ImageImpl();
-        File file = new File("E:\\To Copy\\Dossier Personnel\\Images\\Others\\Sans titre.png");
-        Image image = new Image("Sans titre.png", Converter.convertFileToByteArray(file));
-        image = imageService.save(image);
-        
-        System.out.println(image);
-        File fromCache = imageService.getImageFile(image);
-        System.out.println(fromCache.getAbsolutePath());
+       
     }
     
 }

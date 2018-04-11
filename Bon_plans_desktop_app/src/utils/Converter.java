@@ -131,31 +131,31 @@ public class Converter {
     }
     
     public static String convertObjectToSQLString(Object o){
-        if(o != null){
-            if(o instanceof String){
-                return "'"
-                        +convertObjectToString(o)
-                                .replace("'", "\\'")
-                                .replace("\\", "\\\\")
-                        +"'";
-            }
-            else if(o instanceof Date){
-                return "STR_TO_DATE('"+convertDateToString((Date) o, "dd/MM/yyyy")+"','%d/%m/%y')";
-            }
-            else if(o instanceof Double){
-                return convertObjectToDouble(o).toString();
-            }
-            else if(o instanceof Integer){
-                return convertObjectToInt(o).toString();
-            }
-            else if(o instanceof GenericEnumInterface){
-                return convertObjectToSQLString(((GenericEnumInterface)o).getValue());
-            }
-            else{
-                return o.toString();
-            }
+        if(o instanceof String){
+            return "'"
+                    +convertObjectToString(o)
+                            .replace("'", "\\'")
+                            .replace("\\", "\\\\")
+                    +"'";
         }
-        return null;
+        else if(o instanceof Date){
+            return "STR_TO_DATE('"+convertDateToString((Date) o, "dd/MM/yyyy")+"','%d/%m/%y')";
+        }
+        else if(o instanceof Double){
+            return convertObjectToDouble(o).toString();
+        }
+        else if(o instanceof Integer){
+            return convertObjectToInt(o).toString();
+        }
+        else if(o instanceof GenericEnumInterface){
+            return convertObjectToSQLString(((GenericEnumInterface)o).getValue());
+        }
+        else if(o != null){
+            return o.toString();
+        }
+        else{
+            return null;
+        }
     }
     
     public static byte[] convertFileToByteArray(File file){
@@ -200,5 +200,10 @@ public class Converter {
             LogHandler.handleException(e);
         }
         return new byte[0];
+    }
+    
+    public static <T,V> V replaceNull(T object, V originalValue, V replacement){
+        if(object == null) return replacement;
+        return originalValue;
     }
 }

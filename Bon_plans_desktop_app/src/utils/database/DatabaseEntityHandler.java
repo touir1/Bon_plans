@@ -52,7 +52,7 @@ public class DatabaseEntityHandler {
 
                 sql += entry.getKey();
                 values += Converter.convertObjectToSQLString(entry.getValue());
-                selectSQL += " AND "+entry.getKey() + " = "+ Converter.convertObjectToSQLString(entry.getValue());
+                selectSQL += " AND "+entry.getKey() + Converter.replaceNull(entry.getValue()," = "," is ")+ Converter.convertObjectToSQLString(entry.getValue());
             }
         }
         
@@ -218,7 +218,7 @@ public class DatabaseEntityHandler {
     
     public static <E> int findCountBy(Class<E> entityClass, String tableName, String paramName, Object paramValue){
         String sql = "SELECT COUNT(*) AS count FROM "+tableName
-                + " WHERE "+paramName+" = "+ Converter.convertObjectToSQLString(paramValue);
+                + " WHERE "+paramName+Converter.replaceNull(paramValue," = "," is ")+ Converter.convertObjectToSQLString(paramValue);
         
         return Converter.convertObjectToInt(
                 DatabaseHandler.select(sql).get(0).get("COUNT")
@@ -237,7 +237,7 @@ public class DatabaseEntityHandler {
     
     public static <E> List<E> findOne(Class<E> entityClass, String tableName, String paramName,Object paramValue){
         String sql = "SELECT * FROM "+tableName
-                + " WHERE "+paramName+"="+Converter.convertObjectToSQLString(paramValue);
+                + " WHERE "+paramName+Converter.replaceNull(paramValue," = "," is ")+Converter.convertObjectToSQLString(paramValue);
         
         List<Map<String, Object>> resultList = DatabaseHandler.select(sql);
         if(resultList!=null && !resultList.isEmpty()){

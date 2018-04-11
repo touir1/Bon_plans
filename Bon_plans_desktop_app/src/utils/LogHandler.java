@@ -6,6 +6,8 @@
 
 package utils;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 /**
  *
  * @author touir
@@ -14,10 +16,12 @@ public class LogHandler {
     
     public static void handleException(Exception e){
         System.out.println(e.getMessage());
+        Logger.logMsg(Logger.ERROR, e.getMessage());
     }
     
     public static void handleException(String className, String methodName, Exception e){
         System.out.println("Error while executing "+methodName+" in class "+className+": "+e.getMessage());
+        Logger.logMsg(Logger.ERROR, className, methodName, "Error while executing "+methodName+" in class "+className+": "+e.getMessage());
     }
     
     public static void log(String message){

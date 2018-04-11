@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
+import java.util.Map;
 
 /**
  *
@@ -22,10 +23,23 @@ import java.nio.file.Files;
  */
 public class FileUploadHandler {
     
-    private static final String url = "http://localhost/bon_plans_api/upload_file.php";
-    private static final String filesDirectoryPath = "http://localhost/bon_plans_api/uploads";
+    private static String url;
+    private static String filesDirectoryPath;
+    private final static String propertyPath = "resources/common/properties/upload.server.config.properties";
+    
+    private FileUploadHandler(){}
+    
+    private static void initFileUploadHandler(){
+        Map<String,String> configuration = PropertyHandler.getProperties(propertyPath);
+        url = configuration.get("serverURL");
+        filesDirectoryPath = configuration.get("uploadedFilesPath");
+    }
     
     public static boolean uploadFile(Class<?> entityClass, int idEntity, File binaryFile) {
+        if(StringUtils.isEmpty(url) || StringUtils.isEmpty(filesDirectoryPath)){
+            initFileUploadHandler();
+        }
+        
         try{
             String charset = "UTF-8";
             String param = "value";
@@ -48,7 +62,7 @@ public class FileUploadHandler {
 
                 // Send binary file.
                 writer.append("--" + boundary).append(CRLF);
-                writer.append("Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"" + binaryFile.getName() + "\"").append(CRLF);
+                writer.append("Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"" + getFileName(binaryFile,entityClass,idEntity) + "\"").append(CRLF);
                 writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(binaryFile.getName())).append(CRLF);
                 writer.append("Content-Transfer-Encoding: binary").append(CRLF);
                 writer.append(CRLF).flush();
@@ -79,6 +93,24 @@ public class FileUploadHandler {
     }
     
     public static String getFileURL(String fileName, Class<?> entityClass, int idEntity){
-        return filesDirectoryPath+"/"+entityClass.getSimpleName()+"_"+idEntity+"_"+fileName;
+        if(StringUtils.isEmpty(filesDirectoryPath)){
+            initFileUploadHandler();
+        }
+        return filesDirectoryPath + "/" + getFileName(fileName, entityClass, idEntity);
+    }
+    
+    public static String getFileURL(File file, Class<?> entityClass, int idEntity){
+        if(StringUtils.isEmpty(filesDirectoryPath)){
+            initFileUploadHandler();
+        }
+        return filesDirectoryPath + "/" + getFileName(file, entityClass, idEntity);
+    }
+    
+    private static String getFileName(String fileName, Class<?> entityClass, int idEntity){
+        return entityClass.getSimpleName() + "_" + idEntity + fileName.substring(fileName.lastIndexOf("."));
+    }
+
+    private static String getFileName(File file, Class<?> entityClass, int idEntity) {
+        return entityClass.getSimpleName() + "_" + idEntity + file.getName().substring(file.getName().lastIndexOf("."));
     }
 }

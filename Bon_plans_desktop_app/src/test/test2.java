@@ -6,6 +6,7 @@
 package test;
 
 import java.io.File;
+import tn.esprit.bonplans.entity.Client;
 import utils.FileUploadHandler;
 
 /**
@@ -15,7 +16,7 @@ import utils.FileUploadHandler;
 public class test2 {
     public static void main(String[] args) {
         File file = new File("E:\\To Copy\\Dossier Personnel\\Images\\Others\\Sans titre.png");
-        FileUploadHandler.uploadFile(file);
+        FileUploadHandler.uploadFile(Client.class,1,file);
         
    } 
 }

@@ -26,7 +26,7 @@ import utils.PropertyHandler;
 public class DatabaseHandler {
     private static Connection connection;
     private static Statement statement;
-    private static String propertyPath = "resources/common/properties/database.config.properties";
+    private final static String propertyPath = "resources/common/properties/database.config.properties";
     
     private DatabaseHandler(){}
     

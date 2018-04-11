@@ -34,6 +34,7 @@ import static tn.esprit.bonplans.Gui.GererCategorie.Consulter.CategoriesControll
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.service.ICategorie;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
+import utils.FileUploadHandler;
 
 /**
  * FXML Controller class
@@ -85,10 +86,21 @@ public class ModifierCategorieController extends Application implements Initiali
               //LblError.setText("Catégorie existe déja");
             //}
            //else{
-            Categorie c =new Categorie(idCategorieAModifiee,txtCategorie.getText(),f.getAbsolutePath());
-            System.out.println(c.getTitre());
-            System.out.println(c.getUrlPhoto());
-            ic.update(c);
+            Categorie c = new Categorie();
+            c.setIdCategorie(idCategorieAModifiee);
+            c.setTitre(txtCategorie.getText());
+            c.setUrlPhoto(FileUploadHandler.getFileURL(f, Categorie.class, c.getIdCategorie()));
+            System.out.println(c);
+
+            if(FileUploadHandler.uploadFile(Categorie.class, c.getIdCategorie(), f)){
+                c = ic.update(c);
+                System.out.println("Upload success");
+                System.out.println(c);
+            }
+            else{
+                System.out.println("Upload echoué");
+                LblError.setText("Erreur serveur lors de l'upload");
+            }
         //}
     }
         else {

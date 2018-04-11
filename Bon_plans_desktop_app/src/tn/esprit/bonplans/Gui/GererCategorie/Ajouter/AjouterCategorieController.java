@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.service.ICategorie;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
+import utils.FileUploadHandler;
 
 /**
  * FXML Controller class
@@ -42,77 +43,93 @@ public class AjouterCategorieController extends Application implements Initializ
     /**
      * Initializes the controller class.
      */
-    private ICategorie ic =new CategorieImpl();
-    List <String>lstfile;
-    private  File f;
-     @FXML
+    private ICategorie ic = new CategorieImpl();
+    List<String> lstfile;
+    private File f;
+    @FXML
     private JFXTextField txtCategorie;
-       @FXML
+    @FXML
     private Label LblError;
-
+    
     @FXML
     private ImageView image;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lstfile=new ArrayList<>();
+        lstfile = new ArrayList<>();
         lstfile.add("*.png");
         lstfile.add("*.jpeg");
         lstfile.add("*.jpg");
         
     }    
-
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
-            Parent root= FXMLLoader.load(getClass().getResource("AjouterCategorie.fxml"));
-            Scene Scene= new Scene(root);
-            primaryStage.setScene(Scene);
-            primaryStage.show();
-            
-            
-    }
-       @FXML
-    void onClickAjouter(ActionEvent event) {
+        Parent root = FXMLLoader.load(getClass().getResource("AjouterCategorie.fxml"));
+        Scene Scene = new Scene(root);
+        primaryStage.setScene(Scene);
+        primaryStage.show();
         
-        if ((f!=null)&&(txtCategorie.getText().length()!=0)) {
-            LblError.setText("");
-            List<Categorie> lc=new ArrayList<Categorie>() ;
-            
-            lc= ic.findOne("titre",txtCategorie.getText());
-            if(lc!=null){
-              LblError.setText("Catégorie existe déja");
-            }
-           else{
-            
-             Categorie c =new Categorie(txtCategorie.getText(),f.getAbsolutePath());
-            System.out.println(c.getTitre());
-            System.out.println(c.getUrlPhoto());
-            ic.save(c);
-        }}
-        else {
-            LblError.setText("Veuillez remplir tous les champs");
-        
-        }
     }
-
-    
 
     @FXML
+    void onClickAjouter(ActionEvent event) {
+        
+        if ((f != null) && (txtCategorie.getText().length() != 0)) {
+            LblError.setText("");
+            List<Categorie> lc = new ArrayList<Categorie>();
+            
+            lc = ic.findOne("titre", txtCategorie.getText());
+            if (lc != null && !lc.isEmpty()) {
+                System.out.println("Categorie existe déjà");
+                System.out.println(lc);
+                LblError.setText("Catégorie existe déja");
+            } else {
+                
+                Categorie c = new Categorie();
+                c.setTitre(txtCategorie.getText());
+                c = ic.save(c);
+                System.out.println(c);
+                
+                c.setUrlPhoto(FileUploadHandler.getFileURL(f, Categorie.class, c.getIdCategorie()));
+                System.out.println(c.getUrlPhoto());
+                
+                if(FileUploadHandler.uploadFile(Categorie.class, c.getIdCategorie(), f)){
+                    c = ic.update(c);
+                    System.out.println("Upload success");
+                    System.out.println(c);
+                    LblError.setText("");
+                }
+                else{
+                    ic.remove(c.getIdCategorie());
+                    System.out.println("Upload echoué");
+                    LblError.setText("Erreur serveur lors de l'upload");
+                }
+            }
+        } else {
+            LblError.setText("Veuillez remplir tous les champs");
+            
+        }
+    }
+    
+    @FXML
     void onClickParcourir(ActionEvent event) {
-        FileChooser fc =new FileChooser();
-        fc.getExtensionFilters().add(new ExtensionFilter("Image files",lstfile));
-        f =fc.showOpenDialog(null);
-        if (f != null){
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new ExtensionFilter("Image files", lstfile));
+        f = fc.showOpenDialog(null);
+        if (f != null) {
             boolean backgroundLoading = true;
             
             System.out.println(f.getPath());
-            String urlph="file:///"+f.getAbsolutePath();
-               Image i=new Image(urlph,backgroundLoading);
-                image.setImage(i);
+            String urlph = "file:///" + f.getAbsolutePath();
+            Image i = new Image(urlph, backgroundLoading);
+            image.setImage(i);
         }
         
-
     }
-    public static void main(String[] args){launch(args);}
+
+    public static void main(String[] args) {
+        launch(args);
+    }
     
 }
