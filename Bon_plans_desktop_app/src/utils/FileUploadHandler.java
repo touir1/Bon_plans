@@ -22,10 +22,10 @@ import java.nio.file.Files;
  */
 public class FileUploadHandler {
     
-    private static final String url = "http://localhost/bon_plans_api/upload_image.php";
+    private static final String url = "http://localhost/bon_plans_api/upload_file.php";
     private static final String filesDirectoryPath = "http://localhost/bon_plans_api/uploads";
     
-    public static boolean uploadFile(File binaryFile) {
+    public static boolean uploadFile(Class<?> entityClass, int idEntity, File binaryFile) {
         try{
             String charset = "UTF-8";
             String param = "value";
@@ -78,7 +78,7 @@ public class FileUploadHandler {
         }
     }
     
-    public static String getFileURL(String fileName){
-        return filesDirectoryPath+"/"+fileName;
+    public static String getFileURL(String fileName, Class<?> entityClass, int idEntity){
+        return filesDirectoryPath+"/"+entityClass.getSimpleName()+"_"+idEntity+"_"+fileName;
     }
 }

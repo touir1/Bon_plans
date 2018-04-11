@@ -4,10 +4,16 @@ var fs = require('fs');
 function downloadFileList(fileList, path, index) {
 	if(index >= fileList.length) return;
 
-	download(fileList[index].url,fileList[index].name, path, function(err){
-		if(err) throw err;
+	if (fs.existsSync(path+"/"+fileList[index].name)) { 
+		console.log(fileList[index].name+" exists in the jra_dependencies folder");
 		downloadFileList(fileList, path, index+1);
-	});
+	} 
+	else{
+		download(fileList[index].url,fileList[index].name, path, function(err){
+			if(err) throw err;
+			downloadFileList(fileList, path, index+1);
+		});
+	}
 }
 
 function download(fileUrl, fileName, path, callback) {
@@ -20,6 +26,8 @@ function download(fileUrl, fileName, path, callback) {
     
     var timeout_wrapper = function( req ) {
         return function() {
+        	console.log('cleaning files');
+        	fs.unlinkSync(path+"/"+fileName);
             console.log('abort');
             req.abort();
             callback("File transfer timeout!");
