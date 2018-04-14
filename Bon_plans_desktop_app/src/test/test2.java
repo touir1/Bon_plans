@@ -18,5 +18,5 @@ public class test2 {
         File file = new File("E:\\To Copy\\Dossier Personnel\\Images\\Others\\Sans titre.png");
         FileUploadHandler.uploadFile(Client.class,1,file);
         
-   } 
+   }
 }

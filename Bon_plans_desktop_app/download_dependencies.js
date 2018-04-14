@@ -5,7 +5,7 @@ function downloadFileList(fileList, path, index) {
 	if(index >= fileList.length) return;
 
 	if (fs.existsSync(path+"/"+fileList[index].name)) { 
-		console.log(fileList[index].name+" exists in the jra_dependencies folder");
+		console.log(fileList[index].name+" exists in the jar_dependencies folder");
 		downloadFileList(fileList, path, index+1);
 	} 
 	else{
@@ -100,6 +100,10 @@ function showProgress(fileName, received, total){
 fs.readFile('./dependencies.json', 'utf8',function(err, data){
 	if(err) throw err;
 	var files = JSON.parse(data);
+	
+	if(!fs.existsSync("./jar_dependencies")){
+		fs.mkdirSync("./jar_dependencies");
+	}
 	
 	downloadFileList(files.dependencies, "./jar_dependencies", 0);
 });
