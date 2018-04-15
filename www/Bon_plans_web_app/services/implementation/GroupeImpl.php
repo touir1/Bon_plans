@@ -66,14 +66,14 @@ class GroupeImpl
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $groupe = new Groupe();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $groupe->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$groupe);
         }
 
         return $result;
@@ -121,14 +121,14 @@ class GroupeImpl
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $groupe = new Groupe();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $groupe->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$groupe);
         }
 
         return $result;
@@ -145,14 +145,14 @@ class GroupeImpl
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $groupe = new Groupe();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $groupe->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$groupe);
         }
 
         return $result;
@@ -170,14 +170,14 @@ class GroupeImpl
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $groupe = new Groupe();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $groupe->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$groupe);
         }
 
         return $result;
