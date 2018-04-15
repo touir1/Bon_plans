@@ -27,5 +27,6 @@ hs_err_pid*
 Bon_plans_desktop_app/src/resources/common/properties/database.config.properties
 Bon_plans_desktop_app/src/resources/common/properties/upload.server.config.properties
 Bon_plans_desktop_app/cache/*
+www/bon_plans_api/uploads/*
 
 /www/.idea/
