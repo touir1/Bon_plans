@@ -5,9 +5,12 @@
  */
 package tn.esprit.bonplans.Gui.GererAnnonce.administration.validerPlan;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +28,8 @@ import javafx.stage.Stage;
 import tn.esprit.bonplans.entity.Plan;
 import tn.esprit.bonplans.service.IPlan;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
+import utils.LogHandler;
+import utils.SceneHandler;
 
 /**
  * FXML Controller class
@@ -85,6 +90,7 @@ public class ValiderPlanController extends Application implements Initializable 
             errorLabel.setText("");
             planService.validerPlan(plan);
             initListPlan();
+
         }
     }
     
