@@ -6,7 +6,7 @@
  * Time: 13:54
  */
 
-interface IGroupe
+interface IGroupe extends IGenericService
 {
 
 }

@@ -6,7 +6,7 @@
  * Time: 13:55
  */
 
-interface IReservation
+interface IReservation extends IGenericService
 {
 
 }

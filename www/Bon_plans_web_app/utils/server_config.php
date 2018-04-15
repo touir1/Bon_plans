@@ -9,7 +9,7 @@
 return [
     'database' => [
         'host' => 'localhost',
-        'dbname' => 'examen',
+        'dbname' => '1cinfo01pi',
         'username' => 'root',
         'password' => ''
     ]

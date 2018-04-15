@@ -6,7 +6,7 @@
  * Time: 13:54
  */
 
-interface Iplan
+interface Iplan extends IGenericService
 {
 
 }
