@@ -63,7 +63,8 @@ public class ModifierCategorieController extends Application implements Initiali
         List <Categorie> ls=ic.findOne("idCategorie", idCategorieAModifiee);
         System.out.println("hello");
         txtCategorie.setText(ls.get(0).getTitre());
-      Image i = new Image("file:///"+ls.get(0).getUrlPhoto(), true);
+        System.out.println(ls.get(0).getUrlPhoto());
+      Image i = new Image(ls.get(0).getUrlPhoto(), true);
         image.setImage(i);
         f=new File(ls.get(0).getUrlPhoto());
         // TODO

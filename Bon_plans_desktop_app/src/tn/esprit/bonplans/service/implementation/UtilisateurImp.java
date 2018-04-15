@@ -15,7 +15,7 @@ import utils.service.GenericServiceImplementation;
  */
 public class UtilisateurImp extends GenericServiceImplementation<Utilisateur> implements IUtilisateur{
 
-    public UtilisateurImp(Class<Utilisateur> myClass) {
+    public UtilisateurImp() {
         super(Utilisateur.class);
     }
     

@@ -5,7 +5,7 @@
  */
 package tn.esprit.bonplans.Gui.GererCategorie.Ajouter;
 
-import com.gluonhq.charm.glisten.control.TextField;
+
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.net.URL;
@@ -66,9 +66,12 @@ public class AjouterCategorieController extends Application implements Initializ
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("AjouterCategorie.fxml"));
+        
         Scene Scene = new Scene(root);
-        primaryStage.setScene(Scene);
-        primaryStage.show();
+     primaryStage.setTitle("bons Plans");
+     primaryStage.getIcons().add(new Image("http://localhost/bon_plans_api/uploads/Logo.png"));
+     primaryStage.setScene(Scene);
+     primaryStage.show();
         
     }
 

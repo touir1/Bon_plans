@@ -14,6 +14,7 @@ import java.util.Date;
 public class Reservation {
     private int idReservation;
     private Date date;
+    private String UrlBonRes; 
     //
     private int idClient;
     private int idPlan;
@@ -22,11 +23,20 @@ public class Reservation {
         this.date = date;
     }
 
-    public Reservation(int idReservation, Date date) {
+    public Reservation(int idReservation, Date date,String UrlBonRes) {
         this.idReservation = idReservation;
         this.date = date;
+        this.UrlBonRes=UrlBonRes;
     }
 
+    public Reservation(Date date, String UrlBonRes, int idClient, int idPlan) {
+        this.date = date;
+        this.UrlBonRes = UrlBonRes;
+        this.idClient = idClient;
+        this.idPlan = idPlan;
+    }
+    
+   
     public Reservation() {
     }
 
@@ -61,6 +71,15 @@ public class Reservation {
     public void setIdPlan(int idPlan) {
         this.idPlan = idPlan;
     }
+
+    public String getUrlBonRes() {
+        return UrlBonRes;
+    }
+
+    public void setUrlBonRes(String UrlBonRes) {
+        this.UrlBonRes = UrlBonRes;
+    }
+    
 
     @Override
     public String toString() {

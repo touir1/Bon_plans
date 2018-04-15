@@ -6,6 +6,7 @@
 package tn.esprit.bonplans.Gui.GererCategorie.Consulter;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Application;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,8 +28,11 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tn.esprit.bonplans.Gui.GererCategorie.Ajouter.AjouterCategorieController;
 import tn.esprit.bonplans.entity.Categorie;
+import tn.esprit.bonplans.entity.Plan;
 import tn.esprit.bonplans.service.ICategorie;
+import tn.esprit.bonplans.service.Iplan;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
+import tn.esprit.bonplans.service.implementation.PlanImpl;
 
 /**
  * FXML Controller class
@@ -41,6 +46,9 @@ public class CategoriesController extends Application implements Initializable {
      */
     public static int idCategorieAModifiee;
     private ICategorie ic =new CategorieImpl();
+    private Iplan ip= new PlanImpl();
+     @FXML
+    private Label LblError;
       @FXML
     private TableView<Categorie_image> categories;
     private ObservableList<Categorie_image>data;
@@ -49,7 +57,13 @@ public class CategoriesController extends Application implements Initializable {
         data=FXCollections.observableArrayList();
         List<Categorie> ls=ic.selectAll();
         for(int i=0;i<ls.size();i++){
-        Categorie_image ci=new Categorie_image(ls.get(i).getIdCategorie(),ls.get(i).getTitre(),new ImageView(new Image("file:///"+ls.get(i).getUrlPhoto(), true)));
+            List <Plan>ListPlanParCatégorie=new ArrayList<>();
+            ListPlanParCatégorie=ip.findOne("idCategorie", ls.get(i).getIdCategorie());
+           int nbPlan=ListPlanParCatégorie.size();
+            ImageView im =new ImageView(new Image(ls.get(i).getUrlPhoto(),true));
+            im.setFitHeight(30);
+            im.setFitWidth(35);
+        Categorie_image ci=new Categorie_image(ls.get(i).getIdCategorie(),ls.get(i).getTitre(),im,nbPlan);
              
         data.add(ci);
         }
@@ -57,12 +71,10 @@ public class CategoriesController extends Application implements Initializable {
         TableColumn tcC1 = new TableColumn<>("Image");
         tcC1.setCellValueFactory(new PropertyValueFactory<>("photo"));
         
-        tcC1.setPrefWidth(20.2);
-        
-        TableColumn tc2 = new TableColumn<>("Id categorie");
-        tc2.setCellValueFactory(new PropertyValueFactory<>("idCategorie"));
-        TableColumn tc3 = new TableColumn<>("Titre");
-        tc3.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        TableColumn tc3 = new TableColumn<>("Nombre de plan associé à cette catégorie");
+        tc3.setCellValueFactory(new PropertyValueFactory<>("nbplanparCategorie"));
+        TableColumn tc2 = new TableColumn<>("Titre");
+        tc2.setCellValueFactory(new PropertyValueFactory<>("titre"));
         categories.getColumns().add(tcC1);
         categories.getColumns().add(tc2);
         categories.getColumns().add(tc3);
@@ -88,9 +100,13 @@ public class CategoriesController extends Application implements Initializable {
     @FXML
     void onClickSupprimer(ActionEvent event) {
          Categorie_image ct=categories.getSelectionModel().getSelectedItem();
+         if(ct.getNbplanparCategorie()==0){
         System.out.println(ct.getIdCategorie());
         ic.remove(ct.getIdCategorie());
-        categories.getItems().remove(ct);
+        categories.getItems().remove(ct);}
+         else{
+            LblError.setText("Impossible de supprimer cette catégorie");
+         }
 
     }
 

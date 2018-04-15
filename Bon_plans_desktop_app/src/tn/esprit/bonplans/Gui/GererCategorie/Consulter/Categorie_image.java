@@ -17,11 +17,13 @@ public class Categorie_image {
     private int idCategorie;
     private String titre;
     private ImageView photo;
+    private int nbplanparCategorie;
 
-    public Categorie_image(int idCategorie, String titre, ImageView photo) {
+    public Categorie_image(int idCategorie, String titre, ImageView photo,int nbplanparCategorie) {
         this.idCategorie = idCategorie;
         this.titre = titre;
         this.photo = photo;
+        this.nbplanparCategorie= nbplanparCategorie;
     }
 
     public int getIdCategorie() {
@@ -46,6 +48,14 @@ public class Categorie_image {
 
     public void setPhoto(ImageView photo) {
         this.photo = photo;
+    }
+
+    public int getNbplanparCategorie() {
+        return nbplanparCategorie;
+    }
+
+    public void setNbplanparCategorie(int nbplanparCategorie) {
+        this.nbplanparCategorie = nbplanparCategorie;
     }
     
 }

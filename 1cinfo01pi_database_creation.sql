@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  Dim 15 avr. 2018 à 02:19
--- Version du serveur :  10.1.30-MariaDB
--- Version de PHP :  7.2.1
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  Dim 15 avr. 2018 à 12:17
+-- Version du serveur :  5.7.19
+-- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `1cinfo01pi`
+-- Base de données :  `bonsplans`
 --
 
 -- --------------------------------------------------------
@@ -29,11 +29,12 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `categorie`;
-CREATE TABLE `categorie` (
-  `idCategorie` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `categorie` (
+  `idCategorie` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(30) COLLATE utf8_bin NOT NULL,
-  `urlPhoto` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `urlPhoto` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`idCategorie`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -49,14 +50,17 @@ INSERT INTO `categorie` (`idCategorie`, `titre`, `urlPhoto`) VALUES
 --
 
 DROP TABLE IF EXISTS `commentaire`;
-CREATE TABLE `commentaire` (
-  `idCommentaire` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
   `texte` varchar(255) COLLATE utf8_bin NOT NULL,
   `date` date NOT NULL,
   `nbJaime` int(11) NOT NULL,
   `nbJaimePas` int(11) NOT NULL,
   `idClient` int(11) NOT NULL,
-  `idPlan` int(11) NOT NULL
+  `idPlan` int(11) NOT NULL,
+  PRIMARY KEY (`idCommentaire`),
+  KEY `fk_commentaire_client` (`idClient`),
+  KEY `fk_commentaire_plan` (`idPlan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -66,9 +70,10 @@ CREATE TABLE `commentaire` (
 --
 
 DROP TABLE IF EXISTS `groupe`;
-CREATE TABLE `groupe` (
+CREATE TABLE IF NOT EXISTS `groupe` (
   `idGroupe` int(11) NOT NULL,
-  `description` varchar(255) COLLATE utf8_bin NOT NULL
+  `description` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`idGroupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -78,8 +83,8 @@ CREATE TABLE `groupe` (
 --
 
 DROP TABLE IF EXISTS `plan`;
-CREATE TABLE `plan` (
-  `idPlan` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `plan` (
+  `idPlan` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) COLLATE utf8_bin NOT NULL,
   `description` text COLLATE utf8_bin NOT NULL,
   `urlPhoto` int(255) DEFAULT NULL,
@@ -95,7 +100,11 @@ CREATE TABLE `plan` (
   `note` int(11) NOT NULL,
   `idAnnonceur` int(11) NOT NULL,
   `idCategorie` int(11) NOT NULL,
-  `idClient` int(11) NOT NULL
+  `idClient` int(11) NOT NULL,
+  PRIMARY KEY (`idPlan`),
+  KEY `fk_plan_client` (`idAnnonceur`),
+  KEY `fk_plan_categorie` (`idCategorie`),
+  KEY `idClient` (`idClient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -105,11 +114,15 @@ CREATE TABLE `plan` (
 --
 
 DROP TABLE IF EXISTS `reservation`;
-CREATE TABLE `reservation` (
-  `idReservation` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `reservation` (
+  `idReservation` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
+  `UrlBonRes` varchar(50) COLLATE utf8_bin NOT NULL,
   `idClient` int(11) NOT NULL,
-  `idPlan` int(11) NOT NULL
+  `idPlan` int(11) NOT NULL,
+  PRIMARY KEY (`idReservation`),
+  KEY `fk_reservation_client` (`idClient`),
+  KEY `fk_reservation_plan` (`idPlan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -119,8 +132,8 @@ CREATE TABLE `reservation` (
 --
 
 DROP TABLE IF EXISTS `utilisateur`;
-CREATE TABLE `utilisateur` (
-  `idUtilisateur` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
   `idGroupe` int(11) NOT NULL,
   `mdp` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(100) COLLATE utf8_bin NOT NULL,
@@ -131,91 +144,11 @@ CREATE TABLE `utilisateur` (
   `adresse` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `dateCreation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dateAcces` datetime DEFAULT NULL,
-  `tempsAcces` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `categorie`
---
-ALTER TABLE `categorie`
-  ADD PRIMARY KEY (`idCategorie`);
-
---
--- Index pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  ADD PRIMARY KEY (`idCommentaire`),
-  ADD KEY `fk_commentaire_client` (`idClient`),
-  ADD KEY `fk_commentaire_plan` (`idPlan`);
-
---
--- Index pour la table `groupe`
---
-ALTER TABLE `groupe`
-  ADD PRIMARY KEY (`idGroupe`);
-
---
--- Index pour la table `plan`
---
-ALTER TABLE `plan`
-  ADD PRIMARY KEY (`idPlan`),
-  ADD KEY `fk_plan_client` (`idAnnonceur`),
-  ADD KEY `fk_plan_categorie` (`idCategorie`),
-  ADD KEY `idClient` (`idClient`);
-
---
--- Index pour la table `reservation`
---
-ALTER TABLE `reservation`
-  ADD PRIMARY KEY (`idReservation`),
-  ADD KEY `fk_reservation_client` (`idClient`),
-  ADD KEY `fk_reservation_plan` (`idPlan`);
-
---
--- Index pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`idUtilisateur`),
-  ADD UNIQUE KEY `uq_utilisateur_email` (`email`) USING BTREE,
-  ADD KEY `fk_utilisateur_groupe` (`idGroupe`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `categorie`
---
-ALTER TABLE `categorie`
-  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  MODIFY `idCommentaire` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `plan`
---
-ALTER TABLE `plan`
-  MODIFY `idPlan` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `reservation`
---
-ALTER TABLE `reservation`
-  MODIFY `idReservation` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  `tempsAcces` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`idUtilisateur`),
+  UNIQUE KEY `uq_utilisateur_email` (`email`) USING BTREE,
+  KEY `fk_utilisateur_groupe` (`idGroupe`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contraintes pour les tables déchargées
