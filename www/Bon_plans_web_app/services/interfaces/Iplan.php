@@ -6,6 +6,8 @@
  * Time: 13:54
  */
 
+include_once "IGenericService.php";
+
 interface Iplan extends IGenericService
 {
 

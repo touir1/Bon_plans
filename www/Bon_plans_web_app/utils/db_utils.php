@@ -68,7 +68,7 @@ class db_int extends db_type {
 class db_date extends db_type {
     public function __toString()
     {
-        return "'".$this->value."'";
+        return "STR_TO_DATE('".$this->value."','%d/%m/%Y')";
     }
 }
 

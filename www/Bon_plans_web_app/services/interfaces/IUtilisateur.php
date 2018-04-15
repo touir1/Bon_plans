@@ -6,6 +6,8 @@
  * Time: 13:55
  */
 
+include_once "IGenericService.php";
+
 interface IUtilisateur extends IGenericService
 {
 

@@ -55,7 +55,7 @@ class mysql_db_manager
 
     public function __destruct()
     {
-        $this->pdo = null;
+        self::$pdo = null;
     }
 
     private static function execute($request){

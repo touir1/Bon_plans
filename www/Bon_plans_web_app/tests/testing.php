@@ -24,3 +24,6 @@ print_r($utilisateur);
 $categorieService = new CategorieImpl();
 
 print_r($categorieService->selectAll());
+print_r($categorieService->findCountBy('titre','testing'));
+
+print_r(date('d/m/Y'));
