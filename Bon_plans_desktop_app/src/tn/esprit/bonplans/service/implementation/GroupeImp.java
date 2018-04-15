@@ -15,7 +15,7 @@ import utils.service.GenericServiceImplementation;
  */
 public class GroupeImp extends GenericServiceImplementation<Groupe> implements IGroupe {
 
-    public GroupeImp(Class<Groupe> myClass) {
+    public GroupeImp() {
         super(Groupe.class);
     }
     

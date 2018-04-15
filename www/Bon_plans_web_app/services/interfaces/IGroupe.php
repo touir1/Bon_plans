@@ -6,7 +6,7 @@
  * Time: 13:54
  */
 
-interface Groupe
+interface IGroupe
 {
 
 }
