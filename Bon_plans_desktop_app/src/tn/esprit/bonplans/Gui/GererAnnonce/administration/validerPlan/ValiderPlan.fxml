@@ -20,11 +20,13 @@
          <children>
             <Label layoutX="183.0" layoutY="14.0" opacity="0.36" prefHeight="48.0" prefWidth="152.0" style="-fx-font-family: serif; -fx-font-size: 20;" text="Valider annonce" textOverrun="CLIP" />
             <Separator layoutX="7.0" layoutY="71.0" prefHeight="3.0" prefWidth="490.0" />
-            <TableView id="listePlans" fx:id="listePlanNonValide" layoutX="52.0" layoutY="102.0" prefHeight="325.0" prefWidth="419.0">
+            <TableView id="listePlans" fx:id="listePlanNonValide" layoutX="18.0" layoutY="102.0" prefHeight="325.0" prefWidth="472.0">
               <columns>
                 <TableColumn fx:id="titre" prefWidth="75.0" text="titre" />
-                <TableColumn fx:id="description" prefWidth="229.0" text="description" />
-                  <TableColumn fx:id="urlPhoto" minWidth="0.0" prefWidth="114.0" text="urlPhoto" />
+                <TableColumn fx:id="description" prefWidth="140.0" text="description" />
+                  <TableColumn fx:id="urlPhoto" minWidth="0.0" prefWidth="75.0" text="urlPhoto" />
+                  <TableColumn fx:id="annonceur" minWidth="0.0" prefWidth="90.0" text="annonceur" />
+                  <TableColumn fx:id="categorie" prefWidth="91.0" text="catégorie" />
               </columns>
             </TableView>
             <JFXButton fx:id="buttonValider" buttonType="RAISED" layoutX="387.0" layoutY="450.0" onAction="#buttonValiderClick" prefHeight="25.0" prefWidth="89.0" ripplerFill="#0ab4f2" style="-fx-background-color: #2E64FE;" text="Valider plan" />

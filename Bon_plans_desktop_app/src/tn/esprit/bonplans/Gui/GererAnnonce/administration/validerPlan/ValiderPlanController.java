@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,11 +26,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.entity.Plan;
+import tn.esprit.bonplans.entity.Utilisateur;
+import tn.esprit.bonplans.service.ICategorie;
 import tn.esprit.bonplans.service.IPlan;
+import tn.esprit.bonplans.service.IUtilisateur;
+import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
-import utils.LogHandler;
-import utils.SceneHandler;
+import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 
 /**
  * FXML Controller class
@@ -39,6 +44,8 @@ import utils.SceneHandler;
 public class ValiderPlanController extends Application implements Initializable {
 
     private IPlan planService;
+    private IUtilisateur utilisateurService;
+    private ICategorie categorieService;
     
     //FXML elements
     @FXML
@@ -51,6 +58,10 @@ public class ValiderPlanController extends Application implements Initializable 
     private TableColumn<Plan, String> description;
     @FXML
     private TableColumn<Plan, String> urlPhoto;
+    @FXML
+    private TableColumn<Plan, String> annonceur;
+    @FXML
+    private TableColumn<Plan, String> categorie;
     
     /**
      * Initializes the controller class.
@@ -59,6 +70,8 @@ public class ValiderPlanController extends Application implements Initializable 
     public void initialize(URL url, ResourceBundle rb) {
         //init services
         planService = new PlanImpl();
+        categorieService = new CategorieImpl();
+        utilisateurService = new UtilisateurImpl();
         
         //init data
         initListPlan();
@@ -102,5 +115,26 @@ public class ValiderPlanController extends Application implements Initializable 
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         urlPhoto.setCellValueFactory(new PropertyValueFactory<>("urlPhoto"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        annonceur.setCellValueFactory(c-> {
+            String result = null;
+            if(c.getValue().getIdAnnonceur() != 0){
+                Utilisateur utilisateur = utilisateurService.getByID(c.getValue().getIdAnnonceur());
+                if(utilisateur != null){
+                    result = utilisateur.getNom() + " "+utilisateur.getPrenom();
+                }
+            }
+            return new SimpleStringProperty(result);      
+        });
+        
+        categorie.setCellValueFactory(c-> {
+            String result = null;
+            if(c.getValue().getIdCategorie() != 0){
+                Categorie categorie = categorieService.getByID(c.getValue().getIdCategorie());
+                if(categorie != null){
+                    result = categorie.getTitre();
+                }
+            }
+            return new SimpleStringProperty(result);      
+        });
     }
 }
