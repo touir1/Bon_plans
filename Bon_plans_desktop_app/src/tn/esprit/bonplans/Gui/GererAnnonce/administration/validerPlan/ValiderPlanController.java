@@ -56,12 +56,7 @@ public class ValiderPlanController extends Application implements Initializable 
         planService = new PlanImpl();
         
         //init data
-        List<Plan> plans = planService.getListOfNonValidatedPlans();
-        ObservableList observableList = FXCollections.observableArrayList(plans);
-        listePlanNonValide.setItems(observableList);
-        titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
-        urlPhoto.setCellValueFactory(new PropertyValueFactory<>("urlPhoto"));
-        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        initListPlan();
     }
 
     @Override
@@ -69,7 +64,7 @@ public class ValiderPlanController extends Application implements Initializable 
         Parent root = FXMLLoader.load(getClass().getResource("ValiderPlan.fxml"));
         
         Scene Scene = new Scene(root);
-        primaryStage.getIcons().add(new Image("http://localhost/bon_plans_api/uploads/Logo.png"));
+        primaryStage.getIcons().add(new Image("./resources/images/Logo.png"));
         primaryStage.setScene(Scene);
         primaryStage.show();
         primaryStage.setTitle("Validation plans");
