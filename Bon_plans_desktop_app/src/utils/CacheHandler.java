@@ -24,6 +24,8 @@ public class CacheHandler {
     private static File cacheFolder;
     private static Map<String,Timestamp> mapOfCachedFileNames;
     
+    private CacheHandler(){}
+    
     private static void deleteFolder(File folder){
         File[] files = folder.listFiles();
         if(files!=null) { //some JVMs return null for empty dirs

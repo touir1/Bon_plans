@@ -5,18 +5,19 @@
  */
 package tn.esprit.bonplans.service.implementation;
 
-import tn.esprit.bonplans.entity.Groupe;
-import tn.esprit.bonplans.service.IGroupe;
+import tn.esprit.bonplans.entity.Utilisateur;
+import tn.esprit.bonplans.service.IUtilisateur;
 import utils.service.GenericServiceImplementation;
 
 /**
  *
  * @author KC
  */
-public class GroupeImp extends GenericServiceImplementation<Groupe> implements IGroupe {
+public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> implements IUtilisateur{
 
-    public GroupeImp() {
-        super(Groupe.class);
+    public UtilisateurImpl() {
+        super(Utilisateur.class);
     }
+    
     
 }

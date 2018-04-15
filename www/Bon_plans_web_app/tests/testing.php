@@ -10,4 +10,4 @@ include_once "utils/mysql_db_manager.php";
 
 $dbm = new mysql_db_manager();
 
-$dbm->select("select * from ")
+$dbm->select("select * from utilisateur");

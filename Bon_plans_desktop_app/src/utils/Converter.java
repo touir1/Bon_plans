@@ -139,7 +139,7 @@ public class Converter {
                     +"'";
         }
         else if(o instanceof Date){
-            return "STR_TO_DATE('"+convertDateToString((Date) o, "dd/MM/yyyy")+"','%d/%m/%y')";
+            return "STR_TO_DATE('"+convertDateToString((Date) o, "dd/MM/yyyy")+"','%d/%m/%Y')";
         }
         else if(o instanceof Double){
             return convertObjectToDouble(o).toString();

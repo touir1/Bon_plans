@@ -14,6 +14,8 @@ import com.sun.media.jfxmedia.logging.Logger;
  */
 public class LogHandler {
     
+    private LogHandler(){}
+    
     public static void handleException(Exception e){
         System.out.println(e.getMessage());
         Logger.logMsg(Logger.ERROR, e.getMessage());

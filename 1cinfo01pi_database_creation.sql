@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 15 avr. 2018 à 12:17
+-- Généré le :  Dim 15 avr. 2018 à 13:46
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `bonsplans`
+-- Base de données :  `1cinfo01pi`
 --
 
 -- --------------------------------------------------------
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 
 DROP TABLE IF EXISTS `groupe`;
 CREATE TABLE IF NOT EXISTS `groupe` (
-  `idGroupe` int(11) NOT NULL,
+  `idGroupe` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idGroupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

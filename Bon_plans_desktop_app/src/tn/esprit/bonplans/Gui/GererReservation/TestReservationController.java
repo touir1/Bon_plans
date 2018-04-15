@@ -56,7 +56,7 @@ import tn.esprit.bonplans.service.IReservation;
 import tn.esprit.bonplans.service.IUtilisateur;
 
 import tn.esprit.bonplans.service.implementation.ReservationImpl;
-import tn.esprit.bonplans.service.implementation.UtilisateurImp;
+import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 import utils.entity.EnumValidation;
 
 /**
@@ -69,7 +69,7 @@ public class TestReservationController extends Application implements Initializa
     /**
      * Initializes the controller class.
      */
-    private IUtilisateur IUtilisateur=new UtilisateurImp();
+    private IUtilisateur IUtilisateur=new UtilisateurImpl();
     private IReservation Ireservation= new ReservationImpl();
     
      @FXML
