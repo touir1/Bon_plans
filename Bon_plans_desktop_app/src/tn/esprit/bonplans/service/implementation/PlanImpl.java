@@ -5,17 +5,30 @@
  */
 package tn.esprit.bonplans.service.implementation;
 
+import java.util.List;
 import tn.esprit.bonplans.entity.Plan;
-import tn.esprit.bonplans.service.Iplan;
+import tn.esprit.bonplans.service.IPlan;
+import utils.entity.EnumValidation;
 import utils.service.GenericServiceImplementation;
 
 /**
  *
  * @author SadfiAmine
  */
-public class PlanImpl extends GenericServiceImplementation<Plan> implements Iplan{
+public class PlanImpl extends GenericServiceImplementation<Plan> implements IPlan{
 
     public PlanImpl(){
         super(Plan.class);
+    }
+
+    @Override
+    public List<Plan> getListOfNonValidatedPlans() {
+        return findOne("statut",EnumValidation.EnAttentedeValidation.getValue());
+    }
+
+    @Override
+    public void validerPlan(Plan plan) {
+        plan.setStatut(EnumValidation.validee.getValue());
+        update(plan);
     }
 }

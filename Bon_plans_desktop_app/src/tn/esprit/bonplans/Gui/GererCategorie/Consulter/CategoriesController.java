@@ -30,7 +30,7 @@ import tn.esprit.bonplans.Gui.GererCategorie.Ajouter.AjouterCategorieController;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.entity.Plan;
 import tn.esprit.bonplans.service.ICategorie;
-import tn.esprit.bonplans.service.Iplan;
+import tn.esprit.bonplans.service.IPlan;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
 
@@ -46,7 +46,7 @@ public class CategoriesController extends Application implements Initializable {
      */
     public static int idCategorieAModifiee;
     private ICategorie ic =new CategorieImpl();
-    private Iplan ip= new PlanImpl();
+    private IPlan ip= new PlanImpl();
      @FXML
     private Label LblError;
       @FXML

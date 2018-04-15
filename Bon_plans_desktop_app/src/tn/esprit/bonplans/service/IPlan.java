@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.service;
 
+import java.util.List;
 import utils.service.GenericServiceInterface;
 import tn.esprit.bonplans.entity.Plan;
 
@@ -12,6 +13,8 @@ import tn.esprit.bonplans.entity.Plan;
  *
  * @author SadfiAmine
  */
-public interface Iplan  extends GenericServiceInterface<Plan>{
+public interface IPlan  extends GenericServiceInterface<Plan>{
     
+    public List<Plan> getListOfNonValidatedPlans();
+    public void validerPlan(Plan plan);
 }

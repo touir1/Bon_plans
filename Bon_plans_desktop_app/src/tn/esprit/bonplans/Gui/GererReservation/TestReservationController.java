@@ -89,7 +89,7 @@ public class TestReservationController extends Application implements Initializa
         // TODO
         Date dateDebut= new Date();
         Date dateFin= new Date();
-        pl = new Plan(1, "Spa et Massage","xxxx","c:/fawzi",50.0, 20.0,10, dateDebut, dateFin, 10, EnumValidation.validee, 11, 5, 20, 1, 50,2);
+        pl = new Plan(1, "Spa et Massage","xxxx","c:/fawzi",50.0, 20.0,10, dateDebut, dateFin, 10, EnumValidation.validee.getValue(), 11, 5, 20, 1, 50,2);
         Annonceur=IUtilisateur.findOne("idUtilisateur", pl.getIdAnnonceur());
        lblPrixUnitaire.setText("Prix unitaire : "+pl.getPrixPromo());
        

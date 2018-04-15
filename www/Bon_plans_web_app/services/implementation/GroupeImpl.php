@@ -3,24 +3,23 @@
  * Created by PhpStorm.
  * User: touir
  * Date: 15/04/2018
- * Time: 17:22
+ * Time: 19:23
  */
 
 define('ROOT_PATH', dirname(__DIR__) . '/');
 
 include_once ROOT_PATH."../utils/db_utils.php";
 include_once ROOT_PATH."../utils/mysql_db_manager.php";
-include_once ROOT_PATH."../Entity/Commentaire.php";
-include_once ROOT_PATH."interfaces/ICommentaire.php";
+include_once ROOT_PATH."../Entity/Groupe.php";
+include_once ROOT_PATH."interfaces/IGroupe.php";
 
-class CommentaireImpl
+class GroupeImpl
 {
-
     private static $dbm;
-    private static $tableName = "commentaire";
-    private static $columns_without_id = ["texte","date","nbJaime","nbJaimePas","idClient","idPlan"];
-    private static $columns_with_id = ["idCommentaire","texte","date","nbJaime","nbJaimePas","idClient","idPlan"];
-    private static $id = "idCommentaire";
+    private static $tableName = "groupe";
+    private static $columns_without_id = ["description"];
+    private static $columns_with_id = ["idGroupe","description"];
+    private static $id = "idGroupe";
 
     public function __construct()
     {
@@ -37,12 +36,7 @@ class CommentaireImpl
         $insert_obj->table_name = [self::$tableName];
         $insert_obj->columns = self::$columns_without_id;
         $insert_obj->values = [
-            new db_string($entity->getTexte()),
-            new db_date($entity->getDate()),
-            new db_int($entity->getNbJaime()),
-            new db_int($entity->getNbJaimePas()),
-            new db_int($entity->getIdClient()),
-            new db_int($entity->getIdPlan())
+            new db_string($entity->getDescription())
         ];
 
         self::$dbm->p_insert($insert_obj);
@@ -54,15 +48,10 @@ class CommentaireImpl
         $update_obj = new update_object();
         $update_obj->table_name = [self::$tableName];
         $update_obj->updated_data = [
-            "texte = ".new db_string($entity->getTexte()),
-            "date = ".new db_date($entity->getDate()),
-            "nbJaime = ".new db_int($entity->getNbJaime()),
-            "nbJaimePas = ".new db_int($entity->getNbJaimePas()),
-            "idClient = ".new db_int($entity->getIdClient()),
-            "idPlan = ".new db_int($entity->getIdPlan())
+            "description = ".new db_string($entity->getDescription())
         ];
         $update_obj->conditions = [
-            self::$tableName.".".self::$id." = ".new db_int($entity.getIdCommentaire())
+            self::$tableName.".".self::$id." = ".new db_int($entity.getIdGroupe())
         ];
 
         self::$dbm->p_update($update_obj);

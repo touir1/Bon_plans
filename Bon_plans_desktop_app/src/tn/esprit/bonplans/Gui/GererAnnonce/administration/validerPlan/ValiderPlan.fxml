@@ -4,8 +4,9 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -19,12 +20,15 @@
          <children>
             <Label layoutX="183.0" layoutY="14.0" opacity="0.36" prefHeight="48.0" prefWidth="152.0" style="-fx-font-family: serif; -fx-font-size: 20;" text="Valider annonce" textOverrun="CLIP" />
             <Separator layoutX="7.0" layoutY="71.0" prefHeight="3.0" prefWidth="490.0" />
-            <Label fx:id="LblError" layoutX="280.0" layoutY="466.0" prefHeight="17.0" prefWidth="214.0" textFill="#c92c2c">
-               <font>
-                  <Font name="Arial Narrow Bold" size="14.0" />
-               </font>
-            </Label>
-            <ListView layoutX="42.0" layoutY="89.0" prefHeight="363.0" prefWidth="438.0" />
+            <TableView id="listePlans" fx:id="listePlanNonValide" layoutX="52.0" layoutY="102.0" prefHeight="325.0" prefWidth="419.0">
+              <columns>
+                <TableColumn fx:id="titre" prefWidth="75.0" text="titre" />
+                <TableColumn fx:id="description" prefWidth="229.0" text="description" />
+                  <TableColumn fx:id="urlPhoto" minWidth="0.0" prefWidth="114.0" text="urlPhoto" />
+              </columns>
+            </TableView>
+            <JFXButton fx:id="buttonValider" buttonType="RAISED" layoutX="387.0" layoutY="450.0" onAction="#buttonValiderClick" prefHeight="25.0" prefWidth="89.0" ripplerFill="#0ab4f2" style="-fx-background-color: #2E64FE;" text="Valider plan" />
+            <Label fx:id="errorLabel" layoutX="122.0" layoutY="454.0" prefHeight="17.0" prefWidth="214.0" textFill="#f40c0c" />
          </children>
       </AnchorPane>
       <Separator layoutY="79.0" prefHeight="0.0" prefWidth="114.0" />

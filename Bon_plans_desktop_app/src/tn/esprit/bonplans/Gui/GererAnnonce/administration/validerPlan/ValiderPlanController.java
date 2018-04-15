@@ -6,14 +6,25 @@
 package tn.esprit.bonplans.Gui.GererAnnonce.administration.validerPlan;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import tn.esprit.bonplans.entity.Plan;
+import tn.esprit.bonplans.service.IPlan;
+import tn.esprit.bonplans.service.implementation.PlanImpl;
 
 /**
  * FXML Controller class
@@ -22,14 +33,35 @@ import javafx.stage.Stage;
  */
 public class ValiderPlanController extends Application implements Initializable {
 
+    private IPlan planService;
+    
+    //FXML elements
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private TableView<Plan> listePlanNonValide;
+    @FXML
+    private TableColumn<Plan, String> titre;
+    @FXML
+    private TableColumn<Plan, String> description;
+    @FXML
+    private TableColumn<Plan, String> urlPhoto;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        System.out.println(url);
-        System.out.println(rb);
+        //init services
+        planService = new PlanImpl();
+        
+        //init data
+        List<Plan> plans = planService.getListOfNonValidatedPlans();
+        ObservableList observableList = FXCollections.observableArrayList(plans);
+        listePlanNonValide.setItems(observableList);
+        titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        urlPhoto.setCellValueFactory(new PropertyValueFactory<>("urlPhoto"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
     }
 
     @Override
@@ -47,4 +79,27 @@ public class ValiderPlanController extends Application implements Initializable 
         Application.launch(args);
     }
     
+    @FXML
+    public void buttonValiderClick(){
+        Plan plan = listePlanNonValide.getSelectionModel().getSelectedItem();
+        System.out.println(plan);
+        if(plan == null){
+            errorLabel.setText("Veuillez sélectionner un plan à valider");
+        }
+        else{
+            errorLabel.setText("");
+            planService.validerPlan(plan);
+            initListPlan();
+        }
+    }
+    
+    
+    private void initListPlan(){
+        List<Plan> plans = planService.getListOfNonValidatedPlans();
+        ObservableList observableList = FXCollections.observableArrayList(plans);
+        listePlanNonValide.setItems(observableList);
+        titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        urlPhoto.setCellValueFactory(new PropertyValueFactory<>("urlPhoto"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+    }
 }

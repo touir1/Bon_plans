@@ -7,11 +7,16 @@ package test;
 
 import java.util.Date;
 import tn.esprit.bonplans.entity.Groupe;
+import tn.esprit.bonplans.entity.Plan;
 import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.IGroupe;
+import tn.esprit.bonplans.service.IPlan;
 import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.GroupeImpl;
+import tn.esprit.bonplans.service.implementation.PlanImpl;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
+import utils.Converter;
+import utils.entity.EnumValidation;
 
 /**
  *
@@ -36,6 +41,8 @@ public class testing {
         
         groupeService.save(groupe);
         */
+        
+        /*
         Groupe clientGroup = groupeService.findOne("DESCRIPTION", "CLIENT").get(0);
         Groupe adminGroup = groupeService.findOne("DESCRIPTION", "ADMIN").get(0);
         Groupe superAdminGroup = groupeService.findOne("DESCRIPTION", "SUPER ADMIN").get(0);
@@ -75,5 +82,20 @@ public class testing {
         utilisateur.setVille("inconnu");
         
         utilisateurService.save(utilisateur);
+        */
+                
+        Plan plan = new Plan();
+        plan.setDateDebut(Converter.convertStringToDate("01/01/2018", "dd/MM/yyyy"));
+        plan.setDateFin(Converter.convertStringToDate("01/01/2019", "dd/MM/yyyy"));
+        plan.setDescription("testing new plan");
+        plan.setStatut(EnumValidation.EnAttentedeValidation.getValue());
+        plan.setPrixInitial(0.0d);
+        plan.setPrixPromo(0.0d);
+        plan.setIdAnnonceur(12);
+        plan.setIdCategorie(9);
+        plan.setTitre("test plan");
+        
+        IPlan planService = new PlanImpl();
+        planService.save(plan);
     }
 }

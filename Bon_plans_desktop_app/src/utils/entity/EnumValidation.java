@@ -9,21 +9,21 @@ package utils.entity;
  *
  * @author SadfiAmine
  */
-public enum EnumValidation implements GenericEnumInterface<String,String> {
-    validee("VALIDEE","1"),
-    EnAttentedeValidation("ATTENTE","0"),
-    refusée("REFUSEE","-1");
+public enum EnumValidation implements GenericEnumInterface<String,Integer> {
+    validee("VALIDEE",1),
+    EnAttentedeValidation("ATTENTE",0),
+    refusée("REFUSEE",-1);
     
     private final String key;
-    private final String value;
+    private final int value;
     
-    EnumValidation(String key, String value){
+    EnumValidation(String key, int value){
         this.key = key;
         this.value = value;
     }
     
     @Override
-    public String getValue(){
+    public Integer getValue(){
         return this.value;
     }
     
@@ -34,6 +34,6 @@ public enum EnumValidation implements GenericEnumInterface<String,String> {
     
     @Override
     public String toString(){
-        return this.value;
+        return Integer.toString(this.value);
     }
 }

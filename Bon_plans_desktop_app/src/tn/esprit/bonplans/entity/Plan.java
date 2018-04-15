@@ -24,7 +24,7 @@ public class Plan {
     private Date dateDebut;
     private Date dateFin;
     private int nbPlaceDispo;
-    private EnumValidation statut;
+    private int statut;
     private int nbJaime ;
     private int nbJaimePas;
     private int note ;
@@ -36,7 +36,7 @@ public class Plan {
     public Plan() {
     }
 
-    public Plan(int idPlan, String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, EnumValidation statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie,int idClient) {
+    public Plan(int idPlan, String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, int statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie,int idClient) {
         this.idPlan = idPlan;
         this.titre = titre;
         this.description = description;
@@ -56,7 +56,7 @@ public class Plan {
         this.idClient =idClient;
     }
 
-    public Plan(String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, EnumValidation statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie, int idClient) {
+    public Plan(String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, int statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie, int idClient) {
         this.titre = titre;
         this.description = description;
         this.urlPhoto = urlPhoto;
@@ -164,11 +164,16 @@ public class Plan {
         this.nbPlaceDispo = nbPlaceDispo;
     }
 
-    public EnumValidation getStatut() {
+    public int getStatut() {
         return statut;
     }
 
-    public void setStatut(EnumValidation statut) {
+    /*public void setStatut(EnumValidation statut) {
+        this.statut = statut;
+    }*/
+    
+    public void setStatut(int statut) {
+        
         this.statut = statut;
     }
 
