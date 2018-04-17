@@ -2,25 +2,30 @@
 /**
  * Created by PhpStorm.
  * User: touir
- * Date: 15/04/2018
- * Time: 17:22
+ * Date: 17/04/2018
+ * Time: 21:24
  */
 
 define('ROOT_PATH', dirname(__DIR__) . '/');
 
 include_once ROOT_PATH."../utils/db_utils.php";
 include_once ROOT_PATH."../utils/mysql_db_manager.php";
-include_once ROOT_PATH."../Entity/Commentaire.php";
-include_once ROOT_PATH."interfaces/ICommentaire.php";
+include_once ROOT_PATH."../Entity/Utilisateur.php";
+include_once ROOT_PATH."interfaces/IUtilisateur.php";
 
-class CommentaireImpl implements ICategorie
+class UtilisateurImpl implements IUtilisateur
 {
-
     private static $dbm;
-    private static $tableName = "commentaire";
-    private static $columns_without_id = ["texte","date","nbJaime","nbJaimePas","idClient","idPlan"];
-    private static $columns_with_id = ["idCommentaire","texte","date","nbJaime","nbJaimePas","idClient","idPlan"];
-    private static $id = "idCommentaire";
+    private static $tableName = "utilisateur";
+    private static $columns_without_id = ["idGroupe","mdp","email",
+        "nom","prenom","urlphoto","ville","adresse","dateCreation",
+        "dateAcces","tempsAcces"];
+
+    private static $columns_with_id = ["idUtilisateur","idGroupe",
+        "mdp","email","nom","prenom","urlphoto","ville","adresse",
+        "dateCreation","dateAcces","tempsAcces"];
+
+    private static $id = "idUtilisateur";
 
     public function __construct()
     {
@@ -29,20 +34,23 @@ class CommentaireImpl implements ICategorie
         }
     }
 
-
-
     public function save($entity)
     {
         $insert_obj = new insert_object();
         $insert_obj->table_name = [self::$tableName];
         $insert_obj->columns = self::$columns_without_id;
         $insert_obj->values = [
-            new db_string($entity->getTexte()),
-            new db_date($entity->getDate()),
-            new db_int($entity->getNbJaime()),
-            new db_int($entity->getNbJaimePas()),
-            new db_int($entity->getIdClient()),
-            new db_int($entity->getIdPlan())
+            new db_int($entity->getIdGroupe()),
+            new db_string($entity->getmdp()),
+            new db_string($entity->getEmail()),
+            new db_string($entity->getNom()),
+            new db_string($entity->getPrenom()),
+            new db_string($entity->getUrlphoto()),
+            new db_string($entity->getVille()),
+            new db_string($entity->getAdresse()),
+            new db_date($entity->getDateCreation()),
+            new db_date($entity->getDateAcces()),
+            new db_int($entity->getTempsAcces())
         ];
 
         self::$dbm->p_insert($insert_obj);
@@ -54,15 +62,20 @@ class CommentaireImpl implements ICategorie
         $update_obj = new update_object();
         $update_obj->table_name = [self::$tableName];
         $update_obj->updated_data = [
-            "texte = ".new db_string($entity->getTexte()),
-            "date = ".new db_date($entity->getDate()),
-            "nbJaime = ".new db_int($entity->getNbJaime()),
-            "nbJaimePas = ".new db_int($entity->getNbJaimePas()),
-            "idClient = ".new db_int($entity->getIdClient()),
-            "idPlan = ".new db_int($entity->getIdPlan())
+            "idGroupe = ".new db_int($entity->getIdGroupe()),
+            "mdp = ".new db_string($entity->getmdp()),
+            "email = ".new db_string($entity->getEmail()),
+            "nom = ".new db_string($entity->getNom()),
+            "prenom = ".new db_string($entity->getPrenom()),
+            "urlphoto = ".new db_string($entity->getUrlphoto()),
+            "ville = ".new db_string($entity->getVille()),
+            "adresse = ".new db_string($entity->getAdresse()),
+            "dateCreation = ".new db_date($entity->getDateCreation()),
+            "dateAcces = ".new db_date($entity->getDateAcces()),
+            "tempsAcces = ".new db_int($entity->getTempsAcces())
         ];
         $update_obj->conditions = [
-            self::$tableName.".".self::$id." = ".new db_int($entity.getIdCommentaire())
+            self::$tableName.".".self::$id." = ".new db_int($entity.getIdUtilisateur())
         ];
 
         self::$dbm->p_update($update_obj);
@@ -77,14 +90,14 @@ class CommentaireImpl implements ICategorie
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $utilisateur = new Utilisateur();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $utilisateur->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$utilisateur);
         }
 
         return $result;
@@ -99,7 +112,7 @@ class CommentaireImpl implements ICategorie
         ];
 
         $result_db = self::$dbm->p_select($select_obj);
-        $result = new Commentaire();
+        $result = new Utilisateur();
 
         if(!empty($result_db)){
             foreach ($result_db[0] as $key => $value) {
@@ -132,14 +145,14 @@ class CommentaireImpl implements ICategorie
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $utilisateur = new Utilisateur();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $utilisateur->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$utilisateur);
         }
 
         return $result;
@@ -156,14 +169,14 @@ class CommentaireImpl implements ICategorie
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $utilisateur = new Utilisateur();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $utilisateur->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$utilisateur);
         }
 
         return $result;
@@ -181,14 +194,14 @@ class CommentaireImpl implements ICategorie
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $utilisateur = new Utilisateur();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $utilisateur->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$utilisateur);
         }
 
         return $result;

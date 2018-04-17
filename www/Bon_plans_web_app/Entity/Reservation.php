@@ -10,7 +10,7 @@ class Reservation
 {
     private $idReservation;
     private $date;
-    private $UrlBonRes;
+    private $urlBonRes;
         //
     private $idClient;
     private $idPlan;
@@ -18,22 +18,22 @@ class Reservation
     public function __construct()
     {
     }
-    public function __construct1($idReservation,$date,$UrlBonRes)
+    public function __construct1($idReservation,$date,$urlBonRes)
     {   $this->$idReservation=$idReservation;
         $this->$date=$date;
-        $this->$UrlBonRes=$UrlBonRes;
+        $this->$urlBonRes=$urlBonRes;
     }
-    public function __construct2($date,$UrlBonRes,$idClient,$idPlan)
+    public function __construct2($date,$urlBonRes,$idClient,$idPlan)
     {
         $this->$date=$date;
-        $this->$UrlBonRes=$UrlBonRes;
+        $this->$urlBonRes=$urlBonRes;
         $this->$idClient=$idClient;
         $this->$idPlan=$idPlan;
     }
-    public function __construct3($date,$UrlBonRes)
+    public function __construct3($date,$urlBonRes)
     {
         $this->$date=$date;
-        $this->$UrlBonRes=$UrlBonRes;
+        $this->$urlBonRes=$urlBonRes;
     }
 
     /**
@@ -105,15 +105,15 @@ class Reservation
      */
     public function getUrlBonRes()
     {
-        return $this->UrlBonRes;
+        return $this->urlBonRes;
     }
 
     /**
      * @param mixed $UrlBonRes
      */
-    public function setUrlBonRes($UrlBonRes)
+    public function setUrlBonRes($urlBonRes)
     {
-        $this->UrlBonRes = $UrlBonRes;
+        $this->urlBonRes = $urlBonRes;
     }
 
 

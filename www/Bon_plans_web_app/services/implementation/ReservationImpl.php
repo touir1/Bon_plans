@@ -2,25 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: touir
- * Date: 15/04/2018
- * Time: 17:22
+ * Date: 17/04/2018
+ * Time: 21:15
  */
 
 define('ROOT_PATH', dirname(__DIR__) . '/');
 
 include_once ROOT_PATH."../utils/db_utils.php";
 include_once ROOT_PATH."../utils/mysql_db_manager.php";
-include_once ROOT_PATH."../Entity/Commentaire.php";
-include_once ROOT_PATH."interfaces/ICommentaire.php";
+include_once ROOT_PATH."../Entity/Reservation.php";
+include_once ROOT_PATH."interfaces/IReservation.php";
 
-class CommentaireImpl implements ICategorie
+class ReservationImpl implements IReservation
 {
-
     private static $dbm;
-    private static $tableName = "commentaire";
-    private static $columns_without_id = ["texte","date","nbJaime","nbJaimePas","idClient","idPlan"];
-    private static $columns_with_id = ["idCommentaire","texte","date","nbJaime","nbJaimePas","idClient","idPlan"];
-    private static $id = "idCommentaire";
+    private static $tableName = "reservation";
+    private static $columns_without_id = ["date","urlBonRes","idClient","idPlan"];
+    private static $columns_with_id = ["idReservation","date","urlBonRes","idClient","idPlan"];
+    private static $id = "idReservation";
 
     public function __construct()
     {
@@ -29,18 +28,14 @@ class CommentaireImpl implements ICategorie
         }
     }
 
-
-
     public function save($entity)
     {
         $insert_obj = new insert_object();
         $insert_obj->table_name = [self::$tableName];
         $insert_obj->columns = self::$columns_without_id;
         $insert_obj->values = [
-            new db_string($entity->getTexte()),
             new db_date($entity->getDate()),
-            new db_int($entity->getNbJaime()),
-            new db_int($entity->getNbJaimePas()),
+            new db_string($entity->getUrlBonRes()),
             new db_int($entity->getIdClient()),
             new db_int($entity->getIdPlan())
         ];
@@ -54,15 +49,13 @@ class CommentaireImpl implements ICategorie
         $update_obj = new update_object();
         $update_obj->table_name = [self::$tableName];
         $update_obj->updated_data = [
-            "texte = ".new db_string($entity->getTexte()),
             "date = ".new db_date($entity->getDate()),
-            "nbJaime = ".new db_int($entity->getNbJaime()),
-            "nbJaimePas = ".new db_int($entity->getNbJaimePas()),
+            "urlBonRes = ".new db_string($entity->getUrlBonRes()),
             "idClient = ".new db_int($entity->getIdClient()),
             "idPlan = ".new db_int($entity->getIdPlan())
         ];
         $update_obj->conditions = [
-            self::$tableName.".".self::$id." = ".new db_int($entity.getIdCommentaire())
+            self::$tableName.".".self::$id." = ".new db_int($entity.getIdReservation())
         ];
 
         self::$dbm->p_update($update_obj);
@@ -77,14 +70,14 @@ class CommentaireImpl implements ICategorie
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $reservation = new Reservation();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $reservation->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$reservation);
         }
 
         return $result;
@@ -99,7 +92,7 @@ class CommentaireImpl implements ICategorie
         ];
 
         $result_db = self::$dbm->p_select($select_obj);
-        $result = new Commentaire();
+        $result = new Reservation();
 
         if(!empty($result_db)){
             foreach ($result_db[0] as $key => $value) {
@@ -132,14 +125,14 @@ class CommentaireImpl implements ICategorie
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $reservation = new Reservation();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $reservation->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$reservation);
         }
 
         return $result;
@@ -156,14 +149,14 @@ class CommentaireImpl implements ICategorie
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $reservation = new Reservation();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $reservation->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$reservation);
         }
 
         return $result;
@@ -181,14 +174,14 @@ class CommentaireImpl implements ICategorie
         $result = [];
 
         foreach ($result_db as $val){
-            $comentaire = new Commentaire();
+            $reservation = new Reservation();
             foreach ($val as $key => $value) {
                 $keyBeginningWithMajus = $key;
                 $keyBeginningWithMajus[0] = strtoupper($keyBeginningWithMajus[0]);
                 $method = "set" . $keyBeginningWithMajus;
-                $comentaire->$method($value);
+                $reservation->$method($value);
             }
-            array_push($result,$comentaire);
+            array_push($result,$reservation);
         }
 
         return $result;

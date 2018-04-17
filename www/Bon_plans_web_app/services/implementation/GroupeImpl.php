@@ -13,7 +13,7 @@ include_once ROOT_PATH."../utils/mysql_db_manager.php";
 include_once ROOT_PATH."../Entity/Groupe.php";
 include_once ROOT_PATH."interfaces/IGroupe.php";
 
-class GroupeImpl
+class GroupeImpl implements IGroupe
 {
     private static $dbm;
     private static $tableName = "groupe";
@@ -88,7 +88,7 @@ class GroupeImpl
         ];
 
         $result_db = self::$dbm->p_select($select_obj);
-        $result = new Commentaire();
+        $result = new Groupe();
 
         if(!empty($result_db)){
             foreach ($result_db[0] as $key => $value) {

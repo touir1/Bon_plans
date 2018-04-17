@@ -8,7 +8,7 @@
 
 include_once "IGenericService.php";
 
-interface Iplan extends IGenericService
+interface IPlan extends IGenericService
 {
 
 }
