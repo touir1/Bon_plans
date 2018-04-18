@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.service.implementation;
 
+import java.util.List;
 import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.IUtilisateur;
 import utils.service.GenericServiceImplementation;
@@ -19,5 +20,16 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
         super(Utilisateur.class);
     }
     
+    @Override
+    public Utilisateur seConnecter(String email, String mpd){
+        List<Utilisateur> utilisateurs = findOne("email", email);
+        if (utilisateurs.isEmpty()){
+            return null;
+        }
+        if (!utilisateurs.get(0).getMdp().equals(mpd)){
+            return null;
+        }
+        return utilisateurs.get(0);
+    }
     
 }

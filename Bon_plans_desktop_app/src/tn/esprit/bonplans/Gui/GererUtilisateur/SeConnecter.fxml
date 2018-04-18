@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import com.gluonhq.charm.glisten.layout.*?>
+<?import com.gluonhq.charm.glisten.layout.responsive.grid.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="404.0" prefWidth="602.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.SeConnecterController">
+    <stylesheets>
+        <URL value="@seconnecter.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="366.0" layoutY="147.0" prefHeight="241.0" prefWidth="222.0" style="-fx-background-color: #cfcfd1;">
+         <children>
+            <JFXPasswordField fx:id="txt_pwd_cxn" layoutX="14.0" layoutY="78.0" prefHeight="25.0" prefWidth="170.0" promptText="Mot de passe" />
+            <JFXTextField fx:id="txt_email_cxn" layoutX="14.0" layoutY="45.0" prefHeight="25.0" prefWidth="170.0" promptText="Email" />
+            <JFXButton fx:id="btn_cxn_cxn" layoutX="14.0" layoutY="144.0" onAction="#btn_cxn_cxn_Click" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: eaedf2;" text="Se connecter" />
+            <JFXButton fx:id="btn_cnxGgle_cxn" layoutX="14.0" layoutY="177.0" style="-fx-background-color: eaedf2;" text="Connectez-vous avec Google" />
+            <Hyperlink fx:id="hln_pwd4get_cnx" layoutX="14.0" layoutY="208.0" text="Mot de passe oublié?" textFill="#2c2a2a" />
+            <Label layoutX="14.0" layoutY="8.0" text="Connexion" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_error_cxn" layoutX="14.0" layoutY="116.0" lineSpacing="2.0" prefHeight="17.0" prefWidth="170.0" textFill="RED">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="20.0" layoutY="68.0" prefHeight="269.0" prefWidth="209.0" style="-fx-background-color: #cfcfd1;">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Inscription" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField layoutX="13.0" layoutY="55.0" prefHeight="25.0" prefWidth="170.0" promptText="Email" />
+            <JFXTextField layoutX="14.0" layoutY="94.0" prefHeight="25.0" prefWidth="170.0" promptText="Nom" />
+            <JFXTextField layoutX="14.0" layoutY="135.0" prefHeight="25.0" prefWidth="170.0" promptText="Prénom" />
+            <JFXPasswordField layoutX="13.0" layoutY="175.0" prefHeight="25.0" prefWidth="170.0" promptText="Mot de passe" />
+            <JFXButton layoutX="13.0" layoutY="219.0" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: eaedf2;" text="S'inscrire" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
