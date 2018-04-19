@@ -71,4 +71,69 @@ public interface GenericServiceInterface<E> {
      * @return
      */
     public int findCountBy(String paramName, Object paramValue);
+    
+    /**
+     * saves the entity into the database
+     * @param entity
+     * @param serviceResponse
+     * @return
+     */
+    public E save(E entity, ServiceResponse serviceResponse);
+
+    /**
+     * updates the entity in the database
+     * @param entity
+     * @param serviceResponse
+     * @return
+     */
+    public E update(E entity, ServiceResponse serviceResponse);
+
+    /**
+     * selects all the entities in the database
+     * @param serviceResponse
+     * @return
+     */
+    public List<E> selectAll(ServiceResponse serviceResponse);
+
+    /**
+     * gets the entity by the id
+     * @param id
+     * @param serviceResponse
+     * @return
+     */
+    public E getByID(int id, ServiceResponse serviceResponse);
+
+    /**
+     * removes the entity from the database
+     * @param id
+     * @param serviceResponse
+     */
+    public void remove(int id, ServiceResponse serviceResponse);
+
+    /**
+     * select entities from the database sorted by the sortfield ordered by sort
+     * @param sortField
+     * @param sortOrder
+     * @param serviceResponse
+     * @return
+     */
+    public List<E> selectAll(String sortField, EnumDatabaseSortOrder sortOrder, ServiceResponse serviceResponse);
+
+    /**
+     * find a list of entities which respects a condition
+     * @param paramName
+     * @param paramValue
+     * @param serviceResponse
+     * @return
+     */
+    public List<E> findOne(String paramName,Object paramValue, ServiceResponse serviceResponse);
+
+    /**
+     * counts the entities by the parameter
+     * @param paramName
+     * @param paramValue
+     * @param serviceResponse
+     * @return
+     */
+    public int findCountBy(String paramName, Object paramValue, ServiceResponse serviceResponse);
 }

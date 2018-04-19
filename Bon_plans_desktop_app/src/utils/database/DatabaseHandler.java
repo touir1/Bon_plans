@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import utils.LogHandler;
 import utils.PropertyHandler;
+import utils.service.ServiceResponse;
 
 /**
  *
@@ -151,6 +152,114 @@ public class DatabaseHandler {
             }
         } catch (SQLException ex) {
             LogHandler.handleException(DatabaseHandler.class.getName(), "select", ex);
+        }
+        
+        return result;
+    }
+    
+    public static final boolean update(String sql, ServiceResponse serviceResponse){
+        LogHandler.log(DatabaseHandler.class.getName(), "update", sql);
+        
+        try {
+            if(initStatement()){
+                statement.executeUpdate(sql);
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        } catch (SQLException ex) {
+            LogHandler.handleException(DatabaseHandler.class.getName(), "update", ex);
+            if(serviceResponse!=null){
+                serviceResponse.addException(ex);
+                serviceResponse.setStatus(ServiceResponse.KO);
+            }
+            return false;
+        }
+    }
+    
+    public static final boolean update(String sql, Object[] parameters, ServiceResponse serviceResponse){
+        LogHandler.log(DatabaseHandler.class.getName(), "update", sql);
+        
+        try {
+            if(initConnection()){
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                for(int i=1; i<=parameters.length; i++){
+                    preparedStatement.setObject(i, parameters[i-1]);
+                }
+                preparedStatement.execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            LogHandler.handleException(DatabaseHandler.class.getName(), "update", ex);
+            if(serviceResponse!=null){
+                serviceResponse.addException(ex);
+                serviceResponse.setStatus(ServiceResponse.KO);
+            }
+            return false;
+        }
+    }
+    
+    public static final List<Map<String, Object>> select(String sql, ServiceResponse serviceResponse){
+        LogHandler.log(DatabaseHandler.class.getName(), "select", sql);
+        
+        List<Map<String, Object>> result = new ArrayList<>();
+        try {
+            if(initStatement()){
+                ResultSet resultSet = statement.executeQuery(sql);
+                
+                int columnCount = resultSet.getMetaData().getColumnCount();
+                while(resultSet.next()){
+                    Map<String, Object> row = new HashMap<>();
+                    for(int i=1;i<=columnCount;i++){
+                        row.put(resultSet.getMetaData().getColumnLabel(i).toUpperCase(), resultSet.getObject(i));
+                    }
+                    result.add(row);
+                }
+            }
+        } catch (SQLException ex) {
+            LogHandler.handleException(DatabaseHandler.class.getName(), "select", ex);
+            if(serviceResponse!=null){
+                serviceResponse.addException(ex);
+                serviceResponse.setStatus(ServiceResponse.KO);
+            }
+        }
+        
+        return result;
+    }
+    
+    public static final List<Map<String, Object>> select(String sql, Object[] parameters, ServiceResponse serviceResponse){
+        LogHandler.log(DatabaseHandler.class.getName(), "select", sql);
+        
+        List<Map<String, Object>> result = new ArrayList<>();
+        try {
+            if(initConnection()){
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                for(int i=1; i<=parameters.length; i++){
+                    preparedStatement.setObject(i, parameters[i-1]);
+                }
+                ResultSet resultSet = preparedStatement.executeQuery();
+                
+                int columnCount = resultSet.getMetaData().getColumnCount();
+                while(resultSet.next()){
+                    Map<String, Object> row = new HashMap<>();
+                    for(int i=1;i<=columnCount;i++){
+                        row.put(resultSet.getMetaData().getColumnLabel(i).toUpperCase(), resultSet.getObject(i));
+                    }
+                    result.add(row);
+                }
+            }
+        } catch (SQLException ex) {
+            LogHandler.handleException(DatabaseHandler.class.getName(), "select", ex);
+            if(serviceResponse!=null){
+                serviceResponse.addException(ex);
+                serviceResponse.setStatus(ServiceResponse.KO);
+            }
         }
         
         return result;
