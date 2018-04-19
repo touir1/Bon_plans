@@ -8,6 +8,7 @@ package utils;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ public class SceneHandler {
     private static Map<String,String> fxmlPaths;
     private static Map<String,String> sceneTitles;
     private static Stage primaryStage;
+    private static Stack<Map<String,Object>> sceneStack;
     
     private SceneHandler(){}
     
@@ -34,17 +36,47 @@ public class SceneHandler {
         
         Parent root = FXMLLoader.load(SceneHandler.class.getResource(fxmlPaths.get(screenName)));
         
-        Scene Scene = new Scene(root);
+        Scene scene = new Scene(root);
         primaryStage.getIcons().add(new Image("./resources/images/Logo.png"));
-        primaryStage.setScene(Scene);
+        primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setTitle(sceneTitles.get(screenName));
+        
+        addToStack(scene, screenName);
+    }
+    
+    public static void openPreviousScene() {
+        if(!sceneStack.empty()){
+            Map<String, Object> element = popFromStack();
+            if(element != null){
+                primaryStage.setScene((Scene)element.get("scene"));
+                primaryStage.show();
+                primaryStage.setTitle((String)element.get("screenName"));
+            }
+        }
+    }
+    
+    private static void addToStack(Scene scene, String screenName){
+        Map<String, Object> element = new HashMap<>();
+        element.put("scene",scene);
+        element.put("screenName", screenName);
+        sceneStack.push(element);
+    }
+    
+    private static Map<String, Object> popFromStack(){
+        if(!sceneStack.empty()){
+            return sceneStack.pop();
+        }
+        else{
+            return null;
+        }
     }
     
     private static boolean initSceneHandler(){
         if(fxmlPaths == null){
             fxmlPaths = new HashMap<>();
             sceneTitles = new HashMap<>();
+            sceneStack = new Stack<>();
             mapScenes();
         }
         return true;
