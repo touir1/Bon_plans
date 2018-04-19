@@ -25,10 +25,21 @@ public class PlanImpl extends GenericServiceImplementation<Plan> implements IPla
     public List<Plan> getListOfNonValidatedPlans() {
         return findOne("statut",EnumValidation.EnAttentedeValidation.getValue());
     }
+    
+    @Override
+    public List<Plan> getListOfModifiedPlans() {
+        return findOne("statut",EnumValidation.modifiee.getValue());
+    }
 
     @Override
     public void validerPlan(Plan plan) {
         plan.setStatut(EnumValidation.validee.getValue());
+        update(plan);
+    }
+    
+    @Override
+    public void refuserPlan(Plan plan) {
+        plan.setStatut(EnumValidation.refusée.getValue());
         update(plan);
     }
 }

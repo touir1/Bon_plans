@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="654.0" style="-fx-background-color: #36394B;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererAnnonce.administration.validerNewPlan.ValiderNewPlanController">
+    <stylesheets>
+        <URL value="@validernewplan.css" />
+    </stylesheets>
+    <children>
+      <AnchorPane layoutX="176.0" layoutY="-1.0" prefHeight="505.0" prefWidth="504.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="183.0" layoutY="14.0" opacity="0.36" prefHeight="48.0" prefWidth="152.0" style="-fx-font-family: serif; -fx-font-size: 20;" text="Valider annonce" textOverrun="CLIP" />
+            <Separator layoutX="7.0" layoutY="71.0" prefHeight="3.0" prefWidth="490.0" />
+            <TableView id="listePlans" fx:id="listePlanNonValide" layoutX="18.0" layoutY="102.0" prefHeight="325.0" prefWidth="472.0">
+              <columns>
+                <TableColumn fx:id="titre" prefWidth="75.0" text="titre" />
+                <TableColumn fx:id="description" prefWidth="140.0" text="description" />
+                  <TableColumn fx:id="urlPhoto" minWidth="0.0" prefWidth="75.0" text="urlPhoto" />
+                  <TableColumn fx:id="annonceur" minWidth="0.0" prefWidth="90.0" text="annonceur" />
+                  <TableColumn fx:id="categorie" prefWidth="91.0" text="catégorie" />
+              </columns>
+            </TableView>
+            <JFXButton fx:id="buttonValider" buttonType="RAISED" layoutX="387.0" layoutY="450.0" onAction="#buttonValiderClick" prefHeight="25.0" prefWidth="89.0" ripplerFill="#0ab4f2" style="-fx-background-color: #2E64FE;" text="Valider plan" />
+            <Label fx:id="errorLabel" layoutX="45.0" layoutY="454.0" prefHeight="17.0" prefWidth="214.0" textFill="#f40c0c" />
+            <JFXButton fx:id="buttonRefuser" buttonType="RAISED" layoutX="277.0" layoutY="450.0" onAction="#buttonRefuserClick" prefHeight="25.0" prefWidth="89.0" ripplerFill="#0ab4f2" style="-fx-background-color: #ff3232;" text="Refuser plan" />
+         </children>
+      </AnchorPane>
+      <Separator layoutY="79.0" prefHeight="0.0" prefWidth="114.0" />
+      <Label blendMode="COLOR_DODGE" contentDisplay="TEXT_ONLY" layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="128.0" style="-fx-font-family: serif; -fx-font-size: 30;" text="bons plans" textFill="#f5efef">
+        
+      </Label>
+      <Text fill="#e1dfdf" layoutX="8.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" une plateforme permettant  l’échange des expériences de différentes personnes sur différents plans" wrappingWidth="143.201171875" />
+      <Separator layoutX="-3.0" layoutY="416.0" prefHeight="3.0" prefWidth="121.0" />
+      <Button layoutX="14.0" layoutY="435.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #36394B; -fx-border-color: white;" text="Contactez-nous" textFill="#eeeeee" />
+      <JFXButton layoutX="32.0" layoutY="260.0" opacity="0.65" prefHeight="25.0" prefWidth="97.0" text="Annonces" textFill="#f8f4f4">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="43.0" layoutY="310.0" text="Valider" textFill="#ebe9e9">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

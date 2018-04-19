@@ -16,5 +16,7 @@ import tn.esprit.bonplans.entity.Plan;
 public interface IPlan  extends GenericServiceInterface<Plan>{
     
     public List<Plan> getListOfNonValidatedPlans();
+    public List<Plan> getListOfModifiedPlans();
     public void validerPlan(Plan plan);
+    public void refuserPlan(Plan plan);
 }
