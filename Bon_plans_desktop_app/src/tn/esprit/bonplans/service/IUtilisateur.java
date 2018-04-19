@@ -12,6 +12,6 @@ import utils.service.GenericServiceInterface;
  *
  * @author KC
  */
-public interface IUtilisateur extends GenericServiceInterface<Utilisateur>{
-    public Utilisateur seConnecter(String email, String pwd);
+public interface IUtilisateur extends GenericServiceInterface<Utilisateur> {
+    public Utilisateur seConnecter(String email, String mdp);
 }

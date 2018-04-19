@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 
@@ -50,6 +52,10 @@ public class SeConnecterController extends Application implements Initializable 
     @FXML
     private Hyperlink hln_pwd4get_cnx;
     
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("SeConnecter.fxml"));
@@ -58,34 +64,30 @@ public class SeConnecterController extends Application implements Initializable 
         primaryStage.setTitle(TITLE);
         primaryStage.show();
     }
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
     
-    public void btn_cxn_cxn_Click(ActionEvent event){
+    public void btn_cxn_cxn_Click(ActionEvent event) throws NoSuchAlgorithmException {
         String email = txt_email_cxn.getText();
         String pwd = txt_pwd_cxn.getText();
         lbl_error_cxn.setText("");
-        if (email.isEmpty())
-        {
+        if (email.isEmpty()) {
             lbl_error_cxn.setText(ERR1);
             return;
         }
-        if (pwd.isEmpty())
-        {
+        if (pwd.isEmpty()) {
             lbl_error_cxn.setText(ERR2);
             return;
         }
-        if (userService.seConnecter(email, pwd) == null)
-        {
+        Utilisateur currentUser = userService.seConnecter(email, pwd); 
+        if (currentUser == null) {
             lbl_error_cxn.setText(ERR12);
             return;
         }
-        System.out.println("succes");
+        
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userService = new UtilisateurImpl();
     }
+
 }

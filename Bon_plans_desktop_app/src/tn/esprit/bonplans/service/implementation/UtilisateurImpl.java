@@ -5,9 +5,13 @@
  */
 package tn.esprit.bonplans.service.implementation;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.IUtilisateur;
+import utils.Encrypt;
 import utils.service.GenericServiceImplementation;
 
 /**
@@ -21,15 +25,19 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
     }
     
     @Override
-    public Utilisateur seConnecter(String email, String mpd){
-        List<Utilisateur> utilisateurs = findOne("email", email);
-        if (utilisateurs.isEmpty()){
+    public Utilisateur seConnecter(String email, String mpd) {
+        try {
+            List<Utilisateur> utilisateurs = findOne("email", email);
+            if (utilisateurs.isEmpty()) {
+                return null;
+            }
+            if (!utilisateurs.get(0).getMdp().equals(Encrypt.sha1(mpd))) {
+                return null;
+            }
+            return utilisateurs.get(0);
+        } catch (NoSuchAlgorithmException ex) {
             return null;
         }
-        if (!utilisateurs.get(0).getMdp().equals(mpd)){
-            return null;
-        }
-        return utilisateurs.get(0);
     }
     
 }
