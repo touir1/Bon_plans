@@ -13,5 +13,6 @@ import utils.service.GenericServiceInterface;
  * @author KC
  */
 public interface IUtilisateur extends GenericServiceInterface<Utilisateur> {
-    public Utilisateur seConnecter(String email, String mdp);
+    public Utilisateur connecter(String email, String mdp);
+    public Utilisateur inscrire(String email, String nom, String prenom, String mdp);
 }

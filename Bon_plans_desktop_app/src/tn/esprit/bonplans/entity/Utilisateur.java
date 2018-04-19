@@ -60,6 +60,15 @@ public class Utilisateur {
         this.tempsAcces = tempsAcces;
     }
 
+    public Utilisateur (int idGroupe, String mdp, String email, String nom, String prenom, Date dateCreation){
+        this.idGroupe = idGroupe;
+        this.mdp = mdp;
+        this.email = email;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateCreation = dateCreation;
+    }
+    
     public int getIdUtilisateur() {
         return idUtilisateur;
     }

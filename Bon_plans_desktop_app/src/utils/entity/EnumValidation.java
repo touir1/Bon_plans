@@ -18,6 +18,8 @@ public enum EnumValidation implements GenericEnumInterface<String,Integer> {
     private final String key;
     private final int value;
     
+    
+    
     EnumValidation(String key, int value){
         this.key = key;
         this.value = value;

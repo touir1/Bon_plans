@@ -6,12 +6,14 @@
 package tn.esprit.bonplans.service.implementation;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.IUtilisateur;
 import utils.Encrypt;
+import utils.entity.EnumGroupe;
 import utils.service.GenericServiceImplementation;
 
 /**
@@ -25,7 +27,7 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
     }
     
     @Override
-    public Utilisateur seConnecter(String email, String mpd) {
+    public Utilisateur connecter(String email, String mpd) {
         try {
             List<Utilisateur> utilisateurs = findOne("email", email);
             if (utilisateurs.isEmpty()) {
@@ -39,5 +41,17 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
             return null;
         }
     }
+
+    @Override
+    public Utilisateur inscrire(String email, String nom, String prenom, String mdp) {
+        try {
+            Utilisateur utilisateur = new Utilisateur(EnumGroupe.Client.getValue(), 
+                    Encrypt.sha1(mdp), email, nom, prenom, new Date());
+            return save(utilisateur);
+        } catch (NoSuchAlgorithmException ex) {
+            return null;
+        }
+    }
+    
     
 }

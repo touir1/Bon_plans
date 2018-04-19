@@ -36,18 +36,23 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="20.0" layoutY="68.0" prefHeight="269.0" prefWidth="209.0" style="-fx-background-color: #cfcfd1;">
+      <AnchorPane layoutX="20.0" layoutY="68.0" prefHeight="294.0" prefWidth="209.0" style="-fx-background-color: #cfcfd1;">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Inscription" underline="true">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXTextField layoutX="13.0" layoutY="55.0" prefHeight="25.0" prefWidth="170.0" promptText="Email" />
-            <JFXTextField layoutX="14.0" layoutY="94.0" prefHeight="25.0" prefWidth="170.0" promptText="Nom" />
-            <JFXTextField layoutX="14.0" layoutY="135.0" prefHeight="25.0" prefWidth="170.0" promptText="Prénom" />
-            <JFXPasswordField layoutX="13.0" layoutY="175.0" prefHeight="25.0" prefWidth="170.0" promptText="Mot de passe" />
-            <JFXButton layoutX="13.0" layoutY="219.0" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: eaedf2;" text="S'inscrire" />
+            <JFXTextField fx:id="txt_email_signUp" layoutX="13.0" layoutY="55.0" prefHeight="25.0" prefWidth="170.0" promptText="Email" />
+            <JFXTextField fx:id="txt_nom_signUp" layoutX="14.0" layoutY="94.0" prefHeight="25.0" prefWidth="170.0" promptText="Nom" />
+            <JFXTextField fx:id="txt_prenom_signUp" layoutX="14.0" layoutY="135.0" prefHeight="25.0" prefWidth="170.0" promptText="Prénom" />
+            <JFXPasswordField fx:id="txt_pwd_signUp" layoutX="13.0" layoutY="175.0" prefHeight="25.0" prefWidth="170.0" promptText="Mot de passe" />
+            <JFXButton fx:id="btn_signUp_signUp" layoutX="13.0" layoutY="240.0" onAction="#btn_signUp_signUp_Click" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: eaedf2;" text="S'inscrire" />
+            <Label fx:id="lbl_error_signUp" layoutX="13.0" layoutY="211.0" lineSpacing="2.0" prefHeight="17.0" prefWidth="170.0" textFill="RED">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
