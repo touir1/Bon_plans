@@ -26,6 +26,11 @@ public class LogHandler {
         Logger.logMsg(Logger.ERROR, className, methodName, "Error while executing "+methodName+" in class "+className+": "+e.getMessage());
     }
     
+    public static void throwException(String className, String methodName, Exception e) throws Exception{
+        handleException(className, methodName, e);
+        throw e;
+    }
+    
     public static void log(String message){
         System.out.println(message);
     }
