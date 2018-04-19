@@ -12,7 +12,8 @@ package utils.entity;
 public enum EnumValidation implements GenericEnumInterface<String,Integer> {
     validee("VALIDEE",1),
     EnAttentedeValidation("ATTENTE",0),
-    refusée("REFUSEE",-1);
+    refusée("REFUSEE",-1),
+    modifiee("MODIFIEE",2);
     
     private final String key;
     private final int value;
