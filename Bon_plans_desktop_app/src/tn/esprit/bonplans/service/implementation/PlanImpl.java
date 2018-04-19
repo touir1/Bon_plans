@@ -10,6 +10,7 @@ import tn.esprit.bonplans.entity.Plan;
 import tn.esprit.bonplans.service.IPlan;
 import utils.entity.EnumValidation;
 import utils.service.GenericServiceImplementation;
+import utils.service.ServiceResponse;
 
 /**
  *
@@ -22,24 +23,24 @@ public class PlanImpl extends GenericServiceImplementation<Plan> implements IPla
     }
 
     @Override
-    public List<Plan> getListOfNonValidatedPlans() {
-        return findOne("statut",EnumValidation.EnAttentedeValidation.getValue());
+    public List<Plan> getListOfNonValidatedPlans(ServiceResponse serviceResponse) {
+        return findOne("statut",EnumValidation.EnAttentedeValidation.getValue(),serviceResponse);
     }
     
     @Override
-    public List<Plan> getListOfModifiedPlans() {
-        return findOne("statut",EnumValidation.modifiee.getValue());
+    public List<Plan> getListOfModifiedPlans(ServiceResponse serviceResponse) {
+        return findOne("statut",EnumValidation.modifiee.getValue(),serviceResponse);
     }
 
     @Override
-    public void validerPlan(Plan plan) {
+    public void validerPlan(Plan plan, ServiceResponse serviceResponse) {
         plan.setStatut(EnumValidation.validee.getValue());
-        update(plan);
+        update(plan,serviceResponse);
     }
     
     @Override
-    public void refuserPlan(Plan plan) {
+    public void refuserPlan(Plan plan, ServiceResponse serviceResponse) {
         plan.setStatut(EnumValidation.refusée.getValue());
-        update(plan);
+        update(plan,serviceResponse);
     }
 }

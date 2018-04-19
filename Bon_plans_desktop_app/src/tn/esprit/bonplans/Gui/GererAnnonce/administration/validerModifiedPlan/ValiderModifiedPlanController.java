@@ -37,6 +37,7 @@ import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
+import utils.service.ServiceResponse;
 
 /**
  * FXML Controller class
@@ -45,6 +46,13 @@ import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
  */
 public class ValiderModifiedPlanController extends Application implements Initializable {
 
+    private final String FXML_FILE_PATH = "ValiderModifiedPlan.fxml";
+    private final String ICON_PATH = "./resources/images/Logo.png";
+    private final String TITLE = "Validation plans modifiés";
+    private final String ERROR_NO_PLAN_SELECTED = "Veuillez sélectionner un plan à valider";
+    private final String ERROR_SERVICE = "Une erreur est survenu au niveau du service";
+    private final String EMPTY = "";
+    
     private IPlan planService;
     private IUtilisateur utilisateurService;
     private ICategorie categorieService;
@@ -71,6 +79,8 @@ public class ValiderModifiedPlanController extends Application implements Initia
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -85,13 +95,13 @@ public class ValiderModifiedPlanController extends Application implements Initia
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ValiderModifiedPlan.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(FXML_FILE_PATH));
         
         Scene Scene = new Scene(root);
-        primaryStage.getIcons().add(new Image("./resources/images/Logo.png"));
+        primaryStage.getIcons().add(new Image(ICON_PATH));
         primaryStage.setScene(Scene);
         primaryStage.show();
-        primaryStage.setTitle("Validation plans modifiés");
+        primaryStage.setTitle(TITLE);
     }
     
     public static void main(String[] args) {
@@ -101,47 +111,73 @@ public class ValiderModifiedPlanController extends Application implements Initia
     @FXML
     public void buttonValiderClick(){
         Plan plan = listePlanNonValide.getSelectionModel().getSelectedItem();
+        
         System.out.println(plan);
         if(plan == null){
-            errorLabel.setText("Veuillez sélectionner un plan à valider");
+            errorLabel.setText(ERROR_NO_PLAN_SELECTED);
         }
         else{
-            errorLabel.setText("");
-            planService.validerPlan(plan);
-            initListPlan();
+            errorLabel.setText(EMPTY);
+            
+            ServiceResponse serviceResponse = new ServiceResponse();
+            planService.validerPlan(plan,serviceResponse);
+            if(!serviceResponse.isOk()){
+                errorLabel.setText(ERROR_SERVICE);
+            }
+            else{
+                initListPlan();
+            }
 
         }
     }
     
     
     private void initListPlan(){
-        List<Plan> plans = planService.getListOfModifiedPlans();
-        ObservableList observableList = FXCollections.observableArrayList(plans);
-        listePlanNonValide.setItems(observableList);
-        titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
-        urlPhoto.setCellValueFactory(new PropertyValueFactory<>("urlPhoto"));
-        description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        annonceur.setCellValueFactory(c-> {
-            String result = null;
-            if(c.getValue().getIdAnnonceur() != 0){
-                Utilisateur utilisateur = utilisateurService.getByID(c.getValue().getIdAnnonceur());
-                if(utilisateur != null){
-                    result = utilisateur.getNom() + " "+utilisateur.getPrenom();
+        ServiceResponse serviceResponse = new ServiceResponse();
+        List<Plan> plans = planService.getListOfModifiedPlans(serviceResponse);
+        if(serviceResponse.isOk()){
+            ObservableList observableList = FXCollections.observableArrayList(plans);
+            listePlanNonValide.setItems(observableList);
+            titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+            urlPhoto.setCellValueFactory(new PropertyValueFactory<>("urlPhoto"));
+            description.setCellValueFactory(new PropertyValueFactory<>("description"));
+            annonceur.setCellValueFactory(c-> {
+                String result = null;
+                if(c.getValue().getIdAnnonceur() != 0){
+                    serviceResponse.initResponse();
+                    Utilisateur utilisateur = utilisateurService.getByID(c.getValue().getIdAnnonceur(),serviceResponse);
+                    if(serviceResponse.isOk()){
+                        if(utilisateur != null){
+                            result = utilisateur.getNom() + " "+utilisateur.getPrenom();
+                        }
+                    }
+                    else{
+                        errorLabel.setText(ERROR_SERVICE);
+                    }
                 }
-            }
-            return new SimpleStringProperty(result);      
-        });
-        
-        categorie.setCellValueFactory(c-> {
-            String result = null;
-            if(c.getValue().getIdCategorie() != 0){
-                Categorie categorie = categorieService.getByID(c.getValue().getIdCategorie());
-                if(categorie != null){
-                    result = categorie.getTitre();
+                return new SimpleStringProperty(result);      
+            });
+
+            categorie.setCellValueFactory(c-> {
+                String result = null;
+                serviceResponse.initResponse();
+                if(c.getValue().getIdCategorie() != 0){
+                    Categorie categorie = categorieService.getByID(c.getValue().getIdCategorie(),serviceResponse);
+                    if(serviceResponse.isOk()){
+                        if(categorie != null){
+                            result = categorie.getTitre();
+                        }
+                    }
+                    else{
+                        errorLabel.setText(ERROR_SERVICE);
+                    }
                 }
-            }
-            return new SimpleStringProperty(result);      
-        });
+                return new SimpleStringProperty(result);      
+            });
+        }
+        else{
+            errorLabel.setText(ERROR_SERVICE);
+        }
     }
 
     @FXML
@@ -149,11 +185,18 @@ public class ValiderModifiedPlanController extends Application implements Initia
         Plan plan = listePlanNonValide.getSelectionModel().getSelectedItem();
         System.out.println(plan);
         if(plan == null){
-            errorLabel.setText("Veuillez sélectionner un plan à valider");
+            errorLabel.setText(ERROR_NO_PLAN_SELECTED);
         }
         else{
-            errorLabel.setText("");
-            planService.refuserPlan(plan);
+            errorLabel.setText(EMPTY);
+            ServiceResponse serviceResponse = new ServiceResponse();
+            planService.refuserPlan(plan,serviceResponse);
+            if(!serviceResponse.isOk()){
+                errorLabel.setText(ERROR_SERVICE);
+            }
+            else{
+                initListPlan();
+            }
             initListPlan();
 
         }
