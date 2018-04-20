@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -137,6 +138,14 @@ public class ModifierCategorieController extends Application implements Initiali
             primaryStage.show();
             
             
+    }
+     @FXML
+    void OuvrirePageCategorie(ActionEvent event) throws IOException {
+           Parent root= FXMLLoader.load(getClass().getResource("../Consulter/Categories.fxml"));
+          Scene Scene= new Scene(root);
+          Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+          window.setScene(Scene);
+          window.show();
     }
       public static void main(String[] args){launch(args);}
 }

@@ -89,7 +89,7 @@ public class TestReservationController extends Application implements Initializa
         // TODO
         Date dateDebut= new Date();
         Date dateFin= new Date();
-        pl = new Plan(1, "Spa et Massage","xxxx","c:/fawzi",50.0, 20.0,10, dateDebut, dateFin, 10, EnumValidation.validee.getValue(), 11, 5, 20, 1, 50,2);
+        pl = new Plan(1, "Spa et Massage","xxxx","c:/fawzi",50.0, 20.0,10, dateDebut, dateFin, 10,1, 11, 5, 20, 1, 50,2);
         Annonceur=IUtilisateur.findOne("idUtilisateur", pl.getIdAnnonceur());
        lblPrixUnitaire.setText("Prix unitaire : "+pl.getPrixPromo());
        
@@ -142,10 +142,10 @@ public class TestReservationController extends Application implements Initializa
              DateNow.setSpacingAfter(5);
             Doc.add(Titre);
              Doc.add(DateNow);
-             Paragraph NomAnnonceur= new Paragraph(new Phrase("Annonceur: "+Annonceur.get(0).getNom(),FontFactory.getFont("Comic Sans MS",10)));
-             NomAnnonceur.setAlignment(Element.SECTION);
-             NomAnnonceur.setSpacingAfter(25);
-             Doc.add(NomAnnonceur);
+//             Paragraph NomAnnonceur= new Paragraph(new Phrase("Annonceur: "+Annonceur.get(0).getNom(),FontFactory.getFont("Comic Sans MS",10)));
+//             NomAnnonceur.setAlignment(Element.SECTION);
+//             NomAnnonceur.setSpacingAfter(25);
+//             Doc.add(NomAnnonceur);
       
              PdfPTable table= new PdfPTable(3);
              PdfPCell cell;
@@ -219,3 +219,5 @@ public class TestReservationController extends Application implements Initializa
     }
     public static void main(String[] args){launch(args);}
 }
+
+

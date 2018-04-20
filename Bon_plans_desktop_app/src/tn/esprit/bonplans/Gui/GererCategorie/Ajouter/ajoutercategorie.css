@@ -5,3 +5,20 @@
 .mainFxmlClass {
 
 }
+.body{
+   -fx-background: #f2f7f8;
+    -fx-font-family: "Rubik", sans-serif;
+    -fx-margin: 0;
+    -fx-overflow-x: hidden;
+    -fx-color: #54667a;
+    -fx-font-weight: 300;
+}
+.Menu{
+        -fx-background: #ffffff;
+           -fx-position: relative;
+    -fx-width: 1349px;
+    -fx-height: 71px;
+    -fx-display: block;
+    -fx-vertical-align: baseline;
+    -fx-float: none;
+}

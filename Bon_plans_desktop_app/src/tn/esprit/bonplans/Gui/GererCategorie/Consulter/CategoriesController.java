@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.Gui.GererCategorie.Consulter;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +96,15 @@ public class CategoriesController extends Application implements Initializable {
           window.setScene(Scene);
           window.show();
            
+    }
+    
+      @FXML
+    void OuvrirePageAjouterCategorie(ActionEvent event) throws IOException {
+        Parent root= FXMLLoader.load(getClass().getResource("../Ajouter/AjouterCategorie.fxml"));
+          Scene Scene= new Scene(root);
+          Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+          window.setScene(Scene);
+          window.show();
     }
 
     @FXML
