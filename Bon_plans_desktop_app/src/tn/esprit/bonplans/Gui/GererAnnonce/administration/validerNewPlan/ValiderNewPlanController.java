@@ -6,27 +6,25 @@
 package tn.esprit.bonplans.Gui.GererAnnonce.administration.validerNewPlan;
 
 import com.jfoenix.controls.JFXButton;
-import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.entity.Plan;
@@ -37,6 +35,9 @@ import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
+import utils.CurrentSession;
+import utils.SceneEnum;
+import utils.SceneHandler;
 import utils.service.ServiceResponse;
 
 /**
@@ -91,17 +92,15 @@ public class ValiderNewPlanController extends Application implements Initializab
         
         //init data
         initListPlan();
+        //init template title
+        Label screenTitleLabel = (Label)CurrentSession.getData("screenTitleLabel");
+        screenTitleLabel.setText(SceneEnum.VALIDER_NEW_PLAN.getSceneTitle());
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(FXML_FILE_PATH));
-        
-        Scene Scene = new Scene(root);
-        primaryStage.getIcons().add(new Image(ICON_PATH));
-        primaryStage.setScene(Scene);
-        primaryStage.show();
-        primaryStage.setTitle(TITLE);
+        SceneHandler.initPrimaryStage(primaryStage);
+        SceneHandler.openScene(SceneEnum.VALIDER_NEW_PLAN);
     }
     
     public static void main(String[] args) {
@@ -129,7 +128,6 @@ public class ValiderNewPlanController extends Application implements Initializab
 
         }
     }
-    
     
     private void initListPlan(){
         ServiceResponse serviceResponse = new ServiceResponse();
@@ -198,6 +196,58 @@ public class ValiderNewPlanController extends Application implements Initializab
             }
             initListPlan();
 
+        }
+    }
+    
+    //USED ONLY FOR DOUBLE CLICK
+    private Plan temp;
+    private Date lastClickTime;
+    
+    @FXML
+    private void doubleClickPlan() {
+        initDoubleClickOut();
+        Plan row = listePlanNonValide.getSelectionModel().getSelectedItem();
+        if (row == null){
+            listePlanNonValide.getSelectionModel().clearSelection();
+            return;
+        }
+        if(!row.equals(temp)){
+            temp = row;
+            lastClickTime = new Date();
+        } 
+        else {
+            Date now = new Date();
+            long diff = now.getTime() - lastClickTime.getTime();
+            if (diff < 300){ //another click registered in 300 millis
+                 //TODO
+                CurrentSession.addData("plan", row);
+                System.out.println("Implement open plan please xD");
+            } else {
+                lastClickTime = new Date();
+            }
+        }
+    }
+    
+    //USED ONLY FOR INIT DOUBLE CLICK OUT
+    private boolean isInitDoubleClickOut = false;
+    private void initDoubleClickOut(){
+        if(!isInitDoubleClickOut){
+            Scene scene = listePlanNonValide.getScene();
+            scene.addEventFilter(MouseEvent.MOUSE_CLICKED, evt -> {
+                Node source = evt.getPickResult().getIntersectedNode();
+
+                // move up through the node hierarchy until a TableRow or scene root is found 
+                while (source != null && !(source instanceof TableRow)) {
+                    source = source.getParent();
+                }
+
+
+                // clear selection on click anywhere but on a filled row
+                if (source == null || (source instanceof TableRow && ((TableRow) source).isEmpty())) {
+                    listePlanNonValide.getSelectionModel().clearSelection();
+                }
+            });
+            isInitDoubleClickOut = true;
         }
     }
 }

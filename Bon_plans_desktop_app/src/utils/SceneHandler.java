@@ -20,6 +20,9 @@ import javafx.stage.Stage;
  * @author touir
  */
 public class SceneHandler {
+    
+    private static final String LOGO_PATH = "./resources/images/Logo.png";
+    
     private static Map<String,String> fxmlPaths;
     private static Map<String,String> sceneTitles;
     private static Stage primaryStage;
@@ -31,29 +34,59 @@ public class SceneHandler {
         primaryStage = stage;
     }
     
-    public static void openScene(String screenName) throws IOException {
-        initSceneHandler();
-        
-        Parent root = FXMLLoader.load(SceneHandler.class.getResource(fxmlPaths.get(screenName)));
-        
-        Scene scene = new Scene(root);
-        primaryStage.getIcons().add(new Image("./resources/images/Logo.png"));
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        primaryStage.setTitle(sceneTitles.get(screenName));
-        
-        addToStack(scene, screenName);
+    public static void openScene(SceneEnum scene){
+        openScene(scene.getSceneName());
+    }
+    
+    public static void openScene(String screenName) {
+        try {
+            initSceneHandler();
+            if(sceneStack== null || sceneStack.isEmpty() || !getCurrentScreenName().equals(screenName)){
+                Parent root = FXMLLoader.load(SceneHandler.class.getResource(fxmlPaths.get(screenName)));
+
+                Scene scene = new Scene(root);
+                primaryStage.getIcons().add(new Image(LOGO_PATH));
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                primaryStage.setTitle(sceneTitles.get(screenName));
+
+                addToStack(scene, screenName);
+            }
+        } catch (IOException ex) {
+            LogHandler.handleException("SceneHandler", "openScene", ex);
+        }
     }
     
     public static void openPreviousScene() {
-        if(!sceneStack.empty()){
-            Map<String, Object> element = popFromStack();
-            if(element != null){
-                primaryStage.setScene((Scene)element.get("scene"));
-                primaryStage.show();
-                primaryStage.setTitle((String)element.get("screenName"));
+        if(sceneStack!=null){
+            if(!sceneStack.empty() && sceneStack.size()>1){
+                //removing the opened one
+                popFromStack();
+                //getting the previous scene
+                Map<String, Object> element = peekFromStack();
+                if(element != null){
+                    primaryStage.setScene((Scene)element.get("scene"));
+                    primaryStage.show();
+                    primaryStage.setTitle((String)element.get("screenName"));
+                }
             }
         }
+    }
+    
+    public static Scene getCurrentScene(){
+        if(sceneStack!=null && !sceneStack.isEmpty()){
+            Map<String, Object> sceneMap =  peekFromStack();
+            return (Scene) sceneMap.get("scene");
+        }
+        return null;
+    }
+    
+    private static String getCurrentScreenName(){
+        if(sceneStack!=null && !sceneStack.isEmpty()){
+            Map<String, Object> sceneMap =  peekFromStack();
+            return (String) sceneMap.get("screenName");
+        }
+        return "";
     }
     
     private static void addToStack(Scene scene, String screenName){
@@ -66,6 +99,15 @@ public class SceneHandler {
     private static Map<String, Object> popFromStack(){
         if(!sceneStack.empty()){
             return sceneStack.pop();
+        }
+        else{
+            return null;
+        }
+    }
+    
+    private static Map<String, Object> peekFromStack(){
+        if(!sceneStack.empty()){
+            return sceneStack.peek();
         }
         else{
             return null;
@@ -88,15 +130,12 @@ public class SceneHandler {
     }
     
     private static void mapScenes(){
-        addSceneDescription(
-                "ValiderPlan", 
-                "../tn/esprit/bonplans/Gui/GererAnnonce/administration/validerPlan/ValiderPlan.fxml", 
-                "Validation plans"
-        );
-        addSceneDescription(
-                "AjouterCategorie", 
-                "../tn/esprit/bonplans/Gui/GererCategorie/Ajouter/AjouterCategorie.fxml", 
-                "Ajouter Catégorie"
-        );
+        for(SceneEnum sceneEnum : SceneEnum.values()){
+            addSceneDescription(
+                    sceneEnum.getSceneName(),
+                    sceneEnum.getFxmlScenePath(),
+                    sceneEnum.getSceneTitle()
+            );
+        }
     }
 }

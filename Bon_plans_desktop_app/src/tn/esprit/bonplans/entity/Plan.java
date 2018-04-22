@@ -5,7 +5,6 @@
  */
 package tn.esprit.bonplans.entity;
 
-import utils.entity.EnumValidation;
 import java.util.Date;
 
 /**
@@ -222,8 +221,28 @@ public class Plan {
         return "Plan{" + "idPlan=" + idPlan + ", titre=" + titre + ", description=" + description + ", urlPhoto=" + urlPhoto + ", prixInitial=" + prixInitial + ", prixPromo=" + prixPromo + ", nbPlaceTotal=" + nbPlaceTotal + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", nbPlaceDispo=" + nbPlaceDispo + ", statut=" + statut + ", nbJaime=" + nbJaime + ", nbJaimePas=" + nbJaimePas + ", note=" + note + ", idAnnonceur=" + idAnnonceur + ", idCategorie=" + idCategorie + '}';
     }
 
-    
-    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.idPlan;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Plan other = (Plan) obj;
+        if (this.idPlan != other.idPlan) {
+            return false;
+        }
+        return true;
+    }
+
     
     
 }
