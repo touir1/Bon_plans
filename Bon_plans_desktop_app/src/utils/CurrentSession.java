@@ -36,6 +36,10 @@ public class CurrentSession {
         }
     }
     
+    public static Utilisateur getUtilisateur(){
+        return utilisateur;
+    }
+    
     public static String getProjectPath(){
         if(initCurrentSession()){
             return projectPath;
