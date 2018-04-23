@@ -12,6 +12,7 @@ import java.util.Stack;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -38,6 +39,11 @@ public class SceneHandler {
         openScene(scene.getSceneName());
     }
     
+    public static void setTitle(SceneEnum scene){
+        Label screenTitleLabel = (Label)CurrentSession.getData("screenTitleLabel");
+        screenTitleLabel.setText(scene.getSceneTitle());
+    }
+    
     public static void openScene(String screenName) {
         try {
             initSceneHandler();
@@ -48,6 +54,7 @@ public class SceneHandler {
                 primaryStage.getIcons().add(new Image(LOGO_PATH));
                 primaryStage.setScene(scene);
                 primaryStage.show();
+                primaryStage.setResizable(false);
                 primaryStage.setTitle(sceneTitles.get(screenName));
 
                 addToStack(scene, screenName);
@@ -67,6 +74,7 @@ public class SceneHandler {
                 if(element != null){
                     primaryStage.setScene((Scene)element.get("scene"));
                     primaryStage.show();
+                    primaryStage.setResizable(false);
                     primaryStage.setTitle((String)element.get("screenName"));
                 }
             }

@@ -93,8 +93,7 @@ public class ValiderNewPlanController extends Application implements Initializab
         //init data
         initListPlan();
         //init template title
-        Label screenTitleLabel = (Label)CurrentSession.getData("screenTitleLabel");
-        screenTitleLabel.setText(SceneEnum.VALIDER_NEW_PLAN.getSceneTitle());
+        SceneHandler.setTitle(SceneEnum.VALIDER_NEW_PLAN);
     }
 
     @Override

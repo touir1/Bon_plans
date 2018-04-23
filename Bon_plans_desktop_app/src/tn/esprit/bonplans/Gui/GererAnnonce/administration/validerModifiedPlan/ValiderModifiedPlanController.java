@@ -96,8 +96,8 @@ public class ValiderModifiedPlanController extends Application implements Initia
         //init data
         initListPlan();
         //init template title
-        Label screenTitleLabel = (Label)CurrentSession.getData("screenTitleLabel");
-        screenTitleLabel.setText(SceneEnum.VALIDER_MODIFIED_PLAN.getSceneTitle());
+        //init template title
+        SceneHandler.setTitle(SceneEnum.VALIDER_MODIFIED_PLAN);
     }
 
     @Override
