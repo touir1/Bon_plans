@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `categorie`
 --
 
+DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(30) COLLATE utf8_bin NOT NULL,
@@ -39,15 +40,13 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 -- Déchargement des données de la table `categorie`
 --
 
-INSERT INTO `categorie` (`idCategorie`, `titre`, `urlPhoto`) VALUES
-(3, 'loisirs', 'C:/Users/SadfiAmine/Desktop/loisirs.jpg');
-
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `commentaire`
 --
 
+DROP TABLE IF EXISTS `commentaire`;
 CREATE TABLE IF NOT EXISTS `commentaire` (
   `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
   `texte` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -67,11 +66,12 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 -- Structure de la table `groupe`
 --
 
+DROP TABLE IF EXISTS `groupe`;
 CREATE TABLE IF NOT EXISTS `groupe` (
-  `idGroupe` int(11) NOT NULL,
+  `idGroupe` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idGroupe`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `groupe`
@@ -79,7 +79,8 @@ CREATE TABLE IF NOT EXISTS `groupe` (
 
 INSERT INTO `groupe` (`idGroupe`, `description`) VALUES
 (1, 'Client'),
-(2, 'Administrateur');
+(2, 'Administrateur'),
+(3, 'Super Administrateur');
 
 -- --------------------------------------------------------
 
@@ -87,18 +88,19 @@ INSERT INTO `groupe` (`idGroupe`, `description`) VALUES
 -- Structure de la table `plan`
 --
 
+DROP TABLE IF EXISTS `plan`;
 CREATE TABLE IF NOT EXISTS `plan` (
   `idPlan` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) COLLATE utf8_bin NOT NULL,
   `description` text COLLATE utf8_bin NOT NULL,
-  `urlPhoto` int(255) DEFAULT NULL,
+  `urlPhoto` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `prixInitial` double NOT NULL,
   `prixPromo` double NOT NULL,
   `nbPlaceTotal` int(11) NOT NULL,
   `dateDebut` date NOT NULL,
   `dateFin` date NOT NULL,
   `nbPlaceDispo` int(11) NOT NULL,
-  `statut` tinyint(4) NOT NULL,
+  `statut` int(11) NOT NULL,
   `nbJaime` int(11) NOT NULL,
   `nbJaimePas` int(11) NOT NULL,
   `note` int(11) NOT NULL,
@@ -109,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `plan` (
   KEY `fk_plan_client` (`idAnnonceur`),
   KEY `fk_plan_categorie` (`idCategorie`),
   KEY `idClient` (`idClient`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -117,15 +119,19 @@ CREATE TABLE IF NOT EXISTS `plan` (
 -- Structure de la table `reservation`
 --
 
+DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE IF NOT EXISTS `reservation` (
   `idReservation` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
+  `UrlBonRes` varchar(500) COLLATE utf8_bin NOT NULL,
+  `nbplace` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   `idClient` int(11) NOT NULL,
   `idPlan` int(11) NOT NULL,
   PRIMARY KEY (`idReservation`),
   KEY `fk_reservation_client` (`idClient`),
   KEY `fk_reservation_plan` (`idPlan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -133,10 +139,11 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- Structure de la table `utilisateur`
 --
 
+DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
   `idGroupe` int(11) NOT NULL,
-  `mdp` varchar(40) COLLATE utf8_bin NOT NULL,
+  `mdp` varchar(255) COLLATE utf8_bin NOT NULL,
   `email` varchar(100) COLLATE utf8_bin NOT NULL,
   `nom` varchar(30) COLLATE utf8_bin NOT NULL,
   `prenom` varchar(30) COLLATE utf8_bin NOT NULL,

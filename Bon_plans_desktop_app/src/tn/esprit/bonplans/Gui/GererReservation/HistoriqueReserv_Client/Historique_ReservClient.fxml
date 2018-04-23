@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.gluonhq.charm.glisten.control.Avatar?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererReservation.HistoriqueReserv_Client.Historique_ReservClientController">
-    <stylesheets>
-        <URL value="@historique_reservclient.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" maxHeight="577.0" maxWidth="1192.0" minHeight="577.0" minWidth="1192.0" prefHeight="577.0" prefWidth="1192.0" style="-fx-background-color: #f2f7f8;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererReservation.HistoriqueReserv_Client.Historique_ReservClientController">
+   <stylesheets>
+      <URL value="@../testreservation.css" />
+   </stylesheets>
+   <children>
+      <AnchorPane layoutX="289.0" layoutY="166.0" prefHeight="362.0" prefWidth="869.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <TableView fx:id="TabReservClient" layoutX="87.0" layoutY="60.0" prefHeight="253.0" prefWidth="695.0">
+              <columns>
+                <TableColumn fx:id="DateCol" text="Date" />
+                  <TableColumn fx:id="Plan" prefWidth="76.0" text="Plan" />
+                  <TableColumn fx:id="DateFin" prefWidth="109.0" text="Date fin promo" />
+                  <TableColumn fx:id="Catégorie" prefWidth="120.0" text="Catégorie" />
+                  <TableColumn fx:id="Annanceur" prefWidth="125.0" text="Annonceur" />
+                <TableColumn fx:id="colBon" prefWidth="184.0" text="Bon de Reservation" />
+              </columns>
+            </TableView>
+            <JFXButton buttonType="RAISED" layoutX="676.0" layoutY="330.0" onAction="#OnclickAnnuler" prefHeight="32.0" prefWidth="145.0" style="-fx-background-color: red;" text="Annuler réservation" />
+            <JFXTextField fx:id="Mots" layoutX="650.0" layoutY="14.0" promptText="Rechercher" />
+         </children>
+      </AnchorPane>
+      <AnchorPane focusTraversable="true" layoutX="258.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.76" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #5c8fc7;">
+         <children>
+            <Avatar layoutX="134.0" layoutY="6.0" />
+            <Label layoutX="82.0" layoutY="16.0" text="Label" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="293.0" layoutY="61.0" prefHeight="23.0" prefWidth="219.0" style="-fx-font-family: Arial; -fx-font-size: 18;" text="Historique des réservations" textFill="#009efb" />
+      <Hyperlink layoutX="340.0" layoutY="91.0" text="----------" />
+      <Hyperlink layoutX="387.0" layoutY="91.0" text="&gt; --------------" textFill="#97a0a4" />
+      <Hyperlink layoutX="286.0" layoutY="91.0" text="Accueil &gt;" />
+      <AnchorPane layoutX="1.0" prefHeight="577.0" prefWidth="257.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="47.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GererCategorie/Ajouter/Logo.png" />
+               </image>
+            </ImageView>
+            <Hyperlink layoutX="69.0" layoutY="106.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text="Accueil" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="161.0" style="-fx-font-size: 15;" text="Menu 1" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="214.0" style="-fx-font-size: 15;" text="Menu 2" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="266.0" style="-fx-font-size: 15;" text="Menu 3" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="320.0" style="-fx-font-size: 15;" text="Menu 4" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="368.0" style="-fx-font-size: 15;" text="Menu 5" textFill="#797676" />
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="35.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GererCategorie/Ajouter/Accueil.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="63.0" layoutX="31.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GererCategorie/Ajouter/profil.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="31.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GererCategorie/Ajouter/Table.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="31.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GererCategorie/Ajouter/Table.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="28.0" layoutX="31.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GererCategorie/Ajouter/Réclamation.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="21.0" layoutX="35.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../GererCategorie/Ajouter/Logout.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

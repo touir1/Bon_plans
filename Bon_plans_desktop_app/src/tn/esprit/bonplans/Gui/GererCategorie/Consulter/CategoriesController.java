@@ -60,8 +60,10 @@ public class CategoriesController extends Application implements Initializable {
         for(int i=0;i<ls.size();i++){
             List <Plan>ListPlanParCatégorie=new ArrayList<>();
             ListPlanParCatégorie=ip.findOne("idCategorie", ls.get(i).getIdCategorie());
+            System.err.println(ls.get(i).getUrlPhoto());
            int nbPlan=ListPlanParCatégorie.size();
             ImageView im =new ImageView(new Image(ls.get(i).getUrlPhoto(),true));
+            
             im.setFitHeight(30);
             im.setFitWidth(35);
         Categorie_image ci=new Categorie_image(ls.get(i).getIdCategorie(),ls.get(i).getTitre(),im,nbPlan);
@@ -130,5 +132,6 @@ public class CategoriesController extends Application implements Initializable {
             
             
     }
+    
       public static void main(String[] args){launch(args);}
 }

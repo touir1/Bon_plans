@@ -15,6 +15,8 @@ public class Reservation {
     private int idReservation;
     private Date date;
     private String UrlBonRes; 
+    private int nbplace;
+    private int status;
     //
     private int idClient;
     private int idPlan;
@@ -23,17 +25,19 @@ public class Reservation {
         this.date = date;
     }
 
-    public Reservation(int idReservation, Date date,String UrlBonRes) {
+    public Reservation(int idReservation, Date date,String UrlBonRes,int nbplace) {
         this.idReservation = idReservation;
         this.date = date;
         this.UrlBonRes=UrlBonRes;
+        this.nbplace=nbplace;
     }
 
-    public Reservation(Date date, String UrlBonRes, int idClient, int idPlan) {
+    public Reservation(Date date, String UrlBonRes, int idClient, int idPlan,int nbplace) {
         this.date = date;
         this.UrlBonRes = UrlBonRes;
         this.idClient = idClient;
         this.idPlan = idPlan;
+        this.nbplace=nbplace;
     }
     
    
@@ -79,6 +83,23 @@ public class Reservation {
     public void setUrlBonRes(String UrlBonRes) {
         this.UrlBonRes = UrlBonRes;
     }
+
+    public int getNbplace() {
+        return nbplace;
+    }
+
+    public void setNbplace(int nbplace) {
+        this.nbplace = nbplace;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    
     
 
     @Override

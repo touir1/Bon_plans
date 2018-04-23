@@ -51,9 +51,11 @@ import javafx.stage.Stage;
 import tn.esprit.bonplans.entity.Plan;
 import tn.esprit.bonplans.entity.Reservation;
 import tn.esprit.bonplans.entity.Utilisateur;
+import tn.esprit.bonplans.service.IPlan;
 
 import tn.esprit.bonplans.service.IReservation;
 import tn.esprit.bonplans.service.IUtilisateur;
+import tn.esprit.bonplans.service.implementation.PlanImpl;
 
 import tn.esprit.bonplans.service.implementation.ReservationImpl;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
@@ -71,6 +73,7 @@ public class TestReservationController extends Application implements Initializa
      */
     private IUtilisateur IUtilisateur=new UtilisateurImpl();
     private IReservation Ireservation= new ReservationImpl();
+    private IPlan iPlan= new PlanImpl();
     
      @FXML
     private Label Lbl;
@@ -89,7 +92,10 @@ public class TestReservationController extends Application implements Initializa
         // TODO
         Date dateDebut= new Date();
         Date dateFin= new Date();
-        pl = new Plan(1, "Spa et Massage","xxxx","c:/fawzi",50.0, 20.0,10, dateDebut, dateFin, 10,1, 11, 5, 20, 1, 50,2);
+        List<Plan>PlanSelectionnée= new ArrayList<>();
+        PlanSelectionnée=iPlan.selectAll();
+        pl = PlanSelectionnée.get(0);
+        //CurrentSession.getUtilisateur();
         Annonceur=IUtilisateur.findOne("idUtilisateur", pl.getIdAnnonceur());
        lblPrixUnitaire.setText("Prix unitaire : "+pl.getPrixPromo());
        
@@ -142,10 +148,10 @@ public class TestReservationController extends Application implements Initializa
              DateNow.setSpacingAfter(5);
             Doc.add(Titre);
              Doc.add(DateNow);
-//             Paragraph NomAnnonceur= new Paragraph(new Phrase("Annonceur: "+Annonceur.get(0).getNom(),FontFactory.getFont("Comic Sans MS",10)));
-//             NomAnnonceur.setAlignment(Element.SECTION);
-//             NomAnnonceur.setSpacingAfter(25);
-//             Doc.add(NomAnnonceur);
+             Paragraph NomAnnonceur= new Paragraph(new Phrase("Annonceur: "+Annonceur.get(0).getNom(),FontFactory.getFont("Comic Sans MS",10)));
+             NomAnnonceur.setAlignment(Element.SECTION);
+             NomAnnonceur.setSpacingAfter(25);
+             Doc.add(NomAnnonceur);
       
              PdfPTable table= new PdfPTable(3);
              PdfPCell cell;
@@ -191,10 +197,12 @@ public class TestReservationController extends Application implements Initializa
              Doc.close();
              //////Insertion dans la bd 
              
-             Reservation r = new Reservation(date,"http://localhost/bon_plans_api/uploads/Reservation_IdClient"+pl.getIdClient()+"IdAnnance"+pl.getIdPlan()+".pdf",2, 1);
+             Reservation r = new Reservation(date,"http://localhost/bon_plans_api/uploads/Reservation_IdClient"+pl.getIdClient()+"IdAnnance"+pl.getIdPlan()+".pdf",11, pl.getIdPlan(),Integer.parseInt(txtnumber.getText()));
              System.out.println(r);
              Ireservation.save(r);
              //diminuer le nombre des places dispo 
+             pl.setNbPlaceDispo(pl.getNbPlaceDispo()-Integer.parseInt(txtnumber.getText()));
+             iPlan.update(pl);
              Desktop.getDesktop().browse(new URI("http://localhost/bon_plans_api/uploads/Reservation_IdClient"+pl.getIdClient()+"IdAnnance"+pl.getIdPlan()+".pdf"));
                      } catch (FileNotFoundException ex) {
              Logger.getLogger(TestReservationController.class.getName()).log(Level.SEVERE, null, ex);
