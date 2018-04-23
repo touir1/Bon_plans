@@ -14,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Encrypt {
     private static final String SALT = "J5hTeq";
+    
     public static String sha1(String plaintext) throws NoSuchAlgorithmException{
         plaintext += SALT;
         MessageDigest mDigest = MessageDigest.getInstance("SHA1");

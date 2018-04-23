@@ -26,6 +26,7 @@ import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 import utils.StringUtils;
 import utils.entity.EnumGroupe;
+import utils.Error;
 
 /**
  * FXML Controller class
@@ -40,6 +41,7 @@ public class SeConnecterController extends Application implements Initializable 
     private static final String ERR_EMAIL_PWD = "Email ou mot de passe incorrect.";
     private static final String ERR_NOM = "Nom incorrect.";
     private static final String ERR_PRENOM = "Prénom incorrect.";
+    private static final String PATH = "SeConnecter.fxml";
     
     private IUtilisateur userService;
     
@@ -79,7 +81,7 @@ public class SeConnecterController extends Application implements Initializable 
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SeConnecter.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(PATH));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle(TITLE);
@@ -103,16 +105,21 @@ public class SeConnecterController extends Application implements Initializable 
             lbl_error_cxn.setText(ERR_PWD);
             return;
         }
-        Utilisateur currentUser = userService.connecter(email, pwd); 
+        Error error = new Error();
+        Utilisateur currentUser = userService.connecter(email, pwd, error); 
+        if (!error.getMessage().isEmpty()) {
+            lbl_error_cxn.setText(error.getMessage());
+            return;
+        }
         if (currentUser == null) {
             lbl_error_cxn.setText(ERR_EMAIL_PWD);
             return;
         }
         if (currentUser.getIdGroupe() == EnumGroupe.Client.getValue()){
-            System.out.println("Client");
+            // Client.
         }
         else {
-            System.out.println("Admin");
+            // Admin.
         }    
     }
 
@@ -138,10 +145,10 @@ public class SeConnecterController extends Application implements Initializable 
             lbl_error_signUp.setText(ERR_PWD);
             return;
         }
-       if (userService.inscrire(email, nom, prenom, pwd) != null){
-           System.out.println("ok");
-       }else{
-           System.out.println("ko");
-       }
+        Error error = new Error();
+        Utilisateur utilisateur = userService.inscrire(email, nom, prenom, pwd, error);
+        if (!error.getMessage().isEmpty()) {
+            lbl_error_signUp.setText(error.getMessage());
+        }
     }
 }

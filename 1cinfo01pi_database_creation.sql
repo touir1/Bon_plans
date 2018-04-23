@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 15 avr. 2018 à 13:46
--- Version du serveur :  5.7.19
--- Version de PHP :  5.6.31
+-- Hôte : 127.0.0.1
+-- Généré le :  lun. 23 avr. 2018 à 20:13
+-- Version du serveur :  10.1.30-MariaDB
+-- Version de PHP :  7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,13 +28,12 @@ SET time_zone = "+00:00";
 -- Structure de la table `categorie`
 --
 
-DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(30) COLLATE utf8_bin NOT NULL,
   `urlPhoto` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -49,7 +48,6 @@ INSERT INTO `categorie` (`idCategorie`, `titre`, `urlPhoto`) VALUES
 -- Structure de la table `commentaire`
 --
 
-DROP TABLE IF EXISTS `commentaire`;
 CREATE TABLE IF NOT EXISTS `commentaire` (
   `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
   `texte` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -69,12 +67,19 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
 -- Structure de la table `groupe`
 --
 
-DROP TABLE IF EXISTS `groupe`;
 CREATE TABLE IF NOT EXISTS `groupe` (
-  `idGroupe` int(11) NOT NULL AUTO_INCREMENT,
+  `idGroupe` int(11) NOT NULL,
   `description` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idGroupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `groupe`
+--
+
+INSERT INTO `groupe` (`idGroupe`, `description`) VALUES
+(1, 'Client'),
+(2, 'Administrateur');
 
 -- --------------------------------------------------------
 
@@ -82,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `groupe` (
 -- Structure de la table `plan`
 --
 
-DROP TABLE IF EXISTS `plan`;
 CREATE TABLE IF NOT EXISTS `plan` (
   `idPlan` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -113,11 +117,9 @@ CREATE TABLE IF NOT EXISTS `plan` (
 -- Structure de la table `reservation`
 --
 
-DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE IF NOT EXISTS `reservation` (
   `idReservation` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
-  `UrlBonRes` varchar(50) COLLATE utf8_bin NOT NULL,
   `idClient` int(11) NOT NULL,
   `idPlan` int(11) NOT NULL,
   PRIMARY KEY (`idReservation`),
@@ -131,11 +133,10 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- Structure de la table `utilisateur`
 --
 
-DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT,
   `idGroupe` int(11) NOT NULL,
-  `mdp` varchar(255) COLLATE utf8_bin NOT NULL,
+  `mdp` varchar(40) COLLATE utf8_bin NOT NULL,
   `email` varchar(100) COLLATE utf8_bin NOT NULL,
   `nom` varchar(30) COLLATE utf8_bin NOT NULL,
   `prenom` varchar(30) COLLATE utf8_bin NOT NULL,
@@ -145,10 +146,20 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `dateCreation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dateAcces` datetime DEFAULT NULL,
   `tempsAcces` timestamp NULL DEFAULT NULL,
+  `isActif` tinyint(1) NOT NULL DEFAULT '0',
+  `codeActivation` int(11) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`),
   UNIQUE KEY `uq_utilisateur_email` (`email`) USING BTREE,
   KEY `fk_utilisateur_groupe` (`idGroupe`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `idGroupe`, `mdp`, `email`, `nom`, `prenom`, `urlphoto`, `ville`, `adresse`, `dateCreation`, `dateAcces`, `tempsAcces`, `isActif`, `codeActivation`) VALUES
+(24, 1, 'ffd7908da49302049cb65731745aa15a284ddb3a', 'bixoztu@nbox.notif.me', '1', '1', NULL, NULL, NULL, '2018-04-21 00:00:00', NULL, NULL, 0, 47818),
+(26, 1, 'ffd7908da49302049cb65731745aa15a284ddb3a', 'kays.chetoui@gmail.com', '1', '123', NULL, NULL, NULL, '2018-04-21 00:00:00', NULL, NULL, 0, 53584);
 
 --
 -- Contraintes pour les tables déchargées

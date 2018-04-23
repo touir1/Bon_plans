@@ -27,11 +27,13 @@ public class Utilisateur {
     private Date dateCreation;
     private Date dateAcces;
     private Timestamp tempsAcces;
+    private boolean isActif;
+    private int codeActivation;
 
     public Utilisateur() {
     }
     
-    public Utilisateur(int idUtilisateur, int idGroupe, String mdp, String email, String nom, String prenom, String urlphoto, String ville, String adresse, Date dateCreation, Date dateAcces, Timestamp tempsAcces) {
+    public Utilisateur(int idUtilisateur, int idGroupe, String mdp, String email, String nom, String prenom, String urlphoto, String ville, String adresse, Date dateCreation, Date dateAcces, Timestamp tempsAcces, boolean isActif, int codeActivation) {
         this.idUtilisateur = idUtilisateur;
         this.idGroupe = idGroupe;
         this.mdp = mdp;
@@ -44,29 +46,35 @@ public class Utilisateur {
         this.dateCreation = dateCreation;
         this.dateAcces = dateAcces;
         this.tempsAcces = tempsAcces;
+        this.isActif = isActif;
+        this.codeActivation = codeActivation;
     }
-
-    public Utilisateur(int idGroupe, String mdp, String email, String nom, String prenom, String urlphoto, String ville, String adresse, Date dateCreation, Date dateAcces, Timestamp tempsAcces) {
-        this.idGroupe = idGroupe;
-        this.mdp = mdp;
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.urlphoto = urlphoto;
-        this.ville = ville;
-        this.adresse = adresse;
-        this.dateCreation = dateCreation;
-        this.dateAcces = dateAcces;
-        this.tempsAcces = tempsAcces;
-    }
-
-    public Utilisateur (int idGroupe, String mdp, String email, String nom, String prenom, Date dateCreation){
+    
+    public Utilisateur (int idGroupe, String mdp, String email, String nom, String prenom, Date dateCreation, int codeActivation){
         this.idGroupe = idGroupe;
         this.mdp = mdp;
         this.email = email;
         this.nom = nom;
         this.prenom = prenom;
         this.dateCreation = dateCreation;
+        this.isActif = false;
+        this.codeActivation = codeActivation;
+    }
+
+    public int getCodeActivation() {
+        return codeActivation;
+    }
+
+    public void setCodeActivation(int codeActivation) {
+        this.codeActivation = codeActivation;
+    }
+
+    public boolean getIsActif() {
+        return isActif;
+    }
+
+    public void setIsActif(boolean isActif) {
+        this.isActif = isActif;
     }
     
     public int getIdUtilisateur() {
@@ -167,7 +175,7 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "idUtilisateur=" + idUtilisateur + ", idGroupe=" + idGroupe + ", mdp=" + mdp + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", urlphoto=" + urlphoto + ", ville=" + ville + ", adresse=" + adresse + ", dateCreation=" + dateCreation + ", dateAcces=" + dateAcces + ", tempsAcces=" + tempsAcces + '}';
+        return "Utilisateur{" + "idUtilisateur=" + idUtilisateur + ", idGroupe=" + idGroupe + ", mdp=" + mdp + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", urlphoto=" + urlphoto + ", ville=" + ville + ", adresse=" + adresse + ", dateCreation=" + dateCreation + ", dateAcces=" + dateAcces + ", tempsAcces=" + tempsAcces + ", isActif=" + isActif + ", codeActivation=" + codeActivation + '}';
     }
 
     @Override
@@ -194,6 +202,6 @@ public class Utilisateur {
             return false;
         }
         return true;
-    }
-    
+    }    
+
 }
