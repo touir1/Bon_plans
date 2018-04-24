@@ -13,7 +13,7 @@
         <URL value="@validernewplan.css" />
     </stylesheets>
     <children>
-      <fx:include fx:id="menubar" source="../../../template/BonPlanTemplate.fxml" />
+      <fx:include fx:id="menubar" source="../../../template/Admin/BonPlanTemplate.fxml" />
       <AnchorPane layoutX="298.0" layoutY="119.0" minHeight="-Infinity" prefHeight="429.0" prefWidth="784.0" style="-fx-background-color: white;">
          <children>
             <TableView id="listePlans" fx:id="listePlanNonValide" layoutX="34.0" layoutY="53.0" onMouseClicked="#doubleClickPlan" prefHeight="273.0" prefWidth="693.0">
@@ -25,9 +25,9 @@
                   <TableColumn fx:id="categorie" prefWidth="128.0" text="catégorie" />
               </columns>
             </TableView>
-            <JFXButton fx:id="buttonValider" buttonType="RAISED" layoutX="638.0" layoutY="354.0" onAction="#buttonValiderClick" prefHeight="25.0" prefWidth="89.0" ripplerFill="#0ab4f2" style="-fx-background-color: green;" text="Valider plan" />
+            <JFXButton fx:id="buttonValider" buttonType="RAISED" layoutX="638.0" layoutY="354.0" onAction="#buttonValiderClick" prefHeight="25.0" prefWidth="89.0" ripplerFill="#0ab4f2" style="-fx-background-color: green;" text="Valider plan" textFill="WHITE" />
             <Label fx:id="errorLabel" layoutX="45.0" layoutY="454.0" prefHeight="17.0" prefWidth="214.0" textFill="#f40c0c" />
-            <JFXButton fx:id="buttonRefuser" buttonType="RAISED" layoutX="523.0" layoutY="354.0" onAction="#buttonRefuserClick" prefHeight="25.0" prefWidth="89.0" ripplerFill="#0ab4f2" style="-fx-background-color: #ff3232;" text="Refuser plan" />
+            <JFXButton fx:id="buttonRefuser" buttonType="RAISED" layoutX="523.0" layoutY="354.0" onAction="#buttonRefuserClick" prefHeight="25.0" prefWidth="89.0" ripplerFill="#0ab4f2" style="-fx-background-color: #ff3232;" text="Refuser plan" textFill="WHITE" />
          </children>
       </AnchorPane>
       

@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `avis`
+--
+--
+
+CREATE TABLE `avis` (
+  `idAvis` int(11) NOT NULL AUTO_INCREMENT,
+  `idPlan` int(11) NOT NULL,
+  `idUtilisateur` int(11) NOT NULL,
+  `avis` int(11) NOT NULL DEFAULT '0',
+  `note` int(11) DEFAULT '0',
+   PRIMARY KEY (`idAvis`),
+   KEY `fk_avis_plan` (`idPlan`),
+   KEY `fk_avis_utilisateur` (`idUtilisateur`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
 --
 -- Structure de la table `categorie`
 --
@@ -51,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
   `texte` varchar(255) COLLATE utf8_bin NOT NULL,
   `date` date NOT NULL,
-  `nbJaime` int(11) NOT NULL,
-  `nbJaimePas` int(11) NOT NULL,
+  `nbJaime` int(11) NOT NULL DEFAULT '0',
+  `nbJaimePas` int(11) NOT NULL DEFAULT '0',
   `idClient` int(11) NOT NULL,
   `idPlan` int(11) NOT NULL,
   PRIMARY KEY (`idCommentaire`),
@@ -101,16 +121,11 @@ CREATE TABLE IF NOT EXISTS `plan` (
   `dateFin` date NOT NULL,
   `nbPlaceDispo` int(11) NOT NULL,
   `statut` int(11) NOT NULL,
-  `nbJaime` int(11) NOT NULL,
-  `nbJaimePas` int(11) NOT NULL,
-  `note` int(11) NOT NULL,
   `idAnnonceur` int(11) NOT NULL,
   `idCategorie` int(11) NOT NULL,
-  `idClient` int(11) NOT NULL,
   PRIMARY KEY (`idPlan`),
   KEY `fk_plan_client` (`idAnnonceur`),
-  KEY `fk_plan_categorie` (`idCategorie`),
-  KEY `idClient` (`idClient`)
+  KEY `fk_plan_categorie` (`idCategorie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -153,6 +168,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `dateCreation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dateAcces` datetime DEFAULT NULL,
   `tempsAcces` timestamp NULL DEFAULT NULL,
+  `isBanned` tinyint(1) NOT NULL DEFAULT '0',
   `isActif` tinyint(1) NOT NULL DEFAULT '0',
   `codeActivation` int(11) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`),
@@ -161,16 +177,15 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`idUtilisateur`, `idGroupe`, `mdp`, `email`, `nom`, `prenom`, `urlphoto`, `ville`, `adresse`, `dateCreation`, `dateAcces`, `tempsAcces`, `isActif`, `codeActivation`) VALUES
-(24, 1, 'ffd7908da49302049cb65731745aa15a284ddb3a', 'bixoztu@nbox.notif.me', '1', '1', NULL, NULL, NULL, '2018-04-21 00:00:00', NULL, NULL, 0, 47818),
-(26, 1, 'ffd7908da49302049cb65731745aa15a284ddb3a', 'kays.chetoui@gmail.com', '1', '123', NULL, NULL, NULL, '2018-04-21 00:00:00', NULL, NULL, 0, 53584);
-
---
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `avis`
+--
+ALTER TABLE `avis`
+  ADD CONSTRAINT `fk_avis_plan` FOREIGN KEY (`idPlan`) REFERENCES `plan` (`idPlan`),
+  ADD CONSTRAINT `fk_avis_utilisateur` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
 
 --
 -- Contraintes pour la table `commentaire`
@@ -178,6 +193,7 @@ INSERT INTO `utilisateur` (`idUtilisateur`, `idGroupe`, `mdp`, `email`, `nom`, `
 ALTER TABLE `commentaire`
   ADD CONSTRAINT `fk_commentaire_client` FOREIGN KEY (`idClient`) REFERENCES `utilisateur` (`idUtilisateur`),
   ADD CONSTRAINT `fk_commentaire_plan` FOREIGN KEY (`idPlan`) REFERENCES `plan` (`idPlan`);
+
 
 --
 -- Contraintes pour la table `plan`

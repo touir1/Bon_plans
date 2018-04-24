@@ -59,6 +59,7 @@ import tn.esprit.bonplans.service.implementation.PlanImpl;
 
 import tn.esprit.bonplans.service.implementation.ReservationImpl;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
+import utils.CurrentSession;
 import utils.entity.EnumValidation;
 
 /**
@@ -92,10 +93,8 @@ public class TestReservationController extends Application implements Initializa
         // TODO
         Date dateDebut= new Date();
         Date dateFin= new Date();
-        List<Plan>PlanSelectionnée= new ArrayList<>();
-        PlanSelectionnée=iPlan.selectAll();
-        pl = PlanSelectionnée.get(0);
         //CurrentSession.getUtilisateur();
+        pl = (Plan) CurrentSession.getData("openedPlan");
         Annonceur=IUtilisateur.findOne("idUtilisateur", pl.getIdAnnonceur());
        lblPrixUnitaire.setText("Prix unitaire : "+pl.getPrixPromo());
        
@@ -123,7 +122,7 @@ public class TestReservationController extends Application implements Initializa
     void OnClickReserver(ActionEvent event) {
          Document Doc = new Document(new Rectangle(300,500));
          try {
-             PdfWriter.getInstance(Doc, new FileOutputStream("C:\\wamp64\\www\\bon_plans_api\\uploads\\Reservation_IdClient"+pl.getIdClient()+"IdAnnance"+pl.getIdPlan()+".pdf"));
+             PdfWriter.getInstance(Doc, new FileOutputStream("C:\\wamp64\\www\\bon_plans_api\\uploads\\Reservation_IdClient"+pl.getIdAnnonceur()+"IdAnnance"+pl.getIdPlan()+".pdf"));
              Doc.open();
              Image im=Image.getInstance("http://localhost/bon_plans_api/uploads/Logo.png");
              im.scaleAbsoluteWidth(100);
@@ -197,13 +196,13 @@ public class TestReservationController extends Application implements Initializa
              Doc.close();
              //////Insertion dans la bd 
              
-             Reservation r = new Reservation(date,"http://localhost/bon_plans_api/uploads/Reservation_IdClient"+pl.getIdClient()+"IdAnnance"+pl.getIdPlan()+".pdf",11, pl.getIdPlan(),Integer.parseInt(txtnumber.getText()));
+             Reservation r = new Reservation(date,"http://localhost/bon_plans_api/uploads/Reservation_IdClient"+pl.getIdAnnonceur()+"IdAnnance"+pl.getIdPlan()+".pdf",CurrentSession.getUtilisateur().getIdUtilisateur(), pl.getIdPlan(),Integer.parseInt(txtnumber.getText()));
              System.out.println(r);
              Ireservation.save(r);
              //diminuer le nombre des places dispo 
              pl.setNbPlaceDispo(pl.getNbPlaceDispo()-Integer.parseInt(txtnumber.getText()));
              iPlan.update(pl);
-             Desktop.getDesktop().browse(new URI("http://localhost/bon_plans_api/uploads/Reservation_IdClient"+pl.getIdClient()+"IdAnnance"+pl.getIdPlan()+".pdf"));
+             Desktop.getDesktop().browse(new URI("http://localhost/bon_plans_api/uploads/Reservation_IdClient"+pl.getIdAnnonceur()+"IdAnnance"+pl.getIdPlan()+".pdf"));
                      } catch (FileNotFoundException ex) {
              Logger.getLogger(TestReservationController.class.getName()).log(Level.SEVERE, null, ex);
          } catch (DocumentException ex) {

@@ -218,9 +218,8 @@ public class ValiderNewPlanController extends Application implements Initializab
             Date now = new Date();
             long diff = now.getTime() - lastClickTime.getTime();
             if (diff < 300){ //another click registered in 300 millis
-                 //TODO
-                CurrentSession.addData("plan", row);
-                System.out.println("Implement open plan please xD");
+                CurrentSession.addData("openedPlan", row);
+                SceneHandler.openScene(SceneEnum.CONSULTER_PLAN_UTILISATEUR);
             } else {
                 lastClickTime = new Date();
             }

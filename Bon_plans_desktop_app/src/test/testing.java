@@ -27,7 +27,7 @@ public class testing {
         IUtilisateur utilisateurService = new UtilisateurImpl();
         IGroupe groupeService = new GroupeImpl();
         
-        /*
+        
         Groupe groupe = new Groupe();
         groupe.setDescription("ADMIN");
         
@@ -40,9 +40,9 @@ public class testing {
         groupe.setDescription("CLIENT");
         
         groupeService.save(groupe);
-        */
         
-        /*
+        
+        
         Groupe clientGroup = groupeService.findOne("DESCRIPTION", "CLIENT").get(0);
         Groupe adminGroup = groupeService.findOne("DESCRIPTION", "ADMIN").get(0);
         Groupe superAdminGroup = groupeService.findOne("DESCRIPTION", "SUPER ADMIN").get(0);
@@ -82,7 +82,7 @@ public class testing {
         utilisateur.setVille("inconnu");
         
         utilisateurService.save(utilisateur);
-        */
+        
                 
         Plan plan = new Plan();
         plan.setDateDebut(Converter.convertStringToDate("01/01/2018", "dd/MM/yyyy"));

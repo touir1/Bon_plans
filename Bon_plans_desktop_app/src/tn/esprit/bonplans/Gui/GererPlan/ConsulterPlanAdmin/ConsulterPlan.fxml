@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererPlan.ConsulterPlanAdmin.ConsulterPlanController">
+    <stylesheets>
+        <URL value="@consulterplan.css" />
+    </stylesheets>
+    <children>
+      <fx:include fx:id="menubar" source="../../template/Admin/BonPlanTemplate.fxml" />
+      <AnchorPane layoutX="298.0" layoutY="119.0" minHeight="-Infinity" prefHeight="429.0" prefWidth="784.0" style="-fx-background-color: white;">
+         <children>
+            <Label id="title" fx:id="title" alignment="CENTER" layoutX="221.0" layoutY="24.0" prefHeight="17.0" prefWidth="364.0" text="title plan" textAlignment="CENTER" textFill="#0eadc6">
+               <font>
+                  <Font name="Georgia Italic" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imageCategorie" fitHeight="180.0" fitWidth="301.0" layoutX="39.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
+            <TextArea fx:id="description" editable="false" layoutX="357.0" layoutY="78.0" prefHeight="180.0" prefWidth="371.0" text="description area">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="114.0" layoutY="283.0" prefHeight="17.0" prefWidth="90.0" text="Prix Initial :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="initialPrice" layoutX="204.0" layoutY="283.0" prefHeight="15.0" prefWidth="82.0" text="0 TND">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="317.0" layoutY="283.0" prefHeight="17.0" prefWidth="107.0" text="Prix promotion :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="promoPrice" layoutX="435.0" layoutY="284.0" prefHeight="15.0" prefWidth="82.0" text="0 TND">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="535.0" layoutY="282.0" text="Pourcentage promotion :" />
+            <Label fx:id="promoPercentage" layoutX="689.0" layoutY="282.0" text="0 %" />
+            <Label layoutX="311.0" layoutY="321.0" prefHeight="17.0" prefWidth="133.0" text="Unités disponibles :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="units" layoutX="456.0" layoutY="322.0" prefHeight="15.0" prefWidth="82.0" text="0">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="321.0" prefHeight="17.0" prefWidth="90.0" text="Date début :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="beginDate" layoutX="174.0" layoutY="322.0" prefHeight="15.0" prefWidth="82.0" text="01/01/2017">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="350.0" prefHeight="17.0" prefWidth="90.0" text="Date fin      :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="endDate" layoutX="174.0" layoutY="351.0" prefHeight="15.0" prefWidth="82.0" text="01/01/2018">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="categorie" alignment="CENTER_RIGHT" layoutX="86.0" layoutY="28.0" prefHeight="17.0" prefWidth="234.0" text="categorie" textFill="#0aeb51">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnValidation" layoutX="585.0" layoutY="380.0" onMouseClicked="#validerAction" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: green;" text="Valider" textFill="#f2f2f2">
+               <font>
+                  <Font name="Georgia Italic" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnRefus" layoutX="431.0" layoutY="380.0" onMouseClicked="#refuserAction" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: red;" text="Refuser" textFill="#f2f2f2">
+               <font>
+                  <Font name="Georgia Italic" size="12.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="errorLabel" layoutX="66.0" layoutY="384.0" prefHeight="17.0" prefWidth="319.0" textFill="RED" />
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

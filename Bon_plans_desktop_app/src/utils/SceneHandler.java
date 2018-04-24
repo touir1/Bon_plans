@@ -55,6 +55,7 @@ public class SceneHandler {
                 primaryStage.setScene(scene);
                 primaryStage.show();
                 primaryStage.setResizable(false);
+                primaryStage.sizeToScene();
                 primaryStage.setTitle(sceneTitles.get(screenName));
 
                 addToStack(scene, screenName);

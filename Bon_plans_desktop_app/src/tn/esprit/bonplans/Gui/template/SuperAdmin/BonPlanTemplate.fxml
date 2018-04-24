@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Avatar?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="577.0" prefWidth="875.0" style="-fx-background-color: #f2f7f8;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.template.SuperAdmin.BonPlanTemplateController">
+   <stylesheets>
+        <URL value="@bonplantemplate.css" />
+    </stylesheets>
+    <children>
+      <AnchorPane fx:id="Menu" prefHeight="577.0" prefWidth="252.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="47.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Logo.png" />
+               </image>
+            </ImageView>
+            <Hyperlink layoutX="69.0" layoutY="106.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text="Accueil" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="161.0" style="-fx-font-size: 15;" text="Menu 1" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="214.0" style="-fx-font-size: 15;" text="Menu 2" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="266.0" onMouseClicked="#openCategorieListScene" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />
+            <!--<Hyperlink layoutX="69.0" layoutY="266.0" onAction="#OuvrirePageCategorie" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />-->
+            <Hyperlink layoutX="69.0" layoutY="320.0" style="-fx-font-size: 15;" text="Menu 4" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="368.0" style="-fx-font-size: 15;" text="Menu 5" textFill="#797676" />
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="35.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Accueil.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="63.0" layoutX="31.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@profil.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="31.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Table.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="31.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Table.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="28.0" layoutX="31.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Réclamation.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="21.0" layoutX="35.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Logout.PNG" />
+               </image>
+            </ImageView>
+            <Hyperlink layoutX="69.0" layoutY="418.0" onMouseClicked="#openValidationScreensMenu" style="-fx-font-size: 15;" text="Validation plans" textFill="#797676" />
+            <ImageView fitHeight="32.0" fitWidth="21.0" layoutX="35.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Logout.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane focusTraversable="true" layoutX="251.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.76" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #5c8fc7;">
+         <children>
+            <Avatar layoutX="134.0" layoutY="6.0" />
+            <Label layoutX="82.0" layoutY="16.0" text="Label" />
+         </children>
+      </AnchorPane>
+      
+      <Label fx:id="screenTitle" layoutX="289.0" layoutY="57.0" prefHeight="23.0" prefWidth="450.0" style="-fx-font-family: Arial; -fx-font-size: 18;" text="title" textFill="#009efb" />
+      <Hyperlink layoutX="282.0" layoutY="87.0" onMouseClicked="#goPrevious" text="&lt;&lt; Précedent" />
+   </children>
+</AnchorPane>

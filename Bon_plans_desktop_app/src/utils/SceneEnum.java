@@ -34,7 +34,19 @@ public enum SceneEnum {
     AJOUTER_CATEGORIE(
             "AjouterCategorie",
             "../tn/esprit/bonplans/Gui/GererCategorie/Ajouter/AjouterCategorie.fxml",
-            "Ajouter Categorie")
+            "Ajouter Categorie"),
+    CONSULTER_PLAN_UTILISATEUR(
+            "ConsulterPlanUtilisateur",
+            "../tn/esprit/bonplans/Gui/GererPlan/ConsulterPlanUtilisateur/ConsulterPlan.fxml",
+            "Consulter plan"),
+    CONSULTER_PLAN_ADMIN(
+            "ConsulterPlanAdmin",
+            "../tn/esprit/bonplans/Gui/GererPlan/ConsulterPlanAdmin/ConsulterPlan.fxml",
+            "Consulter plan"),
+    RESERVATION(
+            "Reservation",
+            "../tn/esprit/bonplans/Gui/GererReservation/TestReservation.fxml",
+            "Réservation")
     
     ;
     

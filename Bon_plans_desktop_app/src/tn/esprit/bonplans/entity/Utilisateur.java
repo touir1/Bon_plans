@@ -26,6 +26,7 @@ public class Utilisateur {
     private String adresse;
     private Date dateCreation;
     private Date dateAcces;
+    private boolean isBanned;
     private Timestamp tempsAcces;
     private boolean isActif;
     private int codeActivation;
@@ -33,7 +34,7 @@ public class Utilisateur {
     public Utilisateur() {
     }
     
-    public Utilisateur(int idUtilisateur, int idGroupe, String mdp, String email, String nom, String prenom, String urlphoto, String ville, String adresse, Date dateCreation, Date dateAcces, Timestamp tempsAcces, boolean isActif, int codeActivation) {
+    public Utilisateur(int idUtilisateur, int idGroupe, String mdp, String email, String nom, String prenom, String urlphoto, String ville, String adresse, Date dateCreation, Date dateAcces, Timestamp tempsAcces, boolean isActif, int codeActivation, boolean isBanned) {
         this.idUtilisateur = idUtilisateur;
         this.idGroupe = idGroupe;
         this.mdp = mdp;
@@ -47,6 +48,7 @@ public class Utilisateur {
         this.dateAcces = dateAcces;
         this.tempsAcces = tempsAcces;
         this.isActif = isActif;
+        this.isBanned = isBanned;
         this.codeActivation = codeActivation;
     }
     
@@ -58,6 +60,7 @@ public class Utilisateur {
         this.prenom = prenom;
         this.dateCreation = dateCreation;
         this.isActif = false;
+        this.isBanned = false;
         this.codeActivation = codeActivation;
     }
 
@@ -93,6 +96,14 @@ public class Utilisateur {
         this.idGroupe = idGroupe;
     }
 
+    public boolean getIsBanned() {
+        return isBanned;
+    }
+
+    public void setIsBanned(boolean isBanned) {
+        this.isBanned = isBanned;
+    }
+    
     public String getMdp() {
         return mdp;
     }
@@ -175,9 +186,9 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "idUtilisateur=" + idUtilisateur + ", idGroupe=" + idGroupe + ", mdp=" + mdp + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", urlphoto=" + urlphoto + ", ville=" + ville + ", adresse=" + adresse + ", dateCreation=" + dateCreation + ", dateAcces=" + dateAcces + ", tempsAcces=" + tempsAcces + ", isActif=" + isActif + ", codeActivation=" + codeActivation + '}';
+        return "Utilisateur{" + "idUtilisateur=" + idUtilisateur + ", idGroupe=" + idGroupe + ", mdp=" + mdp + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", urlphoto=" + urlphoto + ", ville=" + ville + ", adresse=" + adresse + ", dateCreation=" + dateCreation + ", dateAcces=" + dateAcces + ", isBanned=" + isBanned + ", tempsAcces=" + tempsAcces + ", isActif=" + isActif + ", codeActivation=" + codeActivation + '}';
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 3;

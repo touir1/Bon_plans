@@ -96,7 +96,6 @@ public class ValiderModifiedPlanController extends Application implements Initia
         //init data
         initListPlan();
         //init template title
-        //init template title
         SceneHandler.setTitle(SceneEnum.VALIDER_MODIFIED_PLAN);
     }
 
@@ -224,9 +223,8 @@ public class ValiderModifiedPlanController extends Application implements Initia
             Date now = new Date();
             long diff = now.getTime() - lastClickTime.getTime();
             if (diff < 300){ //another click registered in 300 millis
-                 //TODO
-                CurrentSession.addData("plan", row);
-                System.out.println("Implement open plan please xD");
+                CurrentSession.addData("openedPlan", row);
+                SceneHandler.openScene(SceneEnum.CONSULTER_PLAN_UTILISATEUR);
             } else {
                 lastClickTime = new Date();
             }

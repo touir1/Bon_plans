@@ -24,18 +24,15 @@ public class Plan {
     private Date dateFin;
     private int nbPlaceDispo;
     private int statut;
-    private int nbJaime ;
-    private int nbJaimePas;
-    private int note ;
-    // 
-    private int idClient;
+    
+    //foreign keys
     private int idAnnonceur;
     private int idCategorie;
 
     public Plan() {
     }
 
-    public Plan(int idPlan, String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, int statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie,int idClient) {
+    public Plan(int idPlan, String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, int statut, int idAnnonceur, int idCategorie) {
         this.idPlan = idPlan;
         this.titre = titre;
         this.description = description;
@@ -47,15 +44,11 @@ public class Plan {
         this.dateFin = dateFin;
         this.nbPlaceDispo = nbPlaceDispo;
         this.statut = statut;
-        this.nbJaime = nbJaime;
-        this.nbJaimePas = nbJaimePas;
-        this.note = note;
         this.idAnnonceur = idAnnonceur;
         this.idCategorie = idCategorie;
-        this.idClient =idClient;
     }
 
-    public Plan(String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, int statut, int nbJaime, int nbJaimePas, int note, int idAnnonceur, int idCategorie, int idClient) {
+    public Plan(String titre, String description, String urlPhoto, Double prixInitial, Double prixPromo, int nbPlaceTotal, Date dateDebut, Date dateFin, int nbPlaceDispo, int statut, int idAnnonceur, int idCategorie) {
         this.titre = titre;
         this.description = description;
         this.urlPhoto = urlPhoto;
@@ -66,23 +59,10 @@ public class Plan {
         this.dateFin = dateFin;
         this.nbPlaceDispo = nbPlaceDispo;
         this.statut = statut;
-        this.nbJaime = nbJaime;
-        this.nbJaimePas = nbJaimePas;
-        this.note = note;
         this.idAnnonceur = idAnnonceur;
         this.idCategorie = idCategorie;
-        this.idClient =idClient;
     }
 
-    public int getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
-    }
-    
-    
     public int getIdPlan() {
         return idPlan;
     }
@@ -167,37 +147,9 @@ public class Plan {
         return statut;
     }
 
-    /*public void setStatut(EnumValidation statut) {
-        this.statut = statut;
-    }*/
-    
     public void setStatut(int statut) {
         
         this.statut = statut;
-    }
-
-    public int getNbJaime() {
-        return nbJaime;
-    }
-
-    public void setNbJaime(int nbJaime) {
-        this.nbJaime = nbJaime;
-    }
-
-    public int getNbJaimePas() {
-        return nbJaimePas;
-    }
-
-    public void setNbJaimePas(int nbJaimePas) {
-        this.nbJaimePas = nbJaimePas;
-    }
-
-    public int getNote() {
-        return note;
-    }
-
-    public void setNote(int note) {
-        this.note = note;
     }
 
     public int getIdAnnonceur() {
@@ -218,9 +170,9 @@ public class Plan {
 
     @Override
     public String toString() {
-        return "Plan{" + "idPlan=" + idPlan + ", titre=" + titre + ", description=" + description + ", urlPhoto=" + urlPhoto + ", prixInitial=" + prixInitial + ", prixPromo=" + prixPromo + ", nbPlaceTotal=" + nbPlaceTotal + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", nbPlaceDispo=" + nbPlaceDispo + ", statut=" + statut + ", nbJaime=" + nbJaime + ", nbJaimePas=" + nbJaimePas + ", note=" + note + ", idAnnonceur=" + idAnnonceur + ", idCategorie=" + idCategorie + '}';
+        return "Plan{" + "idPlan=" + idPlan + ", titre=" + titre + ", description=" + description + ", urlPhoto=" + urlPhoto + ", prixInitial=" + prixInitial + ", prixPromo=" + prixPromo + ", nbPlaceTotal=" + nbPlaceTotal + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", nbPlaceDispo=" + nbPlaceDispo + ", statut=" + statut + ", idAnnonceur=" + idAnnonceur + ", idCategorie=" + idCategorie + '}';
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
