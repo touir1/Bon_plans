@@ -96,7 +96,7 @@ class Commentaire
     }
 
     public function getFor($conn, $id){
-        $req = "SELECT utilisateur.nom, commentaire.texte FROM commentaire, utilisateur WHERE `commentaire`.`idClient` =  `utilisateur`.`idUtilisateur` AND `idPlan` = ".$id;
+        $req = "SELECT utilisateur.nom, commentaire.texte, commentaire.idCommentaire FROM commentaire, utilisateur WHERE `commentaire`.`idClient` =  `utilisateur`.`idUtilisateur` AND `idPlan` = ".$id;
 
         return $conn->query($req);
     }
@@ -115,5 +115,23 @@ class Commentaire
         $req = "INSERT INTO `commentaire` (`idCommentaire`, `texte`, `date`, `idClient`, `idPlan`) VALUES (NULL, '".$this->getTexte()."', '".date("Y-m-d H:i:s")."', '".$this->getIdClient()."', '".$this->getIdPlan()."');";
 
         $conn->exec($req);
+    }
+
+    public function  delete($conn, $id){
+        $req = "DELETE FROM `commentaire` WHERE `idCommentaire` = ".$id;
+        $conn->exec($req);
+    }
+
+    public function signaler($conn, $id){
+        $req = "INSERT INTO `signaler` (`idSignaler`, `idCommentaire`) VALUES (NULL, '".$id."');";
+        $conn->exec($req);
+    }
+
+    public function countSignaler($conn, $id){
+        $req = "SELECT COUNT(*) FROM `signaler` WHERE `idCommentaire` = ".$id;
+        $rows = $conn->query($req);
+        foreach($rows as $row){
+            return $row[0];
+        }
     }
 }

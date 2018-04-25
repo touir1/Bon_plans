@@ -1,4 +1,5 @@
 
+
 <!-- Footer -->
 <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
     <div class="flex-w p-b-90">
@@ -206,18 +207,6 @@
 <!--===============================================================================================-->
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
-    $("#inscription-form").hide();
-    //monConnex
-    $("#monInscription").click(function(){
-        $("#login-form").fadeOut();
-        $("#inscription-form").fadeIn();
-    });
-
-    $("#monConnex").click(function(){
-        $("#inscription-form").fadeOut();
-        $("#login-form").fadeIn();
-    });
-
     $('.block2-btn-addcart').each(function(){
         var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
         $(this).on('click', function(){
@@ -231,6 +220,19 @@
             swal(nameProduct, "is added to wishlist !", "success");
         });
     });
+
+    $("#inscription-form").hide();
+    //monConnex
+    $("#monInscription").click(function(){
+        $("#login-form").fadeOut();
+        $("#inscription-form").fadeIn();
+    });
+
+    $("#monConnex").click(function(){
+        $("#inscription-form").fadeOut();
+        $("#login-form").fadeIn();
+    });
+
 </script>
 
 <!--===============================================================================================-->

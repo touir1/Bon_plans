@@ -1,18 +1,18 @@
 <?php
 session_start();
+if(isset($_SESSION['connecter'])) {
+    include("../Entities/Config.php");
+    include("../Entities/Categorie.php");
 
-include("../Entities/Config.php");
-include("../Entities/Categorie.php");
+    $c = new Config();
 
-$c = new Config();
-
-$conn = $c->getConnexion();
-$cat = new Categorie();
-$items = $cat->getAll($conn);
+    $conn = $c->getConnexion();
+    $cat = new Categorie();
+    $items = $cat->getAll($conn);
 
 
-include("tete.php");
-?>
+    include("tete.php");
+    ?>
 
     <div class="container-fluid">
         <!-- ============================================================== -->
@@ -27,7 +27,8 @@ include("tete.php");
                 </ol>
             </div>
             <div class="col-md-6 col-4 align-self-center">
-                <a href="ajoutercategorie.php" class="btn pull-right hidden-sm-down btn-success"> Ajouter une nouvelle categorie</a>
+                <a href="ajoutercategorie.php" class="btn pull-right hidden-sm-down btn-success"> Ajouter une nouvelle
+                    categorie</a>
             </div>
         </div>
         <!-- ============================================================== -->
@@ -51,11 +52,12 @@ include("tete.php");
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach($items as $item){ ?>
+                                <?php foreach ($items as $item) { ?>
                                     <tr>
                                         <td><?php echo($item[0]); ?></td>
                                         <td><?php echo($item[1]); ?></td>
-                                        <td><a href="modifiercategorie.php?id=<?php echo($item[0]); ?>" class="btn btn-primary">Modifier</a></td>
+                                        <td><a href="modifiercategorie.php?id=<?php echo($item[0]); ?>"
+                                               class="btn btn-primary">Modifier</a></td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>
@@ -69,6 +71,7 @@ include("tete.php");
         <!-- End PAge Content -->
         <!-- ============================================================== -->
     </div>
-<?php
+    <?php
+}
 include("pied.html");
 ?>

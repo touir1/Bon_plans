@@ -96,7 +96,14 @@ class Reservation
 
     public function getAll($conn){
 
-        $req = "SELECT `idReservation`, `nom`, `prenom`, `titre`, `Nbplace` FROM `reservation`, utilisateur, plan WHERE `idClient` = utilisateur.idUtilisateur AND reservation.`idPlan` = plan.idPlan";
+        $req = "SELECT reservation.idReservation, plan.titre, utilisateur.nom, reservation.date, reservation.Nbplace FROM plan, utilisateur, reservation WHERE reservation.idClient = utilisateur.idUtilisateur AND reservation.idPlan = plan.idPlan";
+
+        return $conn->query($req);
+    }
+
+    public function getFor($conn, $id){
+        $req = "SELECT reservation.idReservation, plan.titre, utilisateur.nom, reservation.date, reservation.Nbplace FROM plan, utilisateur, reservation WHERE reservation.idClient = utilisateur.idUtilisateur AND reservation.idPlan = plan.idPlan
+AND reservation.idClient = ".$id;
 
         return $conn->query($req);
     }

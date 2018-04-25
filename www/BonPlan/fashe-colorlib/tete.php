@@ -1,21 +1,20 @@
 <?php
-    session_start();
+session_start();
 
-    include('../Entities/Config.php');
-    include('../Entities/Categorie.php');
+include('../Entities/Config.php');
+include('../Entities/Categorie.php');
 
-    $c = new Config();
+$c = new Config();
 
-    $conn = $c->getConnexion();
+$conn = $c->getConnexion();
 
-    $c1 = new Categorie();
-    $categories = $c1->getAll($conn);
-
+$c1 = new Categorie();
+$categories = $c1->getAll($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bons Plans</title>
+    <title>Bon Plans</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -48,7 +47,9 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
+
 <body class="animsition">
 
 <!-- Header -->
@@ -93,24 +94,24 @@
                 <nav class="menu">
                     <ul class="main_menu">
                         <li>
-                            <a href="index.html">Accueil</a>
+                            <a href="page1.php">Acceuil</a>
                         </li>
 
                         <li>
-                            <a href="product.html">Categories</a>
+                            <a href="#">Categories</a>
                             <ul class="sub_menu">
                                 <?php foreach($categories as $categorie){ ?>
-                                    <li><a href="index.html"><?php echo($categorie[1]); ?></a></li>
+                                    <li><a href="categorie.php?id=<?php echo($categorie[0]); ?>"><?php echo($categorie[1]); ?></a></li>
                                 <?php } ?>
                             </ul>
                         </li>
 
                         <li class="sale-noti">
-                            <a href="product.html"></a>
+                            <a href="tout.php">Plans</a>
                         </li>
 
                         <li>
-                            <a href="cart.html">Les plus visitées</a>
+                            <a href="top.php">Meilleur Plans</a>
                         </li>
 
                         <li>
@@ -122,7 +123,7 @@
                         </li>
 
                         <li>
-                            <a href="contact.html">Contactez nous</a>
+                            <a href="contact.html">Contact</a>
                         </li>
                     </ul>
                 </nav>
@@ -130,61 +131,68 @@
 
             <!-- Header Icon -->
             <div class="header-icons">
+
+                <span class="linedivide1"></span>
+
                 <div class="header-wrapicon2">
                     <img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
+
                         <?php if(!isset ($_SESSION['connecter'])){ ?>
-                        <div class="container-fluid"  id="login-form">
-                            <form method="post" action="login.php">
-                                <div class="form-group">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="mdp" id="mdp" class="form-control" placeholder="Mot de passe">
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">Se connecter</button>
-                                </div>
-                            </form>
-                            <p>Pas encore de compte? <a style="color:black" id="monInscription"> s'inscrire</a></p>
-                        </div>
-                        <div class="container-fluid" id="inscription-form">
-                            <form action="../lite-version/ajouterprofile.php" method="post">
-                                <input type="hidden" name="group" value="1">
-                                <div class="form-group">
-                                    <input type="text" name="nom" id="nom" class="form-control" placeholder="Nom" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="prenom" id="prenom" class="form-control" placeholder="Prenom" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="mdp" id="mdp" class="form-control" placeholder="Mot de passe" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="ville" id="ville" class="form-control" placeholder="Ville" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="adresse" id="adresse" class="form-control" placeholder="Adresse" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="image">Votre image</label>
-                                    <input type="file" name="image" id="image" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">S'inscrire</button>
-                                </div>
-                            </form>
-                            <p>Déja inscrit ? <a style="color:black" id="monConnex"> se connecter</a></p>
-                        </div>
+                            <div class="container-fluid"  id="login-form">
+                                <form method="post" action="login.php">
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="mdp" id="mdp" class="form-control" placeholder="Mot de passe">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">Se connecter</button>
+                                    </div>
+                                </form>
+                                <p>Pas encore de compte? <a style="color:black" id="monInscription"> s'inscrire</a></p>
+                            </div>
+                            <div class="container-fluid" id="inscription-form" >
+                                <form action="../lite-version/ajouterprofile.php" method="post"  enctype="multipart/form-data">
+                                    <input type="hidden" name="group" value="1">
+                                    <div class="form-group">
+                                        <input type="text" name="nom" id="nom" class="form-control" placeholder="Nom" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="prenom" id="prenom" class="form-control" placeholder="Prenom" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="mdp" id="mdp" class="form-control" placeholder="Mot de passe" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="ville" id="ville" class="form-control" placeholder="Ville" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="adresse" id="adresse" class="form-control" placeholder="Adresse" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="image">Votre image</label>
+                                        <input  type="file" name="fileToUpload" id="fileToUpload"  class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">S'inscrire</button>
+                                    </div>
+                                </form>
+                                <p>Déja inscrit ? <a style="color:black" id="monConnex"> se connecter</a></p>
+                            </div>
                         <?php }else { ?>
                             <div class="container-fluid">
+                                <a href="../lite-version/plans.php">Gestion des plans</a><br>
                                 <a href="../logout.php">Se déconnecter</a>
                             </div>
                         <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -214,26 +222,75 @@
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
-                        <?php if(!isset($_SESSION['connecter'])){ ?>
-                            <div class="container-fluid">
-                                <form action="">
-                                    <div class="form-group">
-                                        <input type="email" name="" id="" class="form-control" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" name="" id="" class="form-control" placeholder="Mot de passe">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">Se connecter</button>
-                                    </div>
-                                </form>
+                        <ul class="header-cart-wrapitem">
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="images/item-cart-01.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        White Shirt With Pleat Detail Back
+                                    </a>
+
+										<span class="header-cart-item-info">
+											1 x $19.00
+										</span>
+                                </div>
+                            </li>
+
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="images/item-cart-02.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        Converse All Star Hi Black Canvas
+                                    </a>
+
+										<span class="header-cart-item-info">
+											1 x $39.00
+										</span>
+                                </div>
+                            </li>
+
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="images/item-cart-03.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        Nixon Porter Leather Watch In Tan
+                                    </a>
+
+										<span class="header-cart-item-info">
+											1 x $17.00
+										</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="header-cart-total">
+                            Total: $75.00
+                        </div>
+
+                        <div class="header-cart-buttons">
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    View Cart
+                                </a>
                             </div>
-                        <?php }else { ?>
-                            <div class="container-fluid">
-                                <a href="../logout.php">Se déconnecter</a>
+
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    Check Out
+                                </a>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>

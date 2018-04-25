@@ -1,38 +1,16 @@
 <?php
-session_start();
 
-session_start();
+//echo(time());
 
-include ("../Entities/Config.php");
-include ("../Entities/utilisateur.php");
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["imageUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
-$c = new Config();
+if (move_uploaded_file($_FILES["imageUpload"]["tmp_name"], $target_file)) {
+    echo "The file ". basename( $_FILES["imageUpload"]["name"]). " has been uploaded.";
+} else {
+    echo "Sorry, there was an error uploading your file.";
+}
 
-$conn = $c->getConnexion();
-
-$user = new Utilisateur();
-/*
-$user->setPrenom("prenom");
-$user->setAdresse("Tunis");
-$user->setEmail("prenom@email.com");
-$user->setIdGroup(1);
-$user->setMdp("secret");
-$user->setNom("nom");
-$user->setPhoto("test");
-$user->setVille("Tunis");
-*/
-
-$_SESSION['utilisateur'] = $user->login($conn, "artan@email.com", "secret");
-
-include("tete.php");
-?>
-    <h1><?php
-        if($_SESSION['utilisateur'][2]){
-
-            echo ($_SESSION['utilisateur'][2]);
-        }
-        ?></h1>
-<?php
-include("pied.html");
-session_destroy();
-?>
+$image=basename( $_FILES["imageUpload"]["name"],".jpg");

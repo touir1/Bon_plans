@@ -1,8 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION['connecter'])) {
 
-
-include("tete.php");
+    include("tete.php");
     include("../Entities/Config.php");
     include("../Entities/Plan.php");
 
@@ -11,9 +11,10 @@ include("tete.php");
     $conn = $c->getConnexion();
 
     $plan = new Plan();
-    if($_SESSION['connecter'][1] == 1){
+
+    if ($_SESSION['connecter'][1] == 1) {
         $items = $plan->getFor($conn, $_SESSION['connecter'][0]);
-    }else{
+    } else {
         $items = $plan->getAll($conn);
     }
     ?>
@@ -30,9 +31,10 @@ include("tete.php");
                     <li class="breadcrumb-item active">Liste des plans</li>
                 </ol>
             </div>
-            <?php if($_SESSION['connecter'][1] == 1){ ?>
+            <?php if ($_SESSION['connecter'][1] == 1) { ?>
                 <div class="col-md-6 col-4 align-self-center">
-                    <a href="ajouterplan.php" class="btn pull-right hidden-sm-down btn-success"> Ajouter un nouveau plan</a>
+                    <a href="ajouterplan.php" class="btn pull-right hidden-sm-down btn-success"> Ajouter un nouveau
+                        plan</a>
                 </div>
             <?php } ?>
 
@@ -61,25 +63,28 @@ include("tete.php");
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach($items as $item){ ?>
-                                <tr>
-                                    <td><?php echo($item[0]); ?></td>
-                                    <td><?php echo($item[1]); ?></td>
-                                    <td><?php echo($item[6]); ?></td>
-                                    <td><?php echo($item[9]); ?></td>
-                                    <td><?php echo($item[10]); ?></td>
-                                    <td>
-                                        <?php if($item[10] == 0){ ?>
-                                        <a href="single.php?id=<?php echo($item[0]); ?>">Inspecter</a>
-                                        <a href="approver.php?id=<?php echo($item[0]); ?>" class="btn btn-success">Approver</a>
-                                        <a href="refuser.php?id=<?php echo($item[0]); ?>" class="btn btn-danger">Annuler</a>
-                                        <?php }else if($item[10] == 2) {
-                                            echo("Refuser");
-                                        }else{
-                                            echo("En cours ...");
-                                        } ?>
-                                    </td>
-                                </tr>
+                                <?php foreach ($items as $item) { ?>
+                                    <tr>
+                                        <td><?php echo($item[0]); ?></td>
+                                        <td><?php echo($item[1]); ?></td>
+                                        <td><?php echo($item[6]); ?></td>
+                                        <td><?php echo($item[9]); ?></td>
+                                        <td><?php echo($item[10]); ?></td>
+                                        <td>
+                                            <?php if ($item[10] == 0) { ?>
+                                                <a href="single.php?id=<?php echo($item[0]); ?>"
+                                                   class="btn btn-primary">Inspecter</a>
+                                                <a href="approver.php?id=<?php echo($item[0]); ?>"
+                                                   class="btn btn-success">Approver</a>
+                                                <a href="refuser.php?id=<?php echo($item[0]); ?>"
+                                                   class="btn btn-danger">Annuler</a>
+                                            <?php } else if ($item[10] == 2) {
+                                                echo("Refuser");
+                                            } else {
+                                                echo("En cours ...");
+                                            } ?>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                                 </tbody>
                             </table>
@@ -94,5 +99,6 @@ include("tete.php");
     </div>
 
     <?php
+}
     include("pied.html");
     ?>

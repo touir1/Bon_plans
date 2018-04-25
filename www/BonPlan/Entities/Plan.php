@@ -232,7 +232,7 @@ class Plan
 
 
     public function add($conn){
-        $req = "INSERT INTO `plan` (`idPlan`, `titre`, `description`, `urlPhoto`, `prixInitial`, `prixPromo`, `nbPlaceTotal`, `dateDebut`, `dateFin`, `nbPlaceDispo`, `statut`, `idAnnonceur`, `idCategorie`) VALUES (NULL, '".$this->getTitre()."', '".$this->getDescription()."', 'test', '".$this->getPrixInitial()."', '".$this->getPrixPromo()."', '".$this->getNbPlaceTotal()."', '".$this->getDateDebut()."', '".$this->getDateFin()."', '".$this->getNbPlaceTotal()."', '0', '".$this->getIdAnnonceur()."', '".$this->getIdCategorie()."');";
+        $req = "INSERT INTO `plan` (`idPlan`, `titre`, `description`, `urlPhoto`, `prixInitial`, `prixPromo`, `nbPlaceTotal`, `dateDebut`, `dateFin`, `nbPlaceDispo`, `statut`, `idAnnonceur`, `idCategorie`) VALUES (NULL, '".$this->getTitre()."', '".$this->getDescription()."', '".$this->getUrlPhote()."', '".$this->getPrixInitial()."', '".$this->getPrixPromo()."', '".$this->getNbPlaceTotal()."', '".$this->getDateDebut()."', '".$this->getDateFin()."', '".$this->getNbPlaceTotal()."', '0', '".$this->getIdAnnonceur()."', '".$this->getIdCategorie()."');";
         $conn->exec($req);
     }
 
@@ -269,5 +269,34 @@ class Plan
         $req = "UPDATE `plan` SET `statut` = '".$statut."' WHERE `plan`.`idPlan` = ".$id.";";
 
         $conn->exec($req);
+    }
+
+    public function avis($conn, $id, $avis){
+        $req = "INSERT INTO `avis` (`annonce`, `avi`, `note`) VALUES ('".$id."', '".$avis."', '0');";
+        $conn->exec($req);
+    }
+
+    public function countlike($conn, $id){
+       $req = "SELECT COUNT(*) FROM `avis` WHERE annonce = ".$id." AND avi = 1";
+       $rows = $conn->query($req);
+        foreach($rows as $row){
+            return $row[0];
+        }
+    }
+
+    public function countDisLike($conn, $id){
+        $req = "SELECT COUNT(*) FROM `avis` WHERE annonce = ".$id." AND avi = 2";
+        $rows = $conn->query($req);
+        foreach($rows as $row){
+            return $row[0];
+        }
+    }
+
+    public function top($conn){
+        $req = "SELECT * FROM `plan`, top
+                WHERE plan.idPlan = top.annonce
+                ORDER BY top.nb";
+
+        return $conn->query($req);
     }
 }

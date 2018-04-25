@@ -163,7 +163,7 @@ class utilisateur
     }
 
     public function add($conn){
-        $req = "INSERT INTO `utilisateur` (`idGroupe`, `mdp`, `email`, `nom`, `prenom`, `urlphoto`, `ville`, `adresse`, `dateCreation`, `dateAcces`, `tempsAcces`, `isBanned`) VALUES ('".$this->getIdGroup()."', '".$this->getMdp()."', '".$this->getEmail()."', '".$this->getNom()."', '".$this->getPrenom()."', 'photo', '".$this->getVille()."', '".$this->getAdresse()."', CURRENT_TIMESTAMP, NULL, NULL, '0');";
+        $req = "INSERT INTO `utilisateur` (`idGroupe`, `mdp`, `email`, `nom`, `prenom`, `urlphoto`, `ville`, `adresse`, `dateCreation`, `dateAcces`, `tempsAcces`, `isBanned`) VALUES ('".$this->getIdGroup()."', '".$this->getMdp()."', '".$this->getEmail()."', '".$this->getNom()."', '".$this->getPrenom()."', '".$this->getPhoto()."', '".$this->getVille()."', '".$this->getAdresse()."', CURRENT_TIMESTAMP, NULL, NULL, '0');";
         $conn->exec($req);
     }
 

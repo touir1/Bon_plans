@@ -10,7 +10,7 @@ $maCat = $c2->get($conn, $_GET['id']);
 
 $plans = $plan->getForCategorie($conn, $_GET['id']);
 ?>
-<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/heading-pages-02.jpg);">
+<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(<?php echo("../lite-version/".$maCat[2]); ?>);">
     <h2 class="l-text2 t-center">
         <?php echo($maCat[1]); ?>
     </h2>
@@ -30,7 +30,7 @@ $plans = $plan->getForCategorie($conn, $_GET['id']);
                     <ul class="p-b-54">
                         <?php foreach($categories as $cat){ ?>
                         <li class="p-t-4">
-                            <a href="#" class="s-text13 active1">
+                            <a href="categorie.php?id=<?php echo($cat[0]); ?>" class="s-text13 active1">
                                 <?php echo($cat[1]); ?>
                             </a>
                         </li>
@@ -48,7 +48,7 @@ $plans = $plan->getForCategorie($conn, $_GET['id']);
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-                                <img src="images/item-02.jpg" alt="IMG-PRODUCT">
+                                <img src="../lite-version/<?php echo($pl[3]); ?>" alt="IMG-PRODUCT">
 
                                 <div class="block2-overlay trans-0-4">
                                     <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
@@ -60,7 +60,6 @@ $plans = $plan->getForCategorie($conn, $_GET['id']);
                                         if(isset($_SESSION['connecter'])){
                                         if($_SESSION['connecter'][1] == 1){ ?>
                                             <a href="single.php?id=<?php echo($pl[0]); ?>" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Reserver</a>
-
                                         <?php }} ?>
                                     </div>
                                 </div>

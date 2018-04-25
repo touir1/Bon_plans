@@ -1,27 +1,29 @@
 <?php
-/*
-include ("Config.php");
-include ("utilisateur.php");
+session_start();
+if(isset($_SESSION['connecter'])) {
+    /*
+    include ("Config.php");
+    include ("utilisateur.php");
 
-$c = new Config();
+    $c = new Config();
 
-$conn = $c->getConnexion();
+    $conn = $c->getConnexion();
 
-$user = new Utilisateur();
-$user->setPrenom("prenom");
-$user->setAdresse("Tunis");
-$user->setEmail("prenom@email.com");
-$user->setIdGroup(1);
-$user->setMdp("secret");
-$user->setNom("nom");
-$user->setPhoto("test");
-$user->setVille("Tunis");
+    $user = new Utilisateur();
+    $user->setPrenom("prenom");
+    $user->setAdresse("Tunis");
+    $user->setEmail("prenom@email.com");
+    $user->setIdGroup(1);
+    $user->setMdp("secret");
+    $user->setNom("nom");
+    $user->setPhoto("test");
+    $user->setVille("Tunis");
 
-$user->add($conn);
+    $user->add($conn);
 
-*/
-include("tete.php");
-?>
+    */
+    include("tete.php");
+    ?>
 
 
     <div class="container-fluid">
@@ -51,48 +53,60 @@ include("tete.php");
             <div class="col-lg-8 col-xlg-9 col-md-7">
                 <div class="card">
                     <div class="card-block">
-                        <form class="form-horizontal form-material" method="post" action="ajouterprofile.php">
+                        <form class="form-horizontal form-material" method="post" action="ajouterprofile.php"   enctype="multipart/form-data">
                             <input type="hidden" name="group" value="2">
+
                             <div class="form-group">
                                 <label class="col-md-12">Nom</label>
+
                                 <div class="col-md-12">
-                                    <input type="text" placeholder="nom" name="nom" class="form-control form-control-line" required>
+                                    <input type="text" placeholder="nom" name="nom"
+                                           class="form-control form-control-line" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Prenom</label>
+
                                 <div class="col-md-12">
-                                    <input type="text" placeholder="prenom" name="prenom" class="form-control form-control-line" required>
+                                    <input type="text" placeholder="prenom" name="prenom"
+                                           class="form-control form-control-line" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="example-email" class="col-md-12">Email</label>
+
                                 <div class="col-md-12">
-                                    <input type="email" placeholder="email" name="email" class="form-control form-control-line" id="example-email" required>
+                                    <input type="email" placeholder="email" name="email"
+                                           class="form-control form-control-line" id="example-email" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Mot de passe</label>
+
                                 <div class="col-md-12">
                                     <input type="password" class="form-control form-control-line" name="mdp" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Ville</label>
+
                                 <div class="col-md-12">
                                     <input type="text" placeholder="ville" name="ville" class="form-control" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Adresse</label>
+
                                 <div class="col-md-12">
-                                    <textarea rows="5" class="form-control form-control-line" name="adresse" required></textarea>
+                                    <textarea rows="5" class="form-control form-control-line" name="adresse"
+                                              required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12">Image</label>
+
                                 <div class="col-md-12">
-                                    <input type="file"class="form-control form-control-line" name="image" required>
+                                    <input  type="file" name="fileToUpload" id="fileToUpload"  class="form-control form-control-line" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -113,6 +127,7 @@ include("tete.php");
     </div>
 
 
-<?php
+    <?php
+}
 include("pied.html");
 ?>

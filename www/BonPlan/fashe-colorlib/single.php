@@ -20,7 +20,7 @@ include('../Entities/Commentaire.php');
                     <div class="slick3 slick-initialized slick-slider slick-dotted">
                         <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 981px;"><div class="item-slick3 slick-slide slick-current slick-active" data-thumb="images/thumb-item-01.jpg" data-slick-index="0" aria-hidden="false" tabindex="0" role="tabpanel" id="slick-slide10" aria-describedby="slick-slide-control10" style="width: 327px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
                                     <div class="wrap-pic-w">
-                                        <img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+                                        <img src="../lite-version/<?php echo($item[3]); ?>" alt="IMG-PRODUCT">
                                     </div>
                                 </div>
                                 <div class="item-slick3 slick-slide" data-thumb="images/thumb-item-02.jpg" data-slick-index="1" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide11" aria-describedby="slick-slide-control11" style="width: 327px; position: relative; left: -327px; top: 0px; z-index: 998; opacity: 0;">
@@ -35,10 +35,6 @@ include('../Entities/Commentaire.php');
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -60,9 +56,10 @@ include('../Entities/Commentaire.php');
                 <div class="p-t-33 p-b-60">
 
                     <label>Quantite disponible : <?php echo($item[9]); ?></label>
+                    <?php if(isset($_SESSION['connecter']) && ($item[10] != 2)){ ?>
                     <form action="reserver.php" method="post">
                         <input type="hidden" name="plan" value="<?php echo($item[0]); ?>">
-                        <input type="hidden" name="client" value="<?php echo($_SESSION['connecter'][0]); ?>">
+                        <input type="hidden" name="client" value="<?php if(isset($_SESSION['connecter'])){echo($_SESSION['connecter'][0]);} ?>">
 
                         <div class="flex-r-m flex-w p-t-10">
                         <div class="w-size16 flex-m flex-w">
@@ -77,7 +74,6 @@ include('../Entities/Commentaire.php');
                                     <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
                                 </button>
                             </div>
-
                             <div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
                                 <!-- Button -->
                                 <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit">
@@ -87,10 +83,19 @@ include('../Entities/Commentaire.php');
                         </div>
                     </div>
                     </form>
+                    <?php } ?>
                 </div>
-
+                <?php if(isset($_SESSION['connecter'])){ ?>
                 <div class="p-b-45">
-                    <span class="s-text8 m-r-35">Categorie:<?php echo($categorie[1]);?></span>
+                    <a href="avis.php?id=<?php echo($item[0]); ?>&avis=1" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> | <?php echo($p->countlike($conn, $item[0]));?></a>
+                    <a href="avis.php?id=<?php echo($item[0]); ?>&avis=2" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span> | <?php echo($p->countDisLike($conn, $item[0]));?></a>
+                </div>
+                <?php }else{ ?>
+                    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> | <?php echo($p->countlike($conn, $item[0]));?></a>
+                    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span> | <?php echo($p->countDisLike($conn, $item[0]));?></a>
+                <?php } ?>
+                <div class="p-b-45" style="margin-top:1em">
+                    <span class="s-text8 m-r-35">Categorie : <?php echo($categorie[1]);?></span>
                 </div>
 
                 <!--  -->
@@ -117,8 +122,12 @@ include('../Entities/Commentaire.php');
 
                     <div class="dropdown-content dis-none p-t-15 p-b-23">
                         <?php foreach($commentaires as $commentaire){ ?>
+
                             <p class="s-text8">
                                 <?php echo($commentaire[1]); ?>
+                                <?php if(isset($_SESSION['connecter'])){ ?>
+                                <a href="signaler.php?id=<?php echo($commentaire[2]); ?>" class="pull-right">Signaler</a>
+                                <?php } ?>
                             </p>
                             <label>@<?php echo($commentaire[0]); ?></label>
                         <?php } ?>

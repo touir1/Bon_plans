@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+if(isset($_SESSION['connecter'])){
 include ("../Entities/Config.php");
 include ("../Entities/Categorie.php");
 
@@ -42,7 +43,7 @@ include("tete.php");
             <div class="col-lg-8 col-xlg-9 col-md-7">
                 <div class="card">
                     <div class="card-block">
-                        <form class="form-horizontal form-material" method="post" action="creerplan.php">
+                        <form class="form-horizontal form-material" method="post" action="creerplan.php"   enctype="multipart/form-data">
                             <div class="form-group">
                                 <label class="col-md-12">Titre</label>
                                 <div class="col-md-12">
@@ -98,7 +99,7 @@ include("tete.php");
                             <div class="form-group">
                                 <label class="col-md-12">Image</label>
                                 <div class="col-md-12">
-                                    <input type="file"class="form-control form-control-line" name="image" required>
+                                    <input type="file" name="fileToUpload" id="fileToUpload" class="form-control form-control-line" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -120,5 +121,6 @@ include("tete.php");
 
 
 <?php
+}
 include("pied.html");
 ?>

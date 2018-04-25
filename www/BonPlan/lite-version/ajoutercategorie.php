@@ -5,7 +5,7 @@
  * Date: 22/04/2018
  * Time: 00:53
  */
-
+session_start();
 
 include("tete.php");
 ?>
@@ -35,7 +35,7 @@ include("tete.php");
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
                 <div class="card-block">
-                    <form class="form-horizontal form-material" method="post" action="ajoutercat.php">
+                    <form class="form-horizontal form-material" method="post" action="ajoutercat.php"  enctype="multipart/form-data">
                         <div class="form-group">
                             <label class="col-md-12">Titre</label>
                             <div class="col-md-12">
@@ -45,7 +45,7 @@ include("tete.php");
                         <div class="form-group">
                             <label class="col-md-12">Image</label>
                             <div class="col-md-12">
-                                <input type="file" name="image" class="form-control form-control-line" required>
+                                <input  type="file" name="fileToUpload" id="fileToUpload" class="form-control form-control-line" required>
                             </div>
                         </div>
                         <div class="form-group">

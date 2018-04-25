@@ -1,18 +1,23 @@
 <?php
 session_start();
+if(isset($_SESSION['connecter'])) {
+    include("../Entities/Config.php");
+    include("../Entities/Reservation.php");
 
-include("../Entities/Config.php");
-include("../Entities/Reservation.php");
+    $c = new Config();
 
-$c = new Config();
+    $conn = $c->getConnexion();
+    $res = new Reservation();
 
-$conn = $c->getConnexion();
-$cat = new Reservation();
-$items = $cat->getAll($conn);
+    if ($_SESSION['connecter'][1] == 1) {
+        $items = $res->getFor($conn, $_SESSION['connecter'][0]);
+    } else {
+        $items = $res->getAll($conn);
+    }
 
 
-include("tete.php");
-?>
+    include("tete.php");
+    ?>
 
     <div class="container-fluid">
         <!-- ============================================================== -->
@@ -45,17 +50,17 @@ include("tete.php");
                                     <th>#</th>
                                     <th>PLAN</th>
                                     <th>NOM</th>
-                                    <th>PRENOM</th>
+                                    <th>DATE</th>
                                     <th>QUANTITE</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach($items as $item){ ?>
+                                <?php foreach ($items as $item) { ?>
                                     <tr>
                                         <td><?php echo($item[0]); ?></td>
-                                        <td><?php echo($item[3]); ?></td>
-                                        <td><?php echo($item[2]); ?></td>
                                         <td><?php echo($item[1]); ?></td>
+                                        <td><?php echo($item[2]); ?></td>
+                                        <td><?php echo($item[3]); ?></td>
                                         <td><?php echo($item[4]); ?></td>
                                     </tr>
                                 <?php } ?>
@@ -70,6 +75,7 @@ include("tete.php");
         <!-- End PAge Content -->
         <!-- ============================================================== -->
     </div>
-<?php
+    <?php
+}
 include("pied.html");
 ?>
