@@ -3,7 +3,8 @@
 		{"name": "scenebuilder-8.4.1-all.jar", "url": "http://download2.gluonhq.com/scenebuilder/8.4.1/scenebuilder-8.4.1-all.jar"},
 		{"name": "jfoenix-8.0.2.jar", "url": "http://repo1.maven.org/maven2/com/jfoenix/jfoenix/8.0.2/jfoenix-8.0.2.jar"},
 		{"name": "itextpdf-5.1.0.jar", "url": "http://central.maven.org/maven2/com/itextpdf/itextpdf/5.1.0/itextpdf-5.1.0.jar"},
-        {"name": "mail-1.4.5.jar", "url": "http://central.maven.org/maven2/javax/mail/mail/1.4.5/mail-1.4.5.jar"}
+        {"name": "mail-1.4.5.jar", "url": "http://central.maven.org/maven2/javax/mail/mail/1.4.5/mail-1.4.5.jar"},
+        {"name": "controlsfx-8.40.14.jar", "url": "http://central.maven.org/maven2/org/controlsfx/controlsfx/8.40.14/controlsfx-8.40.14.jar"}
         
 	]
 }
