@@ -39,6 +39,10 @@ public class SceneHandler {
         openScene(scene.getSceneName());
     }
     
+    public static void openScene(SceneEnum scene, boolean addToStack){
+        openScene(scene.getSceneName(), addToStack);
+    }
+    
     public static void setTitle(SceneEnum scene){
         Label screenTitleLabel = (Label)CurrentSession.getData("screenTitleLabel");
         screenTitleLabel.setText(scene.getSceneTitle());
@@ -59,6 +63,29 @@ public class SceneHandler {
                 primaryStage.setTitle(sceneTitles.get(screenName));
 
                 addToStack(scene, screenName);
+            }
+        } catch (IOException ex) {
+            LogHandler.handleException("SceneHandler", "openScene", ex);
+        }
+    }
+    
+    public static void openScene(String screenName, boolean addToStack) {
+        try {
+            initSceneHandler();
+            if(sceneStack== null || sceneStack.isEmpty() || !getCurrentScreenName().equals(screenName)){
+                Parent root = FXMLLoader.load(SceneHandler.class.getResource(fxmlPaths.get(screenName)));
+
+                Scene scene = new Scene(root);
+                primaryStage.getIcons().add(new Image(LOGO_PATH));
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                primaryStage.setResizable(false);
+                primaryStage.sizeToScene();
+                primaryStage.setTitle(sceneTitles.get(screenName));
+                
+                if(addToStack){
+                    addToStack(scene, screenName);
+                }
             }
         } catch (IOException ex) {
             LogHandler.handleException("SceneHandler", "openScene", ex);
@@ -88,6 +115,12 @@ public class SceneHandler {
             return (Scene) sceneMap.get("scene");
         }
         return null;
+    }
+    
+    public static void clearSceneHistory(){
+        if(sceneStack != null && !sceneStack.isEmpty()){
+            sceneStack.clear();
+        }
     }
     
     private static String getCurrentScreenName(){

@@ -5,12 +5,8 @@
  */
 package tn.esprit.bonplans.Gui.template.Admin;
 
-import com.jfoenix.controls.JFXTextField;
-import java.io.File;
-import java.io.IOException;
+import com.gluonhq.charm.glisten.control.Avatar;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -18,21 +14,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import tn.esprit.bonplans.entity.Categorie;
-import tn.esprit.bonplans.service.ICategorie;
-import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import utils.CurrentSession;
-import utils.FileUploadHandler;
 import utils.SceneEnum;
 import utils.SceneHandler;
 
@@ -54,6 +44,12 @@ public class BonPlanTemplateController extends Application implements Initializa
     private AnchorPane Menu;
     @FXML
     private Label screenTitle;
+    @FXML
+    private Avatar userImage;
+    @FXML
+    private Label username;
+    @FXML
+    private Hyperlink btnLogout;
     
     
     @Override
@@ -72,24 +68,13 @@ public class BonPlanTemplateController extends Application implements Initializa
         primaryStage.show();
         
     }
-    
-    /*
-    @FXML
-    void OuvrirePageCategorie(ActionEvent event) throws IOException {
-        Parent root= FXMLLoader.load(getClass().getResource("../Consulter/Categories.fxml"));
-        Scene Scene= new Scene(root);
-        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(Scene);
-        window.show();
-    }
-    */
 
     public static void main(String[] args) {
         launch(args);
     }    
 
     private void goToCategorie(ActionEvent event) {
-        SceneHandler.openScene(SceneEnum.VALIDER_MODIFIED_PLAN);
+        SceneHandler.openScene(SceneEnum.LISTE_CATEGORIE);
     }
 
     @FXML
@@ -106,5 +91,11 @@ public class BonPlanTemplateController extends Application implements Initializa
     private void openCategorieListScene(MouseEvent event) {
         System.out.println("clicked");
         SceneHandler.openScene(SceneEnum.LISTE_CATEGORIE);
+    }
+
+    @FXML
+    private void logout(MouseEvent event) {
+        SceneHandler.clearSceneHistory();
+        SceneHandler.openScene(SceneEnum.SE_CONNECTER, false);
     }
 }
