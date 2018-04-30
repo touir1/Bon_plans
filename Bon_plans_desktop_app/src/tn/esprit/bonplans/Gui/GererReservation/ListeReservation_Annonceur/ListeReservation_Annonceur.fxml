@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererReservation.ListeReservation_Annonceur.ListeReservation_AnnonceurController">
+    <stylesheets>
+        <URL value="@listereservation_annonceur.css" />
+    </stylesheets>
+    <children>
+        <fx:include fx:id="menubar" source="../../template/Utilisateur/BonPlanTemplate.fxml" />
+      <AnchorPane layoutX="269.0" layoutY="135.0" prefHeight="382.0" prefWidth="897.0" style="-fx-background-color: white;">
+         <children>
+            <ComboBox fx:id="cmbListPlan" layoutX="259.0" layoutY="28.0" onAction="#onclickPlan" prefWidth="150.0" promptText="Liste des plans" />
+            <TableView fx:id="tabReservation" layoutX="259.0" layoutY="74.0" prefHeight="200.0" prefWidth="457.0">
+              <columns>
+                <TableColumn fx:id="Date" prefWidth="109.0" text="Date" />
+                <TableColumn fx:id="Quantite" prefWidth="113.0" text="Quantité " />
+                  <TableColumn fx:id="Client" prefWidth="118.0" text="Client" />
+                  <TableColumn fx:id="BonRes" prefWidth="116.0" text="Bon de réservation" />
+              </columns>
+            </TableView>
+            <JFXButton layoutX="606.0" layoutY="281.0" onAction="#OnclickEnvoyerEmail" prefHeight="31.0" prefWidth="110.0" ripplerFill="#e1e1e1" style="-fx-background-color: #009efb;" text="Envoyer un Email " textFill="#fafafa" />
+            <JFXButton layoutX="259.0" layoutY="281.0" onAction="#onclickValider" prefHeight="31.0" prefWidth="121.0" ripplerFill="#e1e1e1" style="-fx-background-color: #28a745;" text="Valider" textFill="#fafafa" />
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

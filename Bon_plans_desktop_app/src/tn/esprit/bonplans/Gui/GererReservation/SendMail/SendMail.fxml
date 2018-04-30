@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tn.esprit.bonplans.Gui.GererReservation.SendMail.SendMailController">
+    <stylesheets>
+        <URL value="@sendmail.css" />
+    </stylesheets>
+    <children>
+         <fx:include fx:id="menubar" source="../../template/Utilisateur/BonPlanTemplate.fxml" />
+      <AnchorPane layoutX="299.0" layoutY="131.0" prefHeight="380.0" prefWidth="770.0" style="-fx-background-color: white;">
+         <children>
+            <TextArea fx:id="Message" layoutX="157.0" layoutY="90.0" prefHeight="200.0" prefWidth="420.0" promptText="Message" />
+            <TextField fx:id="Sujet" layoutX="157.0" layoutY="37.0" prefHeight="25.0" prefWidth="329.0" promptText="Sujet" />
+            <JFXButton layoutX="157.0" layoutY="310.0" onAction="#onClickEnvoyer" prefHeight="31.0" prefWidth="110.0" ripplerFill="#e1e1e1" style="-fx-background-color: #009efb;" text="Envoyer" textFill="#fafafa" />
+            <Label fx:id="lblMail" layoutX="339.0" layoutY="317.0" prefHeight="17.0" prefWidth="212.0" />
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

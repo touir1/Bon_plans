@@ -186,8 +186,7 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "idUtilisateur=" + idUtilisateur + ", idGroupe=" + idGroupe + ", mdp=" + mdp + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom + ", urlphoto=" + urlphoto + ", ville=" + ville + ", adresse=" + adresse + ", dateCreation=" + dateCreation + ", dateAcces=" + dateAcces + ", isBanned=" + isBanned + ", tempsAcces=" + tempsAcces + ", isActif=" + isActif + ", codeActivation=" + codeActivation + '}';
-    }
+        return nom;}
     
     @Override
     public int hashCode() {

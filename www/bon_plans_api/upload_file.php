@@ -18,11 +18,11 @@ try {
 	}
 	*/
 	// Check if file already exists
-	if (file_exists($target_file)) {
+	/*if (file_exists($target_file)) {
 		echo "Sorry, file already exists.";
 		error_log("Sorry, file already exists.");
 		$uploadOk = 0;
-	}
+	}*/
 	// Check file size
 	if ($_FILES["fileToUpload"]["size"] > 50000000) {
 		echo "Sorry, your file is too large.";

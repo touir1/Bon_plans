@@ -12,25 +12,39 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" maxHeight="577.0" maxWidth="1192.0" minHeight="577.0" minWidth="1192.0" prefHeight="577.0" prefWidth="1192.0" style="-fx-background-color: #f2f7f8;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererReservation.HistoriqueReserv_Client.Historique_ReservClientController">
+<AnchorPane id="AnchorPane" maxHeight="637.0" maxWidth="1192.0" minHeight="577.0" minWidth="1192.0" prefHeight="577.0" prefWidth="1192.0" style="-fx-background-color: #f2f7f8;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererReservation.HistoriqueReserv_Client.Historique_ReservClientController">
    <stylesheets>
       <URL value="@../testreservation.css" />
    </stylesheets>
    <children>
       <AnchorPane layoutX="289.0" layoutY="166.0" prefHeight="362.0" prefWidth="869.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TableView fx:id="TabReservClient" layoutX="87.0" layoutY="60.0" prefHeight="253.0" prefWidth="695.0">
+            <TableView fx:id="TabReservHistory_Client" layoutX="22.0" layoutY="249.0" prefHeight="107.0" prefWidth="736.0">
               <columns>
-                <TableColumn fx:id="DateCol" text="Date" />
-                  <TableColumn fx:id="Plan" prefWidth="76.0" text="Plan" />
-                  <TableColumn fx:id="DateFin" prefWidth="109.0" text="Date fin promo" />
-                  <TableColumn fx:id="Catégorie" prefWidth="120.0" text="Catégorie" />
+                <TableColumn fx:id="DateCol" prefWidth="112.0" text="Date" />
+                  <TableColumn fx:id="Plan" prefWidth="109.0" text="Plan" />
+                  <TableColumn fx:id="DateFin" prefWidth="117.0" text="Date fin promo" />
+                  <TableColumn fx:id="Catégorie" prefWidth="116.0" text="Catégorie" />
                   <TableColumn fx:id="Annanceur" prefWidth="125.0" text="Annonceur" />
-                <TableColumn fx:id="colBon" prefWidth="184.0" text="Bon de Reservation" />
+                <TableColumn fx:id="colBon" prefWidth="155.0" text="Bon de Reservation" />
               </columns>
             </TableView>
-            <JFXButton buttonType="RAISED" layoutX="676.0" layoutY="330.0" onAction="#OnclickAnnuler" prefHeight="32.0" prefWidth="145.0" style="-fx-background-color: red;" text="Annuler réservation" />
-            <JFXTextField fx:id="Mots" layoutX="650.0" layoutY="14.0" promptText="Rechercher" />
+            <JFXButton buttonType="RAISED" layoutX="598.0" layoutY="181.0" onAction="#OnclickAnnuler" prefHeight="32.0" prefWidth="136.0" style="-fx-background-color: red;" text="Annuler réservation" />
+            <JFXTextField fx:id="Mots" layoutX="578.0" layoutY="212.0" promptText="Rechercher" />
+            <TableView fx:id="TabReservEnCours_Client" layoutX="22.0" layoutY="69.0" prefHeight="107.0" prefWidth="727.0">
+               <columns>
+                  <TableColumn fx:id="DateCol1" prefWidth="129.0" text="Date" />
+                  <TableColumn fx:id="Plan1" prefWidth="109.0" text="Plan" />
+                  <TableColumn fx:id="DateFin1" prefWidth="121.0" text="Date fin promo" />
+                  <TableColumn fx:id="Catégorie1" prefWidth="116.0" text="Catégorie" />
+                  <TableColumn fx:id="Annanceur1" prefWidth="106.0" text="Annonceur" />
+                  <TableColumn fx:id="colBon1" prefWidth="143.0" text="Bon de Reservation" />
+               </columns>
+            </TableView>
+            <JFXTextField fx:id="Mots1" layoutX="590.0" layoutY="26.0" promptText="Rechercher" />
+            <Label layoutX="14.0" layoutY="28.0" prefHeight="23.0" prefWidth="159.0" style="-fx-font-family: Arial; -fx-font-size: 15;" text="Réservation en cours " textFill="#009efb" />
+            <Label layoutX="14.0" layoutY="214.0" prefHeight="23.0" prefWidth="159.0" style="-fx-font-family: Arial; -fx-font-size: 15;" text="Historique" textFill="#009efb" />
+            <Label fx:id="lblError" layoutX="14.0" layoutY="186.0" prefHeight="23.0" prefWidth="159.0" style="-fx-font-family: Arial; -fx-font-size: 12;" textFill="#b20e0e" />
          </children>
       </AnchorPane>
       <AnchorPane focusTraversable="true" layoutX="258.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.76" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #5c8fc7;">

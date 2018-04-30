@@ -36,6 +36,8 @@ import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.service.ICategorie;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import utils.FileUploadHandler;
+import utils.SceneEnum;
+import utils.SceneHandler;
 
 /**
  * FXML Controller class
@@ -74,11 +76,12 @@ public class ModifierCategorieController extends Application implements Initiali
         lstfile.add("*.jpeg");
         lstfile.add("*.jpg");
         ///////////////
+        SceneHandler.setTitle(SceneEnum.MODIFIER_CATEGORIE);
     
     }    
 
       @FXML
-    void onClickModifier(ActionEvent event) {
+    void onClickModifier(ActionEvent event) throws IOException {
          if ((f!=null)&&(txtCategorie.getText().length()!=0)) {
             LblError.setText("");
            //List<Categorie> lc=new ArrayList<Categorie>() ;
@@ -98,6 +101,13 @@ public class ModifierCategorieController extends Application implements Initiali
                 c = ic.update(c);
                 System.out.println("Upload success");
                 System.out.println(c);
+//                 SceneHandler.setTitle(SceneEnum.LISTE_CATEGORIE);
+//                 SceneHandler.openScene(SceneEnum.LISTE_CATEGORIE);
+                Parent root= FXMLLoader.load(getClass().getResource("../Consulter/Categories.fxml"));
+                Scene Scene= new Scene(root);
+                Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+                window.setScene(Scene);
+                window.show();
             }
             else{
                 System.out.println("Upload echoué");
@@ -131,13 +141,9 @@ public class ModifierCategorieController extends Application implements Initiali
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-      Parent root= FXMLLoader.load(getClass().getResource("ModifierCategorie.fxml"));
-           
-            Scene Scene= new Scene(root);
-            primaryStage.setScene(Scene);
-            primaryStage.show();
-            
-            
+        
+        SceneHandler.initPrimaryStage(primaryStage);
+        SceneHandler.openScene(SceneEnum.MODIFIER_CATEGORIE);
     }
      @FXML
     void OuvrirePageCategorie(ActionEvent event) throws IOException {

@@ -24,9 +24,10 @@ public class Hist_reserv_Client {
     private Date DateFinPromo;
     private int IdReservation;
     private int IdPlan;
+    private int Statut;
     
 
-    public Hist_reserv_Client(Date Date, String Plan, String Catégorie, String Annanceur,Hyperlink UrlBon,Date DateFinPromo,int IdReservation,int IdPlan) {
+    public Hist_reserv_Client(Date Date, String Plan, String Catégorie, String Annanceur,Hyperlink UrlBon,Date DateFinPromo,int IdReservation,int IdPlan,int Statut) {
         this.Date = Date;
         this.Plan = Plan;
         this.Catégorie = Catégorie;
@@ -35,6 +36,7 @@ public class Hist_reserv_Client {
         this.DateFinPromo=DateFinPromo;
         this.IdPlan=IdPlan;
         this.IdReservation=IdReservation;
+        this.Statut=Statut;
     }
 
     public Date getDateFinPromo() {
@@ -67,6 +69,14 @@ public class Hist_reserv_Client {
 
     public void setAnnanceur(String Annanceur) {
         this.Annanceur = Annanceur;
+    }
+
+    public int getStatut() {
+        return Statut;
+    }
+
+    public void setStatut(int Statut) {
+        this.Statut = Statut;
     }
 
   

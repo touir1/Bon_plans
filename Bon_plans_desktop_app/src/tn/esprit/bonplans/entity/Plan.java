@@ -170,7 +170,7 @@ public class Plan {
 
     @Override
     public String toString() {
-        return "Plan{" + "idPlan=" + idPlan + ", titre=" + titre + ", description=" + description + ", urlPhoto=" + urlPhoto + ", prixInitial=" + prixInitial + ", prixPromo=" + prixPromo + ", nbPlaceTotal=" + nbPlaceTotal + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", nbPlaceDispo=" + nbPlaceDispo + ", statut=" + statut + ", idAnnonceur=" + idAnnonceur + ", idCategorie=" + idCategorie + '}';
+        return titre;
     }
     
     @Override

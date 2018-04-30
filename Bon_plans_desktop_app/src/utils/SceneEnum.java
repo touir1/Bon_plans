@@ -46,7 +46,15 @@ public enum SceneEnum {
     RESERVATION(
             "Reservation",
             "../tn/esprit/bonplans/Gui/GererReservation/TestReservation.fxml",
-            "Réservation")
+            "Réservation"),
+     HistoriqueRESERVATIONClient(
+            "HistoriqueReservationClient",
+            "../tn/esprit/bonplans/Gui/GererReservation/HistoriqueReserv_Client/Historique_ReservClient.fxml",
+            "Historique Réservation"),
+     HistoriqueRESERVATIONAnnonceur(
+            "HistoriqueReservationAnnonceur",
+            "../tn/esprit/bonplans/Gui/GererReservation/ListeReservation_Annonceur/ListeReservation_Annonceur.fxml",
+            "Historiques des Réservations")
     
     ;
     
