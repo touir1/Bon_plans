@@ -9,6 +9,7 @@ import artan.entities.Plan;
 import artan.entities.Statistique;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -17,30 +18,33 @@ import java.util.HashMap;
  */
 public interface IStatistique {
     
-    public Statistique meilleurVenteParCategorie();
-    public Statistique meilleurVenteParPersonne();
+    public ArrayList<Statistique> meilleursVentesDuMois(int mois);
+    public ArrayList<Statistique> meilleursVentesDuJours(Date jour);
+    public ArrayList<Statistique> meilleurVenteParCategorie(int idCategorie);// fait
+    public ArrayList<Statistique> pireVenteParCategorie(int idCategorie);// fait
+    public ArrayList<Statistique> meilleurVenteParPersonne(int idPersonne);// fait
     
-    public ArrayList<Statistique> meilleurDixVentes();
-    public ArrayList<Statistique> pireDixVentes();
+    public ArrayList<Statistique> meilleurDixVentes();// fait
+    public ArrayList<Statistique> pireDixVentes();// fait
     
-    public ArrayList<Statistique> meilleurDixVentesParCategorie();
-    public ArrayList<Statistique> pireDixVentesParCategorie();
+    public HashMap<Integer, ArrayList<Statistique>> meilleurDixVentesParCategorie();// fait
+    public HashMap<Integer, ArrayList<Statistique>> pireDixVentesParCategorie();//fait
     
     public ArrayList<Statistique> meilleurDixVentesParPersonne();
     public ArrayList<Statistique> pireDixVentesParPersonne();
     
-    public Plan planlePlusCommenter();
-    public Plan planLeMoinsCommenter();
+    public Plan planlePlusCommenter();// fait
+    public Plan planLeMoinsCommenter();// fait
     
-    public Plan planlePlusAimer();
-    public Plan planlePlusDetester();
+    public Plan planLePlusAimer();// fait
+    public Plan planLePlusDetester();// fait
     
-    public int nombreDesJaimes(Plan plan);
-    public int nombresDesAbominer(Plan plan);
+    public int nombreDesJaimes(Plan plan);// fait
+    public int nombresDesAbominer(Plan plan);// fait
     
     public int nombreDesPlansPourJour(LocalDate date);
     public int nombreDesPlansParMois(int mois);
     
-    public double moyenneDesPlansParJourParMois(int mois);
+    public double moyenneDesPlansParJour(int mois);
     
 }
