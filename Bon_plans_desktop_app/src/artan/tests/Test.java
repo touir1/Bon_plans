@@ -9,7 +9,9 @@ import artan.entities.Plan;
 import artan.entities.Statistique;
 import artan.services.PlanServices;
 import artan.services.StatistiqueServices;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,6 +28,7 @@ public class Test {
         Plan plan = new Plan(15, "test", "java", "url photo", 15.00, 12.00, 100, java.sql.Date.valueOf(date),java.sql.Date.valueOf(date), 100, 0, 33, 11);
         PlanServices planservices = new PlanServices();
         StatistiqueServices ss = new StatistiqueServices();
+        LocalDate date1 = LocalDate.of(2018, 4, 24);
         
         //planservices.ajouterPlan(plan);
         //planservices.supprimerPlan(19);
@@ -45,11 +48,23 @@ public class Test {
         //System.out.println(ss.planLeMoinsCommenter());
         //System.out.println(ss.meilleurVenteParCategorie(11));
         //System.out.println(ss.meilleurVenteParPersonne(34));
-        HashMap<Integer, ArrayList<Statistique>> hm = ss.pireDixVentesParCategorie();
+        /*
+        HashMap<Integer, ArrayList<Statistique>> hm = ss.pireDixVentesParPersonne();
         for(Map.Entry<Integer, ArrayList<Statistique>> item : hm.entrySet()){
+            System.out.println("****************************");
             System.out.println(item.getKey() + ":");
             System.out.println(item.getValue());
-            System.out.println("****************************");
         }
+        */
+        
+        //System.out.println(ss.nombreDesPlansPourJour(date1));
+        //System.out.println(ss.nombreDesPlansParMois(4));
+        
+        //System.out.println(ss.meilleursVentesDuJours(date1));
+        //System.out.println(ss.meilleursVentesDuMois(4));
+        /*
+        DecimalFormat df = new DecimalFormat("#.###");
+        System.out.println(df.format(ss.moyenneDesPlansParJour(4)));
+        */
     }
 }

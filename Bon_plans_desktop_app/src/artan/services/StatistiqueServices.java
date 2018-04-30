@@ -17,10 +17,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 import tn.esprit.bonplans.entity.Categorie;
+import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.ICategorie;
+import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
+import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 
 /**
  *
@@ -36,12 +38,50 @@ public class StatistiqueServices implements IStatistique {
 
     @Override
     public ArrayList<Statistique> meilleursVentesDuMois(int mois) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //SELECT reservation.idPlan, COUNT(*)FROM reservation WHERE reservation.date BETWEEN "2018-04-1" AND "2018-04-31" GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10
+        ArrayList<Statistique> statistiques = new ArrayList<>();
+        String requete = "SELECT reservation.idPlan, COUNT(*) nb FROM reservation WHERE reservation.date BETWEEN \"2018-" + mois + "-1\" AND \"2018-" + mois + "-31\" GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10";        
+        
+        try {
+            Statement statement=connection.createStatement();
+            
+            ResultSet resultSet =statement.executeQuery(requete);
+            
+            while(resultSet.next()){
+                statistiques.add(new Statistique(resultSet.getInt("idPlan"), resultSet.getInt("nb")));
+            }
+            
+            System.out.println("Requete select effectuée");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return statistiques;
     }
 
     @Override
-    public ArrayList<Statistique> meilleursVentesDuJours(Date jour) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Statistique> meilleursVentesDuJours(LocalDate jour) {
+        //SELECT reservation.idPlan, COUNT(*)FROM reservation GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10
+        ArrayList<Statistique> statistiques = new ArrayList<>();
+        String requete = "SELECT reservation.idPlan, COUNT(*) nb FROM reservation WHERE reservation.date = \"" + jour + "\" GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10";        
+        
+        try {
+            Statement statement=connection.createStatement();
+            
+            ResultSet resultSet =statement.executeQuery(requete);
+            
+            while(resultSet.next()){
+                statistiques.add(new Statistique(resultSet.getInt("idPlan"), resultSet.getInt("nb")));
+            }
+            
+            System.out.println("Requete select effectuée");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return statistiques;
     }
 
     @Override
@@ -96,6 +136,30 @@ public class StatistiqueServices implements IStatistique {
         //SELECT plan_reservation.idPlan, nb FROM `plan_reservation`, plan WHERE plan_reservation.idPlan=plan.idPlan AND plan.idAnnonceur = 34 ORDER BY nb DESC LIMIT 10
         ArrayList<Statistique> statistiques = new ArrayList<>();
         String requete = "SELECT plan_reservation.idPlan, nb FROM `plan_reservation`, plan WHERE plan_reservation.idPlan=plan.idPlan AND plan.idAnnonceur = " + idPersonne + " ORDER BY nb DESC LIMIT 10";        
+        
+        try {
+            Statement statement=connection.createStatement();
+            
+            ResultSet resultSet =statement.executeQuery(requete);
+            
+            while(resultSet.next()){
+                statistiques.add(new Statistique(resultSet.getInt("idPlan"), resultSet.getInt("nb")));
+            }
+            
+            System.out.println("Requete select effectuée");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return statistiques;
+    }
+    
+    @Override
+    public ArrayList<Statistique> pireVenteParPersonne(int idPersonne) {
+        //SELECT plan_reservation.idPlan, nb FROM `plan_reservation`, plan WHERE plan_reservation.idPlan=plan.idPlan AND plan.idAnnonceur = 34 ORDER BY nb DESC LIMIT 10
+        ArrayList<Statistique> statistiques = new ArrayList<>();
+        String requete = "SELECT plan_reservation.idPlan, nb FROM `plan_reservation`, plan WHERE plan_reservation.idPlan=plan.idPlan AND plan.idAnnonceur = " + idPersonne + " ORDER BY nb ASC LIMIT 10";        
         
         try {
             Statement statement=connection.createStatement();
@@ -192,13 +256,31 @@ public class StatistiqueServices implements IStatistique {
     }
 
     @Override
-    public ArrayList<Statistique> meilleurDixVentesParPersonne() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public HashMap<Integer, ArrayList<Statistique>> meilleurDixVentesParPersonne() {
+        StatistiqueServices ss = new StatistiqueServices();
+        HashMap<Integer, ArrayList<Statistique>> map = new HashMap<>();
+        IUtilisateur iu = new UtilisateurImpl();
+        ArrayList<Utilisateur> users = (ArrayList<Utilisateur>) iu.selectAll();
+        
+        for(Utilisateur u : users){
+            map.put(u.getIdUtilisateur(), ss.meilleurVenteParPersonne(u.getIdUtilisateur()));
+        }
+        
+        return map;
     }
 
     @Override
-    public ArrayList<Statistique> pireDixVentesParPersonne() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public HashMap<Integer, ArrayList<Statistique>> pireDixVentesParPersonne() {
+       StatistiqueServices ss = new StatistiqueServices();
+        HashMap<Integer, ArrayList<Statistique>> map = new HashMap<>();
+        IUtilisateur iu = new UtilisateurImpl();
+        ArrayList<Utilisateur> users = (ArrayList<Utilisateur>) iu.selectAll();
+        
+        for(Utilisateur u : users){
+            map.put(u.getIdUtilisateur(), ss.pireVenteParPersonne(u.getIdUtilisateur()));
+        }
+        
+        return map;
     }
 
     @Override
@@ -341,16 +423,69 @@ public class StatistiqueServices implements IStatistique {
 
     @Override
     public int nombreDesPlansPourJour(LocalDate date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //SELECT COUNT(*) FROM plan WHERE plan.dateDebut = "2018-04-24"
+        String requete = "SELECT COUNT(*) FROM plan WHERE plan.dateDebut = \"" + date + "\"";    
+        
+        try {
+            Statement statement=connection.createStatement();
+            
+            ResultSet resultSet =statement.executeQuery(requete);
+            
+            resultSet.next();
+            
+            System.out.println("Requete select effectuée");
+            
+            return resultSet.getInt(1);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return 0;
     }
 
     @Override
     public int nombreDesPlansParMois(int mois) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //SELECT COUNT(*) FROM plan WHERE plan.dateDebut BETWEEN "2018-04-01" AND "2018-04-31"
+        String requete = "SELECT COUNT(*) FROM plan WHERE plan.dateDebut BETWEEN \"2018-" + mois + "-01\" AND \"2018-" + mois + "-31\"";    
+        
+        try {
+            Statement statement=connection.createStatement();
+            
+            ResultSet resultSet =statement.executeQuery(requete);
+            
+            resultSet.next();
+            
+            System.out.println("Requete select effectuée");
+            
+            return resultSet.getInt(1);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return 0;
     }
 
     @Override
     public double moyenneDesPlansParJour(int mois) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //SELECT COUNT(*) FROM plan WHERE plan.dateDebut BETWEEN "2018-04-01" AND "2018-04-31"
+        String requete = "SELECT COUNT(*) nb FROM plan WHERE plan.dateDebut BETWEEN \"2018-" + mois + "-01\" AND \"2018-" + mois + "-31\"";    
+        int nbPlans = 0;
+        
+        try {
+            Statement statement=connection.createStatement();
+            
+            ResultSet resultSet =statement.executeQuery(requete);
+            
+            resultSet.next();
+            
+            System.out.println("Requete select effectuée");
+            
+            nbPlans = resultSet.getInt(1);
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return (double) nbPlans/(double) 31;
     }
 }
