@@ -96,7 +96,7 @@ public class ValiderModifiedPlanController extends Application implements Initia
         //init data
         initListPlan();
         //init template title
-        SceneHandler.setTitle(SceneEnum.VALIDER_MODIFIED_PLAN);
+        SceneHandler.initTemplate(SceneEnum.VALIDER_MODIFIED_PLAN);
     }
 
     @Override

@@ -43,6 +43,14 @@ public class SceneHandler {
         openScene(scene.getSceneName(), addToStack);
     }
     
+    public static void initTemplate(SceneEnum scene){
+        setTitle(scene);
+        Integer notificationCount = (Integer) CurrentSession.getData("notificationCount");               
+        Label notificationCountLabel = (Label) CurrentSession.getData("notificationCountLabel");
+        
+        notificationCountLabel.setText("\n"+notificationCount);
+    }
+    
     public static void setTitle(SceneEnum scene){
         Label screenTitleLabel = (Label)CurrentSession.getData("screenTitleLabel");
         screenTitleLabel.setText(scene.getSceneTitle());

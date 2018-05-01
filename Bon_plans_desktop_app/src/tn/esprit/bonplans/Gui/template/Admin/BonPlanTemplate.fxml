@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.gluonhq.charm.glisten.control.Avatar?>
-<?import java.net.URL?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="577.0" prefWidth="875.0" style="-fx-background-color: #f2f7f8;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.template.Admin.BonPlanTemplateController">
-   <stylesheets>
+   <!--<stylesheets>
         <URL value="@bonplantemplate.css" />
-    </stylesheets>
+    </stylesheets>-->
     <children>
       <AnchorPane fx:id="Menu" prefHeight="577.0" prefWidth="252.0" style="-fx-background-color: white;">
          <children>
@@ -69,6 +68,12 @@
          <children>
             <Avatar fx:id="userImage" layoutX="20.0" layoutY="6.0" />
             <Label fx:id="username" layoutX="88.0" layoutY="15.0" text="Label" />
+            <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="134.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@notification.png" />
+               </image>
+            </ImageView>
+            <Label id="notificationNumber" fx:id="btnNotification" layoutX="144.0" layoutY="7.0" onMouseClicked="#showNotifications" prefHeight="36.0" prefWidth="36.0" style="-fx-font-family: Arial; -fx-font-size: 10;" text="&#10;0" textFill="white" />
          </children>
       </AnchorPane>
       

@@ -5,8 +5,10 @@
  */
 package com.esprit.bonplans.Gui.main;
 
+import java.util.Timer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import utils.CurrentSession;
 import utils.SceneEnum;
 import utils.SceneHandler;
 
@@ -24,6 +26,16 @@ public class MainGuiClass extends Application {
     
     public static void main(String[] args) {
         Application.launch(args);
+    }
+    
+    @Override
+    public void stop(){
+        Timer timer = (Timer) CurrentSession.getData("notificationTimer");
+        if(timer!= null){
+            timer.cancel();
+        }
+        System.out.println("Stage is closing");
+        // Save file
     }
     
 }

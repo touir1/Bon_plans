@@ -93,7 +93,7 @@ public class ValiderNewPlanController extends Application implements Initializab
         //init data
         initListPlan();
         //init template title
-        SceneHandler.setTitle(SceneEnum.VALIDER_NEW_PLAN);
+        SceneHandler.initTemplate(SceneEnum.VALIDER_NEW_PLAN);
     }
 
     @Override

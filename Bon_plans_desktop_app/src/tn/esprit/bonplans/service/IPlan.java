@@ -17,7 +17,11 @@ import utils.service.ServiceResponse;
 public interface IPlan  extends GenericServiceInterface<Plan>{
     
     public List<Plan> getListOfNonValidatedPlans(ServiceResponse serviceResponse);
+    public List<Plan> getListOfNonValidatedPlans();
+    public int getCountOfNonValidatedPlans();
     public List<Plan> getListOfModifiedPlans(ServiceResponse serviceResponse);
+    public List<Plan> getListOfModifiedPlans();
+    public int getCountOfModifiedPlans();
     public void validerPlan(Plan plan, ServiceResponse serviceResponse);
     public void refuserPlan(Plan plan, ServiceResponse serviceResponse);
 }

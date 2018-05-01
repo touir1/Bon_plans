@@ -27,7 +27,7 @@ public class testing {
         IUtilisateur utilisateurService = new UtilisateurImpl();
         IGroupe groupeService = new GroupeImpl();
         
-        
+        /*
         Groupe groupe = new Groupe();
         groupe.setDescription("ADMIN");
         
@@ -40,12 +40,12 @@ public class testing {
         groupe.setDescription("CLIENT");
         
         groupeService.save(groupe);
+        */
         
-        
-        
-        Groupe clientGroup = groupeService.findOne("DESCRIPTION", "CLIENT").get(0);
-        Groupe adminGroup = groupeService.findOne("DESCRIPTION", "ADMIN").get(0);
-        Groupe superAdminGroup = groupeService.findOne("DESCRIPTION", "SUPER ADMIN").get(0);
+        /*
+        Groupe clientGroup = groupeService.findOne("DESCRIPTION", "Client").get(0);
+        Groupe adminGroup = groupeService.findOne("DESCRIPTION", "Administrateur").get(0);
+        Groupe superAdminGroup = groupeService.findOne("DESCRIPTION", "Super Administrateur").get(0);
         
         
         Utilisateur utilisateur = new Utilisateur();
@@ -59,7 +59,7 @@ public class testing {
         utilisateur.setMdp("12345678");
         utilisateur.setVille("Rades");
         
-        utilisateurService.save(utilisateur);
+        utilisateur = utilisateurService.save(utilisateur);
         
         utilisateur.setNom("Touir");
         utilisateur.setPrenom("Eya");
@@ -82,13 +82,13 @@ public class testing {
         utilisateur.setVille("inconnu");
         
         utilisateurService.save(utilisateur);
-        
+        */
                 
         Plan plan = new Plan();
         plan.setDateDebut(Converter.convertStringToDate("01/01/2018", "dd/MM/yyyy"));
         plan.setDateFin(Converter.convertStringToDate("01/01/2019", "dd/MM/yyyy"));
         plan.setDescription("testing new plan");
-        plan.setStatut(EnumValidation.EnAttentedeValidation.getValue());
+        plan.setStatut(EnumValidation.modifiee.getValue());
         plan.setPrixInitial(0.0d);
         plan.setPrixPromo(0.0d);
         plan.setIdAnnonceur(12);

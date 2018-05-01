@@ -23,7 +23,7 @@ public class CurrentSession {
     
     private static boolean initCurrentSession(){
         if(dataMap == null){
-            dataMap = new HashMap<String, Object>();
+            dataMap = new HashMap<>();
             File file = new File(".");
             projectPath = file.getAbsolutePath();
         }
@@ -60,5 +60,11 @@ public class CurrentSession {
         }
         
         return null;
+    }
+    
+    public static void clearData(){
+        if(initCurrentSession()){
+            dataMap.clear();
+        }
     }
 }
