@@ -19,6 +19,11 @@ public enum SceneEnum {
             "ValiderModifiedPlan", 
             "../tn/esprit/bonplans/Gui/GererAnnonce/administration/validerModifiedPlan/ValiderModifiedPlan.fxml", 
             "Validation plans modifiés"),
+    VALIDER_PLAN_MENU(
+            "ValiderPlanMenu", 
+            "../tn/esprit/bonplans/Gui/GererAnnonce/administration/validationPlanMenu/ValiderPlanMenu.fxml", 
+            "Validation plans"
+            ),
     SE_CONNECTER(
             "SeConnecter",
             "../tn/esprit/bonplans/Gui/GererUtilisateur/SeConnecter.fxml",

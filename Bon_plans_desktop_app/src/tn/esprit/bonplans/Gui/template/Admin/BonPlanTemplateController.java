@@ -233,7 +233,7 @@ public class BonPlanTemplateController extends Application implements Initializa
 
     @FXML
     private void openValidationScreensMenu(MouseEvent event) {
-        
+        SceneHandler.openScene(SceneEnum.VALIDER_PLAN_MENU);
     }
 
     @FXML
