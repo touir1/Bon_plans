@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  lun. 23 avr. 2018 à 20:13
--- Version du serveur :  10.1.30-MariaDB
--- Version de PHP :  7.2.1
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  Dim 06 mai 2018 à 21:41
+-- Version du serveur :  5.7.19
+-- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -24,22 +24,20 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
--- --------------------------------------------------------
-
 --
 -- Structure de la table `avis`
 --
---
 
-CREATE TABLE `avis` (
+DROP TABLE IF EXISTS `avis`;
+CREATE TABLE IF NOT EXISTS `avis` (
   `idAvis` int(11) NOT NULL AUTO_INCREMENT,
   `idPlan` int(11) NOT NULL,
   `idUtilisateur` int(11) NOT NULL,
   `avis` int(11) NOT NULL DEFAULT '0',
   `note` int(11) DEFAULT '0',
-   PRIMARY KEY (`idAvis`),
-   KEY `fk_avis_plan` (`idPlan`),
-   KEY `fk_avis_utilisateur` (`idUtilisateur`)
+  PRIMARY KEY (`idAvis`),
+  KEY `fk_avis_plan` (`idPlan`),
+  KEY `fk_avis_utilisateur` (`idUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -54,11 +52,14 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `titre` varchar(30) COLLATE utf8_bin NOT NULL,
   `urlPhoto` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `categorie`
 --
+
+INSERT INTO `categorie` (`idCategorie`, `titre`, `urlPhoto`) VALUES
+(9, 'testing', NULL);
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `groupe` (
   `idGroupe` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`idGroupe`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `groupe`
@@ -101,6 +102,21 @@ INSERT INTO `groupe` (`idGroupe`, `description`) VALUES
 (1, 'Client'),
 (2, 'Administrateur'),
 (3, 'Super Administrateur');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE IF NOT EXISTS `notification` (
+  `idNotification` int(11) NOT NULL AUTO_INCREMENT,
+  `seen` tinyint(1) NOT NULL DEFAULT '0',
+  `message` varchar(255) COLLATE utf8_bin NOT NULL,
+  `idPlan` int(11) NOT NULL,
+  PRIMARY KEY (`idNotification`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -126,7 +142,35 @@ CREATE TABLE IF NOT EXISTS `plan` (
   PRIMARY KEY (`idPlan`),
   KEY `fk_plan_client` (`idAnnonceur`),
   KEY `fk_plan_categorie` (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `plan`
+--
+
+INSERT INTO `plan` (`idPlan`, `titre`, `description`, `urlPhoto`, `prixInitial`, `prixPromo`, `nbPlaceTotal`, `dateDebut`, `dateFin`, `nbPlaceDispo`, `statut`, `idAnnonceur`, `idCategorie`) VALUES
+(5, 'test plan', 'testing new plan', NULL, 0, 0, 0, '2018-01-01', '2019-01-01', 0, 0, 12, 9),
+(6, 'test plan', 'testing new plan', NULL, 0, 0, 0, '2018-01-01', '2019-01-01', 0, 2, 12, 9);
+
+--
+-- Déclencheurs `plan`
+--
+DROP TRIGGER IF EXISTS `tr_notification_valid_plan`;
+DELIMITER $$
+CREATE TRIGGER `tr_notification_valid_plan` AFTER UPDATE ON `plan` FOR EACH ROW BEGIN
+	IF NEW.statut <> OLD.statut 
+    AND NEW.statut = 1 
+    THEN
+        INSERT INTO notification(idPlan, message) VALUES(NEW.idPlan, 'Votre plan a été validé');
+    END IF;
+   	IF NEW.statut <> OLD.statut 
+    AND NEW.statut = -1 
+    THEN
+		INSERT INTO notification(idPlan, message) VALUES(NEW.idPlan, 'Votre plan a été refusé');
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -146,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   PRIMARY KEY (`idReservation`),
   KEY `fk_reservation_client` (`idClient`),
   KEY `fk_reservation_plan` (`idPlan`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -174,7 +218,16 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   PRIMARY KEY (`idUtilisateur`),
   UNIQUE KEY `uq_utilisateur_email` (`email`) USING BTREE,
   KEY `fk_utilisateur_groupe` (`idGroupe`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `idGroupe`, `mdp`, `email`, `nom`, `prenom`, `urlphoto`, `ville`, `adresse`, `dateCreation`, `dateAcces`, `tempsAcces`, `isBanned`, `isActif`, `codeActivation`) VALUES
+(11, 2, '12345678', 'touir.mat@gmail.com', 'Touir', 'Mohamed Ali', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
+(12, 1, '12345678', 'eya.touir@gmail.com', 'Touir', 'Eya', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
+(13, 3, '12345678', 'admin.admin@gmail.com', 'Super', 'Admin', NULL, 'inconnu', 'inconnu', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0);
 
 --
 -- Contraintes pour les tables déchargées
@@ -193,7 +246,6 @@ ALTER TABLE `avis`
 ALTER TABLE `commentaire`
   ADD CONSTRAINT `fk_commentaire_client` FOREIGN KEY (`idClient`) REFERENCES `utilisateur` (`idUtilisateur`),
   ADD CONSTRAINT `fk_commentaire_plan` FOREIGN KEY (`idPlan`) REFERENCES `plan` (`idPlan`);
-
 
 --
 -- Contraintes pour la table `plan`
