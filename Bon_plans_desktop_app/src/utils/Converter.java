@@ -65,7 +65,13 @@ public class Converter {
             
             for(Field field : resultClass.getDeclaredFields()){
                 Method method = methodMap.get("set"+field.getName().substring(0,1).toUpperCase()+field.getName().substring(1));
-                method.invoke(result, map.get(field.getName().toUpperCase()));
+                Object obj = map.get(field.getName().toUpperCase());
+                if(obj instanceof Integer && (field.getType()== boolean.class || field.getType() == Boolean.class)){
+                    method.invoke(result, ((Integer)map.get(field.getName().toUpperCase()))>0);
+                }
+                else{
+                    method.invoke(result, map.get(field.getName().toUpperCase()));
+                }
             }
             
         } catch (Exception e) {
@@ -95,7 +101,17 @@ public class Converter {
 
             for(Field field : entity.getClass().getDeclaredFields()){
                 Method method = methodMap.get("get"+field.getName().substring(0,1).toUpperCase()+field.getName().substring(1));
-                result.put(field.getName(), method.invoke(entity, null));
+                Object obj = method.invoke(entity, null);
+                boolean isBooleanSet = false;
+                if(field.getType() == boolean.class || field.getType() == Boolean.class){
+                    if(obj instanceof Integer){
+                        result.put(field.getName(), ((Integer)obj)>0);
+                        isBooleanSet = true;
+                    }
+                }
+                if(!isBooleanSet){
+                    result.put(field.getName(), obj);
+                }
             }
         } catch (Exception ex) {
             LogHandler.handleException(Converter.class.getName(), "convertEntityToMap", ex);

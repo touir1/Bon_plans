@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
@@ -35,7 +37,9 @@ import netscape.javascript.JSObject;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.PopOver;
 import tn.esprit.bonplans.service.IPlan;
+import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
+import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 import utils.CurrentSession;
 import utils.FileHandler;
 import utils.SceneEnum;
@@ -61,6 +65,7 @@ public class BonPlanTemplateController extends Application implements Initializa
             lastModifiedPlansCount;
     
     private IPlan planService;
+    private IUtilisateur utilisateurService;
     
     /**
      * Initializes the controller class.
@@ -82,6 +87,7 @@ public class BonPlanTemplateController extends Application implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         planService = new PlanImpl();
+        utilisateurService = new UtilisateurImpl();
         mainThread = Thread.currentThread();
         
         CurrentSession.addData("screenTitleLabel", screenTitle);

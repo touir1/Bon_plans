@@ -25,7 +25,7 @@
             <Hyperlink layoutX="69.0" layoutY="214.0" style="-fx-font-size: 15;" text="Menu 2" textFill="#797676" />
             <Hyperlink layoutX="69.0" layoutY="266.0" onMouseClicked="#openCategorieListScene" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />
             <!--<Hyperlink layoutX="69.0" layoutY="266.0" onAction="#OuvrirePageCategorie" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />-->
-            <Hyperlink layoutX="69.0" layoutY="320.0" style="-fx-font-size: 15;" text="Menu 4" textFill="#797676" />
+            <Hyperlink fx:id="btnNotifications" layoutX="69.0" layoutY="320.0" onAction="#openNotifications" style="-fx-font-size: 15;" text="Notifications" textFill="#797676" />
             <Hyperlink layoutX="69.0" layoutY="368.0" style="-fx-font-size: 15;" text="Menu 5" textFill="#797676" />
             <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="35.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -57,20 +57,22 @@
                   <Image url="@Logout.PNG" />
                </image>
             </ImageView>
-            <Hyperlink layoutX="69.0" layoutY="418.0" onMouseClicked="#openValidationScreensMenu" style="-fx-font-size: 15;" text="Validation plans" textFill="#797676" />
-            <ImageView fitHeight="32.0" fitWidth="21.0" layoutX="35.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Logout.PNG" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane focusTraversable="true" layoutX="251.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.76" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #5c8fc7;">
          <children>
             <Avatar fx:id="userImage" layoutX="20.0" layoutY="6.0" />
             <Label fx:id="username" layoutX="88.0" layoutY="15.0" text="Label" />
+            <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="134.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@notification.png" />
+               </image>
+            </ImageView>
+            <Label id="notificationNumber" fx:id="btnNotification" layoutX="144.0" layoutY="7.0" onMouseClicked="#showNotifications" prefHeight="36.0" prefWidth="36.0" style="-fx-font-family: Arial; -fx-font-size: 10;" text="&#10;0" textFill="white" />
          </children>
       </AnchorPane>
+      
+      
       
       <Label fx:id="screenTitle" layoutX="289.0" layoutY="57.0" prefHeight="23.0" prefWidth="450.0" style="-fx-font-family: Arial; -fx-font-size: 18;" text="title" textFill="#009efb" />
       <Hyperlink layoutX="282.0" layoutY="87.0" onMouseClicked="#goPrevious" text="&lt;&lt; Précedent" />

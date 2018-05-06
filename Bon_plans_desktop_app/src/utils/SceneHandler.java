@@ -32,7 +32,9 @@ public class SceneHandler {
     private SceneHandler(){}
     
     public static void initPrimaryStage(Stage stage){
-        primaryStage = stage;
+        if(primaryStage == null){
+            primaryStage = stage;
+        }
     }
     
     public static void openScene(SceneEnum scene){

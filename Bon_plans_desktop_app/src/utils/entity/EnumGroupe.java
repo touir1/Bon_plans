@@ -11,8 +11,9 @@ package utils.entity;
  */
 public enum EnumGroupe implements GenericEnumInterface<String,Integer> {
     
-    Client("CLIENT", 1),
-    Administrateur("ADMIN", 2);
+    Client("Client", 1),
+    Administrateur("Administrateur", 2),
+    SuperAdmin("Super Administrateur", 3);
     
     private final String key;
     private final int value;
