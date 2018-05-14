@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
@@ -16,7 +17,7 @@
     </stylesheets>
     <children>
         <fx:include fx:id="menubar" source="../../template/Utilisateur/BonPlanTemplate.fxml" />
-      <TableView fx:id="notificationList" layoutX="288.0" layoutY="118.0" onMouseClicked="#doubleClickNotification" prefHeight="415.0" prefWidth="868.0">
+      <TableView fx:id="notificationList" onMouseClicked="#doubleClickNotification" layoutX="288.0" layoutY="118.0" prefHeight="385.0" prefWidth="868.0">
         <columns>
           <TableColumn fx:id="message" prefWidth="411.0" text="message" />
           <TableColumn fx:id="seen" prefWidth="79.0" text="vue" />
@@ -42,5 +43,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <JFXButton id="deleteButton" layoutX="1045.0" layoutY="516.0" onMouseClicked="#deleteSelectedNotification" prefHeight="25.0" prefWidth="111.0" ripplerFill="#fcfcfc" style="-fx-background-color: red;" text="Supprimer" textFill="WHITE" />
     </children>
 </AnchorPane>

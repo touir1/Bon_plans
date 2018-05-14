@@ -156,7 +156,7 @@ public class BonPlanTemplateController extends Application implements Initializa
 
     @FXML
     private void openNotifications(ActionEvent event) {
-        SceneHandler.openScene(SceneEnum.CONSULTER_LISTE_NOTIFICATION);
+        SceneHandler.openScene(SceneEnum.CONSULTER_LISTE_NOTIFICATION_CLIENT);
     }
     
     public void initForceExit(){

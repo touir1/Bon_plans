@@ -174,6 +174,11 @@ public class BonPlanTemplateController extends Application implements Initializa
             CurrentSession.addData("notificationTimer", timer);
         }
     }
+
+    @FXML
+    private void openNotifications(MouseEvent event) {
+        SceneHandler.openScene(SceneEnum.CONSULTER_LISTE_NOTIFICATION_ADMIN);
+    }
     
     //data class
     public class JavaExecutor {

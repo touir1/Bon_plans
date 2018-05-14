@@ -48,9 +48,13 @@ public enum SceneEnum {
             "ConsulterPlanAdmin",
             "../tn/esprit/bonplans/Gui/GererPlan/ConsulterPlanAdmin/ConsulterPlan.fxml",
             "Consulter plan"),
-    CONSULTER_LISTE_NOTIFICATION(
+    CONSULTER_LISTE_NOTIFICATION_CLIENT(
             "ConsulterNotificationClient",
             "../tn/esprit/bonplans/Gui/GererNotification/listeNotificationClient/ConsulterNotificationClient.fxml",
+            "Consulter notifications"),
+    CONSULTER_LISTE_NOTIFICATION_ADMIN(
+            "ConsulterNotificationAdmin",
+            "../tn/esprit/bonplans/Gui/GererNotification/listeNotificationAdmin/ConsulterNotificationAdmin.fxml",
             "Consulter notifications"),
     RESERVATION(
             "Reservation",

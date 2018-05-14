@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.esprit.bonplans.Gui.main;
+package tn.esprit.bonplans.Gui.main;
 
 import java.util.Timer;
 import javafx.application.Application;

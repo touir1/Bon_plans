@@ -24,7 +24,7 @@
             <Hyperlink layoutX="69.0" layoutY="214.0" style="-fx-font-size: 15;" text="Menu 2" textFill="#797676" />
             <Hyperlink layoutX="69.0" layoutY="266.0" onMouseClicked="#openCategorieListScene" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />
             <!--<Hyperlink layoutX="69.0" layoutY="266.0" onAction="#OuvrirePageCategorie" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />-->
-            <Hyperlink layoutX="69.0" layoutY="320.0" style="-fx-font-size: 15;" text="Menu 4" textFill="#797676" />
+            <Hyperlink layoutX="69.0" layoutY="320.0" onMouseClicked="#openNotifications" style="-fx-font-size: 15;" text="Notifications" textFill="#797676" />
             <Hyperlink layoutX="69.0" layoutY="368.0" style="-fx-font-size: 15;" text="Menu 5" textFill="#797676" />
             <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="35.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.Gui.GererNotification.listeNotificationClient;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.Date;
@@ -87,7 +88,7 @@ public class ConsulterNotificationClientController extends Application implement
         //init data
         initListNotification();
         //init template title
-        SceneHandler.initTemplate(SceneEnum.CONSULTER_LISTE_NOTIFICATION);
+        SceneHandler.initTemplate(SceneEnum.CONSULTER_LISTE_NOTIFICATION_CLIENT);
     }  
     
     private void initListNotification(){
@@ -150,7 +151,7 @@ public class ConsulterNotificationClientController extends Application implement
     @Override
     public void start(Stage primaryStage) throws Exception {
         SceneHandler.initPrimaryStage(primaryStage);
-        SceneHandler.openScene(SceneEnum.CONSULTER_LISTE_NOTIFICATION);
+        SceneHandler.openScene(SceneEnum.CONSULTER_LISTE_NOTIFICATION_CLIENT);
     }
     
     public static void main(String[] args) {
@@ -270,7 +271,7 @@ public class ConsulterNotificationClientController extends Application implement
                 Node source = evt.getPickResult().getIntersectedNode();
 
                 // move up through the node hierarchy until a TableRow or scene root is found 
-                while (source != null && !(source instanceof TableRow)) {
+                while (source != null && !preventLooseSelection(source) && !(source instanceof TableRow)) {
                     source = source.getParent();
                 }
 
@@ -281,6 +282,23 @@ public class ConsulterNotificationClientController extends Application implement
                 }
             });
             isInitDoubleClickOut = true;
+        }
+    }
+    
+    private boolean preventLooseSelection(Node source){
+        if(source instanceof JFXButton && "deleteButton".equals(((JFXButton)source).getId())){
+            return true;
+        }
+        return false;
+    }
+
+    @FXML
+    private void deleteSelectedNotification(MouseEvent event) {
+        Notification notification = notificationList.getSelectionModel().getSelectedItem();
+        System.out.println(notification);
+        if(notification != null){
+            notificationService.remove(notification.getIdNotification());
+            refreshList(null);
         }
     }
     

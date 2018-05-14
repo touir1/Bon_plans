@@ -34,4 +34,9 @@ public class NotificationImpl extends GenericServiceImplementation<Notification>
         return Converter.convertMapListToEntityList(listMap, Notification.class);
         
     }
+    
+    @Override
+    public List<Notification> getListNotificationsGlobal(){
+        return findOne("idPlan", 0);
+    }
 }
