@@ -16,4 +16,5 @@ import utils.service.GenericServiceInterface;
 public interface INotification extends GenericServiceInterface<Notification> {
     public List<Notification> getListNotifications(int idUtilisateur);
     public List<Notification> getListNotificationsGlobal();
+    public void sendGlobalNotification(String message);
 }

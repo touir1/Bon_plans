@@ -39,4 +39,11 @@ public class NotificationImpl extends GenericServiceImplementation<Notification>
     public List<Notification> getListNotificationsGlobal(){
         return findOne("idPlan", 0);
     }
+
+    @Override
+    public void sendGlobalNotification(String message) {
+        Notification notification = new Notification();
+        notification.setMessage(message);
+        save(notification);
+    }
 }

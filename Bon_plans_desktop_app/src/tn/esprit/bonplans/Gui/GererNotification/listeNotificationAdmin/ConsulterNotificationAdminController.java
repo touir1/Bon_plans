@@ -29,6 +29,7 @@ import tn.esprit.bonplans.service.INotification;
 import tn.esprit.bonplans.service.implementation.NotificationImpl;
 import utils.SceneEnum;
 import utils.SceneHandler;
+import utils.StringUtils;
 
 /**
  * FXML Controller class
@@ -51,6 +52,10 @@ public class ConsulterNotificationAdminController extends Application implements
     private ObservableList<Notification> observableList;
     @FXML
     private JFXButton deleteButton;
+    @FXML
+    private JFXTextField globalNotificationField;
+    @FXML
+    private JFXButton sendGlobalNotificationButton;
 
     /**
      * Initializes the controller class.
@@ -99,6 +104,7 @@ public class ConsulterNotificationAdminController extends Application implements
     @FXML
     private void refreshList(MouseEvent event) {
         messageFilter.setText("");
+        globalNotificationField.setText("");
         
         List<Notification> notifications = notificationService.getListNotificationsGlobal();
         observableList.clear();
@@ -120,6 +126,14 @@ public class ConsulterNotificationAdminController extends Application implements
         Notification notification = notificationList.getSelectionModel().getSelectedItem();
         if(notification != null){
             notificationService.remove(notification.getIdNotification());
+            refreshList(null);
+        }
+    }
+
+    @FXML
+    private void sendGlobalNotification(MouseEvent event) {
+        if(!StringUtils.isEmpty(globalNotificationField.getText())){
+            notificationService.sendGlobalNotification(globalNotificationField.getText());
             refreshList(null);
         }
     }

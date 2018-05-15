@@ -27,5 +27,7 @@
       </ImageView>
       <JFXTextField fx:id="messageFilter" layoutX="986.0" layoutY="84.0" />
       <JFXButton id="deleteButton" fx:id="deleteButton" layoutX="1045.0" layoutY="516.0" onMouseClicked="#deleteSelectedNotification" prefHeight="25.0" prefWidth="111.0" ripplerFill="#fcfcfc" style="-fx-background-color: red;" text="Supprimer" textFill="WHITE" />
+      <JFXTextField fx:id="globalNotificationField" layoutX="288.0" layoutY="516.0" prefHeight="25.0" prefWidth="587.0" />
+      <JFXButton fx:id="sendGlobalNotificationButton" layoutX="896.0" layoutY="516.0" onMouseClicked="#sendGlobalNotification" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: green;" text="Ajouter" textFill="WHITE" />
     </children>
 </AnchorPane>
