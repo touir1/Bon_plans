@@ -2,6 +2,7 @@ window.onload = function(){
     tableCreate();
 
     function tableCreate() {
+
         $.get("./notifications_php/getNotifications.php",function(data){
             var fromphp = JSON.parse(data);
 
@@ -9,6 +10,8 @@ window.onload = function(){
             var href = fromphp.href;
             var seen = fromphp.seen;
             var idNotification = fromphp.idNotification;
+
+            var notificationNotSeenCount = 0;
 
             //body reference
             var body = document.getElementById("popover-content");
@@ -25,6 +28,11 @@ window.onload = function(){
                 var row = document.createElement("tr");
                 if(seen[j] == 0){
                     row.setAttribute('class', 'not-seen-class');
+                    notificationNotSeenCount = notificationNotSeenCount + 1;
+                    $('body').notify(
+                        data[j],
+                        { position:"right" }
+                    );
                 }
                 var cell = document.createElement("td");
                 var cellText = document.createTextNode(data[j]);
@@ -55,7 +63,10 @@ window.onload = function(){
             body.appendChild(tbl);
             // tbl border attribute to
             //tbl.setAttribute("border", "2");
+            document.getElementById('notificationCount').innerHTML = ' '+notificationNotSeenCount;
+            console.log(notificationNotSeenCount);
         });
+
 
     }
 

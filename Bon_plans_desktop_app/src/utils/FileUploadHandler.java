@@ -33,6 +33,65 @@ public class FileUploadHandler {
         filesDirectoryPath = configuration.get("uploadedFilesPath");
     }
     
+    public static String uploadFile(File binaryFile) {
+        if(StringUtils.isEmpty(url) || StringUtils.isEmpty(filesDirectoryPath)){
+            initFileUploadHandler();
+        }
+        
+        String fileName = StringUtils.randomString()+ binaryFile.getName().substring(binaryFile.getName().lastIndexOf("."));
+        
+        try{
+            String charset = "UTF-8";
+            String param = "value";
+            String boundary = Long.toHexString(System.currentTimeMillis()); // Just generate some unique random value.
+            String CRLF = "\r\n"; // Line separator required by multipart/form-data.
+
+            URLConnection connection = new URL(url).openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+
+            try (
+                OutputStream output = connection.getOutputStream();
+                PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
+            ) {
+                // Send normal param.
+                writer.append("--" + boundary).append(CRLF);
+                writer.append("Content-Disposition: form-data; name=\"param\"").append(CRLF);
+                writer.append("Content-Type: text/plain; charset=" + charset).append(CRLF);
+                writer.append(CRLF).append(param).append(CRLF).flush();
+
+                // Send binary file.
+                writer.append("--" + boundary).append(CRLF);
+                writer.append("Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"" + fileName + "\"").append(CRLF);
+                writer.append("Content-Type: " + URLConnection.guessContentTypeFromName(binaryFile.getName())).append(CRLF);
+                writer.append("Content-Transfer-Encoding: binary").append(CRLF);
+                writer.append(CRLF).flush();
+                Files.copy(binaryFile.toPath(), output);
+                output.flush(); // Important before continuing with writer!
+                writer.append(CRLF).flush(); // CRLF is important! It indicates end of boundary.
+
+                // End of multipart/form-data.
+                writer.append("--" + boundary + "--").append(CRLF).flush();
+            }
+
+            // Request is lazily fired whenever you need to obtain information about response.
+            int responseCode = ((HttpURLConnection) connection).getResponseCode();
+            String responseMessage = ((HttpURLConnection) connection).getResponseMessage();
+            System.out.println("Response code: "+responseCode); // Should be 200
+            System.out.println("Response message: "+responseMessage);
+            if(responseCode == 200){
+                return filesDirectoryPath+"/"+fileName;
+            }
+            else{
+                return null;
+            }
+        }
+        catch(Exception e){
+            LogHandler.handleException(e);
+            return null;
+        }
+    }
+    
     public static boolean uploadFile(Class<?> entityClass, int idEntity, File binaryFile) {
         if(StringUtils.isEmpty(url) || StringUtils.isEmpty(filesDirectoryPath)){
             initFileUploadHandler();

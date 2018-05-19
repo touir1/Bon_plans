@@ -5,6 +5,7 @@
  */
 package utils;
 
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +28,10 @@ public class StringUtils {
     
     public static boolean isValidPwd(String pwdStr) {
         return !isEmpty(pwdStr) && pwdStr.length() > 7;
+    }
+    
+    public static String randomString(){
+        return UUID.randomUUID().toString().replace("-", "");
     }
    
 }

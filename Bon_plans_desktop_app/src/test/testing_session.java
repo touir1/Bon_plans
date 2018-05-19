@@ -7,6 +7,7 @@ package test;
 
 import java.io.File;
 import utils.CurrentSession;
+import utils.FileUploadHandler;
 
 /**
  *
@@ -18,5 +19,7 @@ public class testing_session {
         File file = new File(CurrentSession.getProjectPath()+"/src/resources/images/Logo.png");
         System.out.println(file.exists());
         System.out.println(CurrentSession.getProjectPath());
+        String filePath = FileUploadHandler.uploadFile(file);
+        System.out.println("filePath: "+filePath);
     }
 }

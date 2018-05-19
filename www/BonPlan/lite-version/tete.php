@@ -98,8 +98,12 @@
                            data-toggle="popover"
                            data-trigger="focus"
                            data-placement="bottom"
-                           title="<b>Notifications</b>"><i class="fa fa-bell"></i></a>
+                           title="<b>Notifications</b>"><i class="fa fa-bell"></i><span id="notificationCount"></span></a>
                     </li>
+                    <script>
+
+
+                    </script>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo($_SESSION['connecter'][6]) ?>" alt="user" class="profile-pic m-r-5" /><?php if(isset($_SESSION['connecter'])){echo($_SESSION['connecter'][4]);} ?></a>
                     </li>
