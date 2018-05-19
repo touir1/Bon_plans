@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Plan {
     
-    private int idPlan;
+    private Integer idPlan;
     private String titre;
     private String description;
     private String urlPhoto;
@@ -22,7 +22,7 @@ public class Plan {
     private int quantite;
     private Date dateDebut;
     private Date dateFin;
-    private int quantiteDisponible;
+    private Integer quantiteDisponible;
     private int statut;
     private int idAnnonceur;
     private int idCategorie;

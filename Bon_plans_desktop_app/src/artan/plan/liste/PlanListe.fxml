@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="505.0" prefWidth="851.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="artan.plan.liste.PlanListeController">
+    <stylesheets>
+        <URL value="@planliste.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="tablePlans" layoutY="64.0" prefHeight="442.0" prefWidth="708.0" />
+      <JFXButton fx:id="btnInspecter" layoutX="720.0" layoutY="141.0" onAction="#ajouter" prefHeight="39.0" prefWidth="117.0" text="Ajouter un plan" />
+      <JFXButton fx:id="btnModifier" layoutX="720.0" layoutY="207.0" onAction="#modifier" prefHeight="39.0" prefWidth="117.0" text="Modifier ce plan" />
+      <JFXButton fx:id="btnSupprimer" layoutX="720.0" layoutY="273.0" onAction="#supprimer" prefHeight="39.0" prefWidth="117.0" text="Supprimer ce plan" />
+      <JFXButton fx:id="btnInspecter" layoutX="720.0" layoutY="82.0" onAction="#inspecter" prefHeight="39.0" prefWidth="117.0" text="Inspecter ce plan" />
+   </children>
+</AnchorPane>

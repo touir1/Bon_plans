@@ -10,7 +10,22 @@ package utils;
  * @author touir
  */
 public enum SceneEnum {
-    
+    LISTE_PLAN(
+            "ListeDesPlan", 
+            "../artan/plan/liste/PlanListe.fxml", 
+            "liste des plans"),
+    MODIFIER_PLAN(
+            "ModifierPlan", 
+            "../artan/plan/modifier/PlanModifier.fxml", 
+            "Modifier un plan"),
+    SINGLE_PLAN(
+            "AfficherPlan", 
+            "../artan/plan/single/PlanSingle.fxml", 
+            "Afficher un plan"),
+    AJOUTER_PLAN(
+            "AjouterPlan", 
+            "../artan/plan/create/PlanCreate.fxml", 
+            "Création dun nouveau plans"),
     VALIDER_NEW_PLAN(
             "ValiderNewPlan", 
             "../tn/esprit/bonplans/Gui/GererAnnonce/administration/validerNewPlan/ValiderNewPlan.fxml", 
