@@ -42,6 +42,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -91,10 +92,12 @@ public class TestReservationController extends Application implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        CurrentSession.setUtilisateur(IUtilisateur.getByID(12));
         Date dateDebut= new Date();
         Date dateFin= new Date();
-        //CurrentSession.getUtilisateur();
-        pl = (Plan) CurrentSession.getData("openedPlan");
+        CurrentSession.getUtilisateur();
+        //pl = (Plan) CurrentSession.getData("openedPlan");
+        pl=iPlan.getByID(7);
         Annonceur=IUtilisateur.findOne("idUtilisateur", pl.getIdAnnonceur());
        lblPrixUnitaire.setText("Prix unitaire : "+pl.getPrixPromo());
        
@@ -119,7 +122,7 @@ public class TestReservationController extends Application implements Initializa
         });
     }    
      @FXML
-    void OnClickReserver(ActionEvent event) {
+    void OnClickReserver(ActionEvent event) throws IOException {
          Document Doc = new Document(new Rectangle(300,500));
          try {
              PdfWriter.getInstance(Doc, new FileOutputStream("C:\\wamp64\\www\\bon_plans_api\\uploads\\Reservation_IdClient"+pl.getIdAnnonceur()+"IdAnnance"+pl.getIdPlan()+".pdf"));
@@ -195,7 +198,7 @@ public class TestReservationController extends Application implements Initializa
              Doc.add(Footer1);
              Doc.close();
              //////Insertion dans la bd 
-             
+             System.err.println(CurrentSession.getUtilisateur().getIdUtilisateur());
              Reservation r = new Reservation(date,"http://localhost/bon_plans_api/uploads/Reservation_IdClient"+pl.getIdAnnonceur()+"IdAnnance"+pl.getIdPlan()+".pdf",CurrentSession.getUtilisateur().getIdUtilisateur(), pl.getIdPlan(),Integer.parseInt(txtnumber.getText()));
              System.out.println(r);
              Ireservation.save(r);
@@ -212,6 +215,11 @@ public class TestReservationController extends Application implements Initializa
          } catch (URISyntaxException ex) {
              Logger.getLogger(TestReservationController.class.getName()).log(Level.SEVERE, null, ex);
          }
+         Parent root= FXMLLoader.load(getClass().getResource("./HistoriqueReserv_Client/Historique_ReservClient.fxml"));
+          Scene Scene= new Scene(root);
+          Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+          window.setScene(Scene);
+          window.show();
     }
     
    

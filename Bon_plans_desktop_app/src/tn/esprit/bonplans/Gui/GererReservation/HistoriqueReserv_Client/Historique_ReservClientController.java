@@ -217,6 +217,7 @@ public class Historique_ReservClientController  extends Application implements I
     void OnclickAnnuler(ActionEvent event) {
         lblError.setText("");
        Hist_reserv_Client HRC=TabReservEnCours_Client.getSelectionModel().getSelectedItem();
+       if(HRC!=null){
        Date DateNow= new Date();
        if(DateNow.before(HRC.getDateFinPromo())){
            Reservation Res =new Reservation();
@@ -230,7 +231,7 @@ public class Historique_ReservClientController  extends Application implements I
        }
        else {
        lblError.setText("Vous avez dépassé la date de promotion! Vous ne pouvez pas annuler la réservation");
-       }
+       }}
     }
     
     

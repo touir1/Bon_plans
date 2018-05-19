@@ -76,7 +76,7 @@ public class ModifierCategorieController extends Application implements Initiali
         lstfile.add("*.jpeg");
         lstfile.add("*.jpg");
         ///////////////
-        SceneHandler.setTitle(SceneEnum.MODIFIER_CATEGORIE);
+        //SceneHandler.setTitle(SceneEnum.MODIFIER_CATEGORIE);
     
     }    
 
@@ -96,7 +96,6 @@ public class ModifierCategorieController extends Application implements Initiali
             c.setTitre(txtCategorie.getText());
             c.setUrlPhoto(FileUploadHandler.getFileURL(f, Categorie.class, c.getIdCategorie()));
             System.out.println(c);
-
             if(FileUploadHandler.uploadFile(Categorie.class, c.getIdCategorie(), f)){
                 c = ic.update(c);
                 System.out.println("Upload success");

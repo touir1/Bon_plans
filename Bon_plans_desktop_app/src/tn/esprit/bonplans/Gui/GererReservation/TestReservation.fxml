@@ -20,7 +20,7 @@
             <Label fx:id="Lbl" layoutX="510.0" layoutY="37.0" prefHeight="36.0" prefWidth="182.0" />
             <JFXTextField fx:id="txtnumber" layoutX="317.0" layoutY="30.0" prefHeight="25.0" prefWidth="182.0" promptText="Nombre place" />
             <Label fx:id="lblPrixUnitaire" layoutX="317.0" layoutY="109.0" prefHeight="17.0" prefWidth="182.0" text="Label" />
-            <Label fx:id="Total" layoutX="317.0" layoutY="173.0" prefHeight="17.0" prefWidth="182.0" text="Label" />
+            <Label fx:id="Total" layoutX="317.0" layoutY="173.0" prefHeight="17.0" prefWidth="182.0" text="Total" />
             <JFXButton layoutX="317.0" layoutY="245.0" onAction="#OnClickReserver" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #009efb;" text="Valider la réservation" textFill="#f8f8f8" />
          </children>
       </AnchorPane>

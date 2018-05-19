@@ -90,13 +90,14 @@ public class CategoriesController extends Application implements Initializable {
     @FXML
     void onClickModifier(ActionEvent event) throws Exception {
       Categorie_image ct=categories.getSelectionModel().getSelectedItem();
+        if(ct!=null){
         System.out.println(ct.getIdCategorie());
         idCategorieAModifiee=ct.getIdCategorie();
          Parent root= FXMLLoader.load(getClass().getResource("../Modifier/ModifierCategorie.fxml"));
           Scene Scene= new Scene(root);
           Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
           window.setScene(Scene);
-          window.show();
+          window.show();}
            
     }
     

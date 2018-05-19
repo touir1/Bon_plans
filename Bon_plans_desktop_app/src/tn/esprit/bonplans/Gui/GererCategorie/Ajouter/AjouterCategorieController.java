@@ -78,7 +78,7 @@ public class AjouterCategorieController extends Application implements Initializ
     }
 
     @FXML
-    void onClickAjouter(ActionEvent event) {
+    void onClickAjouter(ActionEvent event) throws IOException {
         
         if ((f != null) && (txtCategorie.getText().length() != 0)) {
             LblError.setText("");
@@ -104,6 +104,11 @@ public class AjouterCategorieController extends Application implements Initializ
                     System.out.println("Upload success");
                     System.out.println(c);
                     LblError.setText("");
+                    Parent root= FXMLLoader.load(getClass().getResource("../Consulter/Categories.fxml"));
+                    Scene Scene= new Scene(root);
+                    Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+                    window.setScene(Scene);
+                    window.show();
                 }
                 else{
                     ic.remove(c.getIdCategorie());

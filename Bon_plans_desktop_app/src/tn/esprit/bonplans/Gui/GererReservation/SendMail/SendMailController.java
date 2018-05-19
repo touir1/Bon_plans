@@ -14,9 +14,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import static tn.esprit.bonplans.Gui.GererReservation.ListeReservation_Annonceur.ListeReservation_AnnonceurController.ClientMail;
+import utils.Email;
 
 /**
  * FXML Controller class
@@ -29,7 +32,7 @@ public class SendMailController extends javafx.application.Application implement
      * Initializes the controller class.
      */
     @FXML
-    private TextField Message;
+    private TextArea Message;
      @FXML
     private TextField Sujet;
     @Override
@@ -51,7 +54,18 @@ public class SendMailController extends javafx.application.Application implement
     
     @FXML
     public void onClickEnvoyer(ActionEvent event){
-    
+    if((Message.getText().isEmpty())||(Sujet.getText().isEmpty())){
+    System.out.println("veuillez remplir tous les champs !");
+    }
+    else{
+       Boolean send=false; 
+    send=Email.send(ClientMail.getEmail(), Sujet.getText(), Message.getText());
+    if(send==true){
+        System.out.println("Email envoyé !");
+    }
+    else
+        System.out.println("Email nom envoyé,merci de verifier votre connection internet !");
+    }
     
     }
       public static void main(String[] args){javafx.application.Application.launch(args);}

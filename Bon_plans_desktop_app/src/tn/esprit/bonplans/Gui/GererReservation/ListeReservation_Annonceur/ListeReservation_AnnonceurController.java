@@ -89,7 +89,7 @@ public class ListeReservation_AnnonceurController extends Application implements
             ///
             
             //session id 
-          dataCombo=FXCollections.observableArrayList(IP.findOne("idAnnonceur", 27));
+          dataCombo=FXCollections.observableArrayList(IP.findOne("idAnnonceur", 11));
           data=FXCollections.observableArrayList();
           cmbListPlan.setItems(dataCombo);
           cmbListPlan.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
@@ -137,21 +137,23 @@ public class ListeReservation_AnnonceurController extends Application implements
     @FXML
     void onclickValider(ActionEvent event) throws Exception {
       ResevAnn R=tabReservation.getSelectionModel().getSelectedItem();
+      if(R!=null){
       Reservation Reserv =Ir.getByID(R.getIdReservation());
       Reserv.setStatus(1);
       Ir.update(Reserv);
-      tabReservation.getItems().remove(R);
+      tabReservation.getItems().remove(R);}
       
            
     }
     @FXML
     void OnclickEnvoyerEmail(ActionEvent event) throws Exception {
        ClientMail=tabReservation.getSelectionModel().getSelectedItem().getClient();
+       if(ClientMail!=null){
        Parent root= FXMLLoader.load(getClass().getResource("../SendMail/SendMail.fxml"));
           Scene Scene= new Scene(root);
           Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
           window.setScene(Scene);
-          window.show();
+          window.show();}
            
     }
      @FXML
