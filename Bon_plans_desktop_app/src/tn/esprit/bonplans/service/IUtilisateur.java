@@ -17,5 +17,8 @@ public interface IUtilisateur extends GenericServiceInterface<Utilisateur> {
     public Utilisateur connecter(String email, String mdp, Error error);
     public Utilisateur inscrire(String email, String nom, String prenom, String mdp, Error error);
     public boolean isExist(String email);
-    public boolean activerCompte(String email, int codeActivation);
+    public void activerCompte(Utilisateur utilisateur);
+    public void deactiverCompte(Utilisateur utilisateur);
+    public Utilisateur getUtilisateurByEmail(String email);
+    public void envoyerCodeActivation(Utilisateur utilisateur);
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="1192.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.sinscrire.SinscrireController">
+    <stylesheets>
+        <URL value="@sinscrire.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="544.0" prefWidth="790.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="75.0" fitWidth="81.0" layoutX="364.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../resources/images/Logo.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="5.0" layoutY="149.0" prefHeight="38.0" prefWidth="781.0" text="Où mes affaires vont bien, là est ma patrie. " textAlignment="CENTER">
+               <font>
+                  <Font name="Segoe WP Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="127.0" layoutY="202.0" prefHeight="140.0" prefWidth="535.0" text="Les meilleurs bons plans pour faire des économies toute l’année. Vous souhaitez réaliser des économies et réduire vos dépenses dans tous ces domaines, alors c’est ici qu’il vous rendre chaque jour." textAlignment="JUSTIFY" wrapText="true">
+               <font>
+                  <Font name="Segoe WP" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="315.0" layoutY="342.0" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #7AA0C9;" text="Se connecter">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -15,6 +15,10 @@ public enum SceneEnum {
             "ValiderNewPlan", 
             "../tn/esprit/bonplans/Gui/GererAnnonce/administration/validerNewPlan/ValiderNewPlan.fxml", 
             "Validation nouveau plans"),
+    SINSCRIRE(
+            "Sinscrire", 
+            "../tn/esprit/bonplans/Gui/GererUtilisateur/sinscrire/Sinscrire.fxml", 
+            "S'inscrire"),
     VALIDER_MODIFIED_PLAN(
             "ValiderModifiedPlan", 
             "../tn/esprit/bonplans/Gui/GererAnnonce/administration/validerModifiedPlan/ValiderModifiedPlan.fxml", 
@@ -26,7 +30,7 @@ public enum SceneEnum {
             ),
     SE_CONNECTER(
             "SeConnecter",
-            "../tn/esprit/bonplans/Gui/GererUtilisateur/SeConnecter.fxml",
+            "../tn/esprit/bonplans/Gui/GererUtilisateur/seConnecter/SeConnecter.fxml",
             "Se connecter"),
     LISTE_CATEGORIE(
             "ListeCategorie",

@@ -34,15 +34,12 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
     
     @Override
     public Utilisateur connecter(String email, String mpd, Error error) {
-        List<Utilisateur> utilisateurs = findOne("email", email);
-        if (utilisateurs.isEmpty()) {
-            return null;
-        }
+        Utilisateur utilisateur = getUtilisateurByEmail(email);
         try {
-            if (!utilisateurs.get(0).getMdp().equals(Encrypt.sha1(mpd))) {
+            if (!utilisateur.getMdp().equals(Encrypt.sha1(mpd))) {
                 return null;
             }
-            return utilisateurs.get(0);
+            return utilisateur;
         } catch (NoSuchAlgorithmException ex) {
             error.setMessage(ex.getMessage());
             return null;
@@ -64,7 +61,7 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
                     error.setMessage(serviceResponse.getExceptions().get(0).getMessage());
                 }
                 else {
-                    Email.send(email, SUBJECT_EMAIL, TEXT_EMAIL + utilisateur.getCodeActivation());
+                   envoyerCodeActivation(utilisateur);
                 }
             } 
             catch (NoSuchAlgorithmException ex) {
@@ -80,8 +77,29 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
     }
 
     @Override
-    public boolean activerCompte(String email, int codeActivation) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void activerCompte(Utilisateur utilisateur) {
+        utilisateur.setIsActif(true);
+        update(utilisateur);
     }
     
+    @Override
+    public void deactiverCompte(Utilisateur utilisateur){
+        utilisateur.setIsActif(false);
+        utilisateur.setCodeActivation( Other.generateActivationCode());
+        update(utilisateur);
+    }
+    
+    @Override
+    public Utilisateur getUtilisateurByEmail(String email) {
+        List<Utilisateur> utilisateurs = findOne("email", email);
+        if (utilisateurs.isEmpty()) {
+            return null;
+        }
+        return utilisateurs.get(0);
+    }
+    
+    @Override
+    public void envoyerCodeActivation(Utilisateur utilisateur){
+        Email.send(utilisateur.getEmail(), SUBJECT_EMAIL, TEXT_EMAIL + utilisateur.getCodeActivation());
+    }
 }

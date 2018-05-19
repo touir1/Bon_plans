@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import com.gluonhq.charm.glisten.layout.*?>
+<?import com.gluonhq.charm.glisten.layout.responsive.grid.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="1192.0" style="-fx-background-color: FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.seConnecter.SeConnecterController">
+    <stylesheets>
+        <URL value="@seconnecter.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="17.0" layoutY="15.0" prefHeight="544.0" prefWidth="790.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="75.0" fitWidth="81.0" layoutX="364.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../resources/images/Logo.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="5.0" layoutY="149.0" prefHeight="38.0" prefWidth="781.0" text="Où mes affaires vont bien, là est ma patrie. " textAlignment="CENTER">
+               <font>
+                  <Font name="Segoe WP Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="127.0" layoutY="202.0" prefHeight="140.0" prefWidth="535.0" text="Les meilleurs bons plans pour faire des économies toute l’année. Vous souhaitez réaliser des économies et réduire vos dépenses dans tous ces domaines, alors c’est ici qu’il vous rendre chaque jour." textAlignment="JUSTIFY" wrapText="true">
+               <font>
+                  <Font name="Segoe WP" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btn_signUp_cxn" layoutX="328.0" layoutY="342.0" onAction="#btn_signUp_cxn_Click" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #7AA0C9;" text="S'inscrire">
+               <font>
+                  <Font size="21.0" />
+               </font></JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="816.0" layoutY="59.0" prefHeight="500.0" prefWidth="291.0" style="-fx-background-color: #E7EBEC;">
+         <children>
+            <AnchorPane layoutX="6.0" layoutY="79.0" prefHeight="339.0" prefWidth="278.0" style="-fx-background-color: #7AA0C9;">
+               <children>
+                  <JFXPasswordField fx:id="txt_pwd_cxn" layoutX="12.0" layoutY="97.0" prefHeight="25.0" prefWidth="255.0" promptText="Mot de passe" />
+                  <JFXTextField fx:id="txt_email_cxn" layoutX="12.0" layoutY="58.0" prefHeight="25.0" prefWidth="255.0" promptText="Email" />
+                  <JFXButton fx:id="btn_cxn_cxn" layoutX="66.0" layoutY="229.0" onAction="#btn_cxn_cxn_Click" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: eaedf2;" text="Se connecter" />
+                  <JFXButton fx:id="btn_cnxGgle_cxn" layoutX="48.0" layoutY="263.0" style="-fx-background-color: eaedf2;" text="Connectez-vous avec Google" />
+                  <Hyperlink fx:id="hln_pwd4get_cnx" layoutX="78.0" layoutY="296.0" onAction="#hln_pwd4get_cnx_Click" text="Mot de passe oublié?" textFill="#2c2a2a" />
+                  <Label layoutX="89.0" layoutY="14.0" text="Connexion" textFill="WHITE" underline="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="63.0" fitWidth="87.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../resources/images/Logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
