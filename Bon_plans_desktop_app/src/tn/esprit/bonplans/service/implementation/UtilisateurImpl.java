@@ -8,6 +8,8 @@ package tn.esprit.bonplans.service.implementation;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.IUtilisateur;
 import utils.Email;
@@ -34,13 +36,13 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
     
     @Override
     public Utilisateur connecter(String email, String mpd, Error error) {
-        Utilisateur utilisateur = getUtilisateurByEmail(email);
-        try {
-            if (!utilisateur.getMdp().equals(Encrypt.sha1(mpd))) {
+       try {
+            Utilisateur utilisateur = getUtilisateurByEmail(email);
+            if (utilisateur == null || !utilisateur.getMdp().equals(Encrypt.sha1(mpd))) {
                 return null;
             }
             return utilisateur;
-        } catch (NoSuchAlgorithmException ex) {
+        } catch (Exception ex) {
             error.setMessage(ex.getMessage());
             return null;
         }
@@ -85,14 +87,15 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
     @Override
     public void deactiverCompte(Utilisateur utilisateur){
         utilisateur.setIsActif(false);
-        utilisateur.setCodeActivation( Other.generateActivationCode());
+        utilisateur.setCodeActivation(Other.generateActivationCode());
         update(utilisateur);
     }
     
     @Override
     public Utilisateur getUtilisateurByEmail(String email) {
-        List<Utilisateur> utilisateurs = findOne("email", email);
-        if (utilisateurs.isEmpty()) {
+        ServiceResponse serviceResponse = new ServiceResponse();
+        List<Utilisateur> utilisateurs = findOne("email", email, serviceResponse);
+        if (!serviceResponse.isOk() || utilisateurs.isEmpty()) {
             return null;
         }
         return utilisateurs.get(0);
@@ -101,5 +104,16 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
     @Override
     public void envoyerCodeActivation(Utilisateur utilisateur){
         Email.send(utilisateur.getEmail(), SUBJECT_EMAIL, TEXT_EMAIL + utilisateur.getCodeActivation());
+    }
+    
+    @Override
+    public void updatePwd(Utilisateur utilisateur, String mdp){
+        try {
+            utilisateur.setMdp(Encrypt.sha1(mdp));
+            utilisateur.setIsActif(true);
+            update(utilisateur);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UtilisateurImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

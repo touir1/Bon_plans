@@ -22,7 +22,7 @@ public class Dialog {
         dialog.setContentText(content);
         return dialog;
     }
-    
+   
     public static Alert Error(String title, String header, String content) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(title);

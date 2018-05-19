@@ -43,8 +43,13 @@ public class SeConnecterController extends Application implements Initializable 
     private static final String ERR_ACTIVATION = "Code d'activation incorrecte.";
     private static final String PATH = "SeConnecter.fxml";
     private static final String TITLE_ACTIVATION = "Activation du compte";
-    private static final String MSG_ACTIVATION_INPUT = "Veuillez introduire votre code d'activation";
-    private static final String MSG_ACTIVATION_SENDED = "Un code d'activation à été envoyé à votre email.";
+    private static final String MSG_ACTIVATION_INPUT = "Un code d'activation à été envoyé à votre email. Veuillez introduire votre code d'activation";
+    private static final String TITLE_PWD_OUBLIE = "Mot de passe oublié";
+    private static final String MSG_PWD_OUBLIE = "Veuillez introduire le nouveau mot de passe";
+    private static final int MIN_LENGTH_PWD = 8;
+    private static final String ERR_PWD_OUBLIE = "Votre mot de passe doit être composé de " + MIN_LENGTH_PWD + "caractères au minimum.\nVeuillez introduire du nouveau votre mot de passe";
+    private static final String INFO_SUCC_CHANGER_PWD = "Votre mot de passe a été modifié avec succès";
+    private static final String ERR_CHANGER_PWD = "Votre mot de passe doit comporter au minimum 8 caractères";
     
     
     private IUtilisateur userService;
@@ -139,10 +144,26 @@ public class SeConnecterController extends Application implements Initializable 
             return;
         }
         
-        Utilisateur utilisateur = userService.getUtilisateurByEmail(email);
-        userService.deactiverCompte(utilisateur);
-        userService.envoyerCodeActivation(utilisateur);
-        Dialog.Info(INFO, null, MSG_ACTIVATION_SENDED).showAndWait();    
+        Utilisateur currentUser = userService.getUtilisateurByEmail(email);
+        userService.deactiverCompte(currentUser);
+        userService.envoyerCodeActivation(currentUser);
+       
+        if (!DialogActiverCompte(currentUser.getCodeActivation()))
+        {
+            Dialog.Error(ERR, ERR_INPUT, ERR_ACTIVATION).showAndWait();
+            return;
+        }
+        
+        //Changement du mot du passe.
+        String newPwd = DialogChangerPwd(false);
+        if (newPwd == null){
+            Dialog.Error(ERR, ERR_INPUT, ERR_CHANGER_PWD).showAndWait();
+            return;     
+        }
+        
+        userService.updatePwd(currentUser, newPwd);
+        Dialog.Info(INFO, null, INFO_SUCC_CHANGER_PWD).showAndWait();
+        
     }
     
     private boolean DialogActiverCompte(int codeActivation){
@@ -157,4 +178,17 @@ public class SeConnecterController extends Application implements Initializable 
         return false;
     }
     
+    private String DialogChangerPwd (boolean withError){
+        Optional<String> result = Dialog.createTextInput(TITLE_PWD_OUBLIE
+            , TITLE_PWD_OUBLIE
+            , withError ? ERR_PWD_OUBLIE : MSG_PWD_OUBLIE
+            , ""
+            ).showAndWait();
+        if (result.isPresent()){
+            if (result.get().length() < MIN_LENGTH_PWD)
+                return DialogChangerPwd (true);
+            return result.get();
+        }
+        return null;
+    }
 }
