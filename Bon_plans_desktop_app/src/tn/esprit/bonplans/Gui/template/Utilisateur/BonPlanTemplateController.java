@@ -48,6 +48,7 @@ import utils.CurrentSession;
 import utils.FileHandler;
 import utils.SceneEnum;
 import utils.SceneHandler;
+import utils.StringUtils;
 import utils.entity.EnumGroupe;
 
 /**
@@ -114,6 +115,12 @@ public class BonPlanTemplateController extends Application implements Initializa
             CurrentSession.setUtilisateur(utilisateurService.findOne("idGroupe", EnumGroupe.Client.getValue()).get(0));
         }
         
+        Utilisateur user = CurrentSession.getUtilisateur();
+        username.setText(user.getPrenom());
+        if(!StringUtils.isEmpty(user.getUrlphoto())){
+            Image image = new Image(user.getUrlphoto(),true);
+            userImage.setImage(image);
+        }
         
         initNotifications();
         initForceExit();

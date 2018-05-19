@@ -1,5 +1,28 @@
 <?php
+$conn = null;
 
+$countModified = 0;
+$countUpdated = 0;
+$notificationData = null;
+
+if(isset($_SESSION['connecter'])) {
+    include_once("../Entities/Config.php");
+    include_once("../Entities/notification.php");
+
+    $c = new Config();
+
+    $conn = $c->getConnexion();
+    $notification = new Notification();
+
+    if($_SESSION['connecter'][1] > 1){
+        $countModified = $notification->getCountNonValidatedModifiedPlans($conn);
+        $countUpdated = $notification->getCountNonValidatedNewPlans($conn);
+
+    }
+    else if($_SESSION['connecter'][1] == 1){
+        $notificationData = $notification->getNotificationsByUser($conn,$_SESSION['connecter'][0]);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +39,7 @@
     <title>Bon Plan | Administration</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/custom-style.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -25,6 +49,8 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
     <![endif]-->
 </head>
 
@@ -86,8 +112,21 @@
                 <!-- ============================================================== -->
                 <ul class="navbar-nav my-lg-0">
                     <li class="nav-item dropdown">
+                        <a tabindex="0"
+                           class="nav-link dropdown-toggle text-muted waves-effect waves-dark"
+                           aria-haspopup="true"
+                           aria-expanded="false"
+                           role="button"
+                           data-html="true"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           data-placement="bottom"
+                           title="<b>Notifications</b>"><i class="fa fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo($_SESSION['connecter'][6]) ?>" alt="user" class="profile-pic m-r-5" /><?php if(isset($_SESSION['connecter'])){echo($_SESSION['connecter'][4]);} ?></a>
                     </li>
+
                 </ul>
             </div>
         </nav>
@@ -117,6 +156,9 @@
                     <li>
                         <a href="categories.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Gestion des Categories</a>
                     </li>
+                    <li>
+                        <a href="notification_admin.php" class="waves-effect"><i class="fa fa-bell m-r-10" aria-hidden="true"></i>Gestion des Notifications</a>
+                    </li>
                     <?php } ?>
                 </ul>
 
@@ -139,3 +181,106 @@
         <!-- ============================================================== -->
         <!-- Container fluid  -->
         <!-- ============================================================== -->
+
+        <div id="popover-content" hidden>
+
+        <script>
+            tableCreate();
+
+        	function tableCreate() {
+
+                var fromphp =
+                    <?php
+                    if($_SESSION['connecter'][1] == 1) {
+                        $data_array = array();
+                        $href_array = array();
+                        $seen_array = array();
+                        foreach ($notificationData as $notif){
+                            array_push($data_array,$notif[2]);
+                            if($notif[3] != 0){
+                                array_push($href_array, 'single.php?id='.$notif[3]);
+                            }
+                            else{
+                                array_push($href_array, 'javascript:void(0)');
+                            }
+                            if($notif[1] == 0){
+                                array_push($seen_array, 0);
+                            }
+                            else{
+                                array_push($seen_array, 1);
+                            }
+                        }
+                        $data = array(
+                                'data' => $data_array,
+                                'href' => $href_array,
+                                'seen' => $seen_array
+                        );
+                        echo json_encode($data);
+                    }
+                    else if($_SESSION['connecter'][1] > 1){
+                        $data = array(
+                            'data' => array(
+                                'vous avez '.$countUpdated.' nouveaux plans à valider',
+                                'vous avez '.$countModified.' plans modifiés à valider'
+                            ),
+                            'href' => array(
+                                'single.php',
+                                'single.php'
+                            ),
+                            'seen' => array(
+                                0,
+                                0
+                            )
+                        );
+                        echo json_encode($data);
+                    }
+
+                    ?>;
+                var data = fromphp.data;
+                var href = fromphp.href;
+                var seen = fromphp.seen;
+
+                //body reference
+                var body = document.getElementById("popover-content");
+                body.innerHTML = '';
+
+                // create elements <table> and a <tbody>
+                var tbl = document.createElement("table");
+                tbl.className = "table table-hover";
+                var tblBody = document.createElement("tbody");
+
+                // cells creation
+                for (var j = 0; j < data.length; j++) {
+                    // table row creation
+                    var row = document.createElement("tr");
+                    if(seen[j] == 0){
+                        row.setAttribute('class', 'not-seen-class');
+                    }
+                    var cell = document.createElement("td");
+                    var cellText = document.createTextNode(data[j]);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    var btnCell = document.createElement("td");
+                    var newlink = document.createElement('a');
+                    newlink.innerHTML = "Consulter";
+                    newlink.setAttribute('class', 'btn btn-success');
+                    newlink.setAttribute('href', href[j]);
+
+                    btnCell.appendChild(newlink);
+                    row.appendChild(btnCell);
+
+                    //row added to end of table body
+                    tblBody.appendChild(row);
+                }
+
+                // append the <tbody> inside the <table>
+                tbl.appendChild(tblBody);
+                // put <table> in the <body>
+                body.appendChild(tbl);
+                // tbl border attribute to
+                //tbl.setAttribute("border", "2");
+            }
+
+        </script>
+
+        </div>

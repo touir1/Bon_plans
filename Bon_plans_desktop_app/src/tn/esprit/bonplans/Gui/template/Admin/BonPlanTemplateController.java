@@ -36,6 +36,7 @@ import javafx.stage.Stage;
 import netscape.javascript.JSObject;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.PopOver;
+import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.IPlan;
 import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
@@ -44,6 +45,8 @@ import utils.CurrentSession;
 import utils.FileHandler;
 import utils.SceneEnum;
 import utils.SceneHandler;
+import utils.StringUtils;
+import utils.entity.EnumGroupe;
 
 /**
  * FXML Controller class
@@ -106,6 +109,18 @@ public class BonPlanTemplateController extends Application implements Initializa
         else{
             CurrentSession.addData("lastModifiedPlansCount", 0);
         }
+        
+        //set dummy user
+        if(CurrentSession.getUtilisateur()==null){
+            CurrentSession.setUtilisateur(utilisateurService.findOne("idGroupe", EnumGroupe.Administrateur.getValue()).get(0));
+        }
+        Utilisateur user = CurrentSession.getUtilisateur();
+        username.setText(user.getPrenom());
+        if(!StringUtils.isEmpty(user.getUrlphoto())){
+            Image image = new Image(user.getUrlphoto(),true);
+            userImage.setImage(image);
+        }
+        
         initNotifications();
         initForceExit();
     }

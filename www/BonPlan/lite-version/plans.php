@@ -2,9 +2,9 @@
 session_start();
 if(isset($_SESSION['connecter'])) {
 
-    include("tete.php");
-    include("../Entities/Config.php");
-    include("../Entities/Plan.php");
+    include_once("tete.php");
+    include_once("../Entities/Config.php");
+    include_once("../Entities/Plan.php");
 
     $c = new Config();
 
@@ -71,15 +71,17 @@ if(isset($_SESSION['connecter'])) {
                                         <td><?php echo($item[9]); ?></td>
                                         <td><?php echo($item[10]); ?></td>
                                         <td>
-                                            <?php if ($item[10] == 0) { ?>
+                                            <?php if ($_SESSION['connecter'][1]>1 && ($item[10] == 0 || $item[10] == 2)) { ?>
                                                 <a href="single.php?id=<?php echo($item[0]); ?>"
                                                    class="btn btn-primary">Inspecter</a>
                                                 <a href="approver.php?id=<?php echo($item[0]); ?>"
                                                    class="btn btn-success">Approver</a>
                                                 <a href="refuser.php?id=<?php echo($item[0]); ?>"
                                                    class="btn btn-danger">Annuler</a>
-                                            <?php } else if ($item[10] == 2) {
+                                            <?php } else if ($item[10] == -1) {
                                                 echo("Refuser");
+                                            } else if($item[10] == 1){
+                                                echo("Validé");
                                             } else {
                                                 echo("En cours ...");
                                             } ?>

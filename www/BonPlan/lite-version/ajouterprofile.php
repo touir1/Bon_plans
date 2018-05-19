@@ -3,6 +3,9 @@ session_start();
 
 include("../Entities/Config.php");
 include("../Entities/utilisateur.php");
+include_once("utils.php");
+
+$utils = new utils();
 
 $c = new Config();
 
@@ -13,10 +16,11 @@ $password = $_POST['mdp'];
 $encrypted_password = sha1($password.$SALT);
 
 
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_dir = "../../bon_plans_api/uploads/";
+$random_str = $utils->generateRandomString(20);
 $uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$imageFileType = strtolower(pathinfo(basename($_FILES["fileToUpload"]["name"]),PATHINFO_EXTENSION));
+$target_file = $target_dir . $random_str . '.' . $imageFileType;
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);

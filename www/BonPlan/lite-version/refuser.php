@@ -10,7 +10,7 @@ $conn = $c->getConnexion();
 
 $plan = new Plan();
 
-$plan->changerStatut($conn, $_GET['id'], 2);
+$plan->changerStatut($conn, $_GET['id'], -1);
 
 header("Location: plans.php");
 

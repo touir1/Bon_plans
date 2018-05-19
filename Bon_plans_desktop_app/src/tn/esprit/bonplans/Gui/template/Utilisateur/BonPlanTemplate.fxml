@@ -62,13 +62,13 @@
       <AnchorPane focusTraversable="true" layoutX="251.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.76" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #5c8fc7;">
          <children>
             <Avatar fx:id="userImage" layoutX="20.0" layoutY="6.0" />
-            <Label fx:id="username" layoutX="88.0" layoutY="15.0" text="Label" />
-            <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="134.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="username" layoutX="79.0" layoutY="15.0" text="Label" />
+            <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="152.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@notification.png" />
                </image>
             </ImageView>
-            <Label id="notificationNumber" fx:id="btnNotification" layoutX="144.0" layoutY="7.0" onMouseClicked="#showNotifications" prefHeight="36.0" prefWidth="36.0" style="-fx-font-family: Arial; -fx-font-size: 10;" text="&#10;0" textFill="white" />
+            <Label id="notificationNumber" fx:id="btnNotification" layoutX="162.0" layoutY="6.0" onMouseClicked="#showNotifications" prefHeight="36.0" prefWidth="36.0" style="-fx-font-family: Arial; -fx-font-size: 10;" text="&#10;0" textFill="white" />
          </children>
       </AnchorPane>
       
