@@ -129,6 +129,10 @@ class Notification
             return $row;
         }
     }
+    public function changeNotificationAsSeen($conn, $id){
+        $req = "UPDATE `notification` SET seen = 1 WHERE idNotification = ".$id;
+        $conn->exec($req);
+    }
 
     public function add($conn){
         $req = "INSERT INTO `notification` (`idNotification`, `seen`, `message`, `idPlan`) VALUES (NULL, ".$this->getSeen().", '".$this->getMessage()."', ".$this->getIdPlan().");";
