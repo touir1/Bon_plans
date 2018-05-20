@@ -24,6 +24,8 @@ public class Plan {
     private Date dateFin;
     private int nbPlaceDispo;
     private int statut;
+    private int like;
+    private int dislike;
     
     //foreign keys
     private int idAnnonceur;
@@ -166,6 +168,22 @@ public class Plan {
 
     public void setIdCategorie(int idCategorie) {
         this.idCategorie = idCategorie;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(int dislike) {
+        this.dislike = dislike;
     }
 
     @Override

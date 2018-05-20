@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 06 mai 2018 à 21:41
+-- Généré le :  Dim 20 mai 2018 à 20:11
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -112,7 +112,18 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `message` varchar(255) COLLATE utf8_bin NOT NULL,
   `idPlan` int(11) NOT NULL,
   PRIMARY KEY (`idNotification`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `notification`
+--
+
+INSERT INTO `notification` (`idNotification`, `seen`, `message`, `idPlan`) VALUES
+(7, 1, 'testing global notification', 0),
+(8, 1, 'Votre plan a été validé', 6),
+(10, 1, 'Votre plan a été validé', 8),
+(14, 1, 'Votre plan a été validé', 5),
+(13, 1, 'hello world', 0);
 
 -- --------------------------------------------------------
 
@@ -135,16 +146,19 @@ CREATE TABLE IF NOT EXISTS `plan` (
   `statut` int(11) NOT NULL,
   `idAnnonceur` int(11) NOT NULL,
   `idCategorie` int(11) NOT NULL,
+  `like` int(11) NOT NULL DEFAULT '0',
+  `dislike` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idPlan`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `plan`
 --
 
-INSERT INTO `plan` (`idPlan`, `titre`, `description`, `urlPhoto`, `prixInitial`, `prixPromo`, `nbPlaceTotal`, `dateDebut`, `dateFin`, `nbPlaceDispo`, `statut`, `idAnnonceur`, `idCategorie`) VALUES
-(5, 'test plan', 'testing new plan', NULL, 0, 0, 0, '2018-01-01', '2019-01-01', 0, 0, 12, 9),
-(6, 'test plan', 'testing new plan', NULL, 0, 0, 0, '2018-01-01', '2019-01-01', 0, 2, 12, 9);
+INSERT INTO `plan` (`idPlan`, `titre`, `description`, `urlPhoto`, `prixInitial`, `prixPromo`, `nbPlaceTotal`, `dateDebut`, `dateFin`, `nbPlaceDispo`, `statut`, `idAnnonceur`, `idCategorie`, `like`, `dislike`) VALUES
+(5, 'test plan', 'testing new plan', 'http://pijava/bon_plans_api/uploads/ABrj4Fq1JY2nxcduSmH8.jpg', 0, 0, 0, '2018-01-01', '2019-01-01', 0, 1, 12, 9, 0, 0),
+(6, 'test plan', 'testing new plan', NULL, 0, 0, 0, '2018-01-01', '2019-01-01', 0, 2, 12, 9, 0, 0),
+(8, 'a', 'hello world', 'http://pijava/bon_plans_api/uploads/ABrj4Fq1JY2nxcduSmH8.jpg', 5, 4, 5, '1995-04-13', '2020-04-13', 5, 0, 16, 9, 0, 0);
 
 --
 -- Déclencheurs `plan`
@@ -165,6 +179,34 @@ CREATE TRIGGER `tr_notification_valid_plan` AFTER UPDATE ON `plan` FOR EACH ROW 
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Doublure de structure pour la vue `plan_commentaire`
+-- (Voir ci-dessous la vue réelle)
+--
+DROP VIEW IF EXISTS `plan_commentaire`;
+CREATE TABLE IF NOT EXISTS `plan_commentaire` (
+`idPlan` int(11)
+,`idAnnonceur` int(11)
+,`idCategorie` int(11)
+,`nb` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Doublure de structure pour la vue `plan_reservation`
+-- (Voir ci-dessous la vue réelle)
+--
+DROP VIEW IF EXISTS `plan_reservation`;
+CREATE TABLE IF NOT EXISTS `plan_reservation` (
+`idPlan` int(11)
+,`idAnnonceur` int(11)
+,`idCategorie` int(11)
+,`nb` bigint(21)
+);
 
 -- --------------------------------------------------------
 
@@ -209,16 +251,35 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `codeActivation` int(11) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`),
   UNIQUE KEY `uq_utilisateur_email` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `idGroupe`, `mdp`, `email`, `nom`, `prenom`, `urlphoto`, `ville`, `adresse`, `dateCreation`, `dateAcces`, `tempsAcces`, `isBanned`, `isActif`, `codeActivation`) VALUES
-(11, 2, 'b3b2b988f52e47986d9f2dd6a2434e1d113502ff', 'touir.mat@gmail.com', 'Touir', 'Mohamed Ali', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
-(12, 1, 'b3b2b988f52e47986d9f2dd6a2434e1d113502ff', 'eya.touir@gmail.com', 'Touir', 'Eya', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
-(13, 3, 'b3b2b988f52e47986d9f2dd6a2434e1d113502ff', 'admin.admin@gmail.com', 'Super', 'Admin', NULL, 'inconnu', 'inconnu', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0);
+(11, 2, 'ffd7908da49302049cb65731745aa15a284ddb3a', 'touir.mat@gmail.com', 'Touir', 'Mohamed Ali', 'http://pijava/bon_plans_api/uploads/med_ali_touir.png', 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
+(12, 1, 'ffd7908da49302049cb65731745aa15a284ddb3a', 'eya.touir@gmail.com', 'Touir', 'Eya', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
+(13, 3, 'ffd7908da49302049cb65731745aa15a284ddb3a', 'admin.admin@gmail.com', 'Super', 'Admin', NULL, 'inconnu', 'inconnu', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
+(16, 1, 'ffd7908da49302049cb65731745aa15a284ddb3a', 'account@gmail.com', 'aaa', 'bb', '../../bon_plans_api/uploads/jkBqMQ1gsWlED2tFPc9d.jpg', 'aa', 'bb', '2018-05-19 01:03:44', NULL, NULL, 0, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `plan_commentaire`
+--
+DROP TABLE IF EXISTS `plan_commentaire`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `plan_commentaire`  AS  (select `plan`.`idPlan` AS `idPlan`,`plan`.`idAnnonceur` AS `idAnnonceur`,`plan`.`idCategorie` AS `idCategorie`,count(`commentaire`.`idCommentaire`) AS `nb` from (`plan` join `commentaire`) where (`plan`.`idPlan` = `commentaire`.`idPlan`) group by `plan`.`idPlan`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `plan_reservation`
+--
+DROP TABLE IF EXISTS `plan_reservation`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `plan_reservation`  AS  (select `plan`.`idPlan` AS `idPlan`,`plan`.`idAnnonceur` AS `idAnnonceur`,`plan`.`idCategorie` AS `idCategorie`,count(`reservation`.`idReservation`) AS `nb` from (`plan` join `reservation`) where (`plan`.`idPlan` = `reservation`.`idPlan`) group by `plan`.`idPlan`) ;
 
 --
 -- Contraintes pour les tables déchargées
