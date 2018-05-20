@@ -61,6 +61,8 @@ import tn.esprit.bonplans.service.implementation.PlanImpl;
 import tn.esprit.bonplans.service.implementation.ReservationImpl;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 import utils.CurrentSession;
+import utils.SceneEnum;
+import utils.SceneHandler;
 import utils.entity.EnumValidation;
 
 /**
@@ -92,12 +94,14 @@ public class TestReservationController extends Application implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        CurrentSession.setUtilisateur(IUtilisateur.getByID(12));
+        
+      
+       
         Date dateDebut= new Date();
         Date dateFin= new Date();
         CurrentSession.getUtilisateur();
-        //pl = (Plan) CurrentSession.getData("openedPlan");
-        pl=iPlan.getByID(7);
+        pl = (Plan) CurrentSession.getData("openedPlan");
+       
         Annonceur=IUtilisateur.findOne("idUtilisateur", pl.getIdAnnonceur());
        lblPrixUnitaire.setText("Prix unitaire : "+pl.getPrixPromo());
        
@@ -120,7 +124,7 @@ public class TestReservationController extends Application implements Initializa
                 }
             }
         });
-    }    
+    }   
      @FXML
     void OnClickReserver(ActionEvent event) throws IOException {
          Document Doc = new Document(new Rectangle(300,500));
