@@ -119,6 +119,7 @@ public class PlanListeController extends Application implements Initializable {
         
         identifiant = t.getIdPlan();
         ps.supprimerPlan(identifiant);
+        System.out.println("plan supprimer");
     }
 
     @FXML

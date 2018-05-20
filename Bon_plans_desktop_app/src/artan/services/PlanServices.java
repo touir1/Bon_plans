@@ -255,4 +255,44 @@ public class PlanServices implements IPlan{
         
     }
     
+    public void incLike(int idPlan, int nb){
+        
+        nb = nb +1;
+        String requete = "UPDATE `plan` SET `like` = ? WHERE `plan`.`idPlan` = ? ";
+        
+        try {
+            System.out.println("ici");
+            PreparedStatement preparedStatement= connection.prepareStatement(requete);
+            preparedStatement.setInt(1, nb);
+            preparedStatement.setInt(2, idPlan);
+            
+            preparedStatement.execute();
+
+            System.out.println("like incrimenter bd");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void incDislike(int idPlan, int nb){
+        
+        nb = nb +1;
+        String requete = "UPDATE `plan` SET `dislike` = ? WHERE `plan`.`idPlan` = ? ";
+        
+        try {
+            System.out.println("ici");
+            PreparedStatement preparedStatement= connection.prepareStatement(requete);
+            preparedStatement.setInt(1, nb);
+            preparedStatement.setInt(2, idPlan);
+            
+            preparedStatement.execute();
+
+            System.out.println("dislike incrimenter bd");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
 }

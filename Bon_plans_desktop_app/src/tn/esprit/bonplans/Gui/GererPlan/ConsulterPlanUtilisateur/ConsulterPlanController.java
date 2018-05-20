@@ -16,11 +16,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,13 +33,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.entity.Commentaire;
 import tn.esprit.bonplans.entity.Plan;
+import tn.esprit.bonplans.entity.Utilisateur;
+import tn.esprit.bonplans.service.IAvis;
 import tn.esprit.bonplans.service.ICategorie;
 import tn.esprit.bonplans.service.ICommentaire;
 import tn.esprit.bonplans.service.IPlan;
 import tn.esprit.bonplans.service.IUtilisateur;
+import tn.esprit.bonplans.service.implementation.AvisImpl;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import tn.esprit.bonplans.service.implementation.CommentaireImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
@@ -49,10 +56,13 @@ import utils.SceneHandler;
 /**
  * FXML Controller class
  *
- * @author touir
+ *
  */
 public class ConsulterPlanController extends Application implements Initializable {
 
+    
+    Utilisateur user = CurrentSession.getUtilisateur();
+    
     private IPlan planService;
     private ICategorie categorieService;
     private IUtilisateur utilisateurService;
@@ -60,7 +70,7 @@ public class ConsulterPlanController extends Application implements Initializabl
     PlanServices ps = new PlanServices();
     ArrayList<Commentaire> commentaires = ps.listeDesCommentaires(PlanListeController.identifiant);
     
-    private Plan openedPlan;
+    private artan.entities.Plan openedPlan = ps.rechercheParID(PlanListeController.identifiant);
     @FXML
     private Label title;
     @FXML
@@ -91,6 +101,28 @@ public class ConsulterPlanController extends Application implements Initializabl
     private Label erreurLabel;
     @FXML
     private TableView<Commentaire> commentairesTable;
+    @FXML
+    private Button btmodifier;
+    @FXML
+    private Button btsupprimer;
+   ObservableList<Commentaire> toShow = this.getCommentaires();
+    static int identifiant =0;
+    @FXML
+    private Rating rating;
+    @FXML
+    private Label msg;
+    @FXML
+    private Button aimer;
+    @FXML
+    private Button aimerpas;
+    @FXML
+    private Label lbjaime;
+    @FXML
+    private Label lbjaimepas;
+    
+    int nvlike = openedPlan.getLike();
+    int nvdislike = openedPlan.getDislike();
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -98,12 +130,22 @@ public class ConsulterPlanController extends Application implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+       rating.ratingProperty().addListener(new ChangeListener<Number>(){
+
+           @Override
+           public void changed(ObservableValue<? extends Number> observable, Number t, Number t1) {
+               //throw new UnsupportedOperationException("Not supported yet."); 
+               msg.setText("Rating : " + t1.toString());
+           }
+           
+       });
          
         TableColumn<Commentaire, String> commColonne =  new TableColumn("Commentaires");
         commColonne.setMinWidth(200);
         commColonne.setCellValueFactory(new PropertyValueFactory<Commentaire, String>("texte"));
         
-        commentairesTable.setItems(this.getCommentaires());
+        commentairesTable.setItems(toShow);
         commentairesTable.getColumns().add(commColonne);
         
         erreurLabel.setText("");
@@ -116,14 +158,13 @@ public class ConsulterPlanController extends Application implements Initializabl
         SceneHandler.setTitle(SceneEnum.CONSULTER_PLAN_UTILISATEUR);
         
         //get plan opened
-        this.openedPlan = (Plan) CurrentSession.getData("openedPlan");
         if(openedPlan != null){
             title.setText(openedPlan.getTitre());
             description.setText(openedPlan.getDescription());
-            initialPrice.setText(openedPlan.getPrixInitial()+" TND");
+            initialPrice.setText(openedPlan.getPrix()+" TND");
             promoPrice.setText(openedPlan.getPrixPromo()+" TND");
-            promoPercentage.setText(Math.round(100*openedPlan.getPrixPromo()/openedPlan.getPrixInitial())+"%");
-            units.setText(Integer.toString(openedPlan.getNbPlaceDispo()));
+            promoPercentage.setText(Math.round(100*openedPlan.getPrixPromo()/openedPlan.getPrix())+"%");
+            units.setText(Integer.toString(openedPlan.getQuantite()));
             beginDate.setText(Converter.convertDateToString(openedPlan.getDateDebut(), "dd/MM/yyyy"));
             endDate.setText(Converter.convertDateToString(openedPlan.getDateFin(), "dd/MM/yyyy"));
             try{
@@ -141,7 +182,7 @@ public class ConsulterPlanController extends Application implements Initializabl
                 categorie.setText("");
             }
 
-            if(openedPlan.getNbPlaceDispo() == 0){
+            if(openedPlan.getQuantiteDisponible()== 0){
                 btnReservation.setDisable(true);
             }
         }
@@ -175,10 +216,10 @@ public class ConsulterPlanController extends Application implements Initializabl
         if (commentaireText.getText().isEmpty()) {
             erreurLabel.setText("veuillez saisir un commentaire");
         }else if(this.controle(commentaireText.getText())){
-            erreurLabel.setText("yla3enet allah 3lik");
+            erreurLabel.setText("vous avez saisi des gros mots");
         }else{
-            commentaire.save(new Commentaire(commentaireText.getText(), java.sql.Date.valueOf(date), 0, 0, 12, PlanListeController.identifiant));
-            System.out.println("commentaire ajouter");         
+            commentaire.save(new Commentaire(commentaireText.getText(), java.sql.Date.valueOf(date), 0, 0, user.getIdUtilisateur(), PlanListeController.identifiant));
+            System.out.println("commentaire ajouté");         
             
         }
         
@@ -196,8 +237,12 @@ public class ConsulterPlanController extends Application implements Initializabl
     
     public boolean controle(String chaine){
         ArrayList<String> dictionnaire = new ArrayList();
-        dictionnaire.add("kelma");
-        dictionnaire.add("zeyda");
+        dictionnaire.add("putain");
+        dictionnaire.add("merde");
+        dictionnaire.add("fuck");
+        dictionnaire.add("pétasse");
+         
+        
         
         String[] items = chaine.split(" ");
         
@@ -209,4 +254,59 @@ public class ConsulterPlanController extends Application implements Initializabl
         
         return false;
     }
+
+    @FXML
+    private void modifiercommentaire(ActionEvent event) {        
+          ICommentaire commentaire = new CommentaireImpl();
+          LocalDate date = java.time.LocalDate.now();
+           if (commentaireText.getText().isEmpty()) {
+            erreurLabel.setText("veuillez saisir un commentaire");
+            }else if(this.controle(commentaireText.getText())){
+                erreurLabel.setText("vous avez saisi des gros mots");
+            }else{
+                Commentaire c = commentairesTable.getSelectionModel().getSelectedItem();
+                c.setTexte(commentaireText.getText());
+                commentaire.update(c);
+                System.out.println("commentaire modifié ");
+            }                
+    }
+
+    @FXML
+    private void supprimercommentaire(ActionEvent event) {
+        System.out.println("supprimer clicked");
+        ICommentaire commentaire = new CommentaireImpl();
+        Commentaire c = commentairesTable.getSelectionModel().getSelectedItem();
+        toShow.remove(c);
+        commentaire.remove(c.getIdCommentaire());
+        commentaireText.setText("");
+        System.out.println("commentaire supprimer");
+    }
+
+    @FXML
+    private void lsiteClicked(MouseEvent event) {
+        Commentaire c = commentairesTable.getSelectionModel().getSelectedItem();
+        identifiant = c.getIdCommentaire();
+        
+        commentaireText.setText(c.getTexte());
+    }
+
+    @FXML
+    private void aimercommentaire(ActionEvent event) {
+        System.out.println("id = " + openedPlan.getIdPlan() + " nb = " + openedPlan.getLike());
+        ps.incLike(openedPlan.getIdPlan(), nvlike);
+        nvlike = nvlike + 1;
+    }
+
+    @FXML
+    private void aimerpas(ActionEvent event) {
+        System.out.println("id = " + openedPlan.getIdPlan() + " nb = " + openedPlan.getDislike());
+        ps.incDislike(openedPlan.getIdPlan(), nvdislike);
+        
+        nvdislike = nvdislike + 1;
+    }
+
+ 
+    
+
+ 
 }

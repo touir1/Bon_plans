@@ -59,9 +59,9 @@ public class Test {
         
         //System.out.println(ss.nombreDesPlansPourJour(date1));
         //System.out.println(ss.nombreDesPlansParMois(5));
-        
+        planservices.incLike(9, 10);
         //System.out.println(ss.meilleursVentesDuJours(date1));
-        System.out.println(ss.meilleursVentesDuMois(5));
+        //System.out.println(ss.meilleursVentesDuMois(5));
         /*
         DecimalFormat df = new DecimalFormat("#.###");
         System.out.println(df.format(ss.moyenneDesPlansParJour(4)));
