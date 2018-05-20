@@ -26,10 +26,10 @@ if(isset($_SESSION['connecter'])) {
         <!-- ============================================================== -->
         <div class="row page-titles">
             <div class="col-md-6 col-8 align-self-center">
-                <h3 class="text-themecolor m-b-0 m-t-0">Gestion des utilisateurs</h3>
+                <h3 class="text-themecolor m-b-0 m-t-0">Gestion des notifications</h3>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Utilisateurs</a></li>
-                    <li class="breadcrumb-item active">Listes des utlisateurs</li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Notifications</a></li>
+                    <li class="breadcrumb-item active">Listes des notifications</li>
                 </ol>
             </div>
             <div class="col-md-6 col-4 align-self-center">

@@ -1,5 +1,6 @@
 window.onload = function(){
-    tableCreate();
+
+    reloadNotificationsIfNew();
 
     function tableCreate() {
 
@@ -29,10 +30,7 @@ window.onload = function(){
                 if(seen[j] == 0){
                     row.setAttribute('class', 'not-seen-class');
                     notificationNotSeenCount = notificationNotSeenCount + 1;
-                    $('body').notify(
-                        data[j],
-                        { position:"right" }
-                    );
+
                 }
                 var cell = document.createElement("td");
                 var cellText = document.createTextNode(data[j]);
@@ -64,7 +62,6 @@ window.onload = function(){
             // tbl border attribute to
             //tbl.setAttribute("border", "2");
             document.getElementById('notificationCount').innerHTML = ' '+notificationNotSeenCount;
-            console.log(notificationNotSeenCount);
         });
 
 
@@ -77,4 +74,53 @@ window.onload = function(){
 
         });
     }
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    var lastIdNotifications = [];
+
+    function reloadNotificationsIfNew(){
+        $.get("./notifications_php/getNotifications.php",function(data) {
+            var fromphp = JSON.parse(data);
+
+            var data = fromphp.data;
+            var href = fromphp.href;
+            var seen = fromphp.seen;
+            var idNotification = fromphp.idNotification;
+
+            var differenceIdNotification = _.difference(idNotification, lastIdNotifications);
+
+            if(differenceIdNotification.length > 0){
+
+                tableCreate();
+
+                for(var i=0;i<idNotification.length;i++){
+                    if(_.contains(differenceIdNotification,idNotification[i]) && seen[i] == 0){
+                        $.notify(
+                            data[i],
+                            {
+                                className: "info",
+                                globalPosition: "right bottom"
+                            }
+                        );
+                    }
+                }
+                lastIdNotifications = idNotification;
+            }
+
+        });
+    }
+
+    setInterval(function(){
+        reloadNotificationsIfNew();
+    },5000);
 }

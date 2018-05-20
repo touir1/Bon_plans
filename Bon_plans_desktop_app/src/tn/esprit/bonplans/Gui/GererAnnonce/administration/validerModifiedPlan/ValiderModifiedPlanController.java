@@ -224,7 +224,7 @@ public class ValiderModifiedPlanController extends Application implements Initia
             long diff = now.getTime() - lastClickTime.getTime();
             if (diff < 300){ //another click registered in 300 millis
                 CurrentSession.addData("openedPlan", row);
-                SceneHandler.openScene(SceneEnum.CONSULTER_PLAN_UTILISATEUR);
+                SceneHandler.openScene(SceneEnum.CONSULTER_PLAN_ADMIN);
             } else {
                 lastClickTime = new Date();
             }

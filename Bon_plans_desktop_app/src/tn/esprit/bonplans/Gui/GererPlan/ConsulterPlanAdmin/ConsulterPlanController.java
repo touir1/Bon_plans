@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -64,7 +65,7 @@ public class ConsulterPlanController extends Application implements Initializabl
     @FXML
     private Label categorie;
     @FXML
-    private ImageView imageCategorie;
+    private ImageView imagePlan;
     @FXML
     private JFXButton btnValidation;
     @FXML
@@ -98,6 +99,13 @@ public class ConsulterPlanController extends Application implements Initializabl
             units.setText(Integer.toString(openedPlan.getNbPlaceDispo()));
             beginDate.setText(Converter.convertDateToString(openedPlan.getDateDebut(), "dd/MM/yyyy"));
             endDate.setText(Converter.convertDateToString(openedPlan.getDateFin(), "dd/MM/yyyy"));
+            try{
+                Image image = new Image(openedPlan.getUrlPhoto());
+                imagePlan.setImage(image);
+            }
+            catch(Exception e){
+                //do nothing
+            }
             Categorie categorieFromDatabase = categorieService.getByID(openedPlan.getIdCategorie());
             if(categorieFromDatabase != null) {
                 categorie.setText(categorieFromDatabase.getTitre());

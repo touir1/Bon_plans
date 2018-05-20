@@ -21,7 +21,7 @@
                   <Font name="Georgia Italic" size="22.0" />
                </font>
             </Label>
-            <ImageView fx:id="imageCategorie" fitHeight="180.0" fitWidth="301.0" layoutX="39.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imagePlan" fitHeight="180.0" fitWidth="301.0" layoutX="39.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
             <TextArea fx:id="description" editable="false" layoutX="357.0" layoutY="78.0" prefHeight="180.0" prefWidth="371.0" text="description area">
                <font>
                   <Font name="System Italic" size="17.0" />

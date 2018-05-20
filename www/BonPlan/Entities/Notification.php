@@ -153,4 +153,10 @@ class Notification
         $conn->exec($req);
     }
 
+    public function delete($conn, $id){
+        $req = "DELETE FROM `notification` WHERE id=".$id;
+
+        $conn->exec($req);
+    }
+
 }
