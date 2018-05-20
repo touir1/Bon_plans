@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="1192.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.client.acceuil.AcceuilController">
+    <stylesheets>
+        <URL value="@acceuil.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane fx:id="Menu" layoutX="-2.0" prefHeight="577.0" prefWidth="229.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="41.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../template/Utilisateur/Logo.png" />
+               </image>
+            </ImageView>
+            <Hyperlink layoutX="53.0" layoutY="160.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text=" Accueil" textFill="#797676" />
+            <Hyperlink layoutX="53.0" layoutY="200.0" style="-fx-font-size: 15;" text="Mon compte" textFill="#797676" />
+            <Hyperlink layoutX="52.0" layoutY="238.0" style="-fx-font-size: 15;" text="Meilleurs Plans" textFill="#797676" />
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="28.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../template/Utilisateur/Accueil.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="63.0" layoutX="24.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../template/Utilisateur/profil.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="29.0" fitWidth="26.0" layoutX="27.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../template/Utilisateur/Réclamation.PNG" />
+               </image>
+            </ImageView>
+            <MenuButton layoutX="17.0" layoutY="270.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: white; -fx-font-size: 15;" text="Réservation" textFill="#797676">
+               <graphic>
+                  <ImageView fitHeight="239.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../template/Utilisateur/Réclamation.PNG" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Mes réservations" />
+                  <MenuItem mnemonicParsing="false" text="Mes offres" />
+               </items>
+            </MenuButton>
+            <MenuButton layoutX="16.0" layoutY="312.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: white; -fx-font-size: 15;" text="Mes plans" textFill="#797676">
+               <graphic>
+                  <ImageView fitHeight="239.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../template/Utilisateur/Réclamation.PNG" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Ajouter" />
+                  <MenuItem mnemonicParsing="false" text="Consulter" />
+               </items>
+            </MenuButton>
+            <ImageView fitHeight="29.0" fitWidth="26.0" layoutX="26.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../template/Utilisateur/Réclamation.PNG" />
+               </image>
+            </ImageView>
+            <Hyperlink layoutX="51.0" layoutY="363.0" style="-fx-font-size: 15;" text="Se déconnecter" textFill="#797676" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

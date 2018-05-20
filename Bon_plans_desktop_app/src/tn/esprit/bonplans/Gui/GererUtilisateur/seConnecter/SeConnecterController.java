@@ -2,7 +2,6 @@ package tn.esprit.bonplans.Gui.GererUtilisateur.seConnecter;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
@@ -12,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -120,7 +118,7 @@ public class SeConnecterController extends Application implements Initializable 
         
         // Rédirection des interfaces selon le groupe de l'utilisateur.
         if (currentUser.getIdGroupe() == EnumGroupe.Client.getValue()){
-            Dialog.Info(null, "Client", "client").showAndWait();
+            SceneHandler.openScene(SceneEnum.CLIENT_ACCEUIL);
         }
         else {
             Dialog.Info(null, "admin", "admin").showAndWait();

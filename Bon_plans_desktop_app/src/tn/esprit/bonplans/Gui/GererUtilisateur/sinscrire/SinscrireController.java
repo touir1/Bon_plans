@@ -19,12 +19,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_CONST_PWD;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_CODE_ACTIVATION;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_EMAIL;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_NOM;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_PRENOM;
-import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_PWD;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MSG_CONFIRMATION;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.TITLE_ACTIVATION;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.TITLE_STAGE;
@@ -106,7 +106,7 @@ public class SinscrireController extends Application implements Initializable {
             return;
         }
         if (!StringUtils.isValidPwd(pwd)) {
-            Dialog.Error(ERR, ERR_INPUT, ERR_INPUT_PWD).showAndWait();
+            Dialog.Error(ERR, ERR_INPUT, ERR_CONST_PWD).showAndWait();
             return;
         }
         
@@ -123,7 +123,7 @@ public class SinscrireController extends Application implements Initializable {
             return;
         }
         userService.activerCompte(currentUser);
-        
+        SceneHandler.openScene(SceneEnum.CLIENT_ACCEUIL);
     }
     
     // Button : acceuil.

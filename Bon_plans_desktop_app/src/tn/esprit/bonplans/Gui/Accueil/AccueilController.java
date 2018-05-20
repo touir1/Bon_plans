@@ -124,7 +124,6 @@ public class AccueilController  extends Application implements Initializable {
         if(!ListCategorie.isEmpty()){
             for(int i=0;i<3;i++){
                 int nbAleatoire= rand.nextInt(ListCategorie.size());
-                System.err.println(nbAleatoire);
                 if(!ListCategorieChoisie.contains(ListCategorie.get(nbAleatoire)))
                     ListCategorieChoisie.add(ListCategorie.get(nbAleatoire));
                 else
@@ -137,36 +136,32 @@ public class AccueilController  extends Application implements Initializable {
         List<Plan> planCategorie2 =IPlan.findOne("idCategorie",ListCategorieChoisie.get(1).getIdCategorie());
         List<Plan> planCategorie3 =IPlan.findOne("idCategorie",ListCategorieChoisie.get(2).getIdCategorie());
         
-        
         if(!planCategorie1.isEmpty()){
-         for(int i=0;i<3;i++){
-        int nbAleatoire= rand.nextInt(planCategorie1.size());
-                System.err.println(nbAleatoire);
-        if(!planCategorie1Choisie.contains(planCategorie1.get(nbAleatoire)))
-        planCategorie1Choisie.add(planCategorie1.get(nbAleatoire));
-         else
-            i--;
+            for(int i=0;i<3;i++){
+            int nbAleatoire= rand.nextInt(planCategorie1.size());
+            if(!planCategorie1Choisie.contains(planCategorie1.get(nbAleatoire)))
+                planCategorie1Choisie.add(planCategorie1.get(nbAleatoire));
+            else
+                i--;
         }}
-          if(!planCategorie2.isEmpty()){
-         for(int i=0;i<3;i++){
-        int nbAleatoire= rand.nextInt(planCategorie2.size());
-                System.err.println(nbAleatoire);
-        if(!planCategorie2Choisie.contains(planCategorie2.get(nbAleatoire)))
-        planCategorie2Choisie.add(planCategorie2.get(nbAleatoire));
-         else
-            i--;
+        if(!planCategorie2.isEmpty()){
+            for(int i=0;i<3;i++){
+                int nbAleatoire= rand.nextInt(planCategorie2.size());
+                if(!planCategorie2Choisie.contains(planCategorie2.get(nbAleatoire)))
+                    planCategorie2Choisie.add(planCategorie2.get(nbAleatoire));
+                else
+                    i--;
         }}
-            if(!planCategorie3.isEmpty()){
-         for(int i=0;i<3;i++){
-        int nbAleatoire= rand.nextInt(planCategorie1.size());
-                System.err.println(nbAleatoire);
-        if(!planCategorie3Choisie.contains(planCategorie3.get(nbAleatoire)))
-        planCategorie3Choisie.add(planCategorie3.get(nbAleatoire));
-         else
-            i--;
-        }}
+        if(!planCategorie3.isEmpty()){
+            for(int i=0;i<3;i++){
+                int nbAleatoire= rand.nextInt(planCategorie1.size());
+                if(!planCategorie3Choisie.contains(planCategorie3.get(nbAleatoire)))
+                    planCategorie3Choisie.add(planCategorie3.get(nbAleatoire));
+                else
+                    i--;
+            }
+        }
         //Affichage categorie 1
-        
         ImgC1P1.setImage(new Image(planCategorie1Choisie.get(0).getUrlPhoto(),true));
         System.out.println(planCategorie1Choisie.get(0).getUrlPhoto());
         TitreC1P1.setText(planCategorie1Choisie.get(0).getTitre());
@@ -193,58 +188,48 @@ public class AccueilController  extends Application implements Initializable {
     
     @FXML
     void test(MouseEvent event) throws IOException {
-        
-       System.out.println(event.getSource().toString());
-       if(event.getSource().toString().contains("Categorie1plan1")){
-       planAAfficher=planCategorie1Choisie.get(0);
-       CurrentSession.addData("openedPlan", planAAfficher);
-           System.out.println(planAAfficher);
-       }
-       else if(event.getSource().toString().contains("Categorie1plan2")){
-       planAAfficher=planCategorie1Choisie.get(1);
-       System.out.println(planAAfficher);
-       CurrentSession.addData("openedPlan", planAAfficher);
-       }
-       else if(event.getSource().toString().contains("Categorie1plan3")){
-       planAAfficher=planCategorie1Choisie.get(2);
-       System.out.println(planAAfficher);
-       CurrentSession.addData("openedPlan", planAAfficher);
-       }
-       else if(event.getSource().toString().contains("Categorie2plan1")){
-       planAAfficher=planCategorie2Choisie.get(0);
-       System.out.println(planAAfficher);
-       CurrentSession.addData("openedPlan", planAAfficher);
-       }
-       else if(event.getSource().toString().contains("Categorie2plan2")){
-       planAAfficher=planCategorie2Choisie.get(1);
-       System.out.println(planAAfficher);
-       CurrentSession.addData("openedPlan", planAAfficher);
-       }
-       else if(event.getSource().toString().contains("Categorie2plan3")){
-       planAAfficher=planCategorie2Choisie.get(2);
-       System.out.println(planAAfficher);
-       CurrentSession.addData("openedPlan", planAAfficher);
-       }
-       else if(event.getSource().toString().contains("Categorie3plan1")){
-       planAAfficher=planCategorie3Choisie.get(0);
-       System.out.println(planAAfficher);
-       CurrentSession.addData("openedPlan", planAAfficher);
-       }
-       else if(event.getSource().toString().contains("Categorie3plan2")){
-       planAAfficher=planCategorie3Choisie.get(1);
-       System.out.println(planAAfficher);
-       CurrentSession.addData("openedPlan", planAAfficher);
-       }
-       else{
-       planAAfficher=planCategorie3Choisie.get(2);
-       System.out.println(planAAfficher);
-       CurrentSession.addData("openedPlan", planAAfficher);
-       }
-       Parent root= FXMLLoader.load(getClass().getResource("../GererPlan/ConsulterPlanUtilisateur/ConsulterPlan.fxml"));
-                    Scene Scene= new Scene(root);
-                    Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-                    window.setScene(Scene);
-                    window.show();
+        if(event.getSource().toString().contains("Categorie1plan1")){
+            planAAfficher=planCategorie1Choisie.get(0);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        else if(event.getSource().toString().contains("Categorie1plan2")){
+            planAAfficher=planCategorie1Choisie.get(1);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        else if(event.getSource().toString().contains("Categorie1plan3")){
+            planAAfficher=planCategorie1Choisie.get(2);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        else if(event.getSource().toString().contains("Categorie2plan1")){
+            planAAfficher=planCategorie2Choisie.get(0);
+            System.out.println(planAAfficher);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        else if(event.getSource().toString().contains("Categorie2plan2")){
+            planAAfficher=planCategorie2Choisie.get(1);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        else if(event.getSource().toString().contains("Categorie2plan3")){
+            planAAfficher=planCategorie2Choisie.get(2);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        else if(event.getSource().toString().contains("Categorie3plan1")){
+            planAAfficher=planCategorie3Choisie.get(0);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        else if(event.getSource().toString().contains("Categorie3plan2")){
+            planAAfficher=planCategorie3Choisie.get(1);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        else{
+            planAAfficher=planCategorie3Choisie.get(2);
+            CurrentSession.addData("openedPlan", planAAfficher);
+        }
+        Parent root= FXMLLoader.load(getClass().getResource("../GererPlan/ConsulterPlanUtilisateur/ConsulterPlan.fxml"));
+        Scene Scene= new Scene(root);
+        Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(Scene);
+        window.show();
     }
 
     @FXML
@@ -258,15 +243,15 @@ public class AccueilController  extends Application implements Initializable {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-         Parent root= FXMLLoader.load(getClass().getResource("Accueil.fxml"));
-         
-            Scene Scene= new Scene(root);
-            primaryStage.setScene(Scene);
-            primaryStage.show();
-            
+        Parent root= FXMLLoader.load(getClass().getResource("Accueil.fxml"));
+        Scene Scene= new Scene(root);
+        primaryStage.setScene(Scene);
+        primaryStage.show();
     }
     
-    public static void main(String[] args){launch(args);}
+    public static void main(String[] args){
+        launch(args);
+    }
 
     @FXML
     void btn_login_acceuil_Click(ActionEvent event) {

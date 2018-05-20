@@ -107,6 +107,10 @@ public enum SceneEnum {
     ACCEUIL(
             "Accueil",
             "../tn/esprit/bonplans/Gui/Accueil/Accueil.fxml",
+            "Accueil"),
+    CLIENT_ACCEUIL(
+            "Client Accueil",
+            "../tn/esprit/bonplans/Gui/GererUtilisateur/client/acceuil/Acceuil.fxml",
             "Accueil")
     ;
     
