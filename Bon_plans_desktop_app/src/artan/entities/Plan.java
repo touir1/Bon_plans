@@ -66,6 +66,24 @@ public class Plan {
         this.like = 0;
         this.dislike = 0;
     }
+    
+    public Plan(int idPlan, String titre, String description, String urlPhoto, double prix, double prixPromo, int quantite, Date dateDebut, Date dateFin, int quantiteDisponible, int statut, int idAnnonceur, int idCategorie, int like, int dislike) {
+        this.idPlan = idPlan;
+        this.titre = titre;
+        this.description = description;
+        this.urlPhoto = urlPhoto;
+        this.prix = prix;
+        this.prixPromo = prixPromo;
+        this.quantite = quantite;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.quantiteDisponible = quantiteDisponible;
+        this.statut = statut;
+        this.idAnnonceur = idAnnonceur;
+        this.idCategorie = idCategorie;
+        this.like = like;
+        this.dislike = dislike;
+    }
 
     public int getIdPlan() {
         return idPlan;
@@ -186,12 +204,14 @@ public class Plan {
     public void setDislike(int dislike) {
         this.dislike = dislike;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Plan{" + "idPlan=" + idPlan + ", titre=" + titre + ", description=" + description + ", urlPhoto=" + urlPhoto + ", prix=" + prix + ", prixPromo=" + prixPromo + ", quantite=" + quantite + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", quantiteDisponible=" + quantiteDisponible + ", statut=" + statut + ", idAnnonceur=" + idAnnonceur + ", idCategorie=" + idCategorie + '}';
+        return "Plan{" + "idPlan=" + idPlan + ", titre=" + titre + ", description=" + description + ", urlPhoto=" + urlPhoto + ", prix=" + prix + ", prixPromo=" + prixPromo + ", quantite=" + quantite + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", quantiteDisponible=" + quantiteDisponible + ", statut=" + statut + ", idAnnonceur=" + idAnnonceur + ", idCategorie=" + idCategorie + ", like=" + like + ", dislike=" + dislike + '}';
     }
+    
+    
+
+    
         
 }

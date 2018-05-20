@@ -130,6 +130,8 @@ public class ConsulterPlanController extends Application implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       //like/dislike
+        
         
        rating.ratingProperty().addListener(new ChangeListener<Number>(){
 
@@ -185,6 +187,11 @@ public class ConsulterPlanController extends Application implements Initializabl
             if(openedPlan.getQuantiteDisponible()== 0){
                 btnReservation.setDisable(true);
             }
+            
+            lbjaime.setText(Integer.toString(openedPlan.getLike()));
+            nvlike = openedPlan.getLike();
+            lbjaimepas.setText(Integer.toString(openedPlan.getDislike()));
+            nvdislike = openedPlan.getDislike();
         }
         
         
@@ -295,6 +302,7 @@ public class ConsulterPlanController extends Application implements Initializabl
         System.out.println("id = " + openedPlan.getIdPlan() + " nb = " + openedPlan.getLike());
         ps.incLike(openedPlan.getIdPlan(), nvlike);
         nvlike = nvlike + 1;
+        //label like
     }
 
     @FXML
@@ -303,6 +311,7 @@ public class ConsulterPlanController extends Application implements Initializabl
         ps.incDislike(openedPlan.getIdPlan(), nvdislike);
         
         nvdislike = nvdislike + 1;
+        //label dislike
     }
 
  

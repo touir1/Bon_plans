@@ -143,7 +143,7 @@ public class PlanServices implements IPlan{
             while(resultSet.next()){
                 plan = new Plan(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getDouble(5)
                                     , resultSet.getDouble(6), resultSet.getInt(7), resultSet.getDate(8), resultSet.getDate(9), resultSet.getInt(10)
-                                    , resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13));
+                                    , resultSet.getInt(11), resultSet.getInt(12), resultSet.getInt(13), resultSet.getInt(14), resultSet.getInt(15));
             }
             
             System.out.println("Requete select effectuée");
