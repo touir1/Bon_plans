@@ -8,6 +8,7 @@ package utils;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MIN_LENGTH_PWD;
 
 /**
  *
@@ -27,7 +28,7 @@ public class StringUtils {
     }
     
     public static boolean isValidPwd(String pwdStr) {
-        return !isEmpty(pwdStr) && pwdStr.length() > 7;
+        return !isEmpty(pwdStr) && pwdStr.length() >= MIN_LENGTH_PWD;
     }
     
     public static String randomString(){

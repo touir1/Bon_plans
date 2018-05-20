@@ -58,7 +58,7 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
             ServiceResponse serviceResponse = new ServiceResponse();
             try {
                 utilisateur = new Utilisateur(EnumGroupe.Client.getValue(), Encrypt.sha1(mdp), email, nom, prenom, new Date(), Other.generateActivationCode());
-                save(utilisateur, serviceResponse);
+                utilisateur = save(utilisateur, serviceResponse);
                 if (!serviceResponse.isOk()) {
                     error.setMessage(serviceResponse.getExceptions().get(0).getMessage());
                 }

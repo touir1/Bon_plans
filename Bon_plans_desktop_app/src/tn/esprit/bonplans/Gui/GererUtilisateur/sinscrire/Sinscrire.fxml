@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="1192.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.sinscrire.SinscrireController">
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="1192.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.sinscrire.SinscrireController">
     <stylesheets>
         <URL value="@sinscrire.css" />
     </stylesheets>
@@ -32,11 +32,39 @@
                   <Font name="Segoe WP" size="18.0" />
                </font>
             </Label>
-            <JFXButton layoutX="315.0" layoutY="342.0" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #7AA0C9;" text="Se connecter">
+            <JFXButton fx:id="btn_login_signup" layoutX="243.0" layoutY="343.0" onAction="#btn_login_signUp_Click" prefHeight="45.0" prefWidth="159.0" style="-fx-background-color: #7AA0C9;" text="Se connecter">
                <font>
                   <Font size="21.0" />
                </font>
             </JFXButton>
+            <JFXButton fx:id="btn_acceuil_cxn" layoutX="413.0" layoutY="342.0" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #7AA0C9;" text="Acceuil">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="816.0" layoutY="61.0" prefHeight="500.0" prefWidth="291.0" style="-fx-background-color: #E7EBEC;">
+         <children>
+            <AnchorPane layoutX="6.0" layoutY="79.0" prefHeight="339.0" prefWidth="278.0" style="-fx-background-color: #7AA0C9;">
+               <children>
+                  <JFXPasswordField fx:id="txt_pwd_signUp" layoutX="12.0" layoutY="97.0" prefHeight="25.0" prefWidth="255.0" promptText="Mot de passe" />
+                  <JFXTextField fx:id="txt_email_signUp" layoutX="12.0" layoutY="58.0" prefHeight="25.0" prefWidth="255.0" promptText="Email" />
+                  <JFXButton fx:id="btn_signUp_signUp" layoutX="66.0" layoutY="229.0" onAction="#btn_signUp_signUp_Click" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: eaedf2;" text="S'inscrire" />
+                  <Label layoutX="89.0" layoutY="14.0" text="S'inscrire" textFill="WHITE" underline="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="txt_nom_signUp" layoutX="14.0" layoutY="136.0" prefHeight="25.0" prefWidth="255.0" promptText="Nom" />
+                  <JFXTextField fx:id="txt_prenom_signUp" layoutX="14.0" layoutY="178.0" prefHeight="25.0" prefWidth="255.0" promptText="Prénom" />
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="63.0" fitWidth="87.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../resources/images/Logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

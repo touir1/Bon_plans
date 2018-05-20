@@ -24,6 +24,22 @@ import utils.entity.EnumGroupe;
 import utils.Error;
 import utils.SceneEnum;
 import utils.SceneHandler;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_EMAIL;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_EMAIL_NONEXISTENT;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_EMAIL_PWD;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_CODE_ACTIVATION;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_PWD;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_CONST_PWD;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.INFO;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MSG_SUCC_CHANGER_PWD;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MIN_LENGTH_PWD;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MSG_ACTIVATION_INPUT;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MSG_ACTIVATION_WITH_MAIL;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MSG_PWD_OUBLIE;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.TITLE_ACTIVATION;
+import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.TITLE_STAGE;
 
 /**
  * FXML Controller class
@@ -32,25 +48,9 @@ import utils.SceneHandler;
  */
 public class SeConnecterController extends Application implements Initializable {
     
-    private static final String TITLE_STAGE = "Bon plans";
-    private static final String ERR = "Erreur";
-    private static final String INFO = "Info";
-    private static final String ERR_INPUT = "Entrée invalide";
-    private static final String ERR_EMAIL = "Email incorrect.";
-    private static final String ERR_PWD = "Mot de passe incorrect.";
-    private static final String ERR_EMAIL_NONEXISTENT = "Email inexistant";
-    private static final String ERR_EMAIL_PWD = "Email ou mot de passe incorrect.";
-    private static final String ERR_ACTIVATION = "Code d'activation incorrecte.";
+   
     private static final String PATH = "SeConnecter.fxml";
-    private static final String TITLE_ACTIVATION = "Activation du compte";
-    private static final String MSG_ACTIVATION_INPUT = "Un code d'activation à été envoyé à votre email. Veuillez introduire votre code d'activation";
     private static final String TITLE_PWD_OUBLIE = "Mot de passe oublié";
-    private static final String MSG_PWD_OUBLIE = "Veuillez introduire le nouveau mot de passe";
-    private static final int MIN_LENGTH_PWD = 8;
-    private static final String ERR_PWD_OUBLIE = "Votre mot de passe doit être composé de " + MIN_LENGTH_PWD + "caractères au minimum.\nVeuillez introduire du nouveau votre mot de passe";
-    private static final String INFO_SUCC_CHANGER_PWD = "Votre mot de passe a été modifié avec succès";
-    private static final String ERR_CHANGER_PWD = "Votre mot de passe doit comporter au minimum 8 caractères";
-    
     
     private IUtilisateur userService;
     
@@ -80,11 +80,11 @@ public class SeConnecterController extends Application implements Initializable 
         
         // Controle de saisie.
         if (StringUtils.isEmpty(email)) {
-            Dialog.Error(ERR, ERR_INPUT, ERR_EMAIL).showAndWait();
+            Dialog.Error(ERR, ERR_INPUT, ERR_INPUT_EMAIL).showAndWait();
             return;
         }
         if (StringUtils.isEmpty(pwd)) {
-            Dialog.Error(ERR, ERR_INPUT, ERR_PWD).showAndWait();
+            Dialog.Error(ERR, ERR_INPUT, ERR_INPUT_PWD).showAndWait();
             return;
         }
         
@@ -98,16 +98,16 @@ public class SeConnecterController extends Application implements Initializable 
         }
         // Utilisateur inéxistant.
         if (currentUser == null) {
-            Dialog.Error(ERR, ERR_INPUT, ERR_EMAIL_PWD).showAndWait();
+            Dialog.Error(ERR, ERR_INPUT, ERR_INPUT_EMAIL_PWD).showAndWait();
             return;
         }
         
         // Compte n'est pas encore activé
         // Activation du compte, si le code d'activation valide.
         if (!currentUser.getIsActif()){
-            if (!DialogActiverCompte(currentUser.getCodeActivation()))
+            if (!DialogActiverCompte(currentUser.getCodeActivation(), MSG_ACTIVATION_INPUT))
             {
-                Dialog.Error(ERR, ERR_INPUT, ERR_ACTIVATION).showAndWait();
+                Dialog.Error(ERR, ERR_INPUT, ERR_INPUT_CODE_ACTIVATION).showAndWait();
                 return;
             }
             userService.activerCompte(currentUser);
@@ -136,40 +136,45 @@ public class SeConnecterController extends Application implements Initializable 
         
         // Controle de saisie sur l'émail.
         if (StringUtils.isEmpty(email)) {
-            Dialog.Error(ERR, ERR_INPUT, ERR_EMAIL).showAndWait();
+            Dialog.Error(ERR, ERR_INPUT, ERR_INPUT_EMAIL).showAndWait();
             return;
         }
+        
+        //Email inexistant.
         if (!userService.isExist(email)){
             Dialog.Info(INFO, null, ERR_EMAIL_NONEXISTENT).showAndWait();
             return;
         }
         
         Utilisateur currentUser = userService.getUtilisateurByEmail(email);
+        
+        // Déactivation temporaire du compte et l'envoi d'un mail d'activation.
         userService.deactiverCompte(currentUser);
         userService.envoyerCodeActivation(currentUser);
        
-        if (!DialogActiverCompte(currentUser.getCodeActivation()))
+        
+        // Activation du compte.
+        if (!DialogActiverCompte(currentUser.getCodeActivation(), MSG_ACTIVATION_WITH_MAIL))
         {
-            Dialog.Error(ERR, ERR_INPUT, ERR_ACTIVATION).showAndWait();
+            Dialog.Error(ERR, ERR_INPUT, ERR_INPUT_CODE_ACTIVATION).showAndWait();
             return;
         }
         
-        //Changement du mot du passe.
+        // Changement du mot du passe.
         String newPwd = DialogChangerPwd(false);
         if (newPwd == null){
-            Dialog.Error(ERR, ERR_INPUT, ERR_CHANGER_PWD).showAndWait();
             return;     
         }
         
         userService.updatePwd(currentUser, newPwd);
-        Dialog.Info(INFO, null, INFO_SUCC_CHANGER_PWD).showAndWait();
+        Dialog.Info(INFO, null, MSG_SUCC_CHANGER_PWD).showAndWait();
         
     }
     
-    private boolean DialogActiverCompte(int codeActivation){
+    private boolean DialogActiverCompte(int codeActivation, String msg){
         Optional<String> result = Dialog.createTextInput(TITLE_ACTIVATION
             , TITLE_ACTIVATION
-            , MSG_ACTIVATION_INPUT
+            , msg
             , ""
             ).showAndWait();
         if (result.isPresent()){
@@ -181,7 +186,7 @@ public class SeConnecterController extends Application implements Initializable 
     private String DialogChangerPwd (boolean withError){
         Optional<String> result = Dialog.createTextInput(TITLE_PWD_OUBLIE
             , TITLE_PWD_OUBLIE
-            , withError ? ERR_PWD_OUBLIE : MSG_PWD_OUBLIE
+            , withError ? ERR_CONST_PWD : MSG_PWD_OUBLIE
             , ""
             ).showAndWait();
         if (result.isPresent()){
