@@ -119,18 +119,17 @@ public class AccueilController  extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<Categorie> ListCategorie =ICategorie.selectAll();
-       
-         List<Categorie> ListCategorieChoisie =new ArrayList<>();
+        List<Categorie> ListCategorieChoisie =new ArrayList<>();
         Random rand= new Random();
         if(!ListCategorie.isEmpty()){
             for(int i=0;i<3;i++){
-        int nbAleatoire= rand.nextInt(ListCategorie.size());
+                int nbAleatoire= rand.nextInt(ListCategorie.size());
                 System.err.println(nbAleatoire);
-        if(!ListCategorieChoisie.contains(ListCategorie.get(nbAleatoire)))
-        ListCategorieChoisie.add(ListCategorie.get(nbAleatoire));
-        else
-            i--;
-        }}
+                if(!ListCategorieChoisie.contains(ListCategorie.get(nbAleatoire)))
+                    ListCategorieChoisie.add(ListCategorie.get(nbAleatoire));
+                else
+                    i--;
+            }}
         TitreCategorie1.setText(ListCategorieChoisie.get(0).getTitre());
         TitreCategorie2.setText(ListCategorieChoisie.get(1).getTitre());
         TitreCategorie3.setText(ListCategorieChoisie.get(2).getTitre());
@@ -183,13 +182,12 @@ public class AccueilController  extends Application implements Initializable {
         ImgC2P3.setImage(new Image(planCategorie2Choisie.get(2).getUrlPhoto(),true));
         TitreC2P3.setText(planCategorie2Choisie.get(2).getTitre());
          //Affichage categorie 2
-         ImgC3P1.setImage(new Image(planCategorie3Choisie.get(0).getUrlPhoto(),true));
+        ImgC3P1.setImage(new Image(planCategorie3Choisie.get(0).getUrlPhoto(),true));
         TitreC3P1.setText(planCategorie3Choisie.get(0).getTitre());
         ImgC3P2.setImage(new Image(planCategorie3Choisie.get(1).getUrlPhoto(),true));
         TitreC3P2.setText(planCategorie3Choisie.get(1).getTitre());
         ImgC3P3.setImage(new Image(planCategorie3Choisie.get(2).getUrlPhoto(),true));
         TitreC3P3.setText(planCategorie3Choisie.get(2).getTitre());
-        // TODO
     }    
    
     

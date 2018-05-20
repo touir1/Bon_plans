@@ -21,7 +21,7 @@ public class MainGuiClass extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         SceneHandler.initPrimaryStage(primaryStage);
-        SceneHandler.openScene(SceneEnum.SE_CONNECTER, false);
+        SceneHandler.openScene(SceneEnum.ACCEUIL, false);
     }
     
     public static void main(String[] args) {
