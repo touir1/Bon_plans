@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererPlan.consulterPlanOutsider.ConsulterPlanOutsiderController">
+   <children>
+      <AnchorPane fx:id="Menu" prefHeight="577.0" prefWidth="261.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="47.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../template/Utilisateur/Logo.png" />
+               </image>
+            </ImageView>
+            <Hyperlink layoutX="79.0" layoutY="159.0" onMouseClicked="#openAccueil" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text=" Accueil" textFill="#797676" />
+            <Hyperlink layoutX="79.0" layoutY="214.0" onMouseClicked="#openSeConnecter" style="-fx-font-size: 15;" text="Se connecter" textFill="#797676" />
+            <Hyperlink layoutX="79.0" layoutY="267.0" onMouseClicked="#openMeilleursPlans" style="-fx-font-size: 15;" text="Meilleurs Plans" textFill="#797676" />
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="45.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../template/Utilisateur/Accueil.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="63.0" layoutX="41.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../template/Utilisateur/profil.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="28.0" layoutX="42.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../template/Utilisateur/Réclamation.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="277.0" layoutY="74.0" minHeight="-Infinity" prefHeight="429.0" prefWidth="784.0" style="-fx-background-color: white;">
+         <children>
+            <Label id="title" fx:id="title" alignment="CENTER" layoutX="221.0" layoutY="24.0" prefHeight="17.0" prefWidth="364.0" text="title plan" textAlignment="CENTER" textFill="#0eadc6">
+               <font>
+                  <Font name="Georgia Italic" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imagePlan" fitHeight="180.0" fitWidth="301.0" layoutX="39.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
+            <TextArea fx:id="description" editable="false" layoutX="357.0" layoutY="78.0" prefHeight="180.0" prefWidth="371.0" text="description area">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="114.0" layoutY="283.0" prefHeight="17.0" prefWidth="90.0" text="Prix Initial :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="initialPrice" layoutX="204.0" layoutY="283.0" prefHeight="15.0" prefWidth="82.0" text="0 TND">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="317.0" layoutY="283.0" prefHeight="17.0" prefWidth="107.0" text="Prix promotion :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="promoPrice" layoutX="435.0" layoutY="284.0" prefHeight="15.0" prefWidth="82.0" text="0 TND">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="535.0" layoutY="282.0" text="Pourcentage promotion :" />
+            <Label fx:id="promoPercentage" layoutX="689.0" layoutY="282.0" text="0 %" />
+            <Label layoutX="311.0" layoutY="321.0" prefHeight="17.0" prefWidth="133.0" text="Unités disponibles :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="units" layoutX="456.0" layoutY="322.0" prefHeight="15.0" prefWidth="82.0" text="0">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="321.0" prefHeight="17.0" prefWidth="90.0" text="Date début :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="beginDate" layoutX="174.0" layoutY="322.0" prefHeight="15.0" prefWidth="82.0" text="01/01/2017">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="350.0" prefHeight="17.0" prefWidth="90.0" text="Date fin      :">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="endDate" layoutX="174.0" layoutY="351.0" prefHeight="15.0" prefWidth="82.0" text="01/01/2018">
+               <font>
+                  <Font name="Georgia Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="categorie" alignment="CENTER_RIGHT" layoutX="86.0" layoutY="28.0" prefHeight="17.0" prefWidth="234.0" text="categorie" textFill="#0aeb51">
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnReservation" layoutX="585.0" layoutY="338.0" onMouseClicked="#openReservation" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: green;" text="Réserver" textFill="#f2f2f2">
+               <font>
+                  <Font name="Georgia Italic" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

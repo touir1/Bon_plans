@@ -59,6 +59,11 @@ public enum SceneEnum {
             "AjouterCategorie",
             "../tn/esprit/bonplans/Gui/GererCategorie/Ajouter/AjouterCategorie.fxml",
             "Ajouter Categorie"),
+    CONSULTER_PLAN_OUTSIDER(
+            "ConsulterPlanOutsider",
+            "../tn/esprit/bonplans/Gui/GererPlan/ConsulterPlanOutsider/ConsulterPlanOutsider.fxml",
+            "Consulter plan"
+            ),
     CONSULTER_PLAN_UTILISATEUR(
             "ConsulterPlanUtilisateur",
             "../tn/esprit/bonplans/Gui/GererPlan/ConsulterPlanUtilisateur/ConsulterPlan.fxml",
