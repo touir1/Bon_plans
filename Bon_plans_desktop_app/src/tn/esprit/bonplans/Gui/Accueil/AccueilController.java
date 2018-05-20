@@ -6,7 +6,6 @@
 package tn.esprit.bonplans.Gui.Accueil;
 
 import java.io.IOException;
-import static java.lang.Math.random;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +20,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import tn.esprit.bonplans.entity.Categorie;
 import tn.esprit.bonplans.entity.Plan;
@@ -34,6 +31,8 @@ import tn.esprit.bonplans.service.IPlan;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
 import utils.CurrentSession;
+import utils.SceneEnum;
+import utils.SceneHandler;
 
 /**
  * FXML Controller class
@@ -44,28 +43,19 @@ public class AccueilController  extends Application implements Initializable {
 
     @FXML
     private Label TitreCategorie1;
-
-    @FXML
-    private AnchorPane Categorie2plan1;
-
+    
     @FXML
     private ImageView ImgC2P1;
 
     @FXML
     private Label TitreC2P1;
-
-    @FXML
-    private AnchorPane Categorie1plan3;
-
+    
     @FXML
     private ImageView ImgC1P3;
 
     @FXML
     private Label TitreC1P3;
-
-    @FXML
-    private AnchorPane Categorie1plan2;
-
+    
     @FXML
     private ImageView ImgC1P2;
 
@@ -74,19 +64,13 @@ public class AccueilController  extends Application implements Initializable {
 
     @FXML
     private Label TitreCategorie2;
-
-    @FXML
-    private AnchorPane Categorie1plan1;
-
+    
     @FXML
     private ImageView ImgC1P1;
 
     @FXML
     private Label TitreC1P1;
-
-    @FXML
-    private AnchorPane Categorie2plan2;
-
+    
     @FXML
     private ImageView ImgC2P2;
 
@@ -94,22 +78,14 @@ public class AccueilController  extends Application implements Initializable {
     private Label TitreC2P2;
 
     @FXML
-    private AnchorPane Categorie2plan3;
-
-    @FXML
     private ImageView ImgC2P3;
 
     @FXML
     private Label TitreC2P3;
 
-    @FXML
-    private AnchorPane Menu;
 
     @FXML
     private Label TitreCategorie3;
-
-    @FXML
-    private AnchorPane Categorie3plan1;
 
     @FXML
     private ImageView ImgC3P1;
@@ -117,32 +93,26 @@ public class AccueilController  extends Application implements Initializable {
     @FXML
     private Label TitreC3P1;
 
-    @FXML
-    private AnchorPane Categorie3plan2;
 
     @FXML
     private ImageView ImgC3P2;
 
     @FXML
     private Label TitreC3P2;
-
-    @FXML
-    private AnchorPane Categorie3plan3;
+    
 
     @FXML
     private ImageView ImgC3P3;
 
     @FXML
     private Label TitreC3P3;
-    /**
-     * Initializes the controller class.
-     */
+   
     
     private ICategorie ICategorie =new CategorieImpl();
     private IPlan IPlan= new PlanImpl();
     List<Plan> planCategorie1Choisie= new ArrayList();
-        List<Plan> planCategorie2Choisie=new ArrayList();
-        List<Plan> planCategorie3Choisie=new ArrayList();
+    List<Plan> planCategorie2Choisie=new ArrayList();
+    List<Plan> planCategorie3Choisie=new ArrayList();
     public static Plan planAAfficher;
     
    
@@ -279,7 +249,7 @@ public class AccueilController  extends Application implements Initializable {
                     window.show();
     }
 
-     @FXML
+    @FXML
     void PageSeConnecter(ActionEvent event) throws IOException {
         Parent root= FXMLLoader.load(getClass().getResource("../GererUtilisateur/seConnecter/seConnecter.fxml"));
                     Scene Scene= new Scene(root);
@@ -287,6 +257,7 @@ public class AccueilController  extends Application implements Initializable {
                     window.setScene(Scene);
                     window.show();
     }
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
          Parent root= FXMLLoader.load(getClass().getResource("Accueil.fxml"));
@@ -296,5 +267,11 @@ public class AccueilController  extends Application implements Initializable {
             primaryStage.show();
             
     }
-     public static void main(String[] args){launch(args);}
+    
+    public static void main(String[] args){launch(args);}
+
+    @FXML
+    void btn_login_acceuil_Click(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.SE_CONNECTER);
+    }
 }

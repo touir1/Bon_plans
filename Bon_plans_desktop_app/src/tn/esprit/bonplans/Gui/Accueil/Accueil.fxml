@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -8,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1028.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.Accueil.AccueilController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1028.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.Accueil.AccueilController">
     <stylesheets>
         <URL value="@accueil.css" />
     </stylesheets>
@@ -68,7 +74,7 @@
                </image>
             </ImageView>
             <Hyperlink layoutX="79.0" layoutY="159.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text=" Accueil" textFill="#797676" />
-            <Hyperlink layoutX="79.0" layoutY="214.0" style="-fx-font-size: 15;" text="Se connecter" textFill="#797676" />
+            <Hyperlink fx:id="btn_login_acceuil" layoutX="79.0" layoutY="214.0" onAction="#btn_login_acceuil_Click" style="-fx-font-size: 15;" text="Se connecter" textFill="#797676" />
             <Hyperlink layoutX="79.0" layoutY="267.0" style="-fx-font-size: 15;" text="Meilleurs Plans" textFill="#797676" />
             <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="45.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                <image>

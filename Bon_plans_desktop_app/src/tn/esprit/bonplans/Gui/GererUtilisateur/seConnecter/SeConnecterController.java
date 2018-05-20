@@ -50,7 +50,6 @@ import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.TITLE_STAGE;
  */
 public class SeConnecterController extends Application implements Initializable {
     
-   
     private static final String PATH = "SeConnecter.fxml";
     private static final String TITLE_PWD_OUBLIE = "Mot de passe oublié";
     
@@ -76,6 +75,7 @@ public class SeConnecterController extends Application implements Initializable 
     }
     
     // Button : se connecter.
+    @FXML
     public void btn_cxn_cxn_Click(ActionEvent event) throws NoSuchAlgorithmException {
         String email = txt_email_cxn.getText();
         String pwd = txt_pwd_cxn.getText();        
@@ -128,11 +128,13 @@ public class SeConnecterController extends Application implements Initializable 
     }
 
     // Button : s'inscrire.
+    @FXML
     public void btn_signUp_cxn_Click(ActionEvent event) {
         SceneHandler.openScene(SceneEnum.SINSCRIRE);
     }
     
     // Button : mot de passe oublié.
+    @FXML
     public void hln_pwd4get_cnx_Click(ActionEvent event){
         String email = txt_email_cxn.getText();
         
@@ -173,6 +175,13 @@ public class SeConnecterController extends Application implements Initializable 
         
     }
     
+    // Button : acceuil.
+    @FXML
+    public void btn_acceuil_cxn_Click(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.ACCEUIL);
+    }
+    
+    // Dialog : Activer compte.
     private boolean DialogActiverCompte(int codeActivation, String msg){
         Optional<String> result = Dialog.createTextInput(TITLE_ACTIVATION
             , TITLE_ACTIVATION
@@ -185,6 +194,7 @@ public class SeConnecterController extends Application implements Initializable 
         return false;
     }
     
+    // Dialog : Changer mot de passe.
     private String DialogChangerPwd (boolean withError){
         Optional<String> result = Dialog.createTextInput(TITLE_PWD_OUBLIE
             , TITLE_PWD_OUBLIE
@@ -198,12 +208,5 @@ public class SeConnecterController extends Application implements Initializable 
         }
         return null;
     }
-      @FXML
-    void pageAccueil(ActionEvent event) throws IOException {
-          Parent root= FXMLLoader.load(getClass().getResource("../Accueil/Accueil.fxml"));
-                    Scene Scene= new Scene(root);
-                    Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-                    window.setScene(Scene);
-                    window.show();
-    }
+
 }

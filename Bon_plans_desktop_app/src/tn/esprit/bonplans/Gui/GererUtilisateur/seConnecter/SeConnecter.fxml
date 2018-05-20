@@ -38,7 +38,7 @@
                <font>
                   <Font size="21.0" />
                </font></JFXButton>
-            <JFXButton fx:id="btn_acceuil_cxn" layoutX="403.0" layoutY="342.0" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #7AA0C9;" text="Acceuil">
+            <JFXButton fx:id="btn_acceuil_cxn" layoutX="403.0" layoutY="342.0" onAction="#btn_acceuil_cxn_Click" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #7AA0C9;" text="Acceuil">
                <font>
                   <Font size="21.0" />
                </font>

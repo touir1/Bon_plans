@@ -25,8 +25,6 @@ import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_EMAIL
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_NOM;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_PRENOM;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.ERR_INPUT_PWD;
-import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.INFO;
-import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MSG_ACTIVATION_INPUT;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.MSG_CONFIRMATION;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.TITLE_ACTIVATION;
 import static tn.esprit.bonplans.Gui.GererUtilisateur.Constantes.TITLE_STAGE;
@@ -45,10 +43,9 @@ import utils.StringUtils;
  */
 public class SinscrireController extends Application implements Initializable {
 
- 
-    
     private IUtilisateur userService;
     public static final String PATH = "Sinscrire.fxml";
+    
     //S'inscrire components.
     
     @FXML
@@ -79,11 +76,14 @@ public class SinscrireController extends Application implements Initializable {
         primaryStage.show();
     }
     
+    // Button : se connecter.
     @FXML
     void btn_login_signUp_Click(ActionEvent event) {
         SceneHandler.openScene(SceneEnum.SE_CONNECTER);
     }
     
+    // Button : s'inscrire.
+    @FXML
     public void btn_signUp_signUp_Click(ActionEvent event) {
         
         // Récupération des champs.
@@ -126,6 +126,13 @@ public class SinscrireController extends Application implements Initializable {
         
     }
     
+    // Button : acceuil.
+    @FXML
+    public void btn_acceuil_cxn_Click(ActionEvent event){
+        SceneHandler.openScene(SceneEnum.ACCEUIL);
+    }
+    
+    // Dialog : Activver compte.
     private boolean DialogActiverCompte(int codeActivation, String msg){
         Optional<String> result = Dialog.createTextInput(TITLE_ACTIVATION
             , TITLE_ACTIVATION
