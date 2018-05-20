@@ -14,7 +14,7 @@
         <URL value="@planmodifier.css" />
     </stylesheets>
    <children>
-       <fx:include fx:id="menubar" source="../../../tn/esprit/bonplans/Gui/template/Utilisateur/BonPlanTemplate.fxml" />
+      <fx:include fx:id="menubar" source="../../../tn/esprit/bonplans/Gui/template/Utilisateur/BonPlanTemplate.fxml" />
       <Button layoutX="643.0" layoutY="428.0" mnemonicParsing="false" onAction="#onClickButton" text="Modifier ce plan" />
       <Label layoutX="436.0" layoutY="128.0" text="Titre" />
       <TextField layoutX="619.0" layoutY="124.0" />

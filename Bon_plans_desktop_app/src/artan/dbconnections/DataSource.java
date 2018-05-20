@@ -17,7 +17,7 @@ public class DataSource {
 
     private  static DataSource instance=null;
 
-    String url="jdbc:mysql://localhost/1cinfo01pi";
+    String url="jdbc:mysql://localhost/last_hope";
     String username="root";
     String password="";
     Connection connection=null;

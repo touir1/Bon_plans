@@ -12,14 +12,15 @@ package artan.entities;
 public class Statistique {
     
     private int id;
-
+    private String libelle;
+    private int nombre;
+    private double pourcentage;
+    
+    
     @Override
     public String toString() {
         return "Statistique{" + "id=" + id + ", libelle=" + libelle + ", nombre=" + nombre + ", pourcentage=" + pourcentage + '}';
     }
-    private String libelle;
-    private int nombre;
-    private double pourcentage;
 
     public Statistique() {
     }
@@ -41,6 +42,12 @@ public class Statistique {
         this.pourcentage = pourcentage;
     }
 
+    public Statistique(int id, String libelle, int nombre) {
+        this.id = id;
+        this.libelle = libelle;
+        this.nombre = nombre;
+    }
+    
     public int getId() {
         return id;
     }

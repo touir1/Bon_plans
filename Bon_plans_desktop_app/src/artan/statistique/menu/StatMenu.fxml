@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="artan.statistique.menu.StatMenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="artan.statistique.menu.StatMenuController">
     <stylesheets>
-        <URL value="@statmenu.css"/>
+        <URL value="@statmenu.css" />
     </stylesheets>
+     <fx:include fx:id="menubar" source="../../../tn/esprit/bonplans/Gui/template/Utilisateur/BonPlanTemplate.fxml" />
+   <JFXButton fx:id="btnStatPlan" layoutX="1103.0" layoutY="104.0" onAction="#statPlanClicked" text="Afficher" />
+   <Label layoutX="799.0" layoutY="112.0" prefHeight="18.0" prefWidth="141.0" text="Choisir un plan :" />
+   <JFXButton fx:id="btnStatCat" layoutX="1102.0" layoutY="162.0" onAction="#statCatClicked" text="Afficher" />
+   <Label layoutX="797.0" layoutY="169.0" prefHeight="18.0" prefWidth="157.0" text="Choisir une categorie:" />
+   <ChoiceBox fx:id="dropPlan" layoutX="940.0" layoutY="109.0" prefWidth="150.0" />
+   <ChoiceBox fx:id="dropCategorie" layoutX="940.0" layoutY="164.0" prefWidth="150.0" />
+   <TableView fx:id="tableResultat" layoutX="275.0" layoutY="239.0" prefHeight="317.0" prefWidth="569.0" />
+   <Label fx:id="labelRes" layoutX="275.0" layoutY="204.0" prefHeight="18.0" prefWidth="569.0" text="Resultat  (Meilleur dix vente):" />
+   <ChoiceBox fx:id="dropMois" layoutX="865.0" layoutY="289.0" prefWidth="150.0" />
+   <Label layoutX="865.0" layoutY="260.0" text="Mois :" />
+   <JFXButton fx:id="btnParMois" layoutX="1053.0" layoutY="287.0" onAction="#plansParMois" prefHeight="32.0" prefWidth="131.0" text="Chercher par mois" />
+   <JFXDatePicker fx:id="dateRecherche" layoutX="857.0" layoutY="374.0" />
+   <JFXButton fx:id="btnparJour" layoutX="1053.0" layoutY="371.0" onAction="#plansParJour" prefHeight="32.0" prefWidth="131.0" text="Chercher par date" />
+   <Label layoutX="865.0" layoutY="335.0" text="Date" />
 </AnchorPane>

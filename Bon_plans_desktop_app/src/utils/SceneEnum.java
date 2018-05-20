@@ -10,6 +10,18 @@ package utils;
  * @author touir
  */
 public enum SceneEnum {
+    STAT_PLAN(
+            "MenuStatPlan", 
+            "../artan/statistique/plan/PlanStat.fxml", 
+            "Menu statistique"),
+    STAT_CAT(
+            "MenuStatCat", 
+            "../artan/statistique/categorie/CategorieStat.fxml", 
+            "Categorie statistique"),
+    STAT_MENU(
+            "MenuStat", 
+            "../artan/statistique/menu/StatMenu.fxml", 
+            "Menu statistique"),
     LISTE_PLAN(
             "ListeDesPlan", 
             "../artan/plan/liste/PlanListe.fxml", 

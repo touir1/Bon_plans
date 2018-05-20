@@ -58,21 +58,21 @@ public class Test {
         */
         
         //System.out.println(ss.nombreDesPlansPourJour(date1));
-        //System.out.println(ss.nombreDesPlansParMois(4));
+        //System.out.println(ss.nombreDesPlansParMois(5));
         
         //System.out.println(ss.meilleursVentesDuJours(date1));
-        //System.out.println(ss.meilleursVentesDuMois(4));
+        System.out.println(ss.meilleursVentesDuMois(5));
         /*
         DecimalFormat df = new DecimalFormat("#.###");
         System.out.println(df.format(ss.moyenneDesPlansParJour(4)));
         */
         
         //System.out.println(planservices.listeDesCommentaires(7));
-        
+        /*
         String chaine1 = "dali dali dali kelma dali dali yosra";
         
         System.out.println(Test.controle(chaine1));
-        
+        */
     }
     
     public static boolean controle(String chaine){

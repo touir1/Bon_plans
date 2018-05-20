@@ -40,7 +40,7 @@ public class StatistiqueServices implements IStatistique {
     public ArrayList<Statistique> meilleursVentesDuMois(int mois) {
         //SELECT reservation.idPlan, COUNT(*)FROM reservation WHERE reservation.date BETWEEN "2018-04-1" AND "2018-04-31" GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10
         ArrayList<Statistique> statistiques = new ArrayList<>();
-        String requete = "SELECT reservation.idPlan, COUNT(*) nb FROM reservation WHERE reservation.date BETWEEN \"2018-" + mois + "-1\" AND \"2018-" + mois + "-31\" GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10";        
+        String requete = "SELECT reservation.idPlan, plan.titre, COUNT(*) nb FROM reservation, plan WHERE reservation.date BETWEEN \"2018-" + mois + "-1\" AND \"2018-" + mois + "-31\" AND plan.idPlan = reservation.idPlan GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10";        
         
         try {
             Statement statement=connection.createStatement();
@@ -48,7 +48,7 @@ public class StatistiqueServices implements IStatistique {
             ResultSet resultSet =statement.executeQuery(requete);
             
             while(resultSet.next()){
-                statistiques.add(new Statistique(resultSet.getInt("idPlan"), resultSet.getInt("nb")));
+                statistiques.add(new Statistique(resultSet.getInt("idPlan"), resultSet.getString(2), resultSet.getInt("nb")));
             }
             
             System.out.println("Requete select effectuée");
@@ -64,7 +64,7 @@ public class StatistiqueServices implements IStatistique {
     public ArrayList<Statistique> meilleursVentesDuJours(LocalDate jour) {
         //SELECT reservation.idPlan, COUNT(*)FROM reservation GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10
         ArrayList<Statistique> statistiques = new ArrayList<>();
-        String requete = "SELECT reservation.idPlan, COUNT(*) nb FROM reservation WHERE reservation.date = \"" + jour + "\" GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10";        
+        String requete = "SELECT reservation.idPlan, plan.titre, COUNT(*) nb FROM reservation, plan WHERE reservation.date = \"" + jour + "\" And plan.idPlan = reservation.idPlan GROUP BY reservation.idPlan ORDER BY COUNT(*) DESC LIMIT 10";        
         
         try {
             Statement statement=connection.createStatement();
@@ -72,7 +72,7 @@ public class StatistiqueServices implements IStatistique {
             ResultSet resultSet =statement.executeQuery(requete);
             
             while(resultSet.next()){
-                statistiques.add(new Statistique(resultSet.getInt("idPlan"), resultSet.getInt("nb")));
+                statistiques.add(new Statistique(resultSet.getInt("idPlan"), resultSet.getString(2), resultSet.getInt("nb")));
             }
             
             System.out.println("Requete select effectuée");
