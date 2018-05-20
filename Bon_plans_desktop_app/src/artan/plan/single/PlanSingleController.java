@@ -14,6 +14,8 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.SceneEnum;
@@ -28,6 +30,8 @@ public class PlanSingleController extends Application implements Initializable {
     
     @FXML
     private Text titre, quantite, description, prix;
+    @FXML
+    private ImageView planImage;
     
         
     /**
@@ -37,7 +41,8 @@ public class PlanSingleController extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         PlanServices ps = new PlanServices();
         Plan plan = ps.rechercheParID(PlanListeController.identifiant);
-        
+        Image image = new Image(plan.getUrlPhoto());
+        planImage.setImage(image);
         titre.setText(plan.getTitre());
         quantite.setText(plan.getQuantite() + " articles restant");
         description.setText(plan.getDescription());

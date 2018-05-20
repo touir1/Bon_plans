@@ -14,6 +14,7 @@
         <URL value="@planmodifier.css" />
     </stylesheets>
    <children>
+       
       <Button layoutX="256.0" layoutY="334.0" mnemonicParsing="false" onAction="#onClickButton" text="Modifier ce plan" />
       <Label layoutX="49.0" layoutY="34.0" text="Titre" />
       <TextField layoutX="232.0" layoutY="30.0" />

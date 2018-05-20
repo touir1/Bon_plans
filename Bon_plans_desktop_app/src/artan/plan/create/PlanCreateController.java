@@ -32,13 +32,17 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.bonplans.entity.Categorie;
+import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.ICategorie;
 import tn.esprit.bonplans.service.IPlan;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
+import utils.CurrentSession;
+import utils.FileUploadHandler;
 import utils.SceneEnum;
 import utils.SceneHandler;
 
@@ -74,6 +78,9 @@ public class PlanCreateController extends Application  implements Initializable 
     private ChoiceBox<String> categories;
     @FXML
     private Button image;
+    
+    @FXML
+    private ImageView imageView;
     
     
     @Override
@@ -120,20 +127,22 @@ public class PlanCreateController extends Application  implements Initializable 
             erreur.setText("veillez choisir une photo pour votre plan");
         }else{
             
-            plan = new Plan(titre.getText(), description.getText(), tempURL, Double.parseDouble(prix_initiale.getText()), Double.parseDouble(prix_promo.getText()), Integer.parseInt(qte.getText()), java.sql.Date.valueOf(dd),java.sql.Date.valueOf(df), Integer.parseInt(qte.getText()), 0, 33, ic.findOne("titre", categories.getValue()).get(0).getIdCategorie());       
+            Utilisateur user = CurrentSession.getUtilisateur();
+         
+            if(f != null){
+                String filePath = FileUploadHandler.uploadFile(f);
+                System.out.println(filePath);
+                if(filePath != null){
+                    tempURL = filePath;
+                }
+                else{
+                    erreur.setText("erreur lors de l'upload de l'image");
+                    return;
+                }
+            }
             
-            /*
-            plan.setTitre(titre.getText());
-            plan.setDescription(description.getText());
-            plan.setPrix(Double.parseDouble(prix_initiale.getText()));
-            plan.setPrixPromo(Double.parseDouble(prix_promo.getText()));
-            plan.setQuantite(Integer.parseInt(qte.getText()));
-            plan.setDateDebut(java.sql.Date.valueOf(dd));
-            plan.setDateFin(java.sql.Date.valueOf(df));
-            plan.setIdAnnonceur(1);
-            plan.setIdCategorie(ic.findOne("titre", categories.getValue()).get(0).getIdCategorie());
-            */
-            
+            plan = new Plan(titre.getText(), description.getText(), tempURL, Double.parseDouble(prix_initiale.getText()), Double.parseDouble(prix_promo.getText()), Integer.parseInt(qte.getText()), java.sql.Date.valueOf(dd),java.sql.Date.valueOf(df), Integer.parseInt(qte.getText()), 0, user.getIdUtilisateur(), ic.findOne("titre", categories.getValue()).get(0).getIdCategorie());       
+          
             PlanServices ps = new PlanServices();
             
             ps.ajouterPlan(plan);
@@ -151,10 +160,8 @@ public class PlanCreateController extends Application  implements Initializable 
             System.out.println(f.getPath());
             String urlph = "file:///" + f.getAbsolutePath();
             Image i = new Image(urlph, backgroundLoading);
+            imageView.setImage(i);
             
-            
-            tempURL = urlph;
-            System.out.println(tempURL);
             
         }
     }

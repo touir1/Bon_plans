@@ -35,9 +35,7 @@ CREATE TABLE IF NOT EXISTS `avis` (
   `idUtilisateur` int(11) NOT NULL,
   `avis` int(11) NOT NULL DEFAULT '0',
   `note` int(11) DEFAULT '0',
-  PRIMARY KEY (`idAvis`),
-  KEY `fk_avis_plan` (`idPlan`),
-  KEY `fk_avis_utilisateur` (`idUtilisateur`)
+  PRIMARY KEY (`idAvis`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -76,9 +74,7 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `nbJaimePas` int(11) NOT NULL DEFAULT '0',
   `idClient` int(11) NOT NULL,
   `idPlan` int(11) NOT NULL,
-  PRIMARY KEY (`idCommentaire`),
-  KEY `fk_commentaire_client` (`idClient`),
-  KEY `fk_commentaire_plan` (`idPlan`)
+  PRIMARY KEY (`idCommentaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -139,9 +135,7 @@ CREATE TABLE IF NOT EXISTS `plan` (
   `statut` int(11) NOT NULL,
   `idAnnonceur` int(11) NOT NULL,
   `idCategorie` int(11) NOT NULL,
-  PRIMARY KEY (`idPlan`),
-  KEY `fk_plan_client` (`idAnnonceur`),
-  KEY `fk_plan_categorie` (`idCategorie`)
+  PRIMARY KEY (`idPlan`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -187,9 +181,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `status` int(11) NOT NULL,
   `idClient` int(11) NOT NULL,
   `idPlan` int(11) NOT NULL,
-  PRIMARY KEY (`idReservation`),
-  KEY `fk_reservation_client` (`idClient`),
-  KEY `fk_reservation_plan` (`idPlan`)
+  PRIMARY KEY (`idReservation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -216,8 +208,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `isActif` tinyint(1) NOT NULL DEFAULT '0',
   `codeActivation` int(11) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`),
-  UNIQUE KEY `uq_utilisateur_email` (`email`) USING BTREE,
-  KEY `fk_utilisateur_groupe` (`idGroupe`)
+  UNIQUE KEY `uq_utilisateur_email` (`email`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
@@ -225,9 +216,9 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `idGroupe`, `mdp`, `email`, `nom`, `prenom`, `urlphoto`, `ville`, `adresse`, `dateCreation`, `dateAcces`, `tempsAcces`, `isBanned`, `isActif`, `codeActivation`) VALUES
-(11, 2, '12345678', 'touir.mat@gmail.com', 'Touir', 'Mohamed Ali', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
-(12, 1, '12345678', 'eya.touir@gmail.com', 'Touir', 'Eya', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
-(13, 3, '12345678', 'admin.admin@gmail.com', 'Super', 'Admin', NULL, 'inconnu', 'inconnu', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0);
+(11, 2, 'b3b2b988f52e47986d9f2dd6a2434e1d113502ff', 'touir.mat@gmail.com', 'Touir', 'Mohamed Ali', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
+(12, 1, 'b3b2b988f52e47986d9f2dd6a2434e1d113502ff', 'eya.touir@gmail.com', 'Touir', 'Eya', NULL, 'Rades', '06 kawafel street rades', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0),
+(13, 3, 'b3b2b988f52e47986d9f2dd6a2434e1d113502ff', 'admin.admin@gmail.com', 'Super', 'Admin', NULL, 'inconnu', 'inconnu', '2018-05-01 00:00:00', NULL, NULL, 0, 0, 0);
 
 --
 -- Contraintes pour les tables déchargées
