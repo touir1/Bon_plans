@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import tn.esprit.bonplans.entity.Commentaire;
 
 /**
  *
@@ -201,6 +202,31 @@ public class PlanServices implements IPlan{
         }
     }
 
+    public ArrayList<Commentaire> listeDesCommentaires(int idPlan) {
+        
+        ArrayList<Commentaire> plans = new ArrayList<>();
+        
+        String requete = "SELECT * FROM `commentaire` WHERE `idPlan` = " + idPlan;
+        
+        try {
+            Statement statement=connection.createStatement();
+            
+            ResultSet resultSet =statement.executeQuery(requete);
+            
+            while(resultSet.next()){
+                plans.add(new Commentaire(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getInt(4), resultSet.getInt(5), resultSet.getInt(6), resultSet.getInt(7)));
+            }
+            
+            System.out.println("Requete select effectuée");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return plans;
+        
+    }
+    
     @Override
     public ArrayList<Plan> rechercheParCategorie(int idCategorie) {
         

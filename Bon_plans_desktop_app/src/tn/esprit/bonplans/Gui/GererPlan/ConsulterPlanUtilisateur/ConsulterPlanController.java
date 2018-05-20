@@ -5,24 +5,40 @@
  */
 package tn.esprit.bonplans.Gui.GererPlan.ConsulterPlanUtilisateur;
 
+import artan.plan.liste.PlanListeController;
+import artan.services.PlanServices;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import tn.esprit.bonplans.entity.Categorie;
+import tn.esprit.bonplans.entity.Commentaire;
 import tn.esprit.bonplans.entity.Plan;
 import tn.esprit.bonplans.service.ICategorie;
+import tn.esprit.bonplans.service.ICommentaire;
 import tn.esprit.bonplans.service.IPlan;
 import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
+import tn.esprit.bonplans.service.implementation.CommentaireImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 import utils.Converter;
@@ -40,6 +56,9 @@ public class ConsulterPlanController extends Application implements Initializabl
     private IPlan planService;
     private ICategorie categorieService;
     private IUtilisateur utilisateurService;
+    
+    PlanServices ps = new PlanServices();
+    ArrayList<Commentaire> commentaires = ps.listeDesCommentaires(PlanListeController.identifiant);
     
     private Plan openedPlan;
     @FXML
@@ -64,7 +83,14 @@ public class ConsulterPlanController extends Application implements Initializabl
     private JFXButton btnReservation;
     @FXML
     private ImageView imagePlan;
-    
+    @FXML
+    private TextArea commentaireText;
+    @FXML
+    private JFXButton btnCommenter;
+    @FXML
+    private Label erreurLabel;
+    @FXML
+    private TableView<Commentaire> commentairesTable;
     /**
      * Initializes the controller class.
      * @param url
@@ -72,6 +98,15 @@ public class ConsulterPlanController extends Application implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         
+        TableColumn<Commentaire, String> commColonne =  new TableColumn("Commentaires");
+        commColonne.setMinWidth(200);
+        commColonne.setCellValueFactory(new PropertyValueFactory<Commentaire, String>("texte"));
+        
+        commentairesTable.setItems(this.getCommentaires());
+        commentairesTable.getColumns().add(commColonne);
+        
+        erreurLabel.setText("");
         
         this.planService = new PlanImpl();
         this.categorieService = new CategorieImpl();
@@ -128,5 +163,50 @@ public class ConsulterPlanController extends Application implements Initializabl
     private void openReservation(MouseEvent event) {
         SceneHandler.openScene(SceneEnum.RESERVATION);
     }
+
+    @FXML
+    private void ajouterCommentaire(ActionEvent event) {
+        
+        erreurLabel.setText("");
+        
+        ICommentaire commentaire = new CommentaireImpl();
+        LocalDate date = java.time.LocalDate.now();
+        
+        if (commentaireText.getText().isEmpty()) {
+            erreurLabel.setText("veuillez saisir un commentaire");
+        }else if(this.controle(commentaireText.getText())){
+            erreurLabel.setText("yla3enet allah 3lik");
+        }else{
+            commentaire.save(new Commentaire(commentaireText.getText(), java.sql.Date.valueOf(date), 0, 0, 12, PlanListeController.identifiant));
+            System.out.println("commentaire ajouter");         
+            
+        }
+        
+    }
+ 
+    public ObservableList<Commentaire> getCommentaires(){
+        ObservableList<Commentaire> resultat = FXCollections.observableArrayList();
+        
+        for(Commentaire c : commentaires){
+            resultat.add(c);
+        }
+        
+        return resultat;
+    }
     
+    public boolean controle(String chaine){
+        ArrayList<String> dictionnaire = new ArrayList();
+        dictionnaire.add("kelma");
+        dictionnaire.add("zeyda");
+        
+        String[] items = chaine.split(" ");
+        
+        for (int i = 0; i < items.length; i++) {
+            if(dictionnaire.contains(items[i])){
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

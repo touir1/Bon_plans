@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +15,7 @@
     </stylesheets>
     <children>
       <fx:include fx:id="menubar" source="../../template/Utilisateur/BonPlanTemplate.fxml" />
-      <AnchorPane layoutX="298.0" layoutY="119.0" minHeight="-Infinity" prefHeight="429.0" prefWidth="784.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="304.0" layoutY="122.0" minHeight="-Infinity" prefHeight="429.0" prefWidth="784.0" style="-fx-background-color: white;">
          <children>
             <Label id="title" fx:id="title" alignment="CENTER" layoutX="221.0" layoutY="24.0" prefHeight="17.0" prefWidth="364.0" text="title plan" textAlignment="CENTER" textFill="#0eadc6">
                <font>
@@ -22,7 +23,7 @@
                </font>
             </Label>
             <ImageView fx:id="imagePlan" fitHeight="180.0" fitWidth="301.0" layoutX="39.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
-            <TextArea fx:id="description" editable="false" layoutX="357.0" layoutY="78.0" prefHeight="180.0" prefWidth="371.0" text="description area">
+            <TextArea fx:id="description" editable="false" layoutX="357.0" layoutY="78.0" prefHeight="147.0" prefWidth="166.0" text="description area">
                <font>
                   <Font name="System Italic" size="17.0" />
                </font>
@@ -47,8 +48,8 @@
                   <Font name="Georgia Italic" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="535.0" layoutY="282.0" text="Pourcentage promotion :" />
-            <Label fx:id="promoPercentage" layoutX="689.0" layoutY="282.0" text="0 %" />
+            <Label layoutX="316.0" layoutY="350.0" text="Pourcentage promotion :" />
+            <Label fx:id="promoPercentage" layoutX="470.0" layoutY="350.0" text="0 %" />
             <Label layoutX="311.0" layoutY="321.0" prefHeight="17.0" prefWidth="133.0" text="Unités disponibles :">
                <font>
                   <Font name="Georgia Italic" size="13.0" />
@@ -84,11 +85,15 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnReservation" layoutX="585.0" layoutY="338.0" onMouseClicked="#openReservation" prefHeight="25.0" prefWidth="133.0" style="-fx-background-color: green;" text="Réserver" textFill="#f2f2f2">
+            <JFXButton fx:id="btnReservation" layoutX="616.0" layoutY="37.0" onMouseClicked="#openReservation" prefHeight="40.0" prefWidth="133.0" style="-fx-background-color: green;" text="Réserver" textFill="#f2f2f2">
                <font>
                   <Font name="Georgia Italic" size="12.0" />
                </font>
             </JFXButton>
+            <TextArea fx:id="commentaireText" layoutX="570.0" layoutY="306.0" prefHeight="52.0" prefWidth="200.0" />
+            <JFXButton fx:id="btnCommenter" layoutX="684.0" layoutY="375.0" onAction="#ajouterCommentaire" prefHeight="32.0" prefWidth="90.0" text="Commenter" />
+            <Label fx:id="erreurLabel" layoutX="204.0" layoutY="382.0" prefHeight="18.0" prefWidth="287.0" text="aaaaaaaaaaaaaaaaa" />
+            <TableView fx:id="commentairesTable" layoutX="570.0" layoutY="106.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
     </children>

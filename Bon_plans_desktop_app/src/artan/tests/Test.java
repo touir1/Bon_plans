@@ -66,5 +66,28 @@ public class Test {
         DecimalFormat df = new DecimalFormat("#.###");
         System.out.println(df.format(ss.moyenneDesPlansParJour(4)));
         */
+        
+        //System.out.println(planservices.listeDesCommentaires(7));
+        
+        String chaine1 = "dali dali dali kelma dali dali yosra";
+        
+        System.out.println(Test.controle(chaine1));
+        
+    }
+    
+    public static boolean controle(String chaine){
+        ArrayList<String> dictionnaire = new ArrayList();
+        dictionnaire.add("kelma");
+        dictionnaire.add("zeyda");
+        
+        String[] items = chaine.split(" ");
+        
+        for (int i = 0; i < items.length; i++) {
+            if(dictionnaire.contains(items[i])){
+                return true;
+            }
+        }
+        
+        return false;
     }
 }

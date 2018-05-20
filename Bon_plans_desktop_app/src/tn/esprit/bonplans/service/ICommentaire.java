@@ -5,6 +5,7 @@
  */
 package tn.esprit.bonplans.service;
 
+import java.util.List;
 import utils.service.GenericServiceInterface;
 import tn.esprit.bonplans.entity.Commentaire;
 
@@ -13,5 +14,13 @@ import tn.esprit.bonplans.entity.Commentaire;
  * @author SadfiAmine
  */
 public interface ICommentaire extends GenericServiceInterface<Commentaire>{
+    public interface Icommentaire {
+       public List<Commentaire> getAll(int i);
+        public Commentaire findById(Integer idCommentaire);
+          public void delete(Integer idCommentaire);
+           public void Update(Commentaire t);
+           public void add(Commentaire t);
+}
+    
     
 }
