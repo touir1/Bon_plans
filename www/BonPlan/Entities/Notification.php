@@ -87,13 +87,13 @@ class Notification
 
     public function getGlobalNotifications($conn){
 
-        $req = "SELECT * FROM `notification` WHERE idPlan = 0";
+        $req = "SELECT * FROM `notification` WHERE idPlan = 0 ORDER BY idNotification DESC";
 
         return $conn->query($req);
     }
 
     public function getNotificationsByUser($conn,$idUtilisateur){
-        $req = "SELECT * FROM `notification` WHERE idPlan = 0 OR idPlan in(SELECT idPlan FROM `plan` WHERE idAnnonceur = ".$idUtilisateur.")";
+        $req = "SELECT * FROM `notification` WHERE idPlan = 0 OR idPlan in(SELECT idPlan FROM `plan` WHERE idAnnonceur = ".$idUtilisateur.") ORDER BY idNotification DESC";
 
         return $conn->query($req);
     }
@@ -115,7 +115,7 @@ class Notification
     }
 
     public function getListOfNonValidatedModifiedPlans($conn){
-        $req = "SELECT * FROM `plan` WHERE statut = 2";
+        $req = "SELECT * FROM `plan` WHERE statut = 2 ORDER BY idNotification DESC";
         $rows = $conn->query($req);
         foreach($rows as $row) {
             return $row;
@@ -123,7 +123,7 @@ class Notification
     }
 
     public function getListOfNonValidatedNewPlans($conn){
-        $req = "SELECT * FROM `plan` WHERE statut = 0";
+        $req = "SELECT * FROM `plan` WHERE statut = 0 ORDER BY idNotification DESC";
         $rows = $conn->query($req);
         foreach($rows as $row) {
             return $row;
@@ -131,6 +131,11 @@ class Notification
     }
     public function changeNotificationAsSeen($conn, $id){
         $req = "UPDATE `notification` SET seen = 1 WHERE idNotification = ".$id;
+        $conn->exec($req);
+    }
+
+    public function addGlobalNotification($conn, $message){
+        $req = "INSERT INTO `notification` (`idNotification`, `seen`, `message`, `idPlan`) VALUES (NULL, 0, '".$message."', 0)";
         $conn->exec($req);
     }
 
@@ -154,7 +159,7 @@ class Notification
     }
 
     public function delete($conn, $id){
-        $req = "DELETE FROM `notification` WHERE id=".$id;
+        $req = "DELETE FROM `notification` WHERE idNotification=".$id;
 
         $conn->exec($req);
     }

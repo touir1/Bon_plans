@@ -137,10 +137,10 @@
                     <li>
                         <a href="categories.php" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Gestion des Categories</a>
                     </li>
+                    <?php } ?>
                     <li>
                         <a href="notification_admin.php" class="waves-effect"><i class="fa fa-bell m-r-10" aria-hidden="true"></i>Gestion des Notifications</a>
                     </li>
-                    <?php } ?>
                 </ul>
 
                 <div class="text-center m-t-30">
@@ -158,10 +158,11 @@
     <!-- ============================================================== -->
     <!-- Page wrapper  -->
     <!-- ============================================================== -->
+    <div id="popover-content" hidden></div>
+    <script src="js/tete_script.js" ></script>
+
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Container fluid  -->
         <!-- ============================================================== -->
 
-        <div id="popover-content" hidden></div>
-        <script src="js/tete_script.js" ></script>

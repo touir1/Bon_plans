@@ -35,7 +35,9 @@ $data_array = array();
 $href_array = array();
 $seen_array = array();
 $id_notification_array = array();
+$id_plan_array = array();
 $delete_array = array();
+$isAdmin_array = array();
 
 if($_SESSION['connecter'][1] == 1) {
 
@@ -44,6 +46,9 @@ if($_SESSION['connecter'][1] == 1) {
         $msg = utf8_decode($notif['message']);
         $msg = str_replace('?','é',$msg);
         array_push($data_array,$msg);
+        array_push($id_plan_array, $notif['idPlan']);
+        array_push($isAdmin_array, 0);
+
         if($notif['idPlan'] != 0){
             array_push($href_array, 'single.php?id='.$notif['idPlan']);
             array_push($id_notification_array, $notif['idNotification']);
@@ -64,8 +69,10 @@ if($_SESSION['connecter'][1] == 1) {
         'data' => $data_array,
         'href' => $href_array,
         'seen' => $seen_array,
+        'idPlan' => $id_plan_array,
         'idNotification' => $id_notification_array,
-        'delete' => $delete_array
+        'delete' => $delete_array,
+        'isAdmin' => $isAdmin_array
     );
 }
 else if($_SESSION['connecter'][1] > 1){
@@ -77,6 +84,10 @@ else if($_SESSION['connecter'][1] > 1){
 
         array_push($href_array, 'javascript:void(0)');
         array_push($id_notification_array, $notif['idNotification']);
+
+        array_push($id_plan_array, $notif['idPlan']);
+
+        array_push($isAdmin_array, 1);
 
         if($notif['seen'] == 0){
             array_push($seen_array, 0);
@@ -92,8 +103,10 @@ else if($_SESSION['connecter'][1] > 1){
         'data' => $data_array,
         'href' => $href_array,
         'seen' => $seen_array,
+        'idPlan' => $id_plan_array,
         'idNotification' => $id_notification_array,
-        'delete' => $delete_array
+        'delete' => $delete_array,
+        'isAdmin' => $isAdmin_array
     );
 
 }

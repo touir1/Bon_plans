@@ -69,7 +69,24 @@ if(isset($_SESSION['connecter'])) {
                                         <td><?php echo($item[1]); ?></td>
                                         <td><?php echo($item[6]); ?></td>
                                         <td><?php echo($item[9]); ?></td>
-                                        <td><?php echo($item[10]); ?></td>
+                                        <td><?php
+                                            $statut = "";
+                                            switch($item[10]){
+                                                case "0":
+                                                    $statut = "En Attente";
+                                                    break;
+                                                case "1":
+                                                    $statut = "Validé";
+                                                    break;
+                                                case "-1":
+                                                    $statut = "Refusé";
+                                                    break;
+                                                case "2":
+                                                    $statut = "Modifié";
+                                                    break;
+                                            }
+                                            echo($item[10].' - '.$statut);
+                                            ?></td>
                                         <td>
                                             <?php if ($_SESSION['connecter'][1]>1 && ($item[10] == 0 || $item[10] == 2)) { ?>
                                                 <a href="single.php?id=<?php echo($item[0]); ?>"

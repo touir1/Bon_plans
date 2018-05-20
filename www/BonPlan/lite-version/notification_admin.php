@@ -5,17 +5,8 @@
  * Date: 17/05/2018
  * Time: 17:21
  */
-session_start();
-if(isset($_SESSION['connecter'])) {
-    include("../Entities/Config.php");
-    include("../Entities/utilisateur.php");
 
-    $c = new Config();
-
-    $conn = $c->getConnexion();
-    $user = new Utilisateur();
-    $items = $user->getAll($conn);
-
+    session_start();
 
     include("tete.php");
     ?>
@@ -31,10 +22,6 @@ if(isset($_SESSION['connecter'])) {
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Notifications</a></li>
                     <li class="breadcrumb-item active">Listes des notifications</li>
                 </ol>
-            </div>
-            <div class="col-md-6 col-4 align-self-center">
-                <a href="ajouter.php" class="btn pull-right hidden-sm-down btn-success"> Ajouter un nouveau
-                    administrateur</a>
             </div>
         </div>
         <!-- ============================================================== -->
@@ -52,63 +39,46 @@ if(isset($_SESSION['connecter'])) {
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>NOM</th>
-                                    <th>PRENOM</th>
-                                    <th>TYPE</th>
+                                    <th>Message</th>
+                                    <th>Global</th>
+                                    <th>Seen</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <?php foreach ($items as $item) { ?>
-                                    <tr>
-                                        <td><?php echo($item[0]); ?></td>
-                                        <td><?php echo($item[4]); ?></td>
-                                        <td><?php echo($item[5]); ?></td>
-                                        <td>
-                                            <?php if ($item[1] == 1) {
-                                                echo("Client");
-                                            } else {
-                                                echo("Administrateur");
-                                            }
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php if ($item[1] == 1) { ?>
-                                                <?php if ($item[12] == 0) { ?>
-                                                    <a href="bloquer.php?id=<?php echo($item[0]); ?>&etat=1"
-                                                       class="btn btn-danger">Bloquer</a>
-                                                <?php } else { ?>
-                                                    <a href="bloquer.php?id=<?php echo($item[0]); ?>&etat=0"
-                                                       class="btn btn-success">Debloquer</a>
-                                                <?php } ?>
-                                            <?php } else { ?>
-                                                <?php if ($item[12] == 0) { ?>
-                                                    <a href="bloquer.php?id=<?php echo($item[0]); ?>&etat=1"
-                                                       class="btn btn-danger">Bloquer</a>
-                                                <?php } else { ?>
-                                                    <a href="bloquer.php?id=<?php echo($item[0]); ?>&etat=0"
-                                                       class="btn btn-success">Debloquer</a>
-                                                <?php } ?>
-                                                <?php if($_SESSION['connecter'][1] == 3){ ?>
-                                                    <a href="#" class="btn btn-primary">Affecter</a>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                <tbody id="notification_body">
+
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="form-group">
+                            <label for="msg_to_add"><b>Message à ajouter:</b></label>
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" id="msg_to_add"></td>
+                                    <td><a class="btn btn-success" onclick="ajouterNotification();">Ajouter Notification</a></td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End PAge Content -->
-        <!-- ============================================================== -->
     </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    </div>
+    <script src="js/notifications_admin-custom.js"></script>
     <?php
-}
-include("pied.html");
-?>
+
+    include("pied.html");
+    ?>
+
