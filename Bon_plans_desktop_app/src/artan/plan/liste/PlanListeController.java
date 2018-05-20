@@ -128,9 +128,11 @@ public class PlanListeController extends Application implements Initializable {
         
         Plan t = tablePlans.getSelectionModel().getSelectedItem();       
         identifiant = t.getIdPlan();
+        System.out.println("id = " + identifiant);
         
         SceneHandler.initPrimaryStage(s);
-        SceneHandler.openScene(SceneEnum.SINGLE_PLAN);
+        
+        SceneHandler.openScene(SceneEnum.CONSULTER_PLAN_UTILISATEUR);
         
     }
 }
