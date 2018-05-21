@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -295,4 +296,10 @@ public class BonPlanTemplateController extends Application implements Initializa
         System.out.println("Stage is closing");
         // Save file
     }
+    
+    @FXML
+    public void btn_add_admin_Click(ActionEvent event){
+        SceneHandler.openScene(SceneEnum.ADMIN_AJOUTER);
+    }
+    
 }

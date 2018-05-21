@@ -112,11 +112,19 @@ public enum SceneEnum {
             "Client Accueil",
             "../tn/esprit/bonplans/Gui/GererUtilisateur/client/acceuil/Acceuil.fxml",
             "Accueil"),
+    ADMIN_ACCEUIL(
+            "Admin Accueil",
+            "../tn/esprit/bonplans/Gui/GererUtilisateur/Administrateur/acceuil/Acceuil.fxml",
+            "Accueil"),
     CLIENT_MODIFIER(
             "Mon Compte",
             "../tn/esprit/bonplans/Gui/GererUtilisateur/client/modifier/Modifier.fxml",
             "Mon Compte"
-            )
+            ),
+    ADMIN_AJOUTER(
+            "Ajouter Administratuer",
+            "../tn/esprit/bonplans/Gui/GererUtilisateur/Administrateur/ajouter/Ajouter.fxml",
+            "Ajouter Administratuer")
     ;
     
     private final String sceneName;

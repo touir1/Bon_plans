@@ -28,7 +28,8 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
 
     private static final String ERR_USER_EXIST = "Email est déja utilisée par un autre utilisateur.";
     private static final String SUBJECT_EMAIL = "[BONPLANS] Activation de compte";
-    private static final String TEXT_EMAIL = "Votre code d'activation est ";
+    private static final String TEXT_EMAIL_ACT = "Votre code d'activation est : ";
+    private static final String TEXT_EMAIL_PWD = "Votre mot de passe est : ";
     
     public UtilisateurImpl() {
         super(Utilisateur.class);
@@ -103,7 +104,12 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
     
     @Override
     public void envoyerCodeActivation(Utilisateur utilisateur){
-        Email.send(utilisateur.getEmail(), SUBJECT_EMAIL, TEXT_EMAIL + utilisateur.getCodeActivation());
+        Email.send(utilisateur.getEmail(), SUBJECT_EMAIL, TEXT_EMAIL_ACT + utilisateur.getCodeActivation());
+    }
+    
+    @Override
+    public void envoyerCodeActivationEtMdp(Utilisateur utilisateur, String mdpBrute){
+        Email.send(utilisateur.getEmail(), SUBJECT_EMAIL, TEXT_EMAIL_ACT + utilisateur.getCodeActivation() + "\n" + TEXT_EMAIL_PWD + mdpBrute);
     }
     
     @Override
@@ -127,5 +133,31 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
             }
         }
         return update(utilisateur);
+    }
+    
+    @Override
+    public Utilisateur ajouterAdministrateur(String email, String nom, String prenom, Error error){
+        Utilisateur utilisateur = null;
+        if (isExist(email)){
+            error.setMessage(ERR_USER_EXIST);
+        }
+        else {
+            ServiceResponse serviceResponse = new ServiceResponse();
+            try {
+                String mdp = String.valueOf(Other.generatePwd());
+                utilisateur = new Utilisateur(EnumGroupe.Administrateur.getValue(), Encrypt.sha1(mdp), email, nom, prenom, new Date(), Other.generateActivationCode());
+                utilisateur = save(utilisateur, serviceResponse);
+                if (!serviceResponse.isOk()) {
+                    error.setMessage(serviceResponse.getExceptions().get(0).getMessage());
+                }
+                else {
+                   envoyerCodeActivationEtMdp(utilisateur, mdp);
+                }
+            } 
+            catch (NoSuchAlgorithmException ex) {
+                error.setMessage(ex.getMessage());
+            }
+        }       
+        return utilisateur;
     }
 }

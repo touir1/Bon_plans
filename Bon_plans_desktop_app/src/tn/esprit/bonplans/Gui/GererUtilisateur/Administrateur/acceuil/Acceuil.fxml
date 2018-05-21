@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.Administrateur.acceuil.AcceuilController">
+    <stylesheets>
+        <URL value="@acceuil.css"/>
+    </stylesheets>
+    <children>
+        <fx:include fx:id="menubar" source="../../../template/Admin/BonPlanTemplate.fxml" />
+    </children>
+</AnchorPane>

@@ -16,11 +16,13 @@ import utils.Error;
 public interface IUtilisateur extends GenericServiceInterface<Utilisateur> {
     public Utilisateur connecter(String email, String mdp, Error error);
     public Utilisateur inscrire(String email, String nom, String prenom, String mdp, Error error);
+    public Utilisateur ajouterAdministrateur(String email, String nom, String prenom, Error error);
     public boolean isExist(String email);
     public void activerCompte(Utilisateur utilisateur);
     public void deactiverCompte(Utilisateur utilisateur);
     public Utilisateur getUtilisateurByEmail(String email);
     public void envoyerCodeActivation(Utilisateur utilisateur);
+    public void envoyerCodeActivationEtMdp(Utilisateur utilisateur, String mdpBrute);
     public void updatePwd(Utilisateur utilisateur, String mdp);
     public Utilisateur updateUser(Utilisateur utilisateur, boolean withUpdatePwd);
 }

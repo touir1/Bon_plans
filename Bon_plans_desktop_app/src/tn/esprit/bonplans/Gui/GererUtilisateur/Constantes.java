@@ -45,4 +45,5 @@ public final class Constantes {
     public static final String MSG_PWD_OUBLIE = "Veuillez introduire le nouveau mot de passe";
     public static final String MSG_SUCC_CHANGER_PWD = "Votre mot de passe a été modifié avec succès";
     public static final String MSG_SUCC_UPDATE = "Mise à jour terminée avec succès";
+    public static final String MSG_SUCC_ADD_ADMIN = "Administrateur a été créé avec succes";
 }

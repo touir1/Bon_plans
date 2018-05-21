@@ -121,7 +121,7 @@ public class SeConnecterController extends Application implements Initializable 
             SceneHandler.openScene(SceneEnum.CLIENT_ACCEUIL);
         }
         else {
-            Dialog.Info(null, "admin", "admin").showAndWait();
+            SceneHandler.openScene(SceneEnum.ADMIN_ACCEUIL);
         }    
     }
 

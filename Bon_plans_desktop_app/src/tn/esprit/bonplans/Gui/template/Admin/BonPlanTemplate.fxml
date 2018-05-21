@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -7,7 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="577.0" prefWidth="875.0" style="-fx-background-color: #f2f7f8;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.template.Admin.BonPlanTemplateController">
+<AnchorPane prefHeight="577.0" prefWidth="875.0" style="-fx-background-color: #f2f7f8;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.template.Admin.BonPlanTemplateController">
    <!--<stylesheets>
         <URL value="@bonplantemplate.css" />
     </stylesheets>-->
@@ -21,7 +26,7 @@
             </ImageView>
             <Hyperlink layoutX="69.0" layoutY="106.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text="Accueil" textFill="#797676" />
             <Hyperlink layoutX="69.0" layoutY="161.0" style="-fx-font-size: 15;" text="Menu 1" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="214.0" style="-fx-font-size: 15;" text="Menu 2" textFill="#797676" />
+            <Hyperlink fx:id="btn_add_admin" layoutX="69.0" layoutY="214.0" onAction="#btn_add_admin_Click" style="-fx-font-size: 15;" text="Ajouter administrateur" textFill="#797676" />
             <Hyperlink layoutX="69.0" layoutY="266.0" onMouseClicked="#openCategorieListScene" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />
             <!--<Hyperlink layoutX="69.0" layoutY="266.0" onAction="#OuvrirePageCategorie" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />-->
             <Hyperlink layoutX="69.0" layoutY="320.0" onMouseClicked="#openNotifications" style="-fx-font-size: 15;" text="Notifications" textFill="#797676" />

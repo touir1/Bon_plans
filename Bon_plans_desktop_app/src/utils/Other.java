@@ -20,4 +20,8 @@ public class Other {
         return rand.nextInt((MAX - MIN) + 1) + MIN;
     }
     
+    public static int generatePwd() {
+        Random rand = new Random();
+        return rand.nextInt((MAX * 1000 - MIN * 1000) + 1) + MIN;
+    }
 }
