@@ -51,9 +51,9 @@ public class DatabaseEntityHandler {
                     values += ",";
                 }
 
-                sql += entry.getKey();
+                sql += "`"+entry.getKey()+"`";
                 values += Converter.convertObjectToSQLString(entry.getValue());
-                selectSQL += " AND "+entry.getKey() + Converter.replaceNull(entry.getValue()," = "," is ")+ Converter.convertObjectToSQLString(entry.getValue());
+                selectSQL += " AND "+"`"+entry.getKey()+"`" + Converter.replaceNull(entry.getValue()," = "," is ")+ Converter.convertObjectToSQLString(entry.getValue());
             }
         }
         
@@ -106,7 +106,7 @@ public class DatabaseEntityHandler {
                     sql += ",";
                 }
 
-                sql += entry.getKey()+"="+Converter.convertObjectToSQLString(entry.getValue());
+                sql += "`"+entry.getKey()+"`"+"="+Converter.convertObjectToSQLString(entry.getValue());
             }
             else{
                 idValue = entry.getValue();
@@ -294,9 +294,9 @@ public class DatabaseEntityHandler {
                     values += ",";
                 }
 
-                sql += entry.getKey();
+                sql += "`"+entry.getKey()+"`";
                 values += Converter.convertObjectToSQLString(entry.getValue());
-                selectSQL += " AND "+entry.getKey() + Converter.replaceNull(entry.getValue()," = "," is ")+ Converter.convertObjectToSQLString(entry.getValue());
+                selectSQL += " AND "+"`"+entry.getKey()+"`" + Converter.replaceNull(entry.getValue()," = "," is ")+ Converter.convertObjectToSQLString(entry.getValue());
             }
         }
         
@@ -351,7 +351,7 @@ public class DatabaseEntityHandler {
                     sql += ",";
                 }
 
-                sql += entry.getKey()+"="+Converter.convertObjectToSQLString(entry.getValue());
+                sql += "`"+entry.getKey()+"`"+"="+Converter.convertObjectToSQLString(entry.getValue());
             }
             else{
                 idValue = entry.getValue();
