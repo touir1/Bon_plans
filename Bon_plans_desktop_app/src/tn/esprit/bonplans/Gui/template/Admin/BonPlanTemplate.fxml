@@ -24,49 +24,50 @@
                   <Image url="@Logo.png" />
                </image>
             </ImageView>
-            <Hyperlink layoutX="69.0" layoutY="106.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text="Accueil" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="161.0" style="-fx-font-size: 15;" text="Menu 1" textFill="#797676" />
-            <Hyperlink fx:id="btn_add_admin" layoutX="69.0" layoutY="214.0" onAction="#btn_add_admin_Click" style="-fx-font-size: 15;" text="Ajouter administrateur" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="266.0" onMouseClicked="#openCategorieListScene" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />
+            <Hyperlink layoutX="79.0" layoutY="107.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text="Accueil" textFill="#797676" />
+            <Hyperlink layoutX="75.0" layoutY="236.0" onMouseClicked="#openCategorieListScene" style="-fx-font-size: 15;" text="Statistique" textFill="#797676" />
             <!--<Hyperlink layoutX="69.0" layoutY="266.0" onAction="#OuvrirePageCategorie" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />-->
-            <Hyperlink layoutX="69.0" layoutY="320.0" onMouseClicked="#openNotifications" style="-fx-font-size: 15;" text="Notifications" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="368.0" style="-fx-font-size: 15;" text="Menu 5" textFill="#797676" />
-            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="35.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+            <Hyperlink layoutX="77.0" layoutY="298.0" onMouseClicked="#openNotifications" style="-fx-font-size: 15;" text="Notifications" textFill="#797676" />
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="55.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Accueil.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="63.0" layoutX="31.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@profil.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="31.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="49.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Table.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="31.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Table.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="68.0" fitWidth="28.0" layoutX="31.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="68.0" fitWidth="28.0" layoutX="48.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Réclamation.PNG" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="21.0" layoutX="35.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Logout.PNG" />
-               </image>
-            </ImageView>
-            <Hyperlink layoutX="69.0" layoutY="418.0" onMouseClicked="#openValidationScreensMenu" style="-fx-font-size: 15;" text="Validation plans" textFill="#797676" />
-            <ImageView fitHeight="27.0" fitWidth="21.0" layoutX="35.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
+            <Hyperlink layoutX="77.0" layoutY="419.0" onMouseClicked="#openValidationScreensMenu" style="-fx-font-size: 15;" text="Validation plans" textFill="#797676" />
+            <ImageView fitHeight="27.0" fitWidth="21.0" layoutX="50.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@check.PNG" />
                </image>
             </ImageView>
+            <MenuButton layoutX="41.0" layoutY="163.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: white; -fx-font-size: 15;" text="Compte">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Consulter" />
+                <MenuItem mnemonicParsing="false" text="Modifier" />
+              </items>
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@profil.PNG" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
+            <ImageView fitHeight="68.0" fitWidth="28.0" layoutX="48.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Réclamation.PNG" />
+               </image>
+            </ImageView>
+            <Hyperlink layoutX="77.0" layoutY="358.0" onMouseClicked="#openNotifications" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />
          </children>
       </AnchorPane>
       <AnchorPane focusTraversable="true" layoutX="251.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.76" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #5c8fc7;">
