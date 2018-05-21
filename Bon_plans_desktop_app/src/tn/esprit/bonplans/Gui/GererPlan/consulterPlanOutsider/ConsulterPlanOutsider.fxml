@@ -40,7 +40,7 @@
       </AnchorPane>
       <AnchorPane layoutX="277.0" layoutY="74.0" minHeight="-Infinity" prefHeight="429.0" prefWidth="784.0" style="-fx-background-color: white;">
          <children>
-            <Label id="title" fx:id="title" alignment="CENTER" layoutX="221.0" layoutY="24.0" prefHeight="17.0" prefWidth="364.0" text="title plan" textAlignment="CENTER" textFill="#0eadc6">
+            <Label id="title" fx:id="title" alignment="CENTER" layoutX="340.0" layoutY="24.0" prefHeight="17.0" prefWidth="364.0" text="title plan" textAlignment="CENTER" textFill="#0eadc6">
                <font>
                   <Font name="Georgia Italic" size="22.0" />
                </font>

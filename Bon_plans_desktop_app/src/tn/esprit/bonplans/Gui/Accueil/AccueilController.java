@@ -234,7 +234,7 @@ public class AccueilController  extends Application implements Initializable {
             planAAfficher=planCategorie3Choisie.get(2);
             CurrentSession.addData("openedPlan", planAAfficher);
         }
-        Parent root= FXMLLoader.load(getClass().getResource("../GererPlan/ConsulterPlanUtilisateur/ConsulterPlan.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../GererPlan/consulterPlanOutsider/ConsulterPlanOutsider.fxml"));
         Scene Scene= new Scene(root);
         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(Scene);
