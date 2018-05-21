@@ -48,6 +48,7 @@ import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
 import tn.esprit.bonplans.service.implementation.ReservationImpl;
 import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
+import utils.CurrentSession;
 import utils.SceneEnum;
 import utils.SceneHandler;
 
@@ -89,7 +90,7 @@ public class ListeReservation_AnnonceurController extends Application implements
             ///
             
             //session id 
-          dataCombo=FXCollections.observableArrayList(IP.findOne("idAnnonceur", 11));
+          dataCombo=FXCollections.observableArrayList(IP.findOne("idAnnonceur",CurrentSession.getUtilisateur().getIdUtilisateur()));
           data=FXCollections.observableArrayList();
           cmbListPlan.setItems(dataCombo);
           cmbListPlan.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {

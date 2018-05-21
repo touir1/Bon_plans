@@ -12,7 +12,7 @@
         <URL value="@listereservation_annonceur.css" />
     </stylesheets>
     <children>
-        <fx:include fx:id="menubar" source="../../template/Utilisateur/BonPlanTemplate.fxml" />
+       <fx:include fx:id="menubar" source="../../template/Utilisateur/BonPlanTemplate.fxml" />
       <AnchorPane layoutX="269.0" layoutY="135.0" prefHeight="382.0" prefWidth="897.0" style="-fx-background-color: white;">
          <children>
             <ComboBox fx:id="cmbListPlan" layoutX="259.0" layoutY="28.0" onAction="#onclickPlan" prefWidth="150.0" promptText="Liste des plans" />

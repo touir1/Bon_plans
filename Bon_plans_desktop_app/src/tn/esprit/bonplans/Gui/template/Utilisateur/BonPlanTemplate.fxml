@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="577.0" prefWidth="875.0" style="-fx-background-color: #f2f7f8;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.template.Utilisateur.BonPlanTemplateController">
+<AnchorPane prefHeight="577.0" prefWidth="875.0" style="-fx-background-color: #f2f7f8;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.template.Utilisateur.BonPlanTemplateController">
    <stylesheets>
         <URL value="@bonplantemplate.css" />
     </stylesheets>
@@ -71,8 +67,8 @@
                   </ImageView>
                </graphic>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Mes réservations" />
-                  <MenuItem mnemonicParsing="false" text="Mes offres" />
+                  <MenuItem mnemonicParsing="false" onAction="#OuvrireMesReservation" text="Mes réservations" />
+                  <MenuItem mnemonicParsing="false" onAction="#OuvrireOffre" text="Mes offres" />
                </items>
             </MenuButton>
             <MenuButton layoutX="16.0" layoutY="312.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="167.0" style="-fx-background-color: white; -fx-font-size: 15;" text="Mes plans" textFill="#797676">
@@ -84,10 +80,16 @@
                   </ImageView>
                </graphic>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Ajouter" />
-                  <MenuItem mnemonicParsing="false" text="Consulter" />
+                  <MenuItem mnemonicParsing="false" onAction="#OuvrireAjouterPlan" text="Ajouter" />
+                  <MenuItem mnemonicParsing="false" onAction="#OuvrirConsulterPlan" text="Consulter" />
                </items>
             </MenuButton>
+            <Hyperlink layoutX="57.0" layoutY="364.0" onAction="#OuvrireNotif" style="-fx-font-size: 15;" text="Notification" textFill="#797676" />
+            <ImageView fitHeight="239.0" fitWidth="27.0" layoutX="26.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Réclamation.PNG" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

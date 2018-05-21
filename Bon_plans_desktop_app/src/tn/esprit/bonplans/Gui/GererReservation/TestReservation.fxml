@@ -15,6 +15,8 @@
         <URL value="@testreservation.css" />
     </stylesheets>
    <children>
+       <fx:include fx:id="menubar" source="../template/Utilisateur/BonPlanTemplate.fxml" />
+
       <AnchorPane layoutX="289.0" layoutY="166.0" prefHeight="362.0" prefWidth="869.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label fx:id="Lbl" layoutX="510.0" layoutY="37.0" prefHeight="36.0" prefWidth="182.0" />
@@ -24,60 +26,8 @@
             <JFXButton layoutX="317.0" layoutY="245.0" onAction="#OnClickReserver" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #009efb;" text="Valider la réservation" textFill="#f8f8f8" />
          </children>
       </AnchorPane>
-      <AnchorPane focusTraversable="true" layoutX="258.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.76" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #5c8fc7;">
-         <children>
-            <Avatar layoutX="134.0" layoutY="6.0" />
-            <Label layoutX="82.0" layoutY="16.0" text="Label" />
-         </children>
-      </AnchorPane>
-      <Label fx:id="t" layoutX="293.0" layoutY="61.0" prefHeight="23.0" prefWidth="192.0" style="-fx-font-family: Arial; -fx-font-size: 18;" text="Ajouter Catégorie" textFill="#009efb" />
-      <Hyperlink layoutX="340.0" layoutY="91.0" text="----------" />
-      <Hyperlink layoutX="404.0" layoutY="91.0" text="&gt; --------------" textFill="#97a0a4" />
-      <Hyperlink layoutX="286.0" layoutY="91.0" text="Accueil &gt;" />
-      <AnchorPane fx:id="Menu" layoutX="1.0" prefHeight="577.0" prefWidth="257.0" style="-fx-background-color: white;">
-         <children>
-            <ImageView fitHeight="48.0" fitWidth="184.0" layoutX="47.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GererCategorie/Ajouter/Logo.png" />
-               </image>
-            </ImageView>
-            <Hyperlink layoutX="69.0" layoutY="106.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text="Accueil" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="161.0" style="-fx-font-size: 15;" text="Menu 1" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="214.0" style="-fx-font-size: 15;" text="Menu 2" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="266.0" style="-fx-font-size: 15;" text="Menu 3" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="320.0" style="-fx-font-size: 15;" text="Menu 4" textFill="#797676" />
-            <Hyperlink layoutX="69.0" layoutY="368.0" style="-fx-font-size: 15;" text="Menu 5" textFill="#797676" />
-            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="35.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GererCategorie/Ajouter/Accueil.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="63.0" layoutX="31.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GererCategorie/Ajouter/profil.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="31.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GererCategorie/Ajouter/Table.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="31.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GererCategorie/Ajouter/Table.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="68.0" fitWidth="28.0" layoutX="31.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GererCategorie/Ajouter/Réclamation.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="21.0" layoutX="35.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../GererCategorie/Ajouter/Logout.PNG" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
+     
+    
+      
    </children>
 </AnchorPane>
