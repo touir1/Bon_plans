@@ -36,6 +36,7 @@ import tn.esprit.bonplans.service.ICategorie;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import utils.SceneEnum;
 import utils.SceneHandler;
+import utils.entity.EnumValidation;
 
 /**
  * FXML Controller class
@@ -133,7 +134,7 @@ public class PlanModifierController extends Application implements Initializable
             erreur.setText("Les dates sont incompatibles");
         }else{
             newPlan = new Plan(plan.getIdPlan(), titre.getText(), description.getText(), "url photo", Double.parseDouble(prix_initiale.getText()), Double.parseDouble(prix_promo.getText()), Integer.parseInt(qte.getText()), java.sql.Date.valueOf(dd),java.sql.Date.valueOf(df), Integer.parseInt(qte.getText()), 0, 33, ic.findOne("titre", categories.getValue()).get(0).getIdCategorie());       
-            
+            newPlan.setStatut(EnumValidation.modifiee.getValue());
             ps.modifierPlan(newPlan);
         }
     }
