@@ -239,8 +239,12 @@ public class ConsulterPlanController extends Application implements Initializabl
         }else if(this.controle(commentaireText.getText())){
             erreurLabel.setText("vous avez saisi des gros mots");
         }else{
-            commentaire.save(new Commentaire(commentaireText.getText(), java.sql.Date.valueOf(date), 0, 0, user.getIdUtilisateur(), openedPlan.getIdPlan()));
-            System.out.println("commentaire ajouté");         
+            
+            Commentaire c =commentaire.save(new Commentaire(commentaireText.getText(), java.sql.Date.valueOf(date), 0, 0, user.getIdUtilisateur(), openedPlan.getIdPlan()));
+            System.out.println("commentaire ajouté");  
+         
+            commentairesTable.getItems().add(c);
+            
             
         }
         
@@ -288,6 +292,9 @@ public class ConsulterPlanController extends Application implements Initializabl
                 Commentaire c = commentairesTable.getSelectionModel().getSelectedItem();
                 c.setTexte(commentaireText.getText());
                 commentaire.update(c);
+                  commentairesTable.getItems().remove(c);
+                commentairesTable.getItems().add(c);
+            
                 System.out.println("commentaire modifié ");
             }                
     }
