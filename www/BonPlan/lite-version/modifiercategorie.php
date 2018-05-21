@@ -16,7 +16,7 @@ if(isset($_SESSION['connecter'])) {
 
     $cat = new Categorie();
 
-    $items = $cat->get($conn, $_GET['id']);
+    $item = $cat->get($conn, $_GET['id']);
 
     include("tete.php");
     ?>
@@ -46,7 +46,8 @@ if(isset($_SESSION['connecter'])) {
             <div class="col-lg-8 col-xlg-9 col-md-7">
                 <div class="card">
                     <div class="card-block">
-                        <?php foreach ($items as $item) { ?>
+
+
                             <form class="form-horizontal form-material" method="post" action="modifiercat.php">
                                 <input type="hidden" name="id" value="<?php echo($item[0]); ?>">
 
@@ -71,7 +72,6 @@ if(isset($_SESSION['connecter'])) {
                                     </div>
                                 </div>
                             </form>
-                        <?php } ?>
                     </div>
                 </div>
             </div>

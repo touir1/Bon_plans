@@ -78,6 +78,8 @@ class Categorie
     public function get($conn, $id){
 
         $req = "SELECT `idCategorie`, `titre`, `urlPhoto` FROM `categorie` WHERE `idCategorie` = " . $id;
+
+        error_log($req);
         $rows = $conn->query($req);
         foreach($rows as $row) {
             return $row;
