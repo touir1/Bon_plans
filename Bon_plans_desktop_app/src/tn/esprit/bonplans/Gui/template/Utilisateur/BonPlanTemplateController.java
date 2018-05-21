@@ -188,12 +188,13 @@ public class BonPlanTemplateController extends Application implements Initializa
     }
         @FXML
     void OuvrirConsulterPlan(ActionEvent event) {
+    SceneHandler.openScene(SceneEnum.LISTE_PLAN);
 
     }
 
     @FXML
     void OuvrireAjouterPlan(ActionEvent event) {
-
+        SceneHandler.openScene(SceneEnum.AJOUTER_PLAN);
     }
     @FXML
     void OuvrireOffre(ActionEvent event) {
