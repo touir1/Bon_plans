@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -55,9 +56,12 @@ public class CategorieStatController extends Application implements Initializabl
     private JFXButton btnPDV;
     
     ObservableList<Statistique> toShow = this.getStat();
+    
     @FXML
     private Label labelRes;
     
+    @FXML
+    private ChoiceBox<String> dropCat;
 
     /**
      * Initializes the controller class.
@@ -79,6 +83,13 @@ public class CategorieStatController extends Application implements Initializabl
         tableResultat.setItems(toShow);
         tableResultat.getColumns().addAll(planColonne, nbColonne, libelleColonne);
         
+        ArrayList<Categorie> cats = (ArrayList<Categorie>) ic.selectAll();
+        
+        ArrayList<String> cs = new ArrayList<>();
+        for(Categorie c : cats){
+            cs.add(c.getIdCategorie() +  " - " +c.getTitre());
+        }
+        dropCat.setItems(FXCollections.observableArrayList(cs));
     } 
     
     @Override
@@ -108,14 +119,21 @@ public class CategorieStatController extends Application implements Initializabl
     private void btnMDVClicked(ActionEvent event) {
         System.out.println("btnMDVClicked clicked");
         
-        toShow.clear();        
-        labelRes.setText("Resultat (Meilleurs dix ventes): ");
+        String chaine = dropCat.getValue();
+        String[] items = chaine.split(" ");
         
-        ArrayList<Statistique> al = ss.meilleurDixVentesParCategorie().get(categorie.getIdCategorie());
+        int a = Integer.parseInt(items[0]);
+        System.out.println("item 0 = " + a);
+        
+        toShow.clear();
+        
+        labelRes.setText("Resultat (Meilleur dix vente): de " + chaine);
+        
+        ArrayList<Statistique> al = ss.meilleurDixVentesParCategorie().get(a);
         System.out.println("liste = " + al);
         
-        for(Statistique a : al){
-            toShow.add(a);
+        for(Statistique ax : al){
+            toShow.add(ax);
         }
     }
 
@@ -136,15 +154,21 @@ public class CategorieStatController extends Application implements Initializabl
     private void btnPDVClicked(ActionEvent event) {
         System.out.println("btnPDVClicked clicked");
         
+        String chaine = dropCat.getValue();
+        String[] items = chaine.split(" ");
         
-        toShow.clear();        
-        labelRes.setText("Resultat (Pire dix ventes): ");
+        int a = Integer.parseInt(items[0]);
+        System.out.println("item 0 = " + a);
         
-        ArrayList<Statistique> al = ss.pireDixVentesParCategorie().get(categorie.getIdCategorie());
+        toShow.clear();
+        
+        labelRes.setText("Resultat (pire dix vente): de " + chaine);
+        
+        ArrayList<Statistique> al = ss.pireDixVentesParCategorie().get(a);
         System.out.println("liste = " + al);
         
-        for(Statistique a : al){
-            toShow.add(a);
+        for(Statistique ax : al){
+            toShow.add(ax);
         }
     }
 

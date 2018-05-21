@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,8 +15,11 @@
    <TableView fx:id="tableResultat" layoutX="265.0" layoutY="177.0" prefHeight="385.0" prefWidth="714.0" />
    <Label fx:id="titreLable" layoutX="265.0" layoutY="117.0" text="Label" />
    <JFXButton fx:id="btnMV" layoutX="1020.0" layoutY="187.0" onAction="#btnMVClicked" prefHeight="52.0" prefWidth="160.0" text="Meilleur ventes" />
-   <JFXButton fx:id="btnMDV" layoutX="1020.0" layoutY="261.0" onAction="#btnMDVClicked" prefHeight="52.0" prefWidth="160.0" text="Meilleur dix ventes" />
-   <JFXButton fx:id="btnPV" layoutX="1020.0" layoutY="361.0" onAction="#btnPVClicked" prefHeight="52.0" prefWidth="160.0" text="Pire  ventes" />
-   <JFXButton fx:id="btnPDV" layoutX="1020.0" layoutY="436.0" onAction="#btnPDVClicked" prefHeight="52.0" prefWidth="160.0" text="Pire  dix ventes" />
+   <JFXButton fx:id="btnMDV" layoutX="1020.0" layoutY="417.0" onAction="#btnMDVClicked" prefHeight="52.0" prefWidth="160.0" text="Meilleur dix ventes" />
+   <JFXButton fx:id="btnPV" layoutX="1020.0" layoutY="252.0" onAction="#btnPVClicked" prefHeight="52.0" prefWidth="160.0" text="Pire  ventes" />
+   <JFXButton fx:id="btnPDV" layoutX="1020.0" layoutY="487.0" onAction="#btnPDVClicked" prefHeight="52.0" prefWidth="160.0" text="Pire  dix ventes" />
    <Label fx:id="labelRes" layoutX="265.0" layoutY="152.0" text="Label" />
+   <ChoiceBox fx:id="dropCat" layoutX="1025.0" layoutY="357.0" prefWidth="150.0" />
+   <Label layoutX="1025.0" layoutY="153.0" text="Globale :" />
+   <Label layoutX="1025.0" layoutY="326.0" text="Choix de categorie" />
 </AnchorPane>

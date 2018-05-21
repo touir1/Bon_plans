@@ -29,10 +29,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tn.esprit.bonplans.entity.Categorie;
+import tn.esprit.bonplans.entity.Utilisateur;
 import tn.esprit.bonplans.service.ICategorie;
 import tn.esprit.bonplans.service.IPlan;
+import tn.esprit.bonplans.service.IUtilisateur;
 import tn.esprit.bonplans.service.implementation.CategorieImpl;
 import tn.esprit.bonplans.service.implementation.PlanImpl;
+import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
 import utils.SceneEnum;
 import utils.SceneHandler;
 
@@ -51,6 +54,7 @@ public class StatMenuController extends Application implements Initializable {
     private JFXButton btnStatCat;
 
     private ICategorie ic = new CategorieImpl(); 
+    private IUtilisateur iu = new UtilisateurImpl(); 
     private IPlan ip = new PlanImpl();
     @FXML
     private ChoiceBox<String> dropPlan;
@@ -83,6 +87,8 @@ public class StatMenuController extends Application implements Initializable {
     private Label nbLabel;
     @FXML
     private Label moyLabel;
+    @FXML
+    private JFXButton btnStatP;
     
     /**
      * Initializes the controller class.
@@ -98,12 +104,13 @@ public class StatMenuController extends Application implements Initializable {
         
         dropCategorie.setItems(FXCollections.observableArrayList(cs));
         
-        ArrayList<Plan> plans = ps.listePlan();
-        ArrayList<String> pt = new ArrayList<>();
-        for(Plan p : plans){
-            pt.add(p.getTitre());
+        ArrayList<Utilisateur> users = (ArrayList<Utilisateur>) iu.selectAll();
+        ArrayList<String> pu = new ArrayList<>();
+        for(Utilisateur p : users){
+            if(p.getIdGroupe() == 1)
+            pu.add(p.getIdUtilisateur() + " - " + p.getNom() + " " + p.getPrenom());
         }
-        dropPlan.setItems(FXCollections.observableArrayList(pt));
+        dropPlan.setItems(FXCollections.observableArrayList(pu));
         
         ArrayList<String> mois = new ArrayList<>();
         mois.add("janvier");
@@ -273,5 +280,36 @@ public class StatMenuController extends Application implements Initializable {
         }
         
         return resultat;
+    }
+
+    @FXML
+    private void statPClicked(ActionEvent event) {
+        System.out.println("clicked");
+        
+        String chaine = dropPlan.getValue();
+        
+        String[] items = chaine.split(" ");
+        
+        int a = Integer.parseInt(items[0]);
+        System.out.println("item 0 = " + a);
+        
+        toShow.clear();
+        
+        labelRes.setText("Resultat (Meilleur vente): de " + chaine);
+        
+        ArrayList<Statistique> al = ss.meilleurVenteParPersonne(a);
+        System.out.println("liste = " + al);
+        
+        for(Statistique ax : al){
+            toShow.add(ax);
+        }
+        
+        labelRes2.setText("Resultat (pire vente): de " + chaine);
+        
+        toShowPire.clear();
+        ArrayList<Statistique> ap = ss.pireVenteParPersonne(a);
+        for(Statistique ax : ap){
+            toShowPire.add(ax);
+        }
     }
 }
