@@ -44,7 +44,7 @@ public class Test {
         //System.out.println(ss.pireDixVentes());
         //System.out.println(ss.nombresDesAbominer(plan));
         //System.out.println(ss.planLePlusAimer());
-        //System.out.println(ss.planlePlusCommenter());
+        System.out.println(ss.planlePlusCommenter());
         //System.out.println(ss.planLeMoinsCommenter());
         //System.out.println(ss.meilleurVenteParCategorie(11));
         //System.out.println(ss.meilleurVenteParPersonne(34));
@@ -59,7 +59,7 @@ public class Test {
         
         //System.out.println(ss.nombreDesPlansPourJour(date1));
         //System.out.println(ss.nombreDesPlansParMois(5));
-        planservices.incLike(9, 10);
+        //planservices.incLike(9, 10);
         //System.out.println(ss.meilleursVentesDuJours(date1));
         //System.out.println(ss.meilleursVentesDuMois(5));
         /*

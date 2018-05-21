@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="artan.statistique.plan.PlanStatController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="artan.statistique.plan.PlanStatController">
     <stylesheets>
-        <URL value="@planstat.css"/>
+        <URL value="@planstat.css" />
     </stylesheets>
+    <fx:include fx:id="menubar" source="../../../tn/esprit/bonplans/Gui/template/Utilisateur/BonPlanTemplate.fxml" />
+   <Label fx:id="resultatLabel" layoutX="288.0" layoutY="139.0" text="Resultat :" />
+   <ImageView fx:id="resultatImage" fitHeight="319.0" fitWidth="357.0" layoutX="288.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" />
+   <Text fx:id="titreLabel" layoutX="678.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" />
+   <Text fx:id="descriptionLabel" layoutX="678.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="237.70703125" />
+   <Text fx:id="prixLabel" layoutX="678.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix initiale" />
+   <Text fx:id="promoLabel" layoutX="678.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix promo" />
+   <Text fx:id="qteLabel" layoutX="678.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="qte restante" />
+   <Text fx:id="ddLabel" layoutX="678.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date debut" />
+   <Text fx:id="dfLabel" layoutX="677.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date fin" />
+   <JFXButton fx:id="btnPPC" layoutX="955.0" layoutY="166.0" onAction="#btnPPCClicked" prefHeight="39.0" prefWidth="219.0" text="Plan le plus commenter" />
+   <JFXButton fx:id="btnPMC" layoutX="959.0" layoutY="238.0" onAction="#btnPMCClicked" prefHeight="39.0" prefWidth="219.0" text="Plan le moin commenter" />
+   <JFXButton fx:id="btnPPA" layoutX="959.0" layoutY="319.0" onAction="#btnPPAClicked" prefHeight="39.0" prefWidth="219.0" text="Plan le plus aimer" />
+   <JFXButton fx:id="btnPPD" layoutX="959.0" layoutY="396.0" onAction="#btnPPDClicked" prefHeight="39.0" prefWidth="219.0" text="Plan le plus detester" />
 </AnchorPane>

@@ -63,6 +63,7 @@ public class StatMenuController extends Application implements Initializable {
     StatistiqueServices ss = new StatistiqueServices();
     
     ObservableList<Statistique> toShow = this.getStat();
+    ObservableList<Statistique> toShowPire = this.getStatPire();
     
     @FXML
     private TableView<Statistique> tableResultat;
@@ -74,6 +75,14 @@ public class StatMenuController extends Application implements Initializable {
     private JFXDatePicker dateRecherche;
     @FXML
     private Label labelRes;
+    @FXML
+    private Label labelRes2;
+    @FXML
+    private TableView<Statistique> tableResultat1;
+    @FXML
+    private Label nbLabel;
+    @FXML
+    private Label moyLabel;
     
     /**
      * Initializes the controller class.
@@ -123,6 +132,20 @@ public class StatMenuController extends Application implements Initializable {
         tableResultat.setItems(toShow);
         tableResultat.getColumns().addAll(planColonne, nbColonne, libelleColonne);
         
+        TableColumn<Statistique, String> planColonne1 =  new TableColumn("ID Plan");
+        planColonne1.setCellValueFactory(new PropertyValueFactory<Statistique, String>("id"));
+        
+        TableColumn<Statistique, String> nbColonne1 =  new TableColumn("Nombre");
+        nbColonne1.setCellValueFactory(new PropertyValueFactory<Statistique, String>("nombre"));
+        
+        TableColumn<Statistique, String> libelleColonne1 =  new TableColumn("Nom");
+        libelleColonne1.setCellValueFactory(new PropertyValueFactory<Statistique, String>("libelle"));
+        
+        tableResultat1.setItems(toShowPire);
+        tableResultat1.getColumns().addAll(planColonne1, nbColonne1, libelleColonne1);
+        
+        nbLabel.setText("");
+        moyLabel.setText("");
     }    
     
     @Override
@@ -137,11 +160,6 @@ public class StatMenuController extends Application implements Initializable {
 
     @FXML
     private void statPlanClicked(ActionEvent event) {
-        
-        idPlan = ip.findOne("titre", dropPlan.getValue()).get(0).getIdCategorie();
-        
-        System.out.println("id plan = " + idPlan);
-        
         Stage s = new Stage();
         SceneHandler.initPrimaryStage(s);        
         SceneHandler.openScene(SceneEnum.STAT_PLAN);        
@@ -161,8 +179,11 @@ public class StatMenuController extends Application implements Initializable {
 
     @FXML
     private void plansParMois(ActionEvent event) {
+        
         String choix = dropMois.getValue();
+        
         int eq = 0;
+        
         switch(choix){
             case "janvier" : eq = 1;
                             break;
@@ -196,16 +217,22 @@ public class StatMenuController extends Application implements Initializable {
         
         labelRes.setText("Resultat  (Meilleur dix vente): mois de " + choix);
         
-        ArrayList<Statistique> al = ss.meilleursVentesDuMois(eq);
+        ArrayList<Statistique> al = ss.meilleurDixVentes();
         System.out.println("liste = " + al);
         
         for(Statistique a : al){
             toShow.add(a);
         }
+        
+        int nbp = ss.nombreDesPlansParMois(eq);
+        double mbp = ss.moyenneDesPlansParJour(eq);
+        nbLabel.setText("Nombres des plans pout le mois de " + choix + " : " + nbp);
+        moyLabel.setText("Moyenne des plans/jour pout le mois de " + choix + " : " + mbp);
     }
 
     @FXML
     private void plansParJour(ActionEvent event) {
+        
         System.out.println("date = " + dateRecherche.getValue());
         
         toShow.clear();
@@ -220,12 +247,28 @@ public class StatMenuController extends Application implements Initializable {
         for(Statistique a : al){
             toShow.add(a);
         }
+        
+        int nbj = ss.nombreDesPlansPourJour(dd);
+        nbLabel.setText( "Nombres des plans pour " + dd.toString() + " : " + nbj);
     }
 
     private ObservableList<Statistique> getStat() {
+        System.out.println("liste des meilleurs");
+        
         ObservableList<Statistique> resultat = FXCollections.observableArrayList();
         
         for(Statistique p : ss.meilleursVentesDuMois(5)){
+            resultat.add(p);
+        }
+        
+        return resultat;
+    }
+
+    private ObservableList<Statistique> getStatPire() {
+        System.out.println("liste des pire");
+        ObservableList<Statistique> resultat = FXCollections.observableArrayList();
+        
+        for(Statistique p : ss.pireDixVentes()){
             resultat.add(p);
         }
         

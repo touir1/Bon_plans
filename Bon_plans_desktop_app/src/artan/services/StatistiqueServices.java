@@ -30,6 +30,7 @@ import tn.esprit.bonplans.service.implementation.UtilisateurImpl;
  */
 public class StatistiqueServices implements IStatistique {
 
+    PlanServices ps = new PlanServices();
     Connection connection = null;
 
     public StatistiqueServices() {        
@@ -212,10 +213,10 @@ public class StatistiqueServices implements IStatistique {
         try {
             Statement statement=connection.createStatement();
             
-            ResultSet resultSet =statement.executeQuery(requete);
+            ResultSet resultSet = statement.executeQuery(requete);
             
             while(resultSet.next()){
-                statistiques.add(new Statistique(resultSet.getInt("idPlan"), resultSet.getInt("nb")));
+                statistiques.add(new Statistique(resultSet.getInt("idPlan"), ps.rechercheParID(resultSet.getInt("idPlan")).getTitre(), resultSet.getInt("nb")));
             }
             
             System.out.println("Requete select effectuée");
@@ -292,7 +293,7 @@ public class StatistiqueServices implements IStatistique {
         try {
             Statement statement=connection.createStatement();
             
-            ResultSet resultSet =statement.executeQuery(requete);
+            ResultSet resultSet = statement.executeQuery(requete);
             
             resultSet.next();
             
@@ -332,7 +333,7 @@ public class StatistiqueServices implements IStatistique {
     @Override
     public Plan planLePlusAimer() {
         
-        String requete = "SELECT annonce, COUNT(id) nb FROM avis WHERE avis.avi = 1 GROUP BY avis.annonce ORDER BY nb DESC LIMIT 1";
+        String requete = "SELECT * FROM `plan` WHERE plan.like = (SELECT MAX(plan.like) FROM `plan`) LIMIT 1";
         
         PlanServices ps = new PlanServices();
         
@@ -356,7 +357,7 @@ public class StatistiqueServices implements IStatistique {
     @Override
     public Plan planLePlusDetester() {
         
-        String requete = "SELECT annonce, COUNT(id) nb FROM avis WHERE avis.avi = 2 GROUP BY avis.annonce ORDER BY nb DESC LIMIT 1";
+        String requete = "SELECT * FROM `plan` WHERE plan.dislike = (SELECT MAX(plan.dislike) FROM `plan`) LIMIT 1";
         
         PlanServices ps = new PlanServices();
         

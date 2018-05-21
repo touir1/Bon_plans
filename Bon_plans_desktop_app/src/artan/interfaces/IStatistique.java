@@ -20,32 +20,32 @@ public interface IStatistique {
     
     public ArrayList<Statistique> meilleursVentesDuMois(int mois);// fait
     public ArrayList<Statistique> meilleursVentesDuJours(LocalDate jour);// fait
-    public ArrayList<Statistique> meilleurVenteParCategorie(int idCategorie);// fait
-    public ArrayList<Statistique> pireVenteParCategorie(int idCategorie);// fait
-    public ArrayList<Statistique> meilleurVenteParPersonne(int idPersonne);// fait
-    public ArrayList<Statistique> pireVenteParPersonne(int idPersonne);// fait
+    public ArrayList<Statistique> meilleurVenteParCategorie(int idCategorie);
+    public ArrayList<Statistique> pireVenteParCategorie(int idCategorie);
+    public ArrayList<Statistique> meilleurVenteParPersonne(int idPersonne);
+    public ArrayList<Statistique> pireVenteParPersonne(int idPersonne);
     
-    public ArrayList<Statistique> meilleurDixVentes();// fait
-    public ArrayList<Statistique> pireDixVentes();// fait
+    public ArrayList<Statistique> meilleurDixVentes();
+    public ArrayList<Statistique> pireDixVentes();//fait
     
-    public HashMap<Integer, ArrayList<Statistique>> meilleurDixVentesParCategorie();// fait
-    public HashMap<Integer, ArrayList<Statistique>> pireDixVentesParCategorie();// fait
+    public HashMap<Integer, ArrayList<Statistique>> meilleurDixVentesParCategorie();
+    public HashMap<Integer, ArrayList<Statistique>> pireDixVentesParCategorie();
     
-    public HashMap<Integer, ArrayList<Statistique>> meilleurDixVentesParPersonne();// fait
-    public HashMap<Integer, ArrayList<Statistique>> pireDixVentesParPersonne();// fait
+    public HashMap<Integer, ArrayList<Statistique>> meilleurDixVentesParPersonne();
+    public HashMap<Integer, ArrayList<Statistique>> pireDixVentesParPersonne();
     
-    public Plan planlePlusCommenter();// fait
-    public Plan planLeMoinsCommenter();// fait
+    public Plan planlePlusCommenter();
+    public Plan planLeMoinsCommenter();
     
-    public Plan planLePlusAimer();// fait
-    public Plan planLePlusDetester();// fait
+    public Plan planLePlusAimer();
+    public Plan planLePlusDetester();
     
-    public int nombreDesJaimes(Plan plan);// fait
-    public int nombresDesAbominer(Plan plan);// fait
+    public int nombreDesJaimes(Plan plan);
+    public int nombresDesAbominer(Plan plan);
     
-    public int nombreDesPlansPourJour(LocalDate date);// fait
-    public int nombreDesPlansParMois(int mois);// fait
+    public int nombreDesPlansPourJour(LocalDate date);
+    public int nombreDesPlansParMois(int mois);
     
-    public double moyenneDesPlansParJour(int mois);// fait
+    public double moyenneDesPlansParJour(int mois);
     
 }
