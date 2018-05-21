@@ -139,7 +139,33 @@ public class BonPlanTemplateController extends Application implements Initializa
             
         },200,200);
     }
-    
+     @FXML
+    void openAjouter(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.AJOUTER_CATEGORIE);
+
+    }
+       @FXML
+    void openConsulter(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.LISTE_CATEGORIE);
+
+    }
+        @FXML
+    void openConsulterCompte(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.ADMIN_CONSULTER);
+
+    }
+        @FXML
+    void openModifierCompte(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.ADMIN_MODIFIER);
+        
+
+    }
+         @FXML
+    void openStat(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.STAT_MENU);
+        
+
+    }
     private void initNotifications(){
         Timer timerVerif = (Timer) CurrentSession.getData("notificationTimer");
         if(timerVerif==null){

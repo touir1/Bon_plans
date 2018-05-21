@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="577.0" prefWidth="875.0" style="-fx-background-color: #f2f7f8;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.template.Admin.BonPlanTemplateController">
+<AnchorPane prefHeight="577.0" prefWidth="875.0" style="-fx-background-color: #f2f7f8;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.template.Admin.BonPlanTemplateController">
    <!--<stylesheets>
         <URL value="@bonplantemplate.css" />
     </stylesheets>-->
@@ -25,7 +22,7 @@
                </image>
             </ImageView>
             <Hyperlink layoutX="79.0" layoutY="107.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text="Accueil" textFill="#797676" />
-            <Hyperlink layoutX="75.0" layoutY="236.0" onMouseClicked="#openCategorieListScene" style="-fx-font-size: 15;" text="Statistique" textFill="#797676" />
+            <Hyperlink layoutX="75.0" layoutY="236.0" onAction="#openStat" onMouseClicked="#openCategorieListScene" style="-fx-font-size: 15;" text="Statistique" textFill="#797676" />
             <!--<Hyperlink layoutX="69.0" layoutY="266.0" onAction="#OuvrirePageCategorie" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />-->
             <Hyperlink layoutX="77.0" layoutY="298.0" onMouseClicked="#openNotifications" style="-fx-font-size: 15;" text="Notifications" textFill="#797676" />
             <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="55.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
@@ -51,8 +48,8 @@
             </ImageView>
             <MenuButton layoutX="41.0" layoutY="163.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="136.0" style="-fx-background-color: white; -fx-font-size: 15;" text="Compte">
               <items>
-                <MenuItem mnemonicParsing="false" text="Consulter" />
-                <MenuItem mnemonicParsing="false" text="Modifier" />
+                <MenuItem mnemonicParsing="false" onAction="#openConsulterCompte" text="Consulter" />
+                <MenuItem mnemonicParsing="false" onAction="#openModifierCompte" text="Modifier" />
               </items>
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -62,12 +59,19 @@
                   </ImageView>
                </graphic>
             </MenuButton>
-            <ImageView fitHeight="68.0" fitWidth="28.0" layoutX="48.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Réclamation.PNG" />
-               </image>
-            </ImageView>
-            <Hyperlink layoutX="77.0" layoutY="358.0" onMouseClicked="#openNotifications" style="-fx-font-size: 15;" text="Catégorie" textFill="#797676" />
+            <MenuButton layoutX="36.0" layoutY="343.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="147.0" style="-fx-background-color: white; -fx-font-size: 15;" text="Categories">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openAjouter" text="Ajouter" />
+                  <MenuItem mnemonicParsing="false" onAction="#openConsulter" text="Consulter" />
+               </items>
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Réclamation.PNG" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MenuButton>
          </children>
       </AnchorPane>
       <AnchorPane focusTraversable="true" layoutX="251.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.76" prefHeight="48.0" prefWidth="941.0" style="-fx-background-color: #5c8fc7;">

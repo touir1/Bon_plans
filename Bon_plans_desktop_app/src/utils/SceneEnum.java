@@ -116,6 +116,14 @@ public enum SceneEnum {
             "Admin Accueil",
             "../tn/esprit/bonplans/Gui/GererUtilisateur/Administrateur/acceuil/Acceuil.fxml",
             "Accueil"),
+    ADMIN_CONSULTER(
+            "Admin Consulter",
+            "../tn/esprit/bonplans/Gui/GererUtilisateur/Administrateur/consulter/ConsulterCompte.fxml",
+            "Admin Consulter"),
+    ADMIN_MODIFIER(
+            "Admin Modifier",
+            "../tn/esprit/bonplans/Gui/GererUtilisateur/Administrateur/modifier/Modifier.fxml",
+            "Admin Modifier"),
     CLIENT_MODIFIER(
             "Mon Compte",
             "../tn/esprit/bonplans/Gui/GererUtilisateur/client/modifier/Modifier.fxml",
