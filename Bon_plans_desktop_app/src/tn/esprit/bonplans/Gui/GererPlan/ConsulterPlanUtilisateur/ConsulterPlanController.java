@@ -317,6 +317,7 @@ public class ConsulterPlanController extends Application implements Initializabl
         ps.incLike(openedPlan.getIdPlan(), nvlike);
         nvlike = nvlike + 1;
         //label like
+        lbjaime.setText(Integer.toString(nvlike));
     }
 
     @FXML
@@ -326,6 +327,7 @@ public class ConsulterPlanController extends Application implements Initializabl
         
         nvdislike = nvdislike + 1;
         //label dislike
+        lbjaimepas.setText(Integer.toString(nvdislike));
     }
 
  
