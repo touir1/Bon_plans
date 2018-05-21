@@ -272,12 +272,20 @@ class Plan
     }
 
     public function avis($conn, $id, $avis){
-        $req = "INSERT INTO `avis` (`annonce`, `avi`, `note`) VALUES ('".$id."', '".$avis."', '0');";
+        $req = "INSERT INTO `avis` (`idPlan`, `avis`, `note`) VALUES ('".$id."', '".$avis."', '0');";
+
+        $conn->exec($req);
+        if($avis == 1) {
+            $req = "UPDATE `plan` set `plan`.`like` = `plan`.`like` +1 WHERE idPlan = ".$id;
+        }
+        else{
+            $req = "UPDATE `plan` set `plan`.dislike = dislike +1 WHERE idPlan = ".$id;
+        }
         $conn->exec($req);
     }
 
     public function countlike($conn, $id){
-       $req = "SELECT COUNT(*) FROM `avis` WHERE annonce = ".$id." AND avi = 1";
+       $req = "SELECT `plan`.`like` FROM `plan` WHERE idPlan = ".$id;
        $rows = $conn->query($req);
         foreach($rows as $row){
             return $row[0];
@@ -285,7 +293,7 @@ class Plan
     }
 
     public function countDisLike($conn, $id){
-        $req = "SELECT COUNT(*) FROM `avis` WHERE annonce = ".$id." AND avi = 2";
+        $req = "SELECT `plan`.dislike FROM `plan` WHERE idPlan = ".$id;
         $rows = $conn->query($req);
         foreach($rows as $row){
             return $row[0];
@@ -293,9 +301,7 @@ class Plan
     }
 
     public function top($conn){
-        $req = "SELECT * FROM `plan`, top
-                WHERE plan.idPlan = top.annonce
-                ORDER BY top.nb";
+        $req = "SELECT * FROM `plan` WHERE `plan`.`like` >= `plan`.`dislike` AND `plan`.`statut` = 1 ORDER BY `plan`.`like` - `plan`.`dislike`";
 
         return $conn->query($req);
     }

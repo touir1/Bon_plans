@@ -21,4 +21,6 @@ $nv = $plan[9] - $_POST['qte'];
 
 $res->reserver($conn, $nv);
 
+header("Location: single.php?id=".$_POST['plan']);
+
 echo($nv);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 20 mai 2018 à 20:11
+-- Généré le :  lun. 21 mai 2018 à 01:02
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -36,7 +36,14 @@ CREATE TABLE IF NOT EXISTS `avis` (
   `avis` int(11) NOT NULL DEFAULT '0',
   `note` int(11) DEFAULT '0',
   PRIMARY KEY (`idAvis`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `avis`
+--
+
+INSERT INTO `avis` (`idAvis`, `idPlan`, `idUtilisateur`, `avis`, `note`) VALUES
+(1, 5, 12, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -57,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 --
 
 INSERT INTO `categorie` (`idCategorie`, `titre`, `urlPhoto`) VALUES
-(9, 'testing', NULL);
+(9, 'testing', 'http://pijava/bon_plans_api/uploads/test_api.png');
 
 -- --------------------------------------------------------
 
@@ -75,7 +82,15 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
   `idClient` int(11) NOT NULL,
   `idPlan` int(11) NOT NULL,
   PRIMARY KEY (`idCommentaire`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `commentaire`
+--
+
+INSERT INTO `commentaire` (`idCommentaire`, `texte`, `date`, `nbJaime`, `nbJaimePas`, `idClient`, `idPlan`) VALUES
+(1, 'testing commentaire', '2018-05-02', 3, 1, 12, 8),
+(2, 'hello there', '2018-05-20', 0, 0, 16, 5);
 
 -- --------------------------------------------------------
 
@@ -112,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `message` varchar(255) COLLATE utf8_bin NOT NULL,
   `idPlan` int(11) NOT NULL,
   PRIMARY KEY (`idNotification`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `notification`
@@ -123,7 +138,8 @@ INSERT INTO `notification` (`idNotification`, `seen`, `message`, `idPlan`) VALUE
 (8, 1, 'Votre plan a été validé', 6),
 (10, 1, 'Votre plan a été validé', 8),
 (14, 1, 'Votre plan a été validé', 5),
-(13, 1, 'hello world', 0);
+(15, 0, 'Votre plan a été validé', 6),
+(16, 0, 'Votre plan a été refusé', 9);
 
 -- --------------------------------------------------------
 
@@ -149,16 +165,17 @@ CREATE TABLE IF NOT EXISTS `plan` (
   `like` int(11) NOT NULL DEFAULT '0',
   `dislike` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idPlan`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `plan`
 --
 
 INSERT INTO `plan` (`idPlan`, `titre`, `description`, `urlPhoto`, `prixInitial`, `prixPromo`, `nbPlaceTotal`, `dateDebut`, `dateFin`, `nbPlaceDispo`, `statut`, `idAnnonceur`, `idCategorie`, `like`, `dislike`) VALUES
-(5, 'test plan', 'testing new plan', 'http://pijava/bon_plans_api/uploads/ABrj4Fq1JY2nxcduSmH8.jpg', 0, 0, 0, '2018-01-01', '2019-01-01', 0, 1, 12, 9, 0, 0),
-(6, 'test plan', 'testing new plan', NULL, 0, 0, 0, '2018-01-01', '2019-01-01', 0, 2, 12, 9, 0, 0),
-(8, 'a', 'hello world', 'http://pijava/bon_plans_api/uploads/ABrj4Fq1JY2nxcduSmH8.jpg', 5, 4, 5, '1995-04-13', '2020-04-13', 5, 0, 16, 9, 0, 0);
+(5, 'test plan', 'testing new plan', 'http://pijava/bon_plans_api/uploads/ABrj4Fq1JY2nxcduSmH8.jpg', 0, 0, 5, '2018-01-01', '2019-01-01', 3, 1, 12, 9, 2, 2),
+(6, 'test plan', 'testing new plan', 'http://pijava/bon_plans_api/uploads/dummy-product.png', 0, 0, 0, '2018-01-01', '2019-01-01', 0, 1, 12, 9, 0, 0),
+(8, 'a', 'hello world', 'http://pijava/bon_plans_api/uploads/ABrj4Fq1JY2nxcduSmH8.jpg', 5, 4, 5, '1995-04-13', '2020-04-13', 5, 0, 16, 9, 0, 0),
+(9, 'hello', 'hello world testing plans', '../../bon_plans_api/uploads/W9yqMzOSn6P7I4xYLecj.png', 5, 4, 5, '2018-04-13', '2020-03-31', 5, -1, 16, 9, 0, 0);
 
 --
 -- Déclencheurs `plan`
@@ -224,7 +241,26 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `idClient` int(11) NOT NULL,
   `idPlan` int(11) NOT NULL,
   PRIMARY KEY (`idReservation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`idReservation`, `date`, `UrlBonRes`, `nbplace`, `status`, `idClient`, `idPlan`) VALUES
+(1, '2018-05-01', 'http://pijava/bon_plans_api/test_api.png', 1, 0, 16, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Doublure de structure pour la vue `top`
+-- (Voir ci-dessous la vue réelle)
+--
+DROP VIEW IF EXISTS `top`;
+CREATE TABLE IF NOT EXISTS `top` (
+`annonce` int(11)
+,`nb` bigint(21)
+);
 
 -- --------------------------------------------------------
 
@@ -280,6 +316,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `plan_reservation`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `plan_reservation`  AS  (select `plan`.`idPlan` AS `idPlan`,`plan`.`idAnnonceur` AS `idAnnonceur`,`plan`.`idCategorie` AS `idCategorie`,count(`reservation`.`idReservation`) AS `nb` from (`plan` join `reservation`) where (`plan`.`idPlan` = `reservation`.`idPlan`) group by `plan`.`idPlan`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `top`
+--
+DROP TABLE IF EXISTS `top`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `top`  AS  (select `avis`.`idPlan` AS `annonce`,count(`avis`.`avis`) AS `nb` from `avis` where (`avis`.`avis` = 1) group by `avis`.`idPlan`) ;
 
 --
 -- Contraintes pour les tables déchargées

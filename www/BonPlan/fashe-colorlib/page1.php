@@ -6,6 +6,8 @@
     $p = new Plan();
     $top = $p->top($conn);
     $categs = $c1->getAll($conn);
+
+    error_log(json_encode($top));
 ?>
 
 
@@ -18,7 +20,7 @@
                 <div class="item-slick1 item1-slick1" style="background-image: url(images/master-slide-01.jpg);">
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-							Veuillez trouver une très belle collection des bons plans
+							Veuillez trouver une trï¿½s belle collection des bons plans
 						</span>
 
                         <h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
@@ -83,7 +85,7 @@
                 <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
                     <!-- block1 -->
                     <div class="block1 hov-img-zoom pos-relative m-b-30">
-                        <img src="../lite-version/<?php echo($cate[2]); ?>" alt="IMG-BENNER">
+                        <img src="<?php echo($cate[2]); ?>" alt="IMG-BENNER">
 
                         <div class="block1-wrapbtn w-size2">
                             <!-- Button -->
@@ -115,7 +117,7 @@
                         <!-- Block2 -->
                         <div class="block2" style="margin-left: 10px">
                             <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-                                <img src="../lite-version/<?php echo($t[3]); ?>" alt="IMG-PRODUCT">
+                                <img src="<?php echo($t[3]); ?>" alt="IMG-PRODUCT">
 
                                 <div class="block2-overlay trans-0-4">
 

@@ -296,7 +296,7 @@ public class ConsulterNotificationClientController extends Application implement
     private void deleteSelectedNotification(MouseEvent event) {
         Notification notification = notificationList.getSelectionModel().getSelectedItem();
         System.out.println(notification);
-        if(notification != null){
+        if(notification != null && notification.getIdPlan() != 0){
             notificationService.remove(notification.getIdNotification());
             refreshList(null);
         }

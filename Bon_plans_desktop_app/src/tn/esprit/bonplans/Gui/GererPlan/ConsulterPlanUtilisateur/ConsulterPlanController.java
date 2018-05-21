@@ -59,18 +59,17 @@ import utils.SceneHandler;
  *
  */
 public class ConsulterPlanController extends Application implements Initializable {
-
     
-    Utilisateur user = CurrentSession.getUtilisateur();
+    private Utilisateur user;
     
     private IPlan planService;
     private ICategorie categorieService;
     private IUtilisateur utilisateurService;
     
-    PlanServices ps = new PlanServices();
-    ArrayList<Commentaire> commentaires = ps.listeDesCommentaires(PlanListeController.identifiant);
+    private PlanServices ps;
+    private ArrayList<Commentaire> commentaires;
     
-    private artan.entities.Plan openedPlan = ps.rechercheParID(PlanListeController.identifiant);
+    private artan.entities.Plan openedPlan;
     @FXML
     private Label title;
     @FXML
@@ -105,8 +104,11 @@ public class ConsulterPlanController extends Application implements Initializabl
     private Button btmodifier;
     @FXML
     private Button btsupprimer;
-   ObservableList<Commentaire> toShow = this.getCommentaires();
-    static int identifiant =0;
+    
+    private ObservableList<Commentaire> toShow;
+    
+    public static int identifiant =0;
+    
     @FXML
     private Rating rating;
     @FXML
@@ -120,8 +122,8 @@ public class ConsulterPlanController extends Application implements Initializabl
     @FXML
     private Label lbjaimepas;
     
-    int nvlike = openedPlan.getLike();
-    int nvdislike = openedPlan.getDislike();
+    private int nvlike;
+    private int nvdislike;
     
     /**
      * Initializes the controller class.
@@ -130,19 +132,31 @@ public class ConsulterPlanController extends Application implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       //like/dislike
+       
+        user = CurrentSession.getUtilisateur();
+        ps = new PlanServices();
         
+        Plan openedPlanFromSession = (Plan) CurrentSession.getData("openedPlan");
         
-       rating.ratingProperty().addListener(new ChangeListener<Number>(){
+        commentaires = ps.listeDesCommentaires(openedPlanFromSession.getIdPlan());
+        openedPlan = ps.rechercheParID(openedPlanFromSession.getIdPlan());
+        toShow = this.getCommentaires();
+        
+        nvlike = openedPlan.getLike();
+        nvdislike = openedPlan.getDislike();
+        
+        rating.ratingProperty().addListener(new ChangeListener<Number>(){
 
-           @Override
-           public void changed(ObservableValue<? extends Number> observable, Number t, Number t1) {
-               //throw new UnsupportedOperationException("Not supported yet."); 
-               msg.setText("Rating : " + t1.toString());
-           }
-           
-       });
-         
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number t, Number t1) {
+                //throw new UnsupportedOperationException("Not supported yet."); 
+                msg.setText("Rating : " + t1.toString());
+            }
+
+        });
+  
+       
+       
         TableColumn<Commentaire, String> commColonne =  new TableColumn("Commentaires");
         commColonne.setMinWidth(200);
         commColonne.setCellValueFactory(new PropertyValueFactory<Commentaire, String>("texte"));
@@ -225,7 +239,7 @@ public class ConsulterPlanController extends Application implements Initializabl
         }else if(this.controle(commentaireText.getText())){
             erreurLabel.setText("vous avez saisi des gros mots");
         }else{
-            commentaire.save(new Commentaire(commentaireText.getText(), java.sql.Date.valueOf(date), 0, 0, user.getIdUtilisateur(), PlanListeController.identifiant));
+            commentaire.save(new Commentaire(commentaireText.getText(), java.sql.Date.valueOf(date), 0, 0, user.getIdUtilisateur(), openedPlan.getIdPlan()));
             System.out.println("commentaire ajouté");         
             
         }

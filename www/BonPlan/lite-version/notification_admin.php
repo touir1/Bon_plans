@@ -50,6 +50,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <?php if($_SESSION['connecter'][1] > 1){ ?>
                         <div class="form-group">
                             <label for="msg_to_add"><b>Message à ajouter:</b></label>
                             <table class="table">
@@ -63,6 +64,7 @@
                             </table>
 
                         </div>
+                        <?php } ?>
                         <div>
 
 

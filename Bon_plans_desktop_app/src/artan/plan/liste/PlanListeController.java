@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.stage.Stage;
+import utils.CurrentSession;
 import utils.SceneEnum;
 import utils.SceneHandler;
 
@@ -133,6 +134,9 @@ public class PlanListeController extends Application implements Initializable {
         
         SceneHandler.initPrimaryStage(s);
         
+        tn.esprit.bonplans.entity.Plan planForSession = new tn.esprit.bonplans.entity.Plan();
+        planForSession.setIdPlan(t.getIdPlan());
+        CurrentSession.addData("openedPlan", planForSession);
         SceneHandler.openScene(SceneEnum.CONSULTER_PLAN_UTILISATEUR);
         
     }

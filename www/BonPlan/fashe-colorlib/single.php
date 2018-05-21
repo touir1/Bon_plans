@@ -20,7 +20,7 @@ include('../Entities/Commentaire.php');
                     <div class="slick3 slick-initialized slick-slider slick-dotted">
                         <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 981px;"><div class="item-slick3 slick-slide slick-current slick-active" data-thumb="images/thumb-item-01.jpg" data-slick-index="0" aria-hidden="false" tabindex="0" role="tabpanel" id="slick-slide10" aria-describedby="slick-slide-control10" style="width: 327px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
                                     <div class="wrap-pic-w">
-                                        <img src="../lite-version/<?php echo($item[3]); ?>" alt="IMG-PRODUCT">
+                                        <img src="<?php echo($item[3]); ?>" alt="IMG-PRODUCT">
                                     </div>
                                 </div>
                                 <div class="item-slick3 slick-slide" data-thumb="images/thumb-item-02.jpg" data-slick-index="1" aria-hidden="true" tabindex="-1" role="tabpanel" id="slick-slide11" aria-describedby="slick-slide-control11" style="width: 327px; position: relative; left: -327px; top: 0px; z-index: 998; opacity: 0;">
@@ -56,7 +56,7 @@ include('../Entities/Commentaire.php');
                 <div class="p-t-33 p-b-60">
 
                     <label>Quantite disponible : <?php echo($item[9]); ?></label>
-                    <?php if(isset($_SESSION['connecter']) && ($item[10] != 2)){ ?>
+                    <?php if(isset($_SESSION['connecter']) && ($item[10] == 1)){ ?>
                     <form action="reserver.php" method="post">
                         <input type="hidden" name="plan" value="<?php echo($item[0]); ?>">
                         <input type="hidden" name="client" value="<?php if(isset($_SESSION['connecter'])){echo($_SESSION['connecter'][0]);} ?>">
