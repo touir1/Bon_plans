@@ -22,4 +22,5 @@ public interface IUtilisateur extends GenericServiceInterface<Utilisateur> {
     public Utilisateur getUtilisateurByEmail(String email);
     public void envoyerCodeActivation(Utilisateur utilisateur);
     public void updatePwd(Utilisateur utilisateur, String mdp);
+    public Utilisateur updateUser(Utilisateur utilisateur, boolean withUpdatePwd);
 }

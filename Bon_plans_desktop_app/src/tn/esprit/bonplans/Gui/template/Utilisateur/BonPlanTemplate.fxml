@@ -44,8 +44,8 @@
                   <Image url="@Logo.png" />
                </image>
             </ImageView>
-            <Hyperlink layoutX="53.0" layoutY="160.0" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text=" Accueil" textFill="#797676" />
-            <Hyperlink layoutX="53.0" layoutY="200.0" style="-fx-font-size: 15;" text="Mon compte" textFill="#797676" />
+            <Hyperlink fx:id="btn_acceuil_templateUser" layoutX="53.0" layoutY="160.0" onAction="#btn_acceuil_templateUser_Click" prefHeight="36.0" prefWidth="90.0" style="-fx-font-size: 15;" text=" Accueil" textFill="#797676" />
+            <Hyperlink fx:id="btn_monCompte_templateUser" layoutX="53.0" layoutY="200.0" onAction="#btn_monCompte_templateUser_Click" style="-fx-font-size: 15;" text="Mon compte" textFill="#797676" />
             <Hyperlink layoutX="52.0" layoutY="238.0" style="-fx-font-size: 15;" text="Meilleurs Plans" textFill="#797676" />
             <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="28.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
                <image>

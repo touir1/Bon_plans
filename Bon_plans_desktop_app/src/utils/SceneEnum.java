@@ -111,7 +111,12 @@ public enum SceneEnum {
     CLIENT_ACCEUIL(
             "Client Accueil",
             "../tn/esprit/bonplans/Gui/GererUtilisateur/client/acceuil/Acceuil.fxml",
-            "Accueil")
+            "Accueil"),
+    CLIENT_MODIFIER(
+            "Mon Compte",
+            "../tn/esprit/bonplans/Gui/GererUtilisateur/client/modifier/Modifier.fxml",
+            "Mon Compte"
+            )
     ;
     
     private final String sceneName;
@@ -135,7 +140,5 @@ public enum SceneEnum {
     public String getSceneTitle() {
         return sceneTitle;
     }
-    
-    
-    
+   
 }

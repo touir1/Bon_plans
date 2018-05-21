@@ -44,5 +44,5 @@ public final class Constantes {
             + "à été envoyé à votre email.\nVeuillez introduire votre code d'activation";
     public static final String MSG_PWD_OUBLIE = "Veuillez introduire le nouveau mot de passe";
     public static final String MSG_SUCC_CHANGER_PWD = "Votre mot de passe a été modifié avec succès";
-   
+    public static final String MSG_SUCC_UPDATE = "Mise à jour terminée avec succès";
 }

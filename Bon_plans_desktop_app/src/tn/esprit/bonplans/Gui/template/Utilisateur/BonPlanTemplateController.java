@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
@@ -313,5 +311,15 @@ public class BonPlanTemplateController extends Application implements Initializa
             initNotificationContent();
             notificationPopOver.show(btnNotification);
         }
+    }
+
+    @FXML
+    void btn_monCompte_templateUser_Click(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.CLIENT_MODIFIER);
+    }
+
+    @FXML
+    void btn_acceuil_templateUser_Click(ActionEvent event) {
+        SceneHandler.openScene(SceneEnum.CLIENT_ACCEUIL);
     }
 }

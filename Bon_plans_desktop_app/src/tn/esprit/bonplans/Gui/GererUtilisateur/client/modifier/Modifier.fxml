@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,11 +9,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="1192.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.client.modifier.ModifierController">
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="1192.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.GererUtilisateur.client.modifier.ModifierController">
     <stylesheets>
         <URL value="@modifier.css" />
     </stylesheets>
     <children>
         <fx:include fx:id="menubar" source="../../../template/Utilisateur/BonPlanTemplate.fxml" />
-    </children>
+      <AnchorPane layoutX="529.0" layoutY="110.0" prefHeight="400.0" prefWidth="391.0" style="-fx-background-color: white;">
+         <children>
+            <GridPane layoutX="39.0" layoutY="10.0">
+               <children>
+                  <Label text="Email :" />
+                  <JFXTextField fx:id="txt_email" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <Label text="Nom :" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="txt_nom" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Prénom :" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="txt_prenom" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Photo :" GridPane.rowIndex="6" />
+                  <ImageView fx:id="image" fitHeight="162.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP" />
+                  <Label text="Mot de passe :" GridPane.rowIndex="3" />
+                  <JFXPasswordField fx:id="txt_pwd" promptText="Nouveau mot de passe" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Ville :" GridPane.rowIndex="4" />
+                  <JFXTextField fx:id="txt_ville" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Adresse :" GridPane.rowIndex="5" />
+                  <JFXTextField fx:id="txt_adresse" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <JFXButton fx:id="btn_parcourir" alignment="BOTTOM_LEFT" onAction="#btn_parcourir_Click" onMouseClicked="#btn_parcourir_Click" prefHeight="27.0" prefWidth="78.0" text="Parcourir" underline="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="82.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="226.0" minWidth="200.0" prefWidth="218.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="200.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="btn_valider" layoutX="578.0" layoutY="510.0" onAction="#btn_valider_Click" prefHeight="36.0" prefWidth="135.0" style="-fx-background-color: #009efb;" text="Valider" textFill="#f8f8f8" />
+      <JFXButton fx:id="btn_annuler" layoutX="725.0" layoutY="510.0" onAction="#btn_annuler_Click" prefHeight="36.0" prefWidth="135.0" style="-fx-background-color: #009efb;" text="Annuler" textFill="#f8f8f8" />
+        </children>
 </AnchorPane>

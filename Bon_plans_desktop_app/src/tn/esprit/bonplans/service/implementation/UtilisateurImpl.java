@@ -116,4 +116,16 @@ public class UtilisateurImpl extends GenericServiceImplementation<Utilisateur> i
             Logger.getLogger(UtilisateurImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    @Override
+    public Utilisateur updateUser(Utilisateur utilisateur, boolean withUpdatePwd){
+        if (withUpdatePwd){
+            try {
+                utilisateur.setMdp(Encrypt.sha1(utilisateur.getMdp()));
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(UtilisateurImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return update(utilisateur);
+    }
 }
