@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import java.net.URL?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -14,56 +9,77 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1192.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.Accueil.AccueilController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="1192.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.bonplans.Gui.Accueil.AccueilController">
     <stylesheets>
         <URL value="@accueil.css" />
     </stylesheets>
       <children>
 
-      <Label fx:id="TitreCategorie1" alignment="CENTER" layoutX="596.0" layoutY="7.0" prefHeight="35.0" prefWidth="225.0" textFill="#1f4a90">
+      <Label fx:id="TitreCategorie1" alignment="CENTER" layoutX="596.0" layoutY="7.0" prefHeight="35.0" prefWidth="273.0">
          <font>
             <Font name="Bell MT" size="24.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="Categorie2plan1" layoutX="331.0" layoutY="228.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie2plan1" layoutX="309.0" layoutY="228.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="265.0">
          <children>
-            <ImageView fx:id="ImgC2P1" fitHeight="82.0" fitWidth="190.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC2P1" layoutX="18.0" layoutY="116.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC2P1" fitHeight="100.0" fitWidth="255.0" layoutX="4.0" layoutY="5.0" pickOnBounds="true" />
+            <Label fx:id="TitreC2P1" layoutX="17.0" layoutY="105.0" prefHeight="29.0" prefWidth="231.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Categorie1plan3" layoutX="866.0" layoutY="42.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie1plan3" layoutX="906.0" layoutY="42.0" onMouseClicked="#test" prefHeight="153.0" prefWidth="265.0">
          <children>
-            <ImageView fx:id="ImgC1P3" fitHeight="97.0" fitWidth="190.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC1P3" layoutX="18.0" layoutY="111.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC1P3" fitHeight="114.0" fitWidth="239.0" layoutX="18.0" layoutY="6.0" pickOnBounds="true" />
+            <Label fx:id="TitreC1P3" layoutX="18.0" layoutY="120.0" prefHeight="29.0" prefWidth="239.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Categorie1plan2" layoutX="596.0" layoutY="42.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie1plan2" layoutX="599.0" layoutY="42.0" onMouseClicked="#test" prefHeight="153.0" prefWidth="273.0">
          <children>
-            <ImageView fx:id="ImgC1P2" fitHeight="82.0" fitWidth="190.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC1P2" layoutX="14.0" layoutY="111.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC1P2" fitHeight="114.0" fitWidth="255.0" layoutX="10.0" layoutY="5.0" pickOnBounds="true" />
+            <Label fx:id="TitreC1P2" layoutX="14.0" layoutY="111.0" lineSpacing="1.0" prefHeight="32.0" prefWidth="239.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <Label fx:id="TitreCategorie2" alignment="CENTER" layoutX="596.0" layoutY="193.0" prefHeight="35.0" prefWidth="225.0" textAlignment="CENTER" textFill="#1f4a90">
+      <Label fx:id="TitreCategorie2" alignment="CENTER" layoutX="596.0" layoutY="193.0" prefHeight="35.0" prefWidth="326.0" textAlignment="CENTER">
          <font>
             <Font name="Bell MT" size="24.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="Categorie1plan1" layoutX="331.0" layoutY="42.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie1plan1" layoutX="309.0" layoutY="42.0" onMouseClicked="#test" prefHeight="153.0" prefWidth="265.0">
          <children>
-            <ImageView fx:id="ImgC1P1" fitHeight="82.0" fitWidth="190.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC1P1" layoutX="25.0" layoutY="112.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC1P1" fitHeight="114.0" fitWidth="255.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true">
+               <viewport>
+                  <Rectangle2D />
+               </viewport></ImageView>
+            <Label fx:id="TitreC1P1" layoutX="20.0" layoutY="116.0" prefHeight="23.0" prefWidth="225.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Categorie2plan2" layoutX="596.0" layoutY="228.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie2plan2" layoutX="599.0" layoutY="228.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="273.0">
          <children>
-            <ImageView fx:id="ImgC2P2" fitHeight="82.0" fitWidth="190.0" layoutX="18.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC2P2" layoutX="18.0" layoutY="117.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC2P2" fitHeight="100.0" fitWidth="239.0" layoutX="18.0" layoutY="5.0" pickOnBounds="true" />
+            <Label fx:id="TitreC2P2" layoutX="18.0" layoutY="105.0" prefHeight="32.0" prefWidth="239.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Categorie2plan3" layoutX="866.0" layoutY="228.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie2plan3" layoutX="906.0" layoutY="228.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="265.0">
          <children>
-            <ImageView fx:id="ImgC2P3" fitHeight="82.0" fitWidth="190.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC2P3" layoutX="18.0" layoutY="111.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC2P3" fitHeight="100.0" fitWidth="246.0" layoutX="11.0" layoutY="5.0" pickOnBounds="true" />
+            <Label fx:id="TitreC2P3" layoutX="15.0" layoutY="105.0" prefHeight="32.0" prefWidth="239.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="Menu" layoutY="1.0" prefHeight="577.0" prefWidth="231.0" style="-fx-background-color: white;">
@@ -93,27 +109,36 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label fx:id="TitreCategorie3" alignment="CENTER" layoutX="596.0" layoutY="370.0" prefHeight="35.0" prefWidth="225.0" textAlignment="CENTER" textFill="#1f4a90">
+      <Label fx:id="TitreCategorie3" alignment="CENTER" layoutX="599.0" layoutY="370.0" prefHeight="35.0" prefWidth="326.0" textAlignment="CENTER">
          <font>
             <Font name="Bell MT" size="24.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="Categorie3plan1" layoutX="331.0" layoutY="408.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie3plan1" layoutX="310.0" layoutY="408.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="265.0">
          <children>
-            <ImageView fx:id="ImgC3P1" fitHeight="82.0" fitWidth="190.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC3P1" layoutX="26.0" layoutY="105.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC3P1" fitHeight="100.0" fitWidth="231.0" layoutX="17.0" layoutY="12.0" pickOnBounds="true" />
+            <Label fx:id="TitreC3P1" layoutX="13.0" layoutY="114.0" prefHeight="29.0" prefWidth="239.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Categorie3plan2" layoutX="596.0" layoutY="408.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie3plan2" layoutX="596.0" layoutY="408.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="273.0">
          <children>
-            <ImageView fx:id="ImgC3P2" fitHeight="82.0" fitWidth="190.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC3P2" layoutX="18.0" layoutY="102.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC3P2" fitHeight="106.0" fitWidth="255.0" layoutX="9.0" layoutY="5.0" pickOnBounds="true" />
+            <Label fx:id="TitreC3P2" layoutX="14.0" layoutY="111.0" prefHeight="32.0" prefWidth="246.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Categorie3plan3" layoutX="866.0" layoutY="408.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="225.0" style="-fx-border-color: gray;">
+      <AnchorPane fx:id="Categorie3plan3" layoutX="906.0" layoutY="408.0" onMouseClicked="#test" prefHeight="142.0" prefWidth="265.0">
          <children>
-            <ImageView fx:id="ImgC3P3" fitHeight="82.0" fitWidth="190.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="TitreC3P3" layoutX="18.0" layoutY="105.0" prefHeight="17.0" prefWidth="55.0" text="plan 1" />
+            <ImageView fx:id="ImgC3P3" fitHeight="106.0" fitWidth="246.0" layoutX="11.0" layoutY="5.0" pickOnBounds="true" />
+            <Label fx:id="TitreC3P3" layoutX="15.0" layoutY="114.0" prefHeight="29.0" prefWidth="239.0" text="plan 1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
      </children>

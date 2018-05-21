@@ -165,24 +165,33 @@ public class AccueilController  extends Application implements Initializable {
         ImgC1P1.setImage(new Image(planCategorie1Choisie.get(0).getUrlPhoto(),true));
         System.out.println(planCategorie1Choisie.get(0).getUrlPhoto());
         TitreC1P1.setText(planCategorie1Choisie.get(0).getTitre());
+        TitreC1P1.setWrapText(true);
         ImgC1P2.setImage(new Image(planCategorie1Choisie.get(1).getUrlPhoto(),true));
         TitreC1P2.setText(planCategorie1Choisie.get(1).getTitre());
+        TitreC1P2.setWrapText(true);
         ImgC1P3.setImage(new Image(planCategorie1Choisie.get(2).getUrlPhoto(),true));
         TitreC1P3.setText(planCategorie1Choisie.get(2).getTitre());
+        TitreC1P3.setWrapText(true);
         //Affichage categorie 2
         ImgC2P1.setImage(new Image(planCategorie2Choisie.get(0).getUrlPhoto(),true));
         TitreC2P1.setText(planCategorie2Choisie.get(0).getTitre());
+        TitreC2P1.setWrapText(true);
         ImgC2P2.setImage(new Image(planCategorie2Choisie.get(1).getUrlPhoto(),true));
         TitreC2P2.setText(planCategorie2Choisie.get(1).getTitre());
+        TitreC2P2.setWrapText(true);
         ImgC2P3.setImage(new Image(planCategorie2Choisie.get(2).getUrlPhoto(),true));
         TitreC2P3.setText(planCategorie2Choisie.get(2).getTitre());
+        TitreC2P3.setWrapText(true);
          //Affichage categorie 2
         ImgC3P1.setImage(new Image(planCategorie3Choisie.get(0).getUrlPhoto(),true));
         TitreC3P1.setText(planCategorie3Choisie.get(0).getTitre());
+        TitreC3P1.setWrapText(true);
         ImgC3P2.setImage(new Image(planCategorie3Choisie.get(1).getUrlPhoto(),true));
         TitreC3P2.setText(planCategorie3Choisie.get(1).getTitre());
+        TitreC3P2.setWrapText(true);
         ImgC3P3.setImage(new Image(planCategorie3Choisie.get(2).getUrlPhoto(),true));
         TitreC3P3.setText(planCategorie3Choisie.get(2).getTitre());
+        TitreC3P3.setWrapText(true);
     }    
    
     
